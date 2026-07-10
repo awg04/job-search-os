@@ -1,5 +1,5 @@
 # Experience Library
-_Last updated: 2026-06-22_
+_Last updated: 2026-07-10 (synced with master resume `Resumes/07.07.26/Andrew Green Resume.pdf`)_
 
 ## Instructions
 
@@ -21,15 +21,29 @@ This is your single source of truth. Every skill draws from this file. The riche
 
 ---
 
+### Employment Record (canonical titles, dates, locations — from master resume 07.07.26)
+
+| Company | Title | Dates | Location |
+|---------|-------|-------|----------|
+| Carnival Cruise Line | Business Intelligence Developer – Power BI Specialist | Jan 2025 – Present | Remote |
+| Basic Fun | Senior Business Intelligence Engineer (Power BI) | Mar 2023 – Jan 2025 | Boca Raton, FL |
+| Twin-Star International | Sr. Business Intelligence Engineer | Oct 2017 – Mar 2023 | Delray Beach, FL |
+| AutoNation | Business Analyst | Apr 2016 – Oct 2017 | Palm Beach Gardens, FL |
+| Merrill Lynch | Financial Advisor | May 2011 – Mar 2016 | Palm Beach Gardens, FL |
+
+ERP/system context: SAP Business One (Basic Fun), Microsoft Dynamics (Twin-Star). The AutoNation title was **Business Analyst** — lead with it for BA/BSA-screened roles. Contact: Fort Lauderdale, FL | 561.336.1806 | andrewgreen04@gmail.com.
+
+---
+
 ### BI & Dashboard Development
 
-- Built executive-ready Power BI dashboards for Carnival's fleet-wide HVAC Energy Management System, providing real-time visibility into temperature setpoints vs. actuals, AHU power consumption, fan speed, CO2 trends, and unit-level performance KPIs across the fleet (Carnival, 2025–present)
-- Designed scalable Power BI semantic models and dimensional reporting structures supporting trusted KPI reporting — energy targets, actual performance, variance-to-target, operating mode, and excess consumption metrics — for engineering, operations, and executive audiences (Carnival, 2025–present)
+- Architected a 4-page PBIP fleet HVAC dashboard for Carnival tracking 5 primary KPIs (AHU Energy, AHU Energy vs Target, COP, Cooling Power, CO₂) across 47 ships in 3 brands (Carnival, Holland America, Seabourn) — including per-ship small-multiples trend views, worst-offender ship rankings, and an AHU sensor diagnostics drill-through page with 6-slicer filter rail enabling root-cause analysis to individual sensor level (Carnival, 2025–present)
+- Designed scalable Power BI semantic models with 5 calculation groups (Time Zone, AHU View, Target Calculation, Climate Zone, Temp Units) supporting KPI reporting — energy targets, actual performance, variance-to-target, operating mode, and excess consumption metrics — against live `BI_Trident_Data` table in Azure SQL for engineering, operations, and executive audiences (Carnival, 2025–present)
 - Built and maintained enterprise Power BI dashboards at Basic Fun covering sales performance, budget tracking, forecast accuracy, inventory position, pricing activity, and variance-to-plan — contributing to a 20% improvement in Performance-to-Plan outcomes (Basic Fun, 2023–2025)
 - Automated daily/weekly report email distributions and alerts at Basic Fun by querying Power BI data from scheduled tasks in Power Automate, improving stakeholder follow-through and reporting consistency (Basic Fun, 2023–2025)
-- Led enterprise Power BI deployment at Twin-Star International, defining a strategic roadmap for reporting and analytics and maintaining delivery accountability across the organization (Twin-Star, 2020–2023)
-- Built paginated reports in SSRS/Power BI Report Builder for complex data exports to Excel and CSV formats (Twin-Star, 2020–2023)
-- Engineered a Power Apps write-back solution allowing report users to input commentary to a SharePoint Product Tracker directly within Power BI custom visuals, creating a closed-loop between reporting and action tracking (Twin-Star, 2020–2023)
+- Led enterprise Power BI deployment at Twin-Star International, defining a strategic roadmap for reporting and analytics and maintaining delivery accountability across the organization (Twin-Star, 2017–2023)
+- Built paginated reports in SSRS/Power BI Report Builder for complex data exports to Excel and CSV formats (Twin-Star, 2017–2023)
+- Engineered a Power Apps write-back solution allowing report users to input commentary to a SharePoint Product Tracker directly within Power BI custom visuals, creating a closed-loop between reporting and action tracking (Twin-Star, 2017–2023)
 - Created advanced DAX measures for real-time KPI tracking covering financial forecasting, sales performance, and inventory optimization (AutoNation/Mullinax, 2016–2017)
 - Designed and developed CPQ analytics and reporting solutions at Basic Fun, streamlining complex pricing structures, approval workflows, quote accuracy, and pricing performance visibility (Basic Fun, 2023–2025)
 
@@ -37,12 +51,13 @@ This is your single source of truth. Every skill draws from this file. The riche
 
 ### Data Engineering & ETL
 
-- Automated ETL workflows at Carnival integrating heterogeneous HVAC and energy management sources — SQL databases, IoT sensor feeds, vendor automation tags, APIs, and cloud-hosted repositories — achieving 99% data accuracy for near-real-time Power BI reporting (Carnival, 2025–present)
-- Used Azure Synapse Analytics to schedule, orchestrate, and automate ETL tasks at Carnival, improving refresh reliability and enabling standardized data delivery for Power BI reporting, variance tracking, and downstream analytics (Carnival, 2025–present)
+- Built three parallel ETL pipelines at Carnival ingesting data from NovotekReportPlus IoT historian (100+ AHU sensor tags per ship), Siemens Daedalus BMS cloud platform (chiller plant data via OPC UA/machine token auth), and MarineXProcurement voyage scheduling system (on-prem SQL) — resampled to 5-min intervals, pivoted from long to wide per AHU, ISNULL-coalesced across tag variants, and bulk-loaded via `fast_executemany` into a unified Azure SQL `ENERGY_DATABASE` serving 47 ships across 3 brands — achieving 99% data accuracy for near-real-time Power BI reporting (Carnival, 2025–present)
+- Used Azure Synapse Analytics to schedule, orchestrate, and automate ETL pipeline execution at Carnival, triggering and sequencing Python ingestion notebooks across all three source pipelines (Trident IoT, Siemens Daedalus, MarineXProcurement), improving refresh reliability and enabling standardized data delivery for Power BI reporting, variance tracking, and downstream analytics (Carnival, 2025–present)
 - Designed and deployed Azure data lake and ETL pipelines at Basic Fun to ingest 3rd-party point-of-sale data from heterogeneous sources: web portal, FTP, email, flat file, and external databases (Basic Fun, 2023–2025)
 - Implemented incremental refresh strategies at Basic Fun replacing full data loads, reducing pipeline run times significantly and improving reporting timeliness for large business-critical datasets (Basic Fun, 2023–2025)
-- Migrated transactional data from multiple siloed ERP systems at Twin-Star into an Azure SQL Server operational data store (ODS) using ETL pipelines (Twin-Star, 2020–2023)
-- Led migration of on-premise SQL Server schemas to Azure SQL Server, developing and maintaining databases across both on-premise and cloud environments (Twin-Star, 2020–2023)
+- Migrated transactional data from multiple siloed ERP systems at Twin-Star into an Azure SQL Server operational data store (ODS) using ETL pipelines (Twin-Star, 2017–2023)
+- Led migration of on-premise SQL Server schemas to Azure SQL Server, developing and maintaining databases across both on-premise and cloud environments (Twin-Star, 2017–2023)
+- Migrated data off a legacy Oracle database during an ERP implementation, writing PL/SQL queries to extract and transform source data (Twin-Star, 2017–2023)
 - Built automated tool at Mullinax Ford to ingest and parse Vehicle Report data from PDFs and calculate optimal bid prices and profit margins at auction using custom appraisal logic (Mullinax, 2016–2017)
 
 ---
@@ -50,11 +65,12 @@ This is your single source of truth. Every skill draws from this file. The riche
 ### Data Modeling & Architecture
 
 - Designed Basic Fun's first enterprise data warehouse from scratch — full stack from source ingestion through ETL, dimensional modeling, star schema, semantic layer, and Power BI reporting — creating the company's foundational analytics platform (Basic Fun, 2023–2025)
-- Architected Twin-Star's first enterprise data warehouse: defined dimensional models, implemented star schema, built SSIS ETL packages, and leveraged Azure Synapse for parallel analytical processing (Twin-Star, 2020–2023)
-- Integrated general ledger data across three Twin-Star portfolio companies, modeling a unified chart of accounts and automating P&L, Balance Sheet, and Cash Flow reporting — saving 20–25 hours/month in manual Finance team preparation (Twin-Star, 2020–2023)
+- Architected Twin-Star's first enterprise data warehouse: defined dimensional models, implemented star schema, built SSIS ETL packages, and leveraged Azure Synapse for parallel analytical processing (Twin-Star, 2017–2023)
+- Integrated general ledger data across three Twin-Star portfolio companies, modeling a unified chart of accounts and automating P&L, Balance Sheet, and Cash Flow reporting — saving 20–25 hours/month in manual Finance team preparation (Twin-Star, 2017–2023)
 - Built scalable Power BI semantic models and reusable DAX measures at Carnival supporting time-series analysis, anomaly detection, and energy efficiency benchmarking across a large fleet (Carnival, 2025–present)
 - Designed fact/dimension tables and star schema models in Power BI with reusable DAX measures for financial, sales, and operational analytics (Twin-Star, AutoNation)
 - Partnered with stakeholders to define data requirements, technical architecture, and delivery strategy for data warehouse implementations (Twin-Star, Basic Fun)
+- Mapped vendor-specific HVAC tag structures into standardized enterprise data models — source-to-target mapping supporting cloud data lake/warehouse modernization and future automation-provider rollouts (Carnival, 2025–present)
 
 ---
 
@@ -71,6 +87,7 @@ This is your single source of truth. Every skill draws from this file. The riche
 
 - Built ETL and data ingestion pipelines in Microsoft Fabric at Carnival, integrating internal data warehouse assets with external sources including APIs, IoT vendor feeds, and cloud-hosted repositories into Fabric Lakehouses for unified analytical access (Carnival, 2025–present)
 - Constructed Fabric Lakehouses at Carnival to consolidate structured and semi-structured data sources, enabling reporting and analysis beyond what was available through Power BI datasets alone — including fleet-wide energy and HVAC operational data (Carnival, 2025–present)
+- Architected a Direct Lake semantic model over OneLake delta tables in Microsoft Fabric, delivering near-real-time HVAC dashboards with DirectQuery-level latency and import-mode query performance while eliminating dataset refresh overhead (Carnival, 2025–present)
 - Built ETL pipelines and data lakehouses in Microsoft Fabric at Basic Fun, integrating internal data warehouse assets with external sources including vendor forecasts, competitor product attributes, and API feeds (Basic Fun, 2023–2025)
 - Developed golden datasets in Fabric at Basic Fun to serve as governed, reusable data products for downstream reporting, ad hoc analysis, and Power BI semantic models — decoupling analytical consumption from raw source dependencies (Basic Fun, 2023–2025)
 - Production Fabric deployment across two employers (Carnival, Basic Fun) — early adopter with hands-on lakehouse architecture, dataflow/pipeline orchestration, and golden dataset design
@@ -79,30 +96,33 @@ This is your single source of truth. Every skill draws from this file. The riche
 
 ### Advanced Analytics & ML
 
-- Developed HVAC energy target logic using Python notebooks and regression-based models incorporating enthalpy, AHU power, fan speed, fuel consumption, and port/sea/turnaround operating conditions — benchmarking fleet performance and identifying optimization opportunities (Carnival, 2025–present)
+- Developed per-AHU HVAC energy baseline models in Python using scikit-learn — dual fan/chiller sub-models per unit with Fourier-encoded hour-of-day features (3 harmonics), outside air enthalpy (via psychrometric library), and sea/port/turnaround operating mode classification — training exclusively on lowest-25th-percentile consumption days to model efficiency floor rather than peak; iterated 6+ notebook versions across 6 ship-specific deployments (Conquest, Radiance, Sunrise, Sunshine, Magic, Liberty); model coefficients written to Azure SQL and consumed by Power BI as `AHU Energy vs Target` measure (Carnival, 2025–present)
 - Collaborated with demand planning stakeholders at Basic Fun to develop predictive inventory modeling, achieving a 25% YoY improvement in forecast accuracy through optimized demand and stock-level analysis (Basic Fun, 2023–2025)
-- Integrated DAX-based predictive models at Twin-Star to enhance demand forecasting, pricing optimization, and revenue projections (Twin-Star, 2020–2023)
-- Developed data-driven customer segmentation strategies at Merrill Lynch to personalize investment recommendations and improve client retention (Merrill Lynch, 2009–2016)
+- Integrated DAX-based predictive models at Twin-Star to enhance demand forecasting, pricing optimization, and revenue projections (Twin-Star, 2017–2023)
+- Developed data-driven customer segmentation strategies at Merrill Lynch to personalize investment recommendations and improve client retention (Merrill Lynch, 2011–2016)
 
 ---
 
 ### Stakeholder Management & Cross-functional
 
-- Partnered with Fuel Performance, Engineering, Operations, Data Engineering, and executive leadership at Carnival to gather requirements, define KPI logic, review findings, and translate complex technical data into clear business insights and action-oriented dashboard narratives (Carnival, 2025–present)
+- Partnered with Fuel Performance, Engineering, Operations, Data Engineering, and executive leadership at Carnival to gather requirements, define KPI logic, review findings, and translate complex technical data into clear business insights and action-oriented dashboard narratives — iterating dashboard enhancements that improved stakeholder adoption by 35% (Carnival, 2025–present)
 - Led working sessions with engineers, operations teams, executives, and external vendors at Carnival to prioritize enhancements and deliver BI solutions supporting remote troubleshooting and predictive maintenance (Carnival, 2025–present)
 - Supported Agile project execution at Carnival across pilot development, stakeholder feedback cycles, dashboard iteration, and rollout planning (Carnival, 2025–present)
 - Partnered with Finance, Sales, Demand Planning, and Operations at Basic Fun to capture requirements, define KPI logic, validate assumptions, and translate business questions into actionable Power BI reports and DAX measures (Basic Fun, 2023–2025)
-- Collaborated with Sales and Operations Planning (S&OP) at Twin-Star to support Demand Planning, Supply Planning, and strategic global supply chain decisions (Twin-Star, 2020–2023)
-- Led teams of database engineers and external consultants across data migration, ERP implementation, and BI platform projects at Twin-Star (Twin-Star, 2020–2023)
+- Collaborated with Sales and Operations Planning (S&OP) at Twin-Star to support Demand Planning, Supply Planning, and strategic global supply chain decisions (Twin-Star, 2017–2023)
+- Led teams of database engineers and external consultants across data migration, ERP implementation, and BI platform projects at Twin-Star (Twin-Star, 2017–2023)
+- Collaborated cross-functionally with Sales, Marketing, and Internet departments at AutoNation to produce comprehensive daily and weekly reports, improving operational visibility and trend identification (AutoNation, 2016–2017)
 
 ---
 
 ### Finance & Domain Expertise
 
-- 5 years as Financial Advisor at Merrill Lynch, co-managing $250M in assets as junior partner on a wealth management advisory team (Merrill Lynch, 2009–2016)
+- 5 years as Financial Advisor at Merrill Lynch, co-managing $250M in assets as junior partner on a wealth management advisory team (Merrill Lynch, 2011–2016)
 - Deep expertise in financial reporting: P&L, Balance Sheet, Cash Flow, budget vs. actual, variance-to-plan — applied both as a finance professional and as the BI engineer building those reports
 - 2+ years as Pricing Analyst at Twin-Star, developing and modeling pricing strategies across multiple product lines and consulting field sales teams on statistical and quantitative modeling
 - Designed SQL-based sales analytics and pricing strategy tools at Mullinax/AutoNation supporting inventory optimization and bid price calculation
+- Conducted in-depth analysis of market trends and supply-demand metrics at AutoNation to establish competitive vehicle pricing and optimize inventory turnover (AutoNation, 2016–2017)
+- Applied ETL methodologies at Merrill Lynch to aggregate regulatory data, ensuring compliance with financial laws and internal policies; used ERP and CRM tools to track portfolio performance and client engagement (Merrill Lynch, 2011–2016)
 
 ---
 
@@ -112,6 +132,7 @@ This is your single source of truth. Every skill draws from this file. The riche
 |--------|---------|
 | **25% reduction** in data processing time | SQL/pipeline optimization, Carnival |
 | **99% data accuracy** | Near-real-time IoT + vendor feed integration, Carnival |
+| **35% improvement** in stakeholder adoption | Requirements-driven dashboard iteration, Carnival |
 | **20% improvement** in Performance-to-Plan | Executive KPI dashboards, Basic Fun |
 | **25% YoY improvement** in forecast accuracy | Predictive demand modeling, Basic Fun |
 | **20–25 hrs/month saved** | Automated financial consolidation across 3 companies, Twin-Star |
@@ -129,7 +150,7 @@ This is your single source of truth. Every skill draws from this file. The riche
 **Dev Tools:** Tabular Editor, DAX Studio, Visual Studio, Azure Data Studio, ER Studio, Git
 **Big Data:** Apache Spark, Scala, Kafka
 **Automation:** Power Automate, Power Apps
-**Certifications (In Progress):** PL-300 Microsoft Power BI Data Analyst Associate; DP-203 Azure Data Engineer Associate
+**Certifications (In Progress):** PL-300 Microsoft Power BI Data Analyst Associate; DP-700 Microsoft Fabric Data Engineer Associate
 **Education:** BS Finance & Economics, Florida State University (2004–2008)
 
 ---
@@ -137,32 +158,32 @@ This is your single source of truth. Every skill draws from this file. The riche
 ## Story Bank
 
 ### Story 1: "The Fleet Brain" — Carnival HVAC Energy Management System
-- **Situation:** Carnival needed fleet-wide visibility into HVAC energy consumption, but data was siloed across SQL databases, IoT sensor feeds, vendor automation tags, and APIs with no unified reporting layer.
-- **Task:** Own end-to-end BI and data engineering: architect the ETL pipelines, build the semantic models, and deliver executive-facing Power BI dashboards for the Energy Management and Fuel Performance teams.
-- **Action:** Designed and automated ETL workflows integrating all heterogeneous sources via Azure Synapse. Built scalable Power BI semantic models with reusable DAX measures. Developed interactive dashboards covering temperature setpoints vs. actuals, AHU power consumption, fan speed, CO2 trends, and variance-to-target KPIs. Partnered with Fuel Performance, Engineering, Operations, and executive stakeholders to define KPI logic and iterate on dashboards through Agile cycles.
-- **Result:** 99% data accuracy for near-real-time reporting; 25% reduction in data processing time; dashboards actively used by engineering, operations, and shoreside leadership for remote troubleshooting and energy optimization decisions.
-- **Tags:** accomplishment, technical, cross-functional, architecture, ETL, stakeholder management
-- **Best for:** "Tell me about your most complex BI project," "describe a time you owned something end-to-end," "how do you handle multiple data sources," "tell me about your ETL experience"
+- **Situation:** Carnival needed fleet-wide visibility into HVAC energy consumption across 47 ships in 3 brands (Carnival, Holland America, Seabourn), but data was siloed across three entirely separate systems: NovotekReportPlus IoT historian (AHU sensor telemetry), Siemens Daedalus BMS cloud platform (chiller plant data), and MarineXProcurement on-prem SQL (voyage scheduling) — with no unified reporting layer.
+- **Task:** Own end-to-end BI and data engineering: architect three parallel ETL pipelines, build the semantic models, and deliver a 4-page PBIP Power BI fleet dashboard for the Energy Management and Fuel Performance teams.
+- **Action:** Built three parallel Python ingestion pipelines — pulling 100+ AHU sensor tags per ship from NovotekReportPlus, chiller plant metrics from Siemens Daedalus via OPC UA, and port/sea/turnaround operating mode data from MarineXProcurement — resampling to 5-minute intervals, pivoting long→wide per AHU, coalescing inconsistent tag variants across ships, and bulk-loading via `fast_executemany` into a unified `ENERGY_DATABASE` on Azure SQL. Orchestrated all pipelines via Azure Synapse. Built a 4-page PBIP dashboard: Fleet HVAC Performance (5 KPI strip + ship ranking), Per-Ship Trend Small Multiples, Ship Rankings by Energy vs Target, and an AHU Sensor Diagnostics drill-through with 6-slicer filter rail. Semantic model includes 5 calculation groups (Time Zone, AHU View, Target Calculation, Climate Zone, Temp Units). Partnered with Fuel Performance, Engineering, Operations, and executive stakeholders to define KPI logic and iterate through Agile cycles.
+- **Result:** 99% data accuracy for near-real-time reporting; 25% reduction in data processing time; dashboards actively used by engineering, operations, and shoreside leadership for remote troubleshooting and energy optimization decisions across the full fleet.
+- **Tags:** accomplishment, technical, cross-functional, architecture, ETL, stakeholder management, Microsoft Fabric
+- **Best for:** "Tell me about your most complex BI project," "describe a time you owned something end-to-end," "how do you handle multiple data sources," "tell me about your ETL experience," "describe a project with real scale"
 
 ---
 
 ### Story 2: "Python Benchmarks" — Carnival Regression Modeling for HVAC Efficiency
-- **Situation:** Carnival's HVAC energy performance had no statistical baseline — teams couldn't distinguish normal variation from genuine inefficiency, making it impossible to target interventions.
-- **Task:** Build an energy benchmarking model to identify underperforming units and operating conditions.
-- **Action:** Developed HVAC energy target logic using Python notebooks and regression-based models incorporating enthalpy, AHU power, fan speed, fuel consumption, and port/sea/turnaround operating conditions. Integrated model outputs into Power BI dashboards for anomaly detection and efficiency scoring.
-- **Result:** Fleet performance could now be objectively benchmarked by operating condition. Engineering teams gained a defensible baseline to prioritize troubleshooting and predictive maintenance actions.
-- **Tags:** technical, advanced analytics, Python, ML, problem-solving
-- **Best for:** "Have you done any data science or modeling work?", "how do you go beyond dashboards?", "tell me about a time you solved a problem others hadn't framed yet"
+- **Situation:** Carnival's HVAC energy performance had no statistical baseline — teams couldn't distinguish normal variation from genuine inefficiency, making it impossible to objectively target maintenance interventions across a 47-ship fleet.
+- **Task:** Build per-AHU energy consumption baseline models so fleet managers could benchmark each unit against an expected efficiency floor under any operating condition.
+- **Action:** Developed ship-specific Python notebooks using scikit-learn (`LinearRegression`, `Ridge`, `PolynomialFeatures`, `make_pipeline`) and evaluated `xgboost` as alternative. Model architecture: two separate sub-models per AHU — one for fan power (`fans_power_kW`) and one for chiller power — summed to produce total AHU energy target. Features: outside air enthalpy (calculated via `psychro.lib` psychrometric library), six Fourier-encoded hour-of-day terms (sin/cos at 3 harmonics to capture daily demand cyclicality), and one-hot-encoded daytype (sea/port/turnaround, derived from MarineXProcurement voyage data). Critically, trained only on days in the **lowest 25th percentile of daily energy consumption** to model the efficiency baseline — not average or peak behavior. Iterated through 6+ versions across 6 ship deployments (Conquest, Radiance, Sunrise, Sunshine, Magic, Liberty). Wrote per-AHU model coefficients to `ENERGY_DATABASE.Targets` in Azure SQL; Power BI semantic model reads these as the `AHU Energy vs Target` measure displayed on the Fleet HVAC dashboard.
+- **Result:** Each AHU now has an objectively defensible energy target adjusted for outside air conditions, time of day, and operating mode. Engineering teams gained a quantitative baseline to prioritize troubleshooting — distinguishing genuine inefficiency from expected variation — and can track unit-level performance improvements over time.
+- **Tags:** technical, advanced analytics, Python, ML, scikit-learn, problem-solving, regression, feature engineering
+- **Best for:** "Have you done any data science or modeling work?", "how do you go beyond dashboards?", "tell me about a time you solved a problem others hadn't framed yet," "describe your Python experience," "walk me through a model you built end-to-end"
 
 ---
 
 ### Story 3: "25% Faster Pipeline" — Carnival SQL Optimization
-- **Situation:** Large-scale HVAC and energy datasets were slow to process, causing refresh delays that undermined the reliability and timeliness of executive reporting.
-- **Task:** Identify and resolve data processing bottlenecks in the ETL and reporting pipeline.
-- **Action:** Profiled and optimized SQL-based extraction, transformation, and validation logic. Refactored inefficient queries, improved indexing, and streamlined transformation layers in partnership with data engineering.
-- **Result:** 25% reduction in data processing time, improving reporting scalability and refresh performance for the entire HVAC reporting suite.
-- **Tags:** performance optimization, technical, SQL, data engineering
-- **Best for:** "Tell me about a performance problem you solved," "how do you approach query optimization," "have you worked with large datasets"
+- **Situation:** Large-scale HVAC and energy datasets from three source pipelines (NovotekReportPlus, Siemens Daedalus, MarineXProcurement) were slow to process and load into `ENERGY_DATABASE` on Azure SQL, causing refresh delays that undermined the reliability and timeliness of fleet HVAC dashboard reporting and the regression model's training data currency.
+- **Task:** Identify and resolve data processing bottlenecks in the ETL extraction, transformation, and load layers across the pipeline stack.
+- **Action:** Profiled SQL-based extraction, transformation, and validation logic across all three pipelines. Refactored inefficient T-SQL queries in the `BI_Trident_Data` and `Energy_Data_5min` transformation layers. Improved indexing on high-cardinality columns. Streamlined ISNULL coalescing logic across AHU tag variants. Replaced full-table scans with targeted incremental reads. Implemented `cursor.fast_executemany = True` for bulk writes via pyodbc, dramatically reducing insert round-trips. Validated end-to-end output accuracy via reconciliation between raw source, transformed layers, and Power BI semantic model outputs.
+- **Result:** 25% reduction in data processing time, improving reporting scalability and refresh performance across the full HVAC reporting suite — ensuring `AHU Energy vs Target` and KPI measures reflected near-real-time data for operational and executive decision-making.
+- **Tags:** performance optimization, technical, SQL, data engineering, ETL, pyodbc
+- **Best for:** "Tell me about a performance problem you solved," "how do you approach query optimization," "have you worked with large datasets," "how do you validate pipeline output accuracy"
 
 ---
 
