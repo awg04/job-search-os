@@ -29,7 +29,7 @@ This is your single source of truth. Every skill draws from this file. The riche
 | Basic Fun | Senior Business Intelligence Engineer (Power BI) | Mar 2023 – Jan 2025 | Boca Raton, FL |
 | Twin-Star International | Sr. Business Intelligence Engineer | Oct 2017 – Mar 2023 | Delray Beach, FL |
 | AutoNation | Business Analyst | Apr 2016 – Oct 2017 | Palm Beach Gardens, FL |
-| Merrill Lynch | Financial Advisor | May 2011 – Mar 2016 | Palm Beach Gardens, FL |
+| Merrill Lynch | Financial Advisor | May 2009 – Mar 2016 | Palm Beach Gardens, FL |
 
 ERP/system context: SAP Business One (Basic Fun), Microsoft Dynamics (Twin-Star, migration target). The AutoNation title was **Business Analyst** (older resumes tagged it "Business Analyst, Buyer") — lead with it for BA/BSA-screened roles. Contact: Fort Lauderdale, FL | 561.336.1806 | andrewgreen04@gmail.com | linkedin.com/in/agreen8.
 
@@ -53,7 +53,7 @@ Notes from resume-version review (2026-07-10):
 - Led enterprise Power BI deployment at Twin-Star International, defining a strategic roadmap for reporting and analytics and maintaining delivery accountability across the organization (Twin-Star, 2017–2023)
 - Built paginated reports in SSRS/Power BI Report Builder for complex data exports to Excel and CSV formats (Twin-Star, 2017–2023)
 - Engineered a Power Apps write-back solution allowing report users to input commentary to a SharePoint Product Tracker directly within Power BI custom visuals, creating a closed-loop between reporting and action tracking (Twin-Star, 2017–2023)
-- Created advanced DAX measures for real-time KPI tracking covering financial forecasting, sales performance, and inventory optimization (AutoNation/Mullinax, 2016–2017)
+- Created advanced DAX measures for real-time KPI tracking covering financial forecasting, sales performance, and inventory optimization (AutoNation, 2016–2017)
 - Designed and developed CPQ analytics and reporting solutions at Basic Fun, streamlining complex pricing structures, approval workflows, quote accuracy, and pricing performance visibility (Basic Fun, 2023–2025)
 
 ---
@@ -72,7 +72,7 @@ Notes from resume-version review (2026-07-10):
 - Migrated transactional data from multiple siloed ERP systems at Twin-Star into an Azure SQL Server operational data store (ODS) using ETL pipelines (Twin-Star, 2017–2023)
 - Led migration of on-premise SQL Server schemas to Azure SQL Server, developing and maintaining databases across both on-premise and cloud environments (Twin-Star, 2017–2023)
 - Migrated data off a legacy Oracle database during an ERP implementation, writing PL/SQL queries to extract and transform source data (Twin-Star, 2017–2023)
-- Built automated tool at Mullinax Ford to ingest and parse Vehicle Report data from PDFs and calculate optimal bid prices and profit margins at auction using custom appraisal logic (Mullinax, 2016–2017)
+- Built automated tool at AutoNation to ingest and parse Vehicle Report data from PDFs and calculate optimal bid prices and profit margins at auction using custom appraisal logic (AutoNation, 2016–2017)
 
 ---
 
@@ -129,7 +129,7 @@ Notes from resume-version review (2026-07-10):
 - Designed a 4-tier cooling-power estimation cascade (direct-tag → enthalpy → calibrated sensible × R-multiplier → sensible floor) to derive `chiller_power` from `cooling_power / COP`; validation of the calibrated tiers was only partially successful (14 of 118 ground-truth AHUs passed strictly, root cause = unknown per-AHU design-airflow constants), so shipped a conservative config restricted to the validated AHUs — a rigorous methodology with an honestly-scoped, still-open result (Carnival, 2025–present)
 - Collaborated with demand planning stakeholders at Basic Fun to develop predictive inventory modeling, achieving a 25% YoY improvement in forecast accuracy through optimized demand and stock-level analysis (Basic Fun, 2023–2025)
 - Integrated DAX-based predictive models at Twin-Star to enhance demand forecasting, pricing optimization, and revenue projections (Twin-Star, 2017–2023)
-- Developed data-driven customer segmentation strategies at Merrill Lynch to personalize investment recommendations and improve client retention (Merrill Lynch, 2011–2016)
+- Developed data-driven customer segmentation strategies at Merrill Lynch to personalize investment recommendations and improve client retention (Merrill Lynch, 2009–2016)
 
 ---
 
@@ -149,12 +149,12 @@ Notes from resume-version review (2026-07-10):
 
 ### Finance & Domain Expertise
 
-- 5 years as Financial Advisor at Merrill Lynch, co-managing $250M in assets as junior partner on a wealth management advisory team (Merrill Lynch, 2011–2016)
+- ~7 years as Financial Advisor at Merrill Lynch (2009–2016), co-managing $250M in assets as junior partner on a wealth management advisory team (Merrill Lynch, 2009–2016)
 - Deep expertise in financial reporting: P&L, Balance Sheet, Cash Flow, budget vs. actual, variance-to-plan — applied both as a finance professional and as the BI engineer building those reports
 - 2+ years as Pricing Analyst at Twin-Star, developing and modeling pricing strategies across multiple product lines and consulting field sales teams on statistical and quantitative modeling
-- Designed SQL-based sales analytics and pricing strategy tools at Mullinax/AutoNation supporting inventory optimization and bid price calculation
+- Designed SQL-based sales analytics and pricing strategy tools at AutoNation supporting inventory optimization and bid price calculation
 - Conducted in-depth analysis of market trends and supply-demand metrics at AutoNation to establish competitive vehicle pricing and optimize inventory turnover (AutoNation, 2016–2017)
-- Applied ETL methodologies at Merrill Lynch to aggregate regulatory data, ensuring compliance with financial laws and internal policies; used ERP and CRM tools to track portfolio performance and client engagement (Merrill Lynch, 2011–2016)
+- Applied ETL methodologies at Merrill Lynch to aggregate regulatory data, ensuring compliance with financial laws and internal policies; used ERP and CRM tools to track portfolio performance and client engagement (Merrill Lynch, 2009–2016)
 
 ---
 
@@ -316,8 +316,8 @@ Notes from resume-version review (2026-07-10):
 
 ---
 
-### Story 11: "PDF Auction Tool" — Mullinax Ford Automated Appraisal Logic
-- **Situation:** Vehicle auction bid decisions at Mullinax Ford were manual and subjective, relying on buyers parsing PDF vehicle reports by hand to estimate bid prices and profit margins.
+### Story 11: "PDF Auction Tool" — AutoNation Automated Appraisal Logic
+- **Situation:** Vehicle auction bid decisions at AutoNation were manual and subjective, relying on buyers parsing PDF vehicle reports by hand to estimate bid prices and profit margins.
 - **Task:** Automate the bid price calculation process.
 - **Action:** Developed an automated tool to ingest and parse Vehicle Report data from PDFs, applying custom appraisal logic to calculate optimal bid prices and profit margins at auction.
 - **Result:** Transformed a manual, error-prone process into an automated analytical tool, enabling faster and more consistent bid decisions.
