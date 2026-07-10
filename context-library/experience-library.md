@@ -1,5 +1,5 @@
 # Experience Library
-_Last updated: 2026-07-10 (synced with master resume `Resumes/07.07.26/Andrew Green Resume.pdf`)_
+_Last updated: 2026-07-10 (synced with master resume `Resumes/07.07.26/Andrew Green Resume.pdf`; Carnival HVAC EMS detail mined from work-session records)_
 
 ## Instructions
 
@@ -25,20 +25,29 @@ This is your single source of truth. Every skill draws from this file. The riche
 
 | Company | Title | Dates | Location |
 |---------|-------|-------|----------|
-| Carnival Cruise Line | Business Intelligence Developer – Power BI Specialist | Jan 2025 – Present | Remote |
+| Carnival Cruise Line | Business Intelligence Developer – Power BI Specialist (contract/consultant) | Jan 2025 – Present | Remote |
 | Basic Fun | Senior Business Intelligence Engineer (Power BI) | Mar 2023 – Jan 2025 | Boca Raton, FL |
 | Twin-Star International | Sr. Business Intelligence Engineer | Oct 2017 – Mar 2023 | Delray Beach, FL |
 | AutoNation | Business Analyst | Apr 2016 – Oct 2017 | Palm Beach Gardens, FL |
 | Merrill Lynch | Financial Advisor | May 2011 – Mar 2016 | Palm Beach Gardens, FL |
 
-ERP/system context: SAP Business One (Basic Fun), Microsoft Dynamics (Twin-Star). The AutoNation title was **Business Analyst** — lead with it for BA/BSA-screened roles. Contact: Fort Lauderdale, FL | 561.336.1806 | andrewgreen04@gmail.com.
+ERP/system context: SAP Business One (Basic Fun), Microsoft Dynamics (Twin-Star, migration target). The AutoNation title was **Business Analyst** (older resumes tagged it "Business Analyst, Buyer") — lead with it for BA/BSA-screened roles. Contact: Fort Lauderdale, FL | 561.336.1806 | andrewgreen04@gmail.com | linkedin.com/in/agreen8.
+
+Notes from resume-version review (2026-07-10):
+- **Carnival is a contract/consultant role** (confirmed 2026-07-10) — the contract has been "extended 4 times, more than any other consultant on the project." Strong signal for contract/BIA applications: proven staying power and repeat value to the client.
+- Do NOT use "Manager" titles for Basic Fun/Twin-Star — two old AI-optimized resumes inflated them to "Manager"; the canonical title is "(Senior) Business Intelligence Engineer" everywhere else.
+- FSU is in Tallahassee, FL.
 
 ---
 
 ### BI & Dashboard Development
 
-- Architected a 4-page PBIP fleet HVAC dashboard for Carnival tracking 5 primary KPIs (AHU Energy, AHU Energy vs Target, COP, Cooling Power, CO₂) across 47 ships in 3 brands (Carnival, Holland America, Seabourn) — including per-ship small-multiples trend views, worst-offender ship rankings, and an AHU sensor diagnostics drill-through page with 6-slicer filter rail enabling root-cause analysis to individual sensor level (Carnival, 2025–present)
+- Architected a multi-page PBIP fleet HVAC dashboard for Carnival tracking 5 primary KPIs (AHU Energy, AHU Energy vs Target, COP, Cooling Power, CO₂) across 79 ships spanning 8 Carnival Corp brands (Carnival, AIDA, Costa, Holland America, Princess, P&O Australia, P&O UK, Seabourn) — including per-ship small-multiples trend views, worst-offender ship rankings, and an AHU sensor diagnostics drill-through page with 6-slicer filter rail enabling root-cause analysis to individual sensor level (Carnival, 2025–present)
 - Designed scalable Power BI semantic models with 5 calculation groups (Time Zone, AHU View, Target Calculation, Climate Zone, Temp Units) supporting KPI reporting — energy targets, actual performance, variance-to-target, operating mode, and excess consumption metrics — against live `BI_Trident_Data` table in Azure SQL for engineering, operations, and executive audiences (Carnival, 2025–present)
+- Built a labeled navigation-pane design system for the HVAC EMS report — a 175px nav rail with ~94 per-page-active action buttons, hover states, and custom per-state-recolored registered SVG icons — spanning a 13-page PBIP report (10 core pages) [VERIFY: current report is 13 pages / 10 core; an earlier library bullet says 4-page — reconcile] (Carnival, 2025–present)
+- Standardized 34 KPI cards (Power BI `cardVisual`) on a single exemplar with value/target/delta rows and measure-driven conditional delta coloring keyed to distance-from-target (green when near target, near-black mid-range, red when far off) (Carnival, 2025–present)
+- Built custom Deneb / Vega-Lite visuals including a dual-axis line chart with measure-driven, mode-aware background shading (operating mode rendered as a colored band that goes transparent below the supported time grain), replacing a fragile line-over-column workaround (Carnival, 2025–present)
+- Authored a dynamic brand-logo DAX measure returning data-URI SVG logos across 8 Carnival Corp cruise brands (Carnival, AIDA, Costa, Holland America, Princess, P&O Australia, P&O UK, Seabourn), engineering around Power BI's 32,766-character image-URL truncation limit (Carnival, 2025–present)
 - Built and maintained enterprise Power BI dashboards at Basic Fun covering sales performance, budget tracking, forecast accuracy, inventory position, pricing activity, and variance-to-plan — contributing to a 20% improvement in Performance-to-Plan outcomes (Basic Fun, 2023–2025)
 - Automated daily/weekly report email distributions and alerts at Basic Fun by querying Power BI data from scheduled tasks in Power Automate, improving stakeholder follow-through and reporting consistency (Basic Fun, 2023–2025)
 - Led enterprise Power BI deployment at Twin-Star International, defining a strategic roadmap for reporting and analytics and maintaining delivery accountability across the organization (Twin-Star, 2017–2023)
@@ -51,8 +60,13 @@ ERP/system context: SAP Business One (Basic Fun), Microsoft Dynamics (Twin-Star)
 
 ### Data Engineering & ETL
 
-- Built three parallel ETL pipelines at Carnival ingesting data from NovotekReportPlus IoT historian (100+ AHU sensor tags per ship), Siemens Daedalus BMS cloud platform (chiller plant data via OPC UA/machine token auth), and MarineXProcurement voyage scheduling system (on-prem SQL) — resampled to 5-min intervals, pivoted from long to wide per AHU, ISNULL-coalesced across tag variants, and bulk-loaded via `fast_executemany` into a unified Azure SQL `ENERGY_DATABASE` serving 47 ships across 3 brands — achieving 99% data accuracy for near-real-time Power BI reporting (Carnival, 2025–present)
+- Built three parallel ETL pipelines at Carnival ingesting data from NovotekReportPlus IoT historian (100+ AHU sensor tags per ship), Siemens Daedalus BMS cloud platform (chiller plant data via OPC UA/machine token auth), and MarineXProcurement voyage scheduling system (on-prem SQL) — resampled to 5-min intervals, pivoted from long to wide per AHU, ISNULL-coalesced across tag variants, and bulk-loaded via `fast_executemany` into a unified Azure SQL `ENERGY_DATABASE` serving 79 ships across 8 Carnival Corp brands — achieving 99% data accuracy for near-real-time Power BI reporting (Carnival, 2025–present)
 - Used Azure Synapse Analytics to schedule, orchestrate, and automate ETL pipeline execution at Carnival, triggering and sequencing Python ingestion notebooks across all three source pipelines (Trident IoT, Siemens Daedalus, MarineXProcurement), improving refresh reliability and enabling standardized data delivery for Power BI reporting, variance tracking, and downstream analytics (Carnival, 2025–present)
+- Replaced two undocumented desktop Python cron jobs — fragile DROP+CREATE scripts on a single developer's machine that silently left production tables empty on failure — with scheduled Azure Synapse pipelines using a staging-table swap (load to temp, then TRUNCATE+INSERT) so the live table is never empty mid-refresh, sequencing dependent loads 30 minutes apart; the incremental stored-proc loader runs in ~55 seconds and the full staged rebuild in ~16 minutes (Carnival, 2025–present)
+- Converted hot telemetry tables from heap to clustered columnstore with row counts preserved exactly: two archive tables from 6,445 MB → 387 MB and 559 MB → 128 MB (~16×), and the energy-target table 6,906 MB → 395 MB (17.5×); separately reclaimed ~15 GB by dropping two redundant nonclustered indexes (shrinking a 124 GB table to 108.7 GB) (Carnival, 2025–present)
+- Built an incremental SQL loader (stored proc) using a `MAX(TIME)` watermark, trailing-partial-hour delete, and minimally-logged `INSERT WITH(TABLOCK)` append; forced an index seek over a 17.6M-row source with `OPTION(RECOMPILE)` after a variable predicate downgraded the plan to a full ~75 GB scan (Carnival, 2025–present)
+- Migrated 12,273,557 raw 5-minute rows (9 months) out of the live table into archive using guarded per-month transactions (INSERT → count-verify → DELETE → count-verify → commit) so a mid-batch failure could never lose or duplicate data; built the resulting 18.4M-row / 1.08 GB compressed archive by appending 1,005,702 rows across 9 months with zero failures (Carnival, 2025–present)
+- Eliminated a 53,039,913-row / 6,906 MB (~6.9 GB) redundant Azure SQL staging table shared across six regression notebooks by re-architecting them onto local per-ship parquet caches (40–400 MB each, off-database), then decommissioned the staging table, its refresh proc, Synapse pipeline, and trigger after confirming no other readers via dependency scan and Query Store (Carnival, 2025–present)
 - Designed and deployed Azure data lake and ETL pipelines at Basic Fun to ingest 3rd-party point-of-sale data from heterogeneous sources: web portal, FTP, email, flat file, and external databases (Basic Fun, 2023–2025)
 - Implemented incremental refresh strategies at Basic Fun replacing full data loads, reducing pipeline run times significantly and improving reporting timeliness for large business-critical datasets (Basic Fun, 2023–2025)
 - Migrated transactional data from multiple siloed ERP systems at Twin-Star into an Azure SQL Server operational data store (ODS) using ETL pipelines (Twin-Star, 2017–2023)
@@ -71,6 +85,10 @@ ERP/system context: SAP Business One (Basic Fun), Microsoft Dynamics (Twin-Star)
 - Designed fact/dimension tables and star schema models in Power BI with reusable DAX measures for financial, sales, and operational analytics (Twin-Star, AutoNation)
 - Partnered with stakeholders to define data requirements, technical architecture, and delivery strategy for data warehouse implementations (Twin-Star, Basic Fun)
 - Mapped vendor-specific HVAC tag structures into standardized enterprise data models — source-to-target mapping supporting cloud data lake/warehouse modernization and future automation-provider rollouts (Carnival, 2025–present)
+- Folded a multi-tier cooling-power calculation from Python notebooks into SQL views as a single source of truth, backed by two new coefficient tables (`CoolingPowerR`, `AHU_Design_Flow`), and verified exact parity against the pandas implementation (max absolute difference 0.000000 across 176K+ rows) (Carnival, 2025–present)
+- De-duplicated a wide fact view and its daily rollup using `CROSS APPLY (VALUES …)` let-blocks (per-AHU coefficients and normalizations computed once), verifying the refactor was bit-identical to the original via `EXCEPT` (0 differences across 14.48M rows) (Carnival, 2025–present)
+- Diagnosed and resolved SQL Server error 8632 (expression-services limit) on combinatorially-exploding views where each aliased reference re-substituted the entire upstream expression tree — refactored to CASE-multiplier and let-block patterns (Carnival, 2025–present)
+- Identified a 275-AHU dimension gap (telemetry present but no dimension row), cross-validated against three independent source tables, fuzzy-matched 112 of 275 to served-area/code, and staged a validated 275-row INSERT tested inside `BEGIN TRAN … ROLLBACK` (0 nulls, 21-column map) (Carnival, 2025–present)
 
 ---
 
@@ -80,6 +98,11 @@ ERP/system context: SAP Business One (Basic Fun), Microsoft Dynamics (Twin-Star)
 - Performed data profiling, validation, and reconciliation across raw automation data, transformed reporting layers, and Power BI outputs to ensure metric consistency and defensible reporting for operational and executive stakeholders (Carnival, 2025–present)
 - Conducted ongoing data quality validation, reconciliation, and performance tuning across data warehouse tables, ETL jobs, semantic models, and dashboards at Basic Fun to ensure accuracy and executive trust in reported metrics (Basic Fun, 2023–2025)
 - Maintained documentation for dataflows, transformation logic, KPI definitions, DAX measures, refresh processes, and reporting standards to support governance, auditability, and knowledge transfer (Carnival, 2025–present)
+- Cut regression-notebook data-load from ~45 minutes (cold Azure SQL scan) to 1–2 minutes with a split parquet cache — replacing ~85 per-AHU Azure SQL round-trips with a single cached local read while re-running the cheap energy/daytype merge fresh each time (Carnival, 2025–present)
+- Caught and fixed a fleet-wide data-poison bug where two AHUs reported sentinel values (999.9/998.9) in every off-coil temperature row, generating roughly −5,000 kW of fake cooling per row and corrupting trained coefficients — added a temperature plausibility guard (−20 to 80 °C) across three SQL views and six notebooks, moving that ship's cooling-capture from −100% to a stable ~63% (Carnival, 2025–present)
+- Diagnosed apparent "OneDrive sync lag" (stale data persisting across 20+ minutes of refreshes) as Power BI's mashup-engine HTTP cache and fixed it with a `Cache-Control: no-cache` header on the `Web.Contents` CSV fetch (Carnival, 2025–present)
+- Traced a recurring summer over-prediction (+4 °C) to a DAX measure averaging outside-air temperature across all 79 fleet ships (~18.9 °C) instead of the selected ship (~27.7 °C) — the 9 °C gap × the −0.444 reset slope produced the error — correcting it by scoping the calculation to the selected ship (Carnival, 2025–present)
+- Established validation rigor as standard practice: keyed `EXCEPT`/relative-tolerance diff checks on multi-million-row views, watermark/idempotency proofs on loaders, and loader-vs-live-view comparison to catch source drift (Carnival, 2025–present)
 
 ---
 
@@ -91,12 +114,19 @@ ERP/system context: SAP Business One (Basic Fun), Microsoft Dynamics (Twin-Star)
 - Built ETL pipelines and data lakehouses in Microsoft Fabric at Basic Fun, integrating internal data warehouse assets with external sources including vendor forecasts, competitor product attributes, and API feeds (Basic Fun, 2023–2025)
 - Developed golden datasets in Fabric at Basic Fun to serve as governed, reusable data products for downstream reporting, ad hoc analysis, and Power BI semantic models — decoupling analytical consumption from raw source dependencies (Basic Fun, 2023–2025)
 - Production Fabric deployment across two employers (Carnival, Basic Fun) — early adopter with hands-on lakehouse architecture, dataflow/pipeline orchestration, and golden dataset design
+- Deployed a large (~105 KB) DAX measure to a workspace-hosted Fabric semantic model via the Fabric REST API (`getDefinition` → TMDL edit → `updateDefinition`) with Azure AD token auth and long-running-operation polling, after the MCP/TOM paths failed on the expression size (Carnival, 2025–present)
 
 ---
 
 ### Advanced Analytics & ML
 
-- Developed per-AHU HVAC energy baseline models in Python using scikit-learn — dual fan/chiller sub-models per unit with Fourier-encoded hour-of-day features (3 harmonics), outside air enthalpy (via psychrometric library), and sea/port/turnaround operating mode classification — training exclusively on lowest-25th-percentile consumption days to model efficiency floor rather than peak; iterated 6+ notebook versions across 6 ship-specific deployments (Conquest, Radiance, Sunrise, Sunshine, Magic, Liberty); model coefficients written to Azure SQL and consumed by Power BI as `AHU Energy vs Target` measure (Carnival, 2025–present)
+- Developed per-AHU HVAC energy baseline models in Python using scikit-learn — dual fan/chiller sub-models per unit with Fourier-encoded hour-of-day features (3 harmonics), outside air enthalpy (via psychrometric library), and sea/port/turnaround operating mode classification — training exclusively on lowest-25th-percentile consumption days to model efficiency floor rather than peak; iterated 6+ notebook versions across 6 ship-specific deployments (Conquest, Radiance, Sunrise, Sunshine, Magic, Liberty); model coefficients written to Azure SQL and consumed by Power BI as `AHU Energy vs Target` measure (Carnival, 2025–present) [VERIFY: of 6 ships built, 4 produce targets; Radiance/Sunshine power models are upstream-blocked by missing fan-power telemetry]
+- Established the value of the diurnal feature engineering empirically: adding 2nd and 3rd hour-of-day harmonics roughly doubled test R² (fan model ~0.18 → ~0.53); daytype interactions added nothing measurable (Carnival, 2025–present)
+- Trained and deployed 249 per-AHU hourly regression models across four ships (Sunrise 79, Conquest 78, Liberty 52, Magic 40; 286-row coefficient table), each a dual fan+chiller fit with 10 learned coefficients (B0–B9), model coefficients written to Azure SQL and consumed by Power BI as the `AHU Energy vs Target` measure (Carnival, 2025–present)
+- Built a second per-AHU regression family — a supply-air-temperature setpoint model (`supply_temp ~ enthalpy + outside-air-temp + CO₂ + 3 hour-harmonics + daytype + return-air-temp`, 13 coefficients B0–B12) deployed across 66 valid AHUs (Carnival, 2025–present)
+- Ran a controlled feature A/B test that doubled the setpoint model's median R² (0.135 → 0.282, improving 44 of 66 AHUs) by adding return-air temperature while correctly rejecting relative humidity — recognizing return-air temp as a genuine ASHRAE trim-and-respond demand signal rather than target leakage (Carnival, 2025–present)
+- Surfaced a controls-optimization finding directly from the regression: the outside-air-temp coefficient (−0.444 °C per °C) matched the ASHRAE Guideline 36 supply-air reset slope, yet only 34 of 71 AHUs on one ship showed the correct reset slope — flagging that roughly half run no outside-air-temperature reset at all, a quantified efficiency gap raised with the decarbonization group (Carnival, 2025–present)
+- Designed a 4-tier cooling-power estimation cascade (direct-tag → enthalpy → calibrated sensible × R-multiplier → sensible floor) to derive `chiller_power` from `cooling_power / COP`; validation of the calibrated tiers was only partially successful (14 of 118 ground-truth AHUs passed strictly, root cause = unknown per-AHU design-airflow constants), so shipped a conservative config restricted to the validated AHUs — a rigorous methodology with an honestly-scoped, still-open result (Carnival, 2025–present)
 - Collaborated with demand planning stakeholders at Basic Fun to develop predictive inventory modeling, achieving a 25% YoY improvement in forecast accuracy through optimized demand and stock-level analysis (Basic Fun, 2023–2025)
 - Integrated DAX-based predictive models at Twin-Star to enhance demand forecasting, pricing optimization, and revenue projections (Twin-Star, 2017–2023)
 - Developed data-driven customer segmentation strategies at Merrill Lynch to personalize investment recommendations and improve client retention (Merrill Lynch, 2011–2016)
@@ -106,6 +136,8 @@ ERP/system context: SAP Business One (Basic Fun), Microsoft Dynamics (Twin-Star)
 ### Stakeholder Management & Cross-functional
 
 - Partnered with Fuel Performance, Engineering, Operations, Data Engineering, and executive leadership at Carnival to gather requirements, define KPI logic, review findings, and translate complex technical data into clear business insights and action-oriented dashboard narratives — iterating dashboard enhancements that improved stakeholder adoption by 35% (Carnival, 2025–present)
+- Delivered 8–10 executive Power BI dashboards serving 50–75 global end users, with semantic models processing a 20M+ row fact table on scheduled intraday refreshes [VERIFY: figures from self-tailored Redwood Trust resume, single-source] (Carnival, 2025–present)
+- Recognized as the Power BI subject-matter expert on the project and introduced the team to AI-assisted notebook development (GitHub Copilot) for Python work [VERIFY: single-source] (Carnival, 2025–present)
 - Led working sessions with engineers, operations teams, executives, and external vendors at Carnival to prioritize enhancements and deliver BI solutions supporting remote troubleshooting and predictive maintenance (Carnival, 2025–present)
 - Supported Agile project execution at Carnival across pilot development, stakeholder feedback cycles, dashboard iteration, and rollout planning (Carnival, 2025–present)
 - Partnered with Finance, Sales, Demand Planning, and Operations at Basic Fun to capture requirements, define KPI logic, validate assumptions, and translate business questions into actionable Power BI reports and DAX measures (Basic Fun, 2023–2025)
@@ -133,6 +165,12 @@ ERP/system context: SAP Business One (Basic Fun), Microsoft Dynamics (Twin-Star)
 | **25% reduction** in data processing time | SQL/pipeline optimization, Carnival |
 | **99% data accuracy** | Near-real-time IoT + vendor feed integration, Carnival |
 | **35% improvement** in stakeholder adoption | Requirements-driven dashboard iteration, Carnival |
+| **16–17.5× storage reduction** | Heap → clustered columnstore (6,906→395 MB, 6,445→387 MB), Carnival |
+| **53M-row / 6.9 GB table eliminated** | Staging teardown → per-ship parquet caches, Carnival |
+| **45 min → 1–2 min** notebook runtime | Split parquet cache (~85 SQL round-trips → 1 read), Carnival |
+| **~2× model R²** (0.135→0.282; fan 0.18→0.53) | Return-air-temp + diurnal-harmonics feature engineering, Carnival |
+| **249 per-AHU models** across 4 ships | Hourly energy-target regression fleet, Carnival |
+| **−100% → ~63%** cooling-capture | Sentinel-value data-poison fix, Carnival |
 | **20% improvement** in Performance-to-Plan | Executive KPI dashboards, Basic Fun |
 | **25% YoY improvement** in forecast accuracy | Predictive demand modeling, Basic Fun |
 | **20–25 hrs/month saved** | Automated financial consolidation across 3 companies, Twin-Star |
@@ -142,23 +180,44 @@ ERP/system context: SAP Business One (Basic Fun), Microsoft Dynamics (Twin-Star)
 
 ### Technical Skills (Full Stack)
 
-**BI / Reporting:** Power BI, Microsoft Fabric (Lakehouse, Pipelines, Dataflows, Golden Datasets), Power BI Report Builder, SSRS, Power Query, PowerPivot for Excel, Looker, Metabase, Tableau
-**Query / Languages:** SQL, T-SQL, DAX, Python, R, MySQL
-**ETL / Orchestration:** Azure Data Factory, SSIS, Azure Synapse Analytics, Apache Spark
+**BI / Reporting:** Power BI, Analysis Services (SSAS) Tabular, Microsoft Fabric (Lakehouse, Pipelines, Dataflows, Golden Datasets, REST API / TMDL), Deneb / Vega-Lite custom visuals, Power BI Report Builder, SSRS, Power Query, PowerPivot for Excel, Looker, Metabase, Tableau
+**Query / Languages:** SQL, T-SQL, PL/SQL, DAX, Python (pandas, scikit-learn), R, MySQL
+**ETL / Orchestration:** Azure Data Factory, SSIS, Azure Synapse Analytics, Apache Spark, clustered columnstore indexing, incremental/watermark loaders, parquet caching
+**Migration & BA:** Requirements gathering, source-to-target mapping (STTM), data lineage, data dictionaries, report validation / UAT coordination, stakeholder communications
 **Databases:** MS SQL Server, Azure SQL, Databricks, Azure Databricks, Snowflake, Oracle, dbt
 **Cloud:** Microsoft Azure, AWS (RDS, Redshift, S3, Lambda, Glue, Athena, SQS, Auto Scaling, Data Migration Services), Google Cloud Platform
-**Dev Tools:** Tabular Editor, DAX Studio, Visual Studio, Azure Data Studio, ER Studio, Git
+**Dev Tools:** Tabular Editor, DAX Studio, Visual Studio, VS Code, Azure Data Studio, ER Studio, Git (PBIP source control), Azure DevOps, GitHub Copilot
 **Big Data:** Apache Spark, Scala, Kafka
 **Automation:** Power Automate, Power Apps
-**Certifications (In Progress):** PL-300 Microsoft Power BI Data Analyst Associate; DP-700 Microsoft Fabric Data Engineer Associate
-**Education:** BS Finance & Economics, Florida State University (2004–2008)
+**Certifications (In Progress):** PL-300 Microsoft Power BI Data Analyst Associate; DP-700 Microsoft Fabric Data Engineer Associate; DP-203 Azure Data Engineer Associate
+**Education:** BS Finance & Economics, Florida State University, Tallahassee, FL (2004–2008)
 
 ---
 
 ## Story Bank
 
+### Story 14: "The Model Found the Problem" — Carnival Supply-Air Setpoint Regression
+- **Situation:** Beyond the energy-baseline models, Carnival wanted to understand and optimize HVAC supply-air temperature setpoints across the fleet — but there was no analytical basis for what a good setpoint should be under given conditions, and no way to tell which ships were running efficient controls.
+- **Task:** Build a per-AHU supply-air-temperature setpoint model and use it to surface concrete controls-optimization opportunities, not just predictions.
+- **Action:** Built a second per-AHU regression family (`supply_temp ~ outside-air enthalpy + OAT + CO₂ + 3 hour-of-day harmonics + daytype + return-air temp`, 13 coefficients B0–B12) deployed across 66 valid AHUs, on a training pull of ~580,000 CO₂ readings. Ran a controlled feature A/B test: adding return-air temperature doubled median test R² (0.135 → 0.282, improving 44 of 66 AHUs), while relative humidity added nothing and was correctly dropped. Recognized that return-air temp was a genuine ASHRAE trim-and-respond demand signal — not target leakage (a leak would have pushed R² toward ~0.9). Then read the model coefficients as engineering findings: the OAT coefficient (−0.444 °C per °C) matched the ASHRAE Guideline 36 supply-air reset slope almost exactly, yet only 34 of 71 AHUs showed the correct reset slope — roughly half implemented no OAT reset at all.
+- **Result:** Turned a predictive model into an actionable efficiency finding — identifying specific AHUs (34 of 71 correct, ~half non-compliant) running no outside-air-temperature reset against an industry-standard benchmark, raised with the decarbonization group. Demonstrated judgment in distinguishing a real demand signal from leakage and in rejecting a feature that didn't earn its place.
+- **Tags:** advanced analytics, Python, scikit-learn, regression, feature engineering, domain insight, problem framing
+- **Best for:** "Tell me about a time your analysis changed a decision," "how do you know a model is trustworthy?", "describe a time you found something no one asked you to look for," "how do you avoid overfitting / data leakage," "give an example of connecting data to domain knowledge"
+
+---
+
+### Story 15: "The Pipeline Nobody Owned" — Carnival ETL Hardening & Governance
+- **Situation:** Two production tables feeding the HVAC EMS reporting were silently maintained by undocumented Windows Scheduled Tasks on a single developer's desktop — fragile DROP+CREATE scripts that left the tables empty on any failure. One had already failed the morning it was discovered. Storage was also ballooning as raw 5-minute telemetry accumulated in the live table.
+- **Task:** Make the data platform production-grade: eliminate the single point of failure, harden the load logic, and control storage — without ever leaving reporting tables empty or losing data.
+- **Action:** Moved both jobs into scheduled Azure Synapse pipelines using a staging-table swap (load to temp, then TRUNCATE+INSERT) so the live table is never empty mid-refresh, sequencing dependent loads 30 minutes apart. Converted three hot telemetry tables from heap to clustered columnstore (~16× storage reduction, row counts preserved exactly) and dropped two redundant indexes to reclaim ~15 GB. Built an incremental loader with a `MAX(TIME)` watermark and minimally-logged `INSERT WITH(TABLOCK)`, forcing an index seek with `OPTION(RECOMPILE)` after a variable predicate had been triggering a full ~75 GB scan. Migrated ~12.3M historical rows to archive using guarded per-month transactions (INSERT → count-verify → DELETE → count-verify → commit). Validated every refactor keyed against the source via `EXCEPT` (0 differences across 14.48M rows). Brought the PBIP report under git source control.
+- **Result:** Replaced a fragile desktop cron with owned, scheduled cloud pipelines; roughly 16× smaller hot tables; and a loader proven idempotent and lossless. Turned an invisible production risk into a governed, documented, recoverable platform.
+- **Tags:** data engineering, governance, performance optimization, production hardening, risk mitigation, SQL, Synapse
+- **Best for:** "Tell me about a time you found and fixed a production risk," "how do you approach data governance," "describe your SQL performance tuning experience," "how do you ensure a data migration doesn't lose data," "tell me about improving something you weren't asked to"
+
+---
+
 ### Story 1: "The Fleet Brain" — Carnival HVAC Energy Management System
-- **Situation:** Carnival needed fleet-wide visibility into HVAC energy consumption across 47 ships in 3 brands (Carnival, Holland America, Seabourn), but data was siloed across three entirely separate systems: NovotekReportPlus IoT historian (AHU sensor telemetry), Siemens Daedalus BMS cloud platform (chiller plant data), and MarineXProcurement on-prem SQL (voyage scheduling) — with no unified reporting layer.
+- **Situation:** Carnival needed fleet-wide visibility into HVAC energy consumption across 79 ships spanning 8 Carnival Corp brands (Carnival, AIDA, Costa, Holland America, Princess, P&O Australia, P&O UK, Seabourn), but data was siloed across three entirely separate systems: NovotekReportPlus IoT historian (AHU sensor telemetry), Siemens Daedalus BMS cloud platform (chiller plant data), and MarineXProcurement on-prem SQL (voyage scheduling) — with no unified reporting layer.
 - **Task:** Own end-to-end BI and data engineering: architect three parallel ETL pipelines, build the semantic models, and deliver a 4-page PBIP Power BI fleet dashboard for the Energy Management and Fuel Performance teams.
 - **Action:** Built three parallel Python ingestion pipelines — pulling 100+ AHU sensor tags per ship from NovotekReportPlus, chiller plant metrics from Siemens Daedalus via OPC UA, and port/sea/turnaround operating mode data from MarineXProcurement — resampling to 5-minute intervals, pivoting long→wide per AHU, coalescing inconsistent tag variants across ships, and bulk-loading via `fast_executemany` into a unified `ENERGY_DATABASE` on Azure SQL. Orchestrated all pipelines via Azure Synapse. Built a 4-page PBIP dashboard: Fleet HVAC Performance (5 KPI strip + ship ranking), Per-Ship Trend Small Multiples, Ship Rankings by Energy vs Target, and an AHU Sensor Diagnostics drill-through with 6-slicer filter rail. Semantic model includes 5 calculation groups (Time Zone, AHU View, Target Calculation, Climate Zone, Temp Units). Partnered with Fuel Performance, Engineering, Operations, and executive stakeholders to define KPI logic and iterate through Agile cycles.
 - **Result:** 99% data accuracy for near-real-time reporting; 25% reduction in data processing time; dashboards actively used by engineering, operations, and shoreside leadership for remote troubleshooting and energy optimization decisions across the full fleet.
@@ -168,7 +227,7 @@ ERP/system context: SAP Business One (Basic Fun), Microsoft Dynamics (Twin-Star)
 ---
 
 ### Story 2: "Python Benchmarks" — Carnival Regression Modeling for HVAC Efficiency
-- **Situation:** Carnival's HVAC energy performance had no statistical baseline — teams couldn't distinguish normal variation from genuine inefficiency, making it impossible to objectively target maintenance interventions across a 47-ship fleet.
+- **Situation:** Carnival's HVAC energy performance had no statistical baseline — teams couldn't distinguish normal variation from genuine inefficiency, making it impossible to objectively target maintenance interventions across a 79-ship fleet.
 - **Task:** Build per-AHU energy consumption baseline models so fleet managers could benchmark each unit against an expected efficiency floor under any operating condition.
 - **Action:** Developed ship-specific Python notebooks using scikit-learn (`LinearRegression`, `Ridge`, `PolynomialFeatures`, `make_pipeline`) and evaluated `xgboost` as alternative. Model architecture: two separate sub-models per AHU — one for fan power (`fans_power_kW`) and one for chiller power — summed to produce total AHU energy target. Features: outside air enthalpy (calculated via `psychro.lib` psychrometric library), six Fourier-encoded hour-of-day terms (sin/cos at 3 harmonics to capture daily demand cyclicality), and one-hot-encoded daytype (sea/port/turnaround, derived from MarineXProcurement voyage data). Critically, trained only on days in the **lowest 25th percentile of daily energy consumption** to model the efficiency baseline — not average or peak behavior. Iterated through 6+ versions across 6 ship deployments (Conquest, Radiance, Sunrise, Sunshine, Magic, Liberty). Wrote per-AHU model coefficients to `ENERGY_DATABASE.Targets` in Azure SQL; Power BI semantic model reads these as the `AHU Energy vs Target` measure displayed on the Fleet HVAC dashboard.
 - **Result:** Each AHU now has an objectively defensible energy target adjusted for outside air conditions, time of day, and operating mode. Engineering teams gained a quantitative baseline to prioritize troubleshooting — distinguishing genuine inefficiency from expected variation — and can track unit-level performance improvements over time.

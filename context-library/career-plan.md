@@ -26,7 +26,7 @@ Tech and finance firms are preferred — environments with mature data cultures,
 ## Addressing-Weaknesses Analysis
 
 ### Weakness 1: Certifications in progress, not yet complete
-PL-300 (Power BI Data Analyst Associate) and DP-700 (Microsoft Fabric Data Engineer Associate) are actively being pursued but not yet on the resume as earned credentials.
+PL-300 (Power BI Data Analyst Associate), DP-700 (Microsoft Fabric Data Engineer Associate), and DP-203 (Azure Data Engineer Associate) are actively being pursued but not yet on the resume as earned credentials.
 
 **How to address:** Lead with 10+ years of hands-on delivery — the track record (25% processing time reduction, 20% plan improvement, three enterprise data warehouses built from zero) demonstrates the competency the certs confirm. Call out certs as "in progress" in resume header. For roles that screen on certs, this is a minor flag; for roles screening on delivered outcomes, it's a non-issue. Close the certs as soon as possible to remove the objection entirely.
 
