@@ -13,6 +13,18 @@ This is your single source of truth. Every skill draws from this file. The riche
 - **LinkedIn:** https://www.linkedin.com/in/agreen8/
 - **Location:** Fort Lauderdale, FL (Remote)
 
+## Employment History (Titles & Dates)
+
+| Title | Company | Dates |
+|---|---|---|
+| Senior Business Intelligence Developer | Carnival Cruise Line | 2025 – Present |
+| Senior Business Intelligence Engineer | Basic Fun | 2023 – 2025 |
+| Business Intelligence Engineer | Twin-Star International | 2020 – 2023 |
+| Business Analyst/Buyer | AutoNation | 2016 – 2017 |
+| Financial Advisor | Merrill Lynch | 2009 – 2016 |
+
+Note: The role previously referenced as "Mullinax" in bullet-level detail (below and elsewhere in this file) was at a Mullinax-branded dealership within the AutoNation network. For resumes and external documents, use **AutoNation** as the employer name.
+
 ## Resume Text
 
 *(Source pasted 2026-06-22 — see Organized Experience below for processed version)*
@@ -38,7 +50,7 @@ This is your single source of truth. Every skill draws from this file. The riche
 - Led enterprise Power BI deployment at Twin-Star International, defining a strategic roadmap for reporting and analytics and maintaining delivery accountability across the organization (Twin-Star, 2020–2023)
 - Built paginated reports in SSRS/Power BI Report Builder for complex data exports to Excel and CSV formats (Twin-Star, 2020–2023)
 - Engineered a Power Apps write-back solution allowing report users to input commentary to a SharePoint Product Tracker directly within Power BI custom visuals, creating a closed-loop between reporting and action tracking (Twin-Star, 2020–2023)
-- Created advanced DAX measures for real-time KPI tracking covering financial forecasting, sales performance, and inventory optimization (AutoNation/Mullinax, 2016–2017)
+- Created advanced DAX measures for real-time KPI tracking covering financial forecasting, sales performance, and inventory optimization (AutoNation, 2016–2017)
 - Designed and developed CPQ analytics and reporting solutions at Basic Fun, streamlining complex pricing structures, approval workflows, quote accuracy, and pricing performance visibility (Basic Fun, 2023–2025)
 
 ---
@@ -51,7 +63,7 @@ This is your single source of truth. Every skill draws from this file. The riche
 - Implemented incremental refresh strategies at Basic Fun replacing full data loads, reducing pipeline run times significantly and improving reporting timeliness for large business-critical datasets (Basic Fun, 2023–2025)
 - Migrated transactional data from multiple siloed ERP systems at Twin-Star into an Azure SQL Server operational data store (ODS) using ETL pipelines (Twin-Star, 2020–2023)
 - Led migration of on-premise SQL Server schemas to Azure SQL Server, developing and maintaining databases across both on-premise and cloud environments (Twin-Star, 2020–2023)
-- Built automated tool at Mullinax Ford to ingest and parse Vehicle Report data from PDFs and calculate optimal bid prices and profit margins at auction using custom appraisal logic (Mullinax, 2016–2017)
+- Built automated tool at AutoNation to ingest and parse Vehicle Report data from PDFs and calculate optimal bid prices and profit margins at auction using custom appraisal logic (AutoNation, 2016–2017)
 
 ---
 
@@ -110,7 +122,7 @@ This is your single source of truth. Every skill draws from this file. The riche
 - 5 years as Financial Advisor at Merrill Lynch, co-managing $250M in assets as junior partner on a wealth management advisory team (Merrill Lynch, 2009–2016)
 - Deep expertise in financial reporting: P&L, Balance Sheet, Cash Flow, budget vs. actual, variance-to-plan — applied both as a finance professional and as the BI engineer building those reports
 - 2+ years as Pricing Analyst at Twin-Star, developing and modeling pricing strategies across multiple product lines and consulting field sales teams on statistical and quantitative modeling
-- Designed SQL-based sales analytics and pricing strategy tools at Mullinax/AutoNation supporting inventory optimization and bid price calculation
+- Designed SQL-based sales analytics and pricing strategy tools at AutoNation supporting inventory optimization and bid price calculation
 
 ---
 
@@ -244,8 +256,8 @@ This is your single source of truth. Every skill draws from this file. The riche
 
 ---
 
-### Story 11: "PDF Auction Tool" — Mullinax Ford Automated Appraisal Logic
-- **Situation:** Vehicle auction bid decisions at Mullinax Ford were manual and subjective, relying on buyers parsing PDF vehicle reports by hand to estimate bid prices and profit margins.
+### Story 11: "PDF Auction Tool" — AutoNation Automated Appraisal Logic
+- **Situation:** Vehicle auction bid decisions at AutoNation were manual and subjective, relying on buyers parsing PDF vehicle reports by hand to estimate bid prices and profit margins.
 - **Task:** Automate the bid price calculation process.
 - **Action:** Developed an automated tool to ingest and parse Vehicle Report data from PDFs, applying custom appraisal logic to calculate optimal bid prices and profit margins at auction.
 - **Result:** Transformed a manual, error-prone process into an automated analytical tool, enabling faster and more consistent bid decisions.

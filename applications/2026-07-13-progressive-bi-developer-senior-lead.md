@@ -38,29 +38,25 @@ Senior BI Developer with 17 years of combined finance and data engineering exper
 
 **Experience**
 
-**BI Developer / Data Engineer** | Carnival Cruise Line | 2025 – Present
-*[VERIFY: exact job title not recorded in experience-library.md — confirm before submitting]*
+**Senior Business Intelligence Developer** | Carnival Cruise Line | 2025 – Present
 - Automated ETL workflows integrating heterogeneous HVAC and energy management data sources — SQL databases, IoT sensor feeds, vendor automation tags, and APIs — into governed reporting pipelines, achieving 99% data accuracy for near-real-time Power BI reporting
 - Optimized SQL-based extraction, transformation, and validation logic for large-scale energy datasets, diagnosing and resolving production processing bottlenecks and reducing data processing time 25% while improving refresh performance
 - Designed scalable Power BI Tabular Data Models and semantic layers supporting real-time KPI reporting — energy targets, variance-to-target, and operating mode metrics — for engineering, operations, and executive audiences
 - Used Azure Synapse Analytics to schedule, orchestrate, and automate ETL tasks, improving refresh reliability and enabling standardized, auditable data delivery
 
-**BI Developer / Data Engineer** | Basic Fun | 2023 – 2025
-*[VERIFY: exact job title not recorded in experience-library.md — confirm before submitting]*
+**Senior Business Intelligence Engineer** | Basic Fun | 2023 – 2025
 - Designed Basic Fun's first enterprise data warehouse from scratch — full stack from source ingestion through ETL, dimensional modeling, star schema, and semantic layer — creating the company's foundational analytics platform
 - Designed and deployed Azure data lake and ETL pipelines to ingest 3rd-party point-of-sale data from heterogeneous sources — web portal, FTP, email, flat file, and external databases — implementing incremental refresh strategies that significantly reduced pipeline run times
 - Conducted ongoing data quality validation, reconciliation, and performance tuning across data warehouse tables, ETL jobs, semantic models, and dashboards, ensuring accuracy and executive trust in reported metrics
 - Automated daily/weekly report distributions and alerts by querying Power BI data from scheduled tasks in Power Automate, improving stakeholder follow-through and reporting consistency
 
-**BI Lead / Data Engineer** | Twin-Star International | 2020 – 2023
-*[VERIFY: exact job title not recorded in experience-library.md — confirm before submitting]*
+**Business Intelligence Engineer** | Twin-Star International | 2020 – 2023
 - Architected Twin-Star's first enterprise data warehouse: defined dimensional models, implemented star schema, built SSIS ETL packages, and leveraged Azure Synapse Analytics for parallel analytical processing
 - Led migration of on-premise SQL Server schemas to Azure SQL Server, migrating transactional data from multiple siloed ERP systems into an Azure SQL Server operational data store using ETL pipelines
 - Built paginated reports in SSRS/Power BI Report Builder for complex data exports, and engineered a Power Apps write-back solution enabling report users to input commentary directly within Power BI
 - Integrated general ledger data across three portfolio companies, modeling a unified chart of accounts and automating P&L, Balance Sheet, and Cash Flow reporting — saving 20–25 hours/month in manual Finance team preparation
 
-**Business Analyst** | Mullinax Ford / AutoNation | 2016 – 2017
-*[VERIFY: exact job title not recorded in experience-library.md — confirm before submitting]*
+**Business Analyst/Buyer** | AutoNation | 2016 – 2017
 - Built an automated tool using Python to ingest and parse Vehicle Report data from PDFs, applying custom appraisal logic to calculate optimal bid prices and profit margins at auction
 - Created advanced DAX measures for real-time KPI tracking covering financial forecasting, sales performance, and inventory optimization
 
@@ -75,36 +71,34 @@ BS, Finance & Economics — Florida State University
 ### Recruiter Review
 
 **6-Second Scan Results**
-What I noticed first: "Senior BI Developer," 17 years combined experience, Power BI/SSIS/Azure Synapse in the summary, three data warehouses built from scratch, 25% processing time reduction.
-What I missed entirely: Andrew's exact job titles (flagged as unverified placeholders) — a recruiter would notice these look inferred, not pulled from an actual resume, which reads as unpolished.
-My gut reaction: Keep reading — the stack match and quantified impact are immediately visible in the top third.
+What I noticed first: "Senior Business Intelligence Developer" at Carnival, 17 years combined experience, Power BI/SSIS/Azure Synapse in the summary, three data warehouses built from scratch, 25% processing time reduction.
+What I missed entirely: nothing structural — titles, dates, and contact info are all now present and consistent.
+My gut reaction: Keep reading — clean seniority progression (BI Engineer → Senior BI Engineer → Senior BI Developer) plus quantified impact makes this an easy "dig deeper."
 
 **Scores**
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| First Impression | 8/10 | Strong open with Microsoft stack + quantified impact; docked for placeholder job titles |
+| First Impression | 9/10 | Real titles now show a credible senior-level progression; stack match is immediate |
 | Relevance to JD | 9/10 | SSIS, Power BI Tabular Models, ETL, Python, data warehousing all visible in top third |
-| Readability | 8/10 | Clean, scannable; verification bracket notes are a distraction that must be removed before submission |
-| **Overall** | **8.3/10** | |
+| Readability | 9/10 | Clean, scannable, no placeholder artifacts remaining |
+| **Overall** | **9/10** | |
 
 **Issues Flagged**
 
-1. **Missing job titles:** Every role shows `[VERIFY: exact job title not recorded...]` instead of a real title. This is the single biggest issue — a recruiter cannot assess seniority progression without titles.
-   - Location: All four experience entries
-   - Fix: Andrew must confirm his actual held titles before this resume is submitted. Do not submit with bracketed placeholders.
+1. **~~Missing job titles~~ — RESOLVED:** Real titles confirmed and added 2026-07-13 (Senior BI Developer, Senior BI Engineer, BI Engineer, Business Analyst/Buyer).
 
 2. **~~Missing contact info~~ — RESOLVED:** Real phone and LinkedIn added 2026-07-13.
 
-3. **Buried early-career Python bullet:** The Mullinax Python/PDF-parsing bullet is the clearest standalone evidence of "Python scripts to automate data processing" (an exact JD phrase) but sits in the second-to-last role.
-   - Location: Mullinax Ford / AutoNation entry
+3. **Buried early-career Python bullet:** The AutoNation Python/PDF-parsing bullet is the clearest standalone evidence of "Python scripts to automate data processing" (an exact JD phrase) but sits in the last detailed role.
+   - Location: AutoNation entry
    - Fix: Consider adding one line to the Summary explicitly naming "Python automation" alongside the stack list, since the strongest automation-specific proof is buried near the bottom.
 
 **Priority Changes (do these first)**
-1. Replace all four `[VERIFY]` title placeholders with real, confirmed job titles — this is a blocking issue, not a nice-to-have.
-2. Confirm Merrill Lynch dates and the "17 years" framing before submitting — see Traceability Audit note below.
+1. Confirm Merrill Lynch dates and the "17 years" framing before submitting — see Traceability Audit note below.
+2. Optional: surface "Python automation" explicitly in the Summary per issue 3 above.
 
-**Verdict:** PASS for 6-second scan, content-wise. **BORDERLINE pending fixes** — the placeholder titles and missing contact fields must be resolved before this goes out the door; a recruiter would flag both immediately.
+**Verdict:** PASS for 6-second scan. All blocking issues resolved — this is submission-ready pending Andrew's final read-through.
 
 ---
 
@@ -145,7 +139,7 @@ No tables, columns, images, or headers/footers used — clean single-column mark
 | DB2 | No | — | Genuine gap — no evidence anywhere in experience-library.md |
 | Oracle | Partial | Skills list only | No bullet evidence — listed truthfully as a known platform, not demonstrated |
 | Data modeling / data quality | Yes | Basic Fun bullet 3, Twin-Star bullet 1 | Exact match |
-| Python (automation) | Yes | Mullinax bullet 1, Summary | Exact match |
+| Python (automation) | Yes | AutoNation bullet 1, Summary | Exact match |
 | Calling external APIs | Yes | Carnival bullet 1 | Exact match |
 | Developing new APIs | No | — | Genuine gap — flagged in Gaps table above |
 
@@ -160,7 +154,7 @@ No tables, columns, images, or headers/footers used — clean single-column mark
 - LinkedIn: Yes
 - Location: Yes (Fort Lauderdale, FL / Remote)
 
-**Overall ATS Score: PASS WITH WARNINGS** — clean formatting, strong keyword coverage, contact info now complete. Only the unresolved job-title placeholders remain before submission.
+**Overall ATS Score: PASS** — clean formatting, strong keyword coverage, contact info and job titles all confirmed.
 
 ---
 
@@ -181,15 +175,16 @@ No tables, columns, images, or headers/footers used — clean single-column mark
 | "Led migration of on-premise SQL Server schemas..." | Data Engineering & ETL | "Migrated transactional data from multiple siloed ERP systems at Twin-Star into an Azure SQL Server operational data store..." + "Led migration of on-premise SQL Server schemas to Azure SQL Server..." | REWORDED (combined two related bullets) |
 | "Built paginated reports in SSRS/Power BI Report Builder..." | BI & Dashboard Development + Story 10 | "Built paginated reports in SSRS/Power BI Report Builder..." + Story 10 write-back solution | REWORDED (combined) |
 | "Integrated general ledger data across three portfolio..." | Data Modeling & Architecture | "Integrated general ledger data across three Twin-Star portfolio companies, modeling a unified chart of accounts..." | EXACT |
-| "Built an automated tool using Python to ingest and parse..." | Data Engineering & ETL | "Built automated tool at Mullinax Ford to ingest and parse Vehicle Report data from PDFs..." | EXACT |
-| "Created advanced DAX measures for real-time KPI tracking..." | BI & Dashboard Development | "Created advanced DAX measures for real-time KPI tracking covering financial forecasting, sales performance, and inventory optimization (AutoNation/Mullinax, 2016–2017)" | EXACT |
+| "Built an automated tool using Python to ingest and parse..." | Data Engineering & ETL | "Built automated tool at AutoNation to ingest and parse Vehicle Report data from PDFs..." | EXACT |
+| "Created advanced DAX measures for real-time KPI tracking..." | BI & Dashboard Development | "Created advanced DAX measures for real-time KPI tracking covering financial forecasting, sales performance, and inventory optimization (AutoNation, 2016–2017)" | EXACT |
 | "Earlier: Financial Advisor, Merrill Lynch..." | Finance & Domain Expertise | "5 years as Financial Advisor at Merrill Lynch, co-managing $250M in assets as junior partner..." | REWORDED |
 
 **Bullets removed (no source):** 0 — every bullet traces to experience-library.md.
 **Bullets flagged for verification:** 1 — the "17 years" framing in the Summary. Recommend confirming with Andrew before submission: experience-library.md's own Story 12 states "10+ years" as the claimed combined total, while 17 years is the literal date-math result. Either is defensible, but the resume should say what Andrew is actually comfortable stating in an interview.
 
 ### Revisions Made
-- Job titles across all four roles are placeholders pending Andrew's confirmation — none exist in experience-library.md, so none were invented.
+- Job titles for all four roles confirmed by Andrew 2026-07-13 (Senior Business Intelligence Developer @ Carnival, Senior Business Intelligence Engineer @ Basic Fun, Business Intelligence Engineer @ Twin-Star, Business Analyst/Buyer @ AutoNation) and added to experience-library.md Employment History section.
+- Corrected employer name for the 2016–2017 role from "Mullinax Ford" to "AutoNation" per Andrew's correction — updated consistently across experience-library.md and this resume.
 - Phone and LinkedIn added 2026-07-13 (now in experience-library.md Contact Info section).
 - Corrected the "10+ years required" JD claim carried over from prior briefings — removed from all positioning language in this application.
 - Did not add "developing new APIs" or "DB2" experience anywhere in the resume — both are genuine, unaddressed gaps, routed to cover letter language only.
