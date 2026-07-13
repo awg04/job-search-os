@@ -5,7 +5,7 @@ Applied: not yet submitted — resume ready for review
 JD source: https://careers.progressive.com/jobs/15895087-bi-developer-senior-slash-lead/
 Team: Commercial Lines (CL) Acquisition group
 
-**Correction to prior briefings:** Earlier briefings (July 10–13) cited "10+ years required" as an explicit JD signal. The actual JD text requires only a Bachelor's degree + a minimum of 2 years of software design/development experience. That "10+ years" framing was not sourced from the real posting and has been dropped from this application's positioning. Andrew's actual experience (17 years, calculated from 2009–2026 per experience-library.md dates) still comfortably clears the bar — it's just not an "experience-friendly" JD signal specifically, it's simply a role he's overqualified for on paper, which is a positive, not a special unlock.
+**Correction to prior briefings:** Earlier briefings (July 10–13) cited "10+ years required" as an explicit JD signal. The actual JD text requires only a Bachelor's degree + a minimum of 2 years of software design/development experience. That JD-side "10+ years required" framing was not sourced from the real posting and has been dropped from this application's positioning. (Note: Andrew's own resume separately states "10+ years" of his own experience per Story 12 in experience-library.md — that is a factual claim about his background, unrelated to the now-corrected, inaccurate JD-requirement claim.) Andrew's experience still comfortably clears the JD's actual 2-year bar — it's simply a role he's overqualified for on paper, which is a positive, not a special unlock.
 
 ---
 
@@ -25,7 +25,7 @@ andrewgreen04@gmail.com | (561) 339-1806 | linkedin.com/in/agreen8 | Fort Lauder
 
 **Summary**
 
-Senior BI Developer with 17 years of combined finance and data engineering experience (2009–present), specializing in the Microsoft data stack — Power BI, SSIS, Azure Synapse, SQL Server. Built three enterprise data warehouses from scratch and reduced production data processing time 25% through SQL performance tuning. Hands-on Python automation and API integration experience across insurance-adjacent domains (financial reporting, energy, consumer products). PL-300 (Power BI Data Analyst Associate) and DP-203 (Azure Data Engineer Associate) certifications in progress.
+Senior BI Developer with 10+ years of combined finance and data engineering experience, specializing in the Microsoft data stack — Power BI, SSIS, Azure Synapse, SQL Server. Built three enterprise data warehouses from scratch and reduced production data processing time 25% through SQL performance tuning. Hands-on Python automation and API integration experience across insurance-adjacent domains (financial reporting, energy, consumer products). PL-300 (Power BI Data Analyst Associate) and DP-203 (Azure Data Engineer Associate) certifications in progress.
 
 **Skills**
 
@@ -95,8 +95,7 @@ My gut reaction: Keep reading — clean seniority progression (BI Engineer → S
    - Fix: Consider adding one line to the Summary explicitly naming "Python automation" alongside the stack list, since the strongest automation-specific proof is buried near the bottom.
 
 **Priority Changes (do these first)**
-1. Confirm Merrill Lynch dates and the "17 years" framing before submitting — see Traceability Audit note below.
-2. Optional: surface "Python automation" explicitly in the Summary per issue 3 above.
+1. Optional: surface "Python automation" explicitly in the Summary per issue 3 above.
 
 **Verdict:** PASS for 6-second scan. All blocking issues resolved — this is submission-ready pending Andrew's final read-through.
 
@@ -162,7 +161,7 @@ No tables, columns, images, or headers/footers used — clean single-column mark
 
 | Resume Bullet (first 60 chars) | Source Section | Original Text | Match Type |
 |-------------------------------|----------------|---------------|------------|
-| "17 years of combined finance and data engineering..." | Story 12 + date math | Story 12 states "10+ years of combined finance + data experience"; 17 years is calculated from 2009–2026 date range in experience-library.md | INFERRED [VERIFY: confirm 17-year framing is accurate and comfortable to state; source text says "10+ years"] |
+| "10+ years of combined finance and data engineering..." | Story 12 | Story 12 states "10+ years of combined finance + data experience" | EXACT |
 | "Automated ETL workflows integrating heterogeneous..." | Data Engineering & ETL | "Automated ETL workflows at Carnival integrating heterogeneous HVAC and energy management sources..." | REWORDED |
 | "Optimized SQL-based extraction, transformation..." | Performance Optimization & Data Quality | "Optimized SQL-based extraction, transformation, and validation logic for large-scale HVAC and energy datasets at Carnival..." | REWORDED |
 | "Designed scalable Power BI Tabular Data Models..." | BI & Dashboard Development | "Designed scalable Power BI semantic models and dimensional reporting structures..." | REWORDED |
@@ -180,11 +179,12 @@ No tables, columns, images, or headers/footers used — clean single-column mark
 | "Earlier: Financial Advisor, Merrill Lynch..." | Finance & Domain Expertise | "5 years as Financial Advisor at Merrill Lynch, co-managing $250M in assets as junior partner..." | REWORDED |
 
 **Bullets removed (no source):** 0 — every bullet traces to experience-library.md.
-**Bullets flagged for verification:** 1 — the "17 years" framing in the Summary. Recommend confirming with Andrew before submission: experience-library.md's own Story 12 states "10+ years" as the claimed combined total, while 17 years is the literal date-math result. Either is defensible, but the resume should say what Andrew is actually comfortable stating in an interview.
+**Bullets flagged for verification:** 0 — Andrew confirmed "10+ years" (matching Story 12 exactly) over the date-math-derived "17 years" alternative.
 
 ### Revisions Made
 - Job titles for all four roles confirmed by Andrew 2026-07-13 (Senior Business Intelligence Developer @ Carnival, Senior Business Intelligence Engineer @ Basic Fun, Business Intelligence Engineer @ Twin-Star, Business Analyst/Buyer @ AutoNation) and added to experience-library.md Employment History section.
 - Corrected employer name for the 2016–2017 role from "Mullinax Ford" to "AutoNation" per Andrew's correction — updated consistently across experience-library.md and this resume.
 - Phone and LinkedIn added 2026-07-13 (now in experience-library.md Contact Info section).
 - Corrected the "10+ years required" JD claim carried over from prior briefings — removed from all positioning language in this application.
+- Andrew confirmed "10+ years" (matching experience-library.md Story 12 exactly) as his preferred framing over the date-math-derived "17 years" — Summary updated accordingly 2026-07-13.
 - Did not add "developing new APIs" or "DB2" experience anywhere in the resume — both are genuine, unaddressed gaps, routed to cover letter language only.
