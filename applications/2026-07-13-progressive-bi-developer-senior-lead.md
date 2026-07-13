@@ -21,7 +21,7 @@ Team: Commercial Lines (CL) Acquisition group
 ### Resume
 
 **Andrew Green**
-andrewgreen04@gmail.com | [PHONE — not in experience-library.md, add before submitting] | [LinkedIn URL — not in experience-library.md, add before submitting] | Fort Lauderdale, FL (Remote)
+andrewgreen04@gmail.com | (561) 339-1806 | linkedin.com/in/agreen8 | Fort Lauderdale, FL (Remote)
 
 **Summary**
 
@@ -94,9 +94,7 @@ My gut reaction: Keep reading — the stack match and quantified impact are imme
    - Location: All four experience entries
    - Fix: Andrew must confirm his actual held titles before this resume is submitted. Do not submit with bracketed placeholders.
 
-2. **Missing contact info:** Phone and LinkedIn are placeholders, not real values.
-   - Location: Header
-   - Fix: Add real phone number and LinkedIn URL before submitting.
+2. **~~Missing contact info~~ — RESOLVED:** Real phone and LinkedIn added 2026-07-13.
 
 3. **Buried early-career Python bullet:** The Mullinax Python/PDF-parsing bullet is the clearest standalone evidence of "Python scripts to automate data processing" (an exact JD phrase) but sits in the second-to-last role.
    - Location: Mullinax Ford / AutoNation entry
@@ -104,8 +102,7 @@ My gut reaction: Keep reading — the stack match and quantified impact are imme
 
 **Priority Changes (do these first)**
 1. Replace all four `[VERIFY]` title placeholders with real, confirmed job titles — this is a blocking issue, not a nice-to-have.
-2. Add real phone number and LinkedIn URL.
-3. Confirm Merrill Lynch dates and the "17 years" framing before submitting — see Traceability Audit note below.
+2. Confirm Merrill Lynch dates and the "17 years" framing before submitting — see Traceability Audit note below.
 
 **Verdict:** PASS for 6-second scan, content-wise. **BORDERLINE pending fixes** — the placeholder titles and missing contact fields must be resolved before this goes out the door; a recruiter would flag both immediately.
 
@@ -118,7 +115,7 @@ My gut reaction: Keep reading — the stack match and quantified impact are imme
 | # | Issue | Severity | Location | Fix |
 |---|-------|----------|----------|-----|
 | 1 | Bracketed verification notes in body text (`[VERIFY: ...]`) | HIGH | Under each role title, and header | Remove before final submission — these read as broken template fields to both ATS and human reviewers |
-| 2 | No phone/LinkedIn value (placeholder text) | MEDIUM | Header | Fill with real values |
+| 2 | ~~No phone/LinkedIn value~~ | RESOLVED | Header | Real phone and LinkedIn added 2026-07-13 |
 
 No tables, columns, images, or headers/footers used — clean single-column markdown throughout.
 
@@ -159,11 +156,11 @@ No tables, columns, images, or headers/footers used — clean single-column mark
 **Contact Info**
 - Name in body: Yes
 - Email: Yes
-- Phone: **No — placeholder only**
-- LinkedIn: **No — placeholder only**
+- Phone: Yes
+- LinkedIn: Yes
 - Location: Yes (Fort Lauderdale, FL / Remote)
 
-**Overall ATS Score: PASS WITH WARNINGS** — clean formatting, strong keyword coverage, but missing phone/LinkedIn and unresolved title placeholders must be fixed before submission.
+**Overall ATS Score: PASS WITH WARNINGS** — clean formatting, strong keyword coverage, contact info now complete. Only the unresolved job-title placeholders remain before submission.
 
 ---
 
@@ -193,6 +190,6 @@ No tables, columns, images, or headers/footers used — clean single-column mark
 
 ### Revisions Made
 - Job titles across all four roles are placeholders pending Andrew's confirmation — none exist in experience-library.md, so none were invented.
-- Phone and LinkedIn are placeholders — not present anywhere in context-library files.
+- Phone and LinkedIn added 2026-07-13 (now in experience-library.md Contact Info section).
 - Corrected the "10+ years required" JD claim carried over from prior briefings — removed from all positioning language in this application.
 - Did not add "developing new APIs" or "DB2" experience anywhere in the resume — both are genuine, unaddressed gaps, routed to cover letter language only.

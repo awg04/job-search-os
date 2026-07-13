@@ -1,9 +1,17 @@
 # Experience Library
-_Last updated: 2026-06-22_
+_Last updated: 2026-07-13_
 
 ## Instructions
 
 This is your single source of truth. Every skill draws from this file. The richer this file, the better every output.
+
+## Contact Info
+
+- **Name:** Andrew Green
+- **Email:** andrewgreen04@gmail.com
+- **Phone:** (561) 339-1806
+- **LinkedIn:** https://www.linkedin.com/in/agreen8/
+- **Location:** Fort Lauderdale, FL (Remote)
 
 ## Resume Text
 
