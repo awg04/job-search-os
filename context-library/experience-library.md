@@ -64,6 +64,7 @@ Note: The role previously referenced as "Mullinax" in bullet-level detail (below
 - Migrated transactional data from multiple siloed ERP systems at Twin-Star into an Azure SQL Server operational data store (ODS) using ETL pipelines (Twin-Star, 2020–2023)
 - Led migration of on-premise SQL Server schemas to Azure SQL Server, developing and maintaining databases across both on-premise and cloud environments (Twin-Star, 2020–2023)
 - Built automated tool at AutoNation to ingest and parse Vehicle Report data from PDFs and calculate optimal bid prices and profit margins at auction using custom appraisal logic (AutoNation, 2016–2017)
+- Built custom Python-based API integrations calling the Amazon Selling Partner API and Walmart vendor API directly to extract vendor sell-through and inventory data, parsing JSON payloads via Azure Data Factory into a Microsoft Fabric Lakehouse for seller-side analytics (Basic Fun, 2023–2025)
 
 ---
 
@@ -133,7 +134,7 @@ Note: The role previously referenced as "Mullinax" in bullet-level detail (below
 | **25% reduction** in data processing time | SQL/pipeline optimization, Carnival |
 | **99% data accuracy** | Near-real-time IoT + vendor feed integration, Carnival |
 | **20% improvement** in Performance-to-Plan | Executive KPI dashboards, Basic Fun |
-| **25% YoY improvement** in forecast accuracy | Predictive demand modeling, Basic Fun |
+| **25% YoY improvement** in forecast accuracy (to 78% overall) | Predictive demand modeling via Amazon/Walmart vendor API integration, Basic Fun |
 | **20–25 hrs/month saved** | Automated financial consolidation across 3 companies, Twin-Star |
 | **$250M AUM** | Wealth management portfolio, Merrill Lynch |
 
@@ -144,6 +145,7 @@ Note: The role previously referenced as "Mullinax" in bullet-level detail (below
 **BI / Reporting:** Power BI, Microsoft Fabric (Lakehouse, Pipelines, Dataflows, Golden Datasets), Power BI Report Builder, SSRS, Power Query, PowerPivot for Excel, Looker, Metabase, Tableau
 **Query / Languages:** SQL, T-SQL, DAX, Python, R, MySQL
 **ETL / Orchestration:** Azure Data Factory, SSIS, Azure Synapse Analytics, Apache Spark
+**API Integrations:** Amazon Selling Partner API (SP-API), Walmart Vendor API, JSON parsing, Python requests-based integrations
 **Databases:** MS SQL Server, Azure SQL, Databricks, Azure Databricks, Snowflake, Oracle, dbt
 **Cloud:** Microsoft Azure, AWS (RDS, Redshift, S3, Lambda, Glue, Athena, SQS, Auto Scaling, Data Migration Services), Google Cloud Platform
 **Dev Tools:** Tabular Editor, DAX Studio, Visual Studio, Azure Data Studio, ER Studio, Git
@@ -207,12 +209,12 @@ Note: The role previously referenced as "Mullinax" in bullet-level detail (below
 ---
 
 ### Story 6: "25% Forecast Accuracy" — Basic Fun Predictive Demand Modeling
-- **Situation:** Basic Fun's inventory planning was reactive — demand forecasts were inaccurate, leading to excess stock and missed fill rates.
-- **Task:** Work with demand planning stakeholders to improve forecast accuracy through data modeling.
-- **Action:** Collaborated with demand planning to understand the forecasting process and identify data gaps. Developed predictive modeling for inventory management analyzing demand patterns and stock levels. Integrated model outputs into Power BI dashboards for planning team use.
-- **Result:** 25% YoY improvement in forecast accuracy.
-- **Tags:** advanced analytics, business impact, cross-functional, stakeholder management
-- **Best for:** "Have you done predictive modeling?", "tell me about working with a business team on an analytics problem," "how do you translate a business problem into a data solution"
+- **Situation:** Basic Fun's inventory planning was reactive — demand forecasts were inaccurate, leading to excess stock and missed fill rates. A key data gap: vendor sell-through and inventory data from Amazon and Walmart lived entirely inside each retailer's own portal, with no automated way to bring it into internal planning systems.
+- **Task:** Work with demand planning stakeholders to improve forecast accuracy through data modeling, starting with closing the marketplace vendor data gap.
+- **Action:** Built custom Python-based API integrations calling the Amazon Selling Partner API and Walmart vendor API directly, parsing JSON payloads via Azure Data Factory into a Microsoft Fabric Lakehouse for seller-side analytics. Collaborated with demand planning to understand the forecasting process and identify remaining data gaps. Developed predictive modeling for inventory management analyzing demand patterns, stock levels, and incoming marketplace supply timelines. Integrated model outputs into Power BI dashboards used by Marketing, Operations, Demand Planning, and Sales.
+- **Result:** Demand forecast accuracy improved 25% YoY, reaching 78% overall accuracy.
+- **Tags:** advanced analytics, business impact, cross-functional, stakeholder management, API integration
+- **Best for:** "Have you done predictive modeling?", "tell me about working with a business team on an analytics problem," "how do you translate a business problem into a data solution," "have you built an API integration," "tell me about calling an external API"
 
 ---
 
