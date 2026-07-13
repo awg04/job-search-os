@@ -14,7 +14,7 @@ Team: Commercial Lines (CL) Acquisition group
 | # | JD Requirement | Gap Type | Suggested Response |
 |---|---------------|----------|-------------------|
 | 1 | "Multiple database platforms, including SQL Server and DB2/Oracle" | Partial — SQL Server strong (Azure SQL migrations, ODS builds); Oracle listed as a skill with no project bullet; DB2 has no evidence anywhere in experience-library.md | Cover letter: "My production database experience spans SQL Server and Azure SQL, including leading a full on-premise-to-Azure SQL Server migration at Twin-Star. While my direct DB2 exposure is limited, my track record architecting on multiple RDBMS platforms means I ramp quickly on any additional platform the Commercial Lines team standardizes on." |
-| 2 | "Experience with calling external APIs and developing new APIs" | Partial — calling/consuming external APIs is strongly evidenced (Carnival ETL integrates IoT vendor APIs, cloud-hosted repositories); developing/exposing new APIs is not evidenced in experience-library.md | Cover letter: "My ETL pipelines consume external APIs daily — IoT vendor feeds, cloud data services — as core data sources. My background automating data ingestion logic in Python gives me the foundation to move into designing and exposing new API endpoints as the role requires." Do not claim hands-on API development experience in the resume itself — this is a genuine gap, not just a wording issue. |
+| 2 | "Experience with calling external APIs and developing new APIs" | Partial — calling/consuming external APIs is now STRONGLY evidenced (built custom Python integrations against the Amazon Selling Partner API and Walmart vendor API at Basic Fun, confirmed with Andrew 2026-07-13); developing/exposing new APIs is confirmed NOT part of that work (no internal endpoint was built or exposed) — genuine gap remains | Cover letter: "I've built production API integrations from scratch — custom Python connectors calling the Amazon Selling Partner API and Walmart vendor API directly, parsing and loading marketplace data into a Fabric Lakehouse that powered demand forecasting across four teams. That experience is squarely on the API-consumption side; I haven't yet built and exposed a new API endpoint for other systems to call into, but the same request/response, auth, and data-contract fundamentals apply, and I'd ramp quickly." |
 
 ---
 
@@ -48,7 +48,7 @@ Senior BI Developer with 10+ years of combined finance and data engineering expe
 - Designed Basic Fun's first enterprise data warehouse from scratch — full stack from source ingestion through ETL, dimensional modeling, star schema, and semantic layer — creating the company's foundational analytics platform
 - Designed and deployed Azure data lake and ETL pipelines to ingest 3rd-party point-of-sale data from heterogeneous sources — web portal, FTP, email, flat file, and external databases — implementing incremental refresh strategies that significantly reduced pipeline run times
 - Conducted ongoing data quality validation, reconciliation, and performance tuning across data warehouse tables, ETL jobs, semantic models, and dashboards, ensuring accuracy and executive trust in reported metrics
-- Automated daily/weekly report distributions and alerts by querying Power BI data from scheduled tasks in Power Automate, improving stakeholder follow-through and reporting consistency
+- Built custom Python-based API integrations calling the Amazon Selling Partner API and Walmart vendor API directly, parsing JSON payloads via Azure Data Factory into a Microsoft Fabric Lakehouse — powering Power BI demand forecasting for Marketing, Operations, Demand Planning, and Sales that improved forecast accuracy 25% YoY to 78%
 
 **Business Intelligence Engineer** | Twin-Star International | 2020 – 2023
 - Architected Twin-Star's first enterprise data warehouse: defined dimensional models, implemented star schema, built SSIS ETL packages, and leveraged Azure Synapse Analytics for parallel analytical processing
@@ -90,14 +90,12 @@ My gut reaction: Keep reading — clean seniority progression (BI Engineer → S
 
 2. **~~Missing contact info~~ — RESOLVED:** Real phone and LinkedIn added 2026-07-13.
 
-3. **Buried early-career Python bullet:** The AutoNation Python/PDF-parsing bullet is the clearest standalone evidence of "Python scripts to automate data processing" (an exact JD phrase) but sits in the last detailed role.
-   - Location: AutoNation entry
-   - Fix: Consider adding one line to the Summary explicitly naming "Python automation" alongside the stack list, since the strongest automation-specific proof is buried near the bottom.
+3. **~~Buried early-career Python bullet~~ — RESOLVED:** The new Basic Fun bullet (Amazon SP-API / Walmart Vendor API integration, 2nd role, top third of the resume) is now a far stronger, more specific piece of Python/API evidence than the AutoNation bullet ever was. This single change is the biggest upgrade to the resume's credibility — a named, verifiable integration beats a generic capability claim every time.
 
 **Priority Changes (do these first)**
-1. Optional: surface "Python automation" explicitly in the Summary per issue 3 above.
+None outstanding.
 
-**Verdict:** PASS for 6-second scan. All blocking issues resolved — this is submission-ready pending Andrew's final read-through.
+**Verdict:** STRONG PASS for 6-second scan. All blocking issues resolved, and the Amazon/Walmart API bullet meaningfully strengthens the "calling external APIs" match — this is submission-ready pending Andrew's final read-through.
 
 ---
 
@@ -139,8 +137,8 @@ No tables, columns, images, or headers/footers used — clean single-column mark
 | Oracle | Partial | Skills list only | No bullet evidence — listed truthfully as a known platform, not demonstrated |
 | Data modeling / data quality | Yes | Basic Fun bullet 3, Twin-Star bullet 1 | Exact match |
 | Python (automation) | Yes | AutoNation bullet 1, Summary | Exact match |
-| Calling external APIs | Yes | Carnival bullet 1 | Exact match |
-| Developing new APIs | No | — | Genuine gap — flagged in Gaps table above |
+| Calling external APIs | Yes | Carnival bullet 1, Basic Fun bullet 3 (Amazon SP-API / Walmart Vendor API) | Exact match — Basic Fun bullet is a named, specific example, stronger than the generic Carnival mention |
+| Developing new APIs | No | — | Genuine gap — confirmed with Andrew 2026-07-13 that no internal API/endpoint was built or exposed; flagged in Gaps table above |
 
 **Missing Keywords - Action Required**
 1. **DB2** - In experience library: No. Flag as genuine gap. Address in cover letter (see Gaps table).
@@ -169,7 +167,7 @@ No tables, columns, images, or headers/footers used — clean single-column mark
 | "Designed Basic Fun's first enterprise data warehouse..." | Data Modeling & Architecture | "Designed Basic Fun's first enterprise data warehouse from scratch..." | EXACT |
 | "Designed and deployed Azure data lake and ETL pipelines..." | Data Engineering & ETL | "Designed and deployed Azure data lake and ETL pipelines at Basic Fun to ingest 3rd-party point-of-sale data..." | EXACT |
 | "Conducted ongoing data quality validation, reconciliation..." | Performance Optimization & Data Quality | "Conducted ongoing data quality validation, reconciliation, and performance tuning across data warehouse tables..." | EXACT |
-| "Automated daily/weekly report distributions and alerts..." | BI & Dashboard Development | "Automated daily/weekly report email distributions and alerts at Basic Fun by querying Power BI data..." | REWORDED |
+| "Built custom Python-based API integrations calling..." | Data Engineering & ETL + Story 6 | "Built custom Python-based API integrations calling the Amazon Selling Partner API and Walmart vendor API directly to extract vendor sell-through and inventory data, parsing JSON payloads via Azure Data Factory into a Microsoft Fabric Lakehouse..." (confirmed with Andrew 2026-07-13, added to library same day) | EXACT |
 | "Architected Twin-Star's first enterprise data warehouse..." | Data Modeling & Architecture | "Architected Twin-Star's first enterprise data warehouse: defined dimensional models, implemented star schema, built SSIS ETL packages..." | EXACT |
 | "Led migration of on-premise SQL Server schemas..." | Data Engineering & ETL | "Migrated transactional data from multiple siloed ERP systems at Twin-Star into an Azure SQL Server operational data store..." + "Led migration of on-premise SQL Server schemas to Azure SQL Server..." | REWORDED (combined two related bullets) |
 | "Built paginated reports in SSRS/Power BI Report Builder..." | BI & Dashboard Development + Story 10 | "Built paginated reports in SSRS/Power BI Report Builder..." + Story 10 write-back solution | REWORDED (combined) |
@@ -187,4 +185,6 @@ No tables, columns, images, or headers/footers used — clean single-column mark
 - Phone and LinkedIn added 2026-07-13 (now in experience-library.md Contact Info section).
 - Corrected the "10+ years required" JD claim carried over from prior briefings — removed from all positioning language in this application.
 - Andrew confirmed "10+ years" (matching experience-library.md Story 12 exactly) as his preferred framing over the date-math-derived "17 years" — Summary updated accordingly 2026-07-13.
-- Did not add "developing new APIs" or "DB2" experience anywhere in the resume — both are genuine, unaddressed gaps, routed to cover letter language only.
+- Added new Amazon Selling Partner API / Walmart vendor API integration bullet to experience-library.md (Data Engineering & ETL section) and Story 6, confirmed with Andrew 2026-07-13. Swapped into this resume's Basic Fun section, replacing the weaker "automated report distributions via Power Automate" bullet — this is now the strongest "calling external APIs" evidence in the library.
+- Confirmed with Andrew that this API work did NOT involve building/exposing a new internal API endpoint — "developing new APIs" remains a genuine, unaddressed gap, routed to cover letter language only. Did not add DB2 experience anywhere — also a genuine gap.
+- Verified the 78% forecast accuracy figure is the same metric as the existing "25% YoY improvement" claim (Story 6), not a separate/duplicate achievement — Story 6 updated to state both the relative and absolute figures together to avoid any inconsistency if raised in an interview.
