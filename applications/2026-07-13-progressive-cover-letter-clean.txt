@@ -1,0 +1,16 @@
+Dear Progressive Hiring Team,
+
+Commercial Lines Acquisition needs BI that goes beyond dashboards — ETL structures, dimensional models, and reporting built and owned end-to-end by someone who can sit with business partners daily and turn ambiguous questions into trusted numbers. That's the exact scope I've built my career around, most recently architecting three enterprise data warehouses from scratch.
+
+At Twin-Star, I architected the company's first enterprise data warehouse: dimensional models, star schema, and SSIS ETL packages processing data across three portfolio companies, unifying a fragmented chart of accounts and saving Finance 20–25 hours a month in manual consolidation. That's the same discipline — ETL framework design for a complex, multi-source environment — Commercial Lines Acquisition needs.
+
+Production reliability matters as much as the initial build. At Carnival, I profiled and optimized SQL-based extraction and transformation logic for large-scale energy datasets, cutting data processing time 25% while building the Power BI Tabular Data Models that turned that data into real-time KPI reporting for engineering and executive audiences. I bring the same performance discipline to any pipeline I own.
+
+I've also built things most BI developers haven't: at Basic Fun, I wrote custom Python integrations calling the Amazon Selling Partner API and Walmart's vendor API directly, parsing the JSON into a Fabric Lakehouse that fed demand forecasting across four teams — improving forecast accuracy 25% YoY to 78%. That's real production API experience that transfers directly to building new endpoints as this role requires.
+
+I'd welcome a conversation about how this background could support the Commercial Lines Acquisition team's BI roadmap. Happy to talk whenever works for you.
+
+Best,
+Andrew Green
+andrewgreen04@gmail.com
+(561) 339-1806

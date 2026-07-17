@@ -1,7 +1,8 @@
 # Resume Output - Progressive Insurance, BI Developer Senior/Lead (req 15895087)
 **Keyword Coverage: 83% (10/12 requirements matched)**
 
-Applied: not yet submitted — resume ready for review
+Applied: not yet submitted — ready for submission via local browser (careers.progressive.com or LinkedIn job 4197150743). Cloud submission blocked by Cloudflare bot protection on Progressive's site.
+Clean upload-ready files: applications/2026-07-13-progressive-resume-clean.txt | applications/2026-07-13-progressive-cover-letter-clean.txt
 JD source: https://careers.progressive.com/jobs/15895087-bi-developer-senior-slash-lead/
 Team: Commercial Lines (CL) Acquisition group
 
