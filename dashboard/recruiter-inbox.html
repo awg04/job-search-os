@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recruiter Inbox — Job Search OS</title>
+<style>
+  :root{
+    --bg:#0f1420; --panel:#171e2e; --panel2:#1e2740; --line:#2a3452;
+    --ink:#e8edf7; --muted:#95a1bd; --accent:#5b9dff;
+    --green:#16a766; --greenbg:#12351f; --yellow:#f5c542; --yellowbg:#3a3010; --gray:#6b7690; --graybg:#20283c;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  header{padding:22px 26px 14px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--bg);z-index:5}
+  h1{margin:0 0 3px;font-size:20px;letter-spacing:.2px}
+  .sub{color:var(--muted);font-size:12.5px}
+  .wrap{padding:20px 26px 60px;max-width:1180px;margin:0 auto}
+  .cards{display:flex;gap:12px;flex-wrap:wrap;margin:18px 0 22px}
+  .kpi{flex:1;min-width:130px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .kpi .n{font-size:24px;font-weight:700}
+  .kpi .l{color:var(--muted);font-size:12px;margin-top:2px}
+  .toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+  .filter{background:var(--panel2);border:1px solid var(--line);color:var(--ink);padding:6px 12px;border-radius:20px;cursor:pointer;font-size:12.5px}
+  .filter.active{background:var(--accent);border-color:var(--accent);color:#08122a;font-weight:600}
+  .row{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:10px;display:grid;grid-template-columns:52px 1fr auto;gap:14px;align-items:start}
+  .score{width:52px;height:52px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:700}
+  .s-strong{background:var(--greenbg);color:#5fe0a0;border:1px solid #1e7a4d}
+  .s-look{background:var(--yellowbg);color:var(--yellow);border:1px solid #7a6216}
+  .s-low{background:var(--graybg);color:var(--gray);border:1px solid #38425e}
+  .role{display:block;font-weight:600;font-size:15px;color:var(--ink);text-decoration:none}
+  .meta{display:block;color:var(--muted);font-size:12.5px;margin-top:2px;text-decoration:none}
+  .role:hover,.meta:hover{text-decoration:underline}
+  .tags{margin-top:8px;display:flex;gap:6px;flex-wrap:wrap}
+  .tag{font-size:11.5px;padding:2px 9px;border-radius:6px;background:var(--panel2);border:1px solid var(--line);color:var(--muted)}
+  .tag.good{color:#6fe0a6;border-color:#1e7a4d}
+  .tag.bad{color:#ff9b9b;border-color:#7a2323}
+  .tag.warn{color:var(--yellow);border-color:#7a6216}
+  .tag.proc{color:#8fc2ff;border-color:#2b5a9e}
+  .tag.li{color:#7ec8ff;border-color:#2b5a9e;background:#12233b}
+  .right{text-align:right;display:flex;flex-direction:column;gap:8px;align-items:flex-end;min-width:150px}
+  select{background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:6px 8px;font-size:12.5px;cursor:pointer}
+  select.set-pursue{border-color:var(--green);color:#6fe0a6}
+  select.set-skip{border-color:#7a2323;color:#ff9b9b}
+  select.set-maybe{border-color:#7a6216;color:var(--yellow)}
+  select.set-applied{border-color:var(--accent);color:#8fc2ff}
+  .flag{margin-top:8px;font-size:12px;color:#ffb4b4;background:#2a1414;border:1px solid #7a2323;border-radius:8px;padding:7px 10px}
+  .cmd-hint{margin-top:6px;text-align:right;color:var(--muted);font-size:11px;line-height:1.6}
+  .cmd-row{display:flex;align-items:center;justify-content:flex-end;gap:6px;margin-top:3px}
+  .cmd-row span{font-family:ui-monospace,Menlo,Consolas,monospace;color:#8fa3c8;user-select:all;cursor:text}
+  .copy{background:var(--panel2);border:1px solid var(--line);color:var(--muted);border-radius:5px;padding:1px 6px;font-size:11px;line-height:1.5;cursor:pointer}
+  .copy:hover{color:var(--ink);border-color:var(--accent)}
+  .mark{background:transparent;border:1px solid #2f7a4d;color:#5fe0a0;border-radius:5px;padding:1px 6px;font-size:11px;line-height:1.5;cursor:pointer}
+  .mark:hover{background:#12351f}
+  .undo{background:transparent;border:1px solid var(--line);color:var(--muted);border-radius:5px;padding:1px 7px;font-size:11px;line-height:1.5;cursor:pointer}
+  .undo:hover{color:var(--ink)}
+  .cmd-row.done span{color:#5fe0a0}
+  .empty{color:var(--muted);text-align:center;padding:40px}
+  footer{color:var(--muted);font-size:12px;text-align:center;padding:20px}
+  @media(max-width:640px){.row{grid-template-columns:44px 1fr}.right{grid-column:1/-1;align-items:stretch;flex-direction:row;flex-wrap:wrap}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Recruiter Inbox</h1>
+  <div class="sub">Human-recruiter emails scored against your career plan · Last scan <span id="scandate">2026-07-21</span> · dispositions save in this browser</div>
+</header>
+<div class="wrap">
+  <div class="cards" id="kpis"></div>
+  <div class="toolbar" id="filters"></div>
+  <div id="list"></div>
+  <footer>Source of truth for dispositions is <code>context-library/recruiter-inbox.md</code> (syncs to GitHub &amp; mobile). This dashboard is a review view; browser selections are a convenience layer.</footer>
+</div>
+<script>
+const DATA = [
+  {id:"19f8064120818784",date:"2026-07-20",recruiter:"Sham",firm:"Virtual Networx",role:"Data Analyst & Power BI Engineer",client:"undisclosed",score:85,tier:"strong",remote:{t:"Remote",k:"good"},comp:"Rate not stated",tags:[["Power BI","good"],["Fabric","good"],["SQL / ETL","good"],["12+ mo contract",""]],flag:"Rate not stated — ask bill rate before tailoring."},
+  {id:"19f80cb44c91d7bb",date:"2026-07-20",recruiter:"Aviral Srivastava",firm:"Talenzaa",role:"Business Analyst (Business Intelligence)",client:"Tavant / Kubota",score:82,tier:"strong",remote:{t:"100% Remote",k:"good"},comp:"Rate not stated (contract)",tags:[["Power BI","good"],["Azure / ADF","good"],["SQL","good"],["BA-flavored",""]],flag:"Rate not stated — ask bill rate before tailoring."},
+  {id:"19f7fee6bf8218cd",date:"2026-07-20",recruiter:"Max Garcia",firm:"Synergy Interactive",role:"PowerBI Engineer",client:"Publicis Sapient",score:80,tier:"strong",remote:{t:"Fully Remote",k:"good"},comp:"$65/hr LLC · $55/hr W2",tags:[["Power BI","good"],["IN PROCESS","proc"],["6 mo+ contract",""],["rate ~under target","warn"]],flag:"Already live — you had a call and sent your resume 2026-07-20. Consider adding to app-tracker as In Process."},
+  {id:"19f7fdfe7ee3bedf",date:"2026-07-20",recruiter:"Reeba Saini",firm:"Nityo Infotech",role:"Power BI Developer",client:"undisclosed",score:42,tier:"look",remote:{t:"Raleigh NC / Dallas TX",k:"warn"},comp:"Full-time perm",tags:[["Power BI","good"],["Tableau",""],["SharePoint",""],["onsite?","warn"]],flag:"Location listed as NC/TX. Worth a one-line reply asking if remote is possible before writing it off."},
+  {id:"19f8091b2c1ef05f",date:"2026-07-20",recruiter:"Prakash K. Singh",firm:"Nityo Infotech",role:"Azure Data Engineer / Architect",client:"undisclosed",score:32,tier:"low",remote:{t:"Onsite (NC/TX/MI/CA)",k:"bad"},comp:"—",tags:[["Azure","good"],["onsite","bad"]],flag:""},
+  {id:"19f7f8cdc84867d1",date:"2026-07-20",recruiter:"Colton Collins",firm:"Capital Staffing",role:"Business Systems Analyst (Python/SQL)",client:"undisclosed",score:28,tier:"low",remote:{t:"Juno Beach, FL onsite",k:"bad"},comp:"—",tags:[["onsite","bad"],["not BI-core","bad"]],flag:""},
+  {id:"19f864bf13a1c8ee",date:"2026-07-21",recruiter:"Kaila Timko",firm:"Capital Staffing",role:"Business Systems Analyst (Python/SQL/ML)",client:"undisclosed",score:26,tier:"low",remote:{t:"Juno Beach, FL onsite",k:"bad"},comp:"Rate not stated",tags:[["onsite","bad"],["not BI-core","bad"],["12mo+ contract",""]],flag:""},
+  {id:"19f7fb5868e2c05d",date:"2026-07-20",recruiter:"Yash Agarwal",firm:"Exarca (via Dice)",role:"IT Business Systems Analyst II",client:"undisclosed",score:25,tier:"low",remote:{t:"Juno Beach, FL onsite",k:"bad"},comp:"W2 only",tags:[["onsite","bad"],["not BI-core","bad"]],flag:""},
+  {id:"19f80af86048e18d",date:"2026-07-20",recruiter:"Avneesh Tyagi",firm:"Nityo Infotech",role:"Business Analyst, Treasury Systems",client:"undisclosed",score:20,tier:"low",remote:{t:"Miami hybrid",k:"bad"},comp:"$30/hr W2",tags:[["comp far below floor","bad"],["hybrid","bad"]],flag:""},
+  {id:"19f8065a7ac37096",date:"2026-07-20",recruiter:"Veena",firm:"ATVS LLC",role:"Data Engineer (Hadoop / Ab Initio)",client:"undisclosed",score:15,tier:"low",remote:{t:"Berkeley Heights, NJ onsite",k:"bad"},comp:"$50/hr W2",tags:[["non-MS stack","bad"],["onsite","bad"],["asks SSN/DOB","bad"]],flag:"⚠️ This email asks for your SSN last-4 and DOB in the reply. Never send that to source a role. Ignore or ask them to submit without it."},
+  {id:"19f808f24146d81f",date:"2026-07-20",recruiter:"Saurav Sahil",firm:"Nityo Infotech",role:"Infor LN Functional Consultant",client:"undisclosed",score:12,tier:"low",remote:{t:"unspecified",k:"warn"},comp:"—",tags:[["ERP functional","bad"],["off-target","bad"]],flag:""},
+  {id:"2-NjRlYzVjYWUtNzY2Ny00ZjBjLWIwMGMtOTI1MzNjNzYwMTU3XzEwMA==",date:"2026-07-17",recruiter:"Lourdes Verde",firm:"Baptist Health South Florida",role:"BI / Data role (title TBC)",client:"Baptist Health",score:58,tier:"look",remote:{t:"Leader open to remote",k:"good"},comp:"Full-time perm · not stated",tags:[["remote-open","good"],["full-time perm",""],["healthcare",""],["title/stack TBC","warn"]],flag:"Baptist Health SF, full-time, leader open to remote — you already sent your resume. Confirm exact title + Power BI/MS-stack fit + comp. Likely the same opening Caroline Dybala flagged (Sr System Engineer – Power BI).",source:"linkedin"},
+  {id:"2-YmRiODJiN2YtYjljNS00YmNlLThjOTItNTY1NWQ1ZWJkMTczXzEwMA==",date:"2026-07-08",recruiter:"Caroline Dybala",firm:"Baptist Health South Florida",role:"Senior System Engineer – Power BI & Automation",client:"Baptist Health",score:52,tier:"look",remote:{t:"Coral Gables, FL · 8:30–5 (onsite?)",k:"warn"},comp:"Not stated",tags:[["Power BI","good"],["automation",""],["Coral Gables onsite?","warn"]],flag:"Power BI role at Baptist Health (Coral Gables, 8:30–5 → likely onsite/hybrid). Wants her name in the employee-referral field. Likely the same role Lourdes Verde flagged as 'leader open to remote' — confirm remote before applying.",source:"linkedin"},
+  {id:"2-ZTQ3MWQyNjQtYjc3MS00YWRiLWEzZDMtZTlkNTk0MTAwNDliXzEwMA==",date:"2026-07-16",recruiter:"Jason Wolpow",firm:"Lawrence Harvey",role:"Solution Engineer – Analytics (Power BI)",client:"undisclosed (manufacturing)",score:35,tier:"low",remote:{t:"Onsite — Anderson, SC",k:"bad"},comp:"$120–155K base + 10%",tags:[["Power BI","good"],["onsite Anderson SC","bad"],["can't relocate","bad"]],flag:"Exact Power BI stack fit BUT onsite Anderson SC — you already declined (can't relocate) and offered to refer. Dead unless they open remote.",source:"linkedin"},
+  {id:"2-YjA5ZjE3MTItM2E2ZC00MDlhLWJlMzgtNzQyYzQ3NGZiMTA1XzEwMA==",date:"2026-07-19",recruiter:"Dominique Hughes",firm:"AUKU",role:"Data Architect (BigQuery/Looker)",client:"undisclosed",score:35,tier:"low",remote:{t:"remote unstated",k:"warn"},comp:"6-mo C2H · rate not stated",tags:[["non-MS: BigQuery/Looker","bad"],["Data Architect",""],["C2H 6mo",""]],flag:"Google BigQuery/Looker/Fivetran stack (marketing data) — not your Microsoft/Power BI wheelhouse. Dimensional modeling transfers but this isn't a Power BI role.",source:"linkedin"},
+  {id:"2-ZDM4NjE2YWUtNGQxZC00YWQwLTk4YWMtZTVkNDU2N2MzMTA0XzEwMA==",date:"2026-07-17",recruiter:"Mariam Khan",firm:"MSC Cruises USA",role:"eCommerce Data Analyst",client:"MSC Cruises",score:30,tier:"low",remote:{t:"Hybrid — 4 days Miami office",k:"bad"},comp:"Not stated · strong benefits",tags:[["hybrid 4d Miami","bad"],["eComm Data Analyst",""],["no MS-stack signal","warn"]],flag:"Hybrid — 4 days/week in downtown Miami office. Fails your remote-only requirement.",source:"linkedin"},
+  {id:"2-YTBkNzY2NGUtYmZkOC00MmQ5LTlmNGYtYTA2MTE3MjIwNWE0XzEwMA==",date:"2026-07-19",recruiter:"Ashish Awasthi",firm:"undisclosed (staffing)",role:"Unnamed — staffing inquiry",client:"undisclosed",score:30,tier:"low",remote:{t:"unstated",k:"warn"},comp:"you quoted $75–85/hr W2",tags:[["no role named yet","warn"],["staffing fishing",""]],flag:"Generic staffing inquiry — no role, company, or JD named; only asked availability, work-auth, and rate. Ask what the actual role + client are before investing.",source:"linkedin"},
+  {id:"2-YTdlMGZhNDItMGY4Zi00ZGE1LWJiN2ItYzg0NmQ4ZDI4YjAwXzEwMA==",date:"2026-07-10",recruiter:"Michael Bloor",firm:"Pivotal Solutions",role:"Data/Web Developer",client:"undisclosed (Boca Raton)",score:25,tier:"low",remote:{t:"Boca Raton, FL (local)",k:"bad"},comp:"Not stated · perm",tags:[["not BI-core","bad"],["Data/Web dev","bad"],["local Boca","warn"]],flag:"Data/Web Developer (not BI-core), Boca local, permanent. Off-target — web-dev role, no Power BI signal.",source:"linkedin"}
+];
+const TIERLABEL={strong:"Strong-Fit",look:"Worth-a-Look",low:"Low-Fit"};
+const SCLASS={strong:"s-strong",look:"s-look",low:"s-low"};
+const STORE="recruiter-inbox-dispositions";
+let disp=JSON.parse(localStorage.getItem(STORE)||"{}");
+// Cards marked Skip are hidden from this point on; snapshot taken at load so a mid-session skip
+// doesn't vanish under you — it clears on the next refresh.
+const initialSkips=new Set(Object.keys(disp).filter(id=>disp[id]==="Skip"));
+let filter="all";
+
+function setDisp(id,val){disp[id]=val;localStorage.setItem(STORE,JSON.stringify(disp));render();}
+
+// DRAFTED is regenerated from context-library/recruiter-drafts.json by Update-DashboardDrafted
+// (the browser can't read a local file at runtime). A thread here has had a recruiter-action draft.
+const DRAFTED = {"19f7fee6bf8218cd":"2026-07-21","19f8064120818784":"2026-07-21","19f80cb44c91d7bb":"2026-07-21"};
+const RASTORE="recruiter-inbox-radone", RUSTORE="recruiter-inbox-raundo";
+let raDone=JSON.parse(localStorage.getItem(RASTORE)||"{}");
+let raUndo=JSON.parse(localStorage.getItem(RUSTORE)||"{}");
+function raSave(){localStorage.setItem(RASTORE,JSON.stringify(raDone));localStorage.setItem(RUSTORE,JSON.stringify(raUndo));render();}
+function setRaDone(id,val){ if(val){raDone[id]=true;delete raUndo[id];}else{delete raDone[id];} raSave(); }
+function setRaUndo(id){ raUndo[id]=true; delete raDone[id]; raSave(); }
+
+function copyText(txt,btn){
+  const ok=()=>{btn.textContent="✓";setTimeout(()=>btn.textContent="📋",1200);};
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(txt).then(ok).catch(()=>window.prompt("Copy this command:",txt));
+  }else{window.prompt("Copy this command:",txt);}
+}
+
+function render(){
+  const VIS=DATA.filter(d=>!initialSkips.has(d.id));
+  // KPIs
+  const strong=VIS.filter(d=>d.tier==="strong").length;
+  const pursue=Object.values(disp).filter(v=>v==="Pursue").length;
+  const undis=VIS.filter(d=>!disp[d.id]||disp[d.id]==="").length;
+  document.getElementById("kpis").innerHTML=`
+    <div class="kpi"><div class="n">${VIS.length}</div><div class="l">recruiter emails</div></div>
+    <div class="kpi"><div class="n" style="color:#6fe0a6">${strong}</div><div class="l">strong-fit</div></div>
+    <div class="kpi"><div class="n" style="color:#8fc2ff">${pursue}</div><div class="l">marked pursue</div></div>
+    <div class="kpi"><div class="n" style="color:#f5c542">${undis}</div><div class="l">need a call</div></div>`;
+  // Filters
+  const counts={all:VIS.length,new:strong+VIS.filter(d=>d.tier==="look").length,strong,look:VIS.filter(d=>d.tier==="look").length,low:VIS.filter(d=>d.tier==="low").length};
+  document.getElementById("filters").innerHTML=["all","new","strong","look","low"].map(f=>
+    `<div class="filter ${filter===f?'active':''}" data-f="${f}">${f==="all"?"All":(f==="new"?"New":TIERLABEL[f])} · ${counts[f]}</div>`).join("");
+  document.querySelectorAll(".filter").forEach(el=>el.onclick=()=>{filter=el.dataset.f;render();});
+  // List
+  // "new": strong + look only, newest first (score breaks date ties)
+  const rows=filter==="new"
+    ?VIS.filter(d=>d.tier==="strong"||d.tier==="look").slice().sort((a,b)=>(b.date||"").localeCompare(a.date||"")||b.score-a.score)
+    :VIS.filter(d=>filter==="all"||d.tier===filter);
+  const list=document.getElementById("list");
+  if(!rows.length){list.innerHTML='<div class="empty">Nothing in this filter.</div>';return;}
+  list.innerHTML=rows.map(d=>{
+    const cur=disp[d.id]||"";
+    const raIsDone=(DRAFTED[d.id]||raDone[d.id]) && !raUndo[d.id];
+    const setcls=cur?("set-"+cur.toLowerCase()):"";
+    const tags=d.tags.map(t=>`<span class="tag ${t[1]}">${t[0]}</span>`).join("");
+    const flag=d.flag?`<div class="flag">${d.flag}</div>`:"";
+    // source-aware: LinkedIn cards link to the conversation and use LinkedIn-appropriate commands;
+    // Gmail cards keep the Outlook-reply (/recruiter-action) flow.
+    const isLI=d.source==="linkedin";
+    const threadUrl=isLI?`https://www.linkedin.com/messaging/thread/${d.id}/`:`https://mail.google.com/mail/u/0/#all/${d.id}`;
+    const openTitle=isLI?"Open conversation in LinkedIn":"Open thread in Gmail";
+    const srcTag=isLI?`<span class="tag li">LinkedIn</span>`:``;
+    const cmds=isLI
+      ? `<div class="cmd-row"><span>/next-steps ${threadUrl}</span><button class="copy" title="Copy" onclick="copyText('/next-steps ${threadUrl}',this)">📋</button></div>`
+      : `${raIsDone
+            ? `<div class="cmd-row done"><span>/recruiter-action ✓ Done</span><button class="undo" title="Re-show command" onclick="setRaUndo('${d.id}')">↺</button></div>`
+            : `<div class="cmd-row"><span>/recruiter-action ${d.id}</span><button class="copy" title="Copy" onclick="copyText('/recruiter-action ${d.id}',this)">📋</button></div>`}
+         ${raIsDone ? `<div class="cmd-row"><span>/next-steps ${d.id}</span><button class="copy" title="Copy" onclick="copyText('/next-steps ${d.id}',this)">📋</button></div>` : ``}
+         <div class="cmd-row"><span>/job-fit-inbox ${d.id}</span><button class="copy" title="Copy" onclick="copyText('/job-fit-inbox ${d.id}',this)">📋</button></div>`;
+    return `<div class="row">
+      <div class="score ${SCLASS[d.tier]}">${d.score}</div>
+      <div>
+        <a class="role" href="${threadUrl}" target="_blank" title="${openTitle}">${d.role}</a>
+        <a class="meta" href="${threadUrl}" target="_blank" title="${openTitle}">${d.recruiter} · ${d.firm}${d.client!=="undisclosed"?" → "+d.client:""} · ${d.comp}</a>
+        <div class="tags">${srcTag}<span class="tag ${d.remote.k}">${d.remote.t}</span>${tags}</div>
+        ${flag}
+      </div>
+      <div class="right">
+        <select class="${setcls}" onchange="setDisp('${d.id}',this.value)">
+          ${["","Pursue","Maybe","Skip","Applied"].map(o=>`<option value="${o}" ${cur===o?"selected":""}>${o||"— set —"}</option>`).join("")}
+        </select>
+        <div class="cmd-hint">tell Claude:
+          ${cmds}
+        </div>
+      </div>
+    </div>`;
+  }).join("");
+}
+render();
+</script>
+</body>
+</html>

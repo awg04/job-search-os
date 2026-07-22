@@ -119,13 +119,13 @@ For each of the 25 people, write a single connection request message that includ
 
 ### Step 5: Validate and Output
 
-1. **Character-count enforcement (CRITICAL):** LinkedIn's connection request limit is 300 characters. LLMs estimate character counts imprecisely, so apply these rules:
-   - **Target 280 characters maximum** to leave a 20-character safety buffer. This accounts for estimation error.
+1. **Character-count enforcement (CRITICAL):** LinkedIn's connection request note limit is **200 characters on the free tier** (verified 2026-07-21 — the old 300 limit now applies only to Premium). Write every message to 200 so it fits regardless of tier. LLMs estimate character counts imprecisely, so apply these rules:
+   - **Target 185 characters maximum** to leave a safety buffer for estimation error.
    - Count characters by examining each word's length explicitly. Do not round or estimate.
-   - If a message is between 280-300 characters, attempt to shorten it. Cut filler words ("really," "just," "actually"), shorten phrases ("would love to" -> "happy to"), or remove one qualifying detail.
-   - If a message is over 300 characters, it MUST be rewritten shorter. Do not present it to the user.
+   - If a message is between 185-200 characters, attempt to shorten it. Cut filler words ("really," "just," "actually"), shorten phrases ("would love to" -> "happy to"), or remove one qualifying detail.
+   - If a message is over 200 characters, it MUST be rewritten shorter. Do not present it to the user. When in doubt, verify with PowerShell: `$msg.Length`.
    - Display the character count for every message so the user can verify before sending.
-   - **Best practice:** Shorter messages (200-250 chars) have higher accept rates than messages pushing the limit. Aim short.
+   - **Best practice:** the mutual-connection hook and the specific ask drive accepts — cut credibility details first (they belong in the post-accept follow-up), never the hook or the ask.
 2. Verify no two messages for the same company use the same connection point template.
 3. Verify no message could be sent to a different person and still make sense. If it could, it is too generic. Rewrite.
 
@@ -145,9 +145,9 @@ Total requests: 25
 **Company:** [Company] | **Role:** [Their Title]
 **Connection point:** [mutual connection / shared school / their post about X / etc.]
 **Message:**
-> [connection request text, under 300 characters]
+> [connection request text, under 200 characters]
 
-**Character count:** [N]/300
+**Character count:** [N]/200
 
 ---
 
@@ -197,7 +197,7 @@ Sample output for one person:
 
 Before finalizing the batch, validate every message against these rules:
 
-- [ ] **Under 300 characters.** No exceptions. LinkedIn silently truncates.
+- [ ] **Under 200 characters.** No exceptions — free-tier LinkedIn caps notes at 200 and silently truncates.
 - [ ] **No generic openers.** Ban: "I came across your profile," "I see we're both in product," "I'd love to connect," "I admire your work."
 - [ ] **Proof of research is specific.** If you removed the person's name, could this message apply to anyone else at their company? If yes, rewrite.
 - [ ] **Connection point is real.** It references a verifiable thing -- a post, a mutual contact, a shared school, a specific product they shipped.

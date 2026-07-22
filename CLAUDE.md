@@ -49,7 +49,7 @@ job-search-os/
 | `/resume-tailor [JD]` | ATS-optimized resume from real experience, with coverage score and gap flags |
 | `/job-fit-scorer [JD]` | Score a JD 1-100 across 5 dimensions |
 | `/company-research [company]` | Research a company or generate target list |
-| `/connection-request [batch]` | 25 personalized LinkedIn connection requests (300 char max) |
+| `/connection-request [batch]` | 25 personalized LinkedIn connection requests (200 char max) |
 | `/referral-request [person + role]` | Full referral sequence: initial ask, strong push, HM identification |
 | `/hiring-manager-msg [role + links]` | HM outreach leading with work product |
 | `/work-product [company + role + type]` | 1-pager: get-interview, in-process, or specific-interview |
@@ -88,7 +88,7 @@ After generating any output, verify your own work:
 - For resumes: Re-check every bullet against `experience-library.md`. If ANY bullet cannot be traced to a specific entry, **flag it with [UNVERIFIED] and ask the user to confirm before including it.** This is the single most important guardrail in the OS. A fabricated resume bullet can end a candidacy.
 - For interview prep: Confirm company-specific data matches `insider-data/company-intel/`. Flag stale or uncertain data with [VERIFY - data may be outdated].
 - For work products: Ask "could this have been written for a different company?" If yes, it needs more specificity.
-- For connection requests: Verify each is under 300 characters and contains a specific, non-generic connection point.
+- For connection requests: Verify each is under 200 characters (LinkedIn free-tier note limit) and contains a specific, non-generic connection point.
 - For salary data: Always show sources and dates. Comp data older than 6 months should be flagged.
 
 ## Empty Context Detection
@@ -114,7 +114,7 @@ Professional, concise, specific. Use metrics where possible. No filler. No corpo
 4. **Job scoring uses 5 dimensions** (each 0-20, total 0-100): skill match, seniority fit, culture signals, comp range, growth trajectory.
 5. **Three Laws grading** for all interview answers: (1) Structure (2) Specificity (3) Skill Demonstration.
 6. **Addressing-weaknesses framework** drives resume positioning, "tell me about yourself," and interview prep.
-7. **Connection requests:** under 300 characters, specific, never generic.
+7. **Connection requests:** under 200 characters (LinkedIn free-tier note limit), specific, never generic.
 8. **Work products:** company-specific, draw on real experience, include "Why Listen to Me" section.
 9. **Morning briefing** saves to `briefings/[YYYY-MM-DD]-briefing.md`.
 10. **Use /clear between different companies** to prevent context bleed.

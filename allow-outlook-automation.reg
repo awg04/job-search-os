@@ -1,0 +1,20 @@
+Windows Registry Editor Version 5.00
+
+; Auto-approve Outlook's programmatic-access (object-model guard) prompts so COM automation
+; (e.g. /recruiter-action drafting) runs without the "A program is trying to access..." dialog.
+; SECURITY NOTE: this disables a real anti-malware protection for Outlook. Apply only if you
+; accept that and it's permitted on this machine. Undo with revert-outlook-automation.reg.
+; Value 2 = automatically approve (0/absent = prompt, 1 = auto-deny).
+; Takes effect after restarting Outlook.
+
+[HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\Outlook\Security]
+; AdminSecurityMode=3 tells Outlook to honor these Group-Policy security settings
+; (without it, some builds ignore the PromptOOM* values and keep prompting).
+"AdminSecurityMode"=dword:00000003
+"PromptOOMSend"=dword:00000002
+"PromptOOMAddressBookAccess"=dword:00000002
+"PromptOOMAddressInformationAccess"=dword:00000002
+"PromptOOMAttachmentRead"=dword:00000002
+"PromptOOMSaveAs"=dword:00000002
+"PromptOOMFormulaAccess"=dword:00000002
+"PromptOOMMeetingTaskRequestResponse"=dword:00000002

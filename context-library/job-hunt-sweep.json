@@ -1,0 +1,76 @@
+{
+  "_comment": "Web-sweep config for /job-hunt-scan Step 3b. SINGLE SOURCE OF TRUTH: edit 'titles' + 'boolean' once and every sweep query rebuilds from it (the skill composes each query/URL — sweeps no longer hard-code the Boolean). 'websearch' sweeps run via the WebSearch tool (work everywhere, incl. widget-refresh window); 'browser' sweeps need the Chrome MCP (logged-in LinkedIn/Dice/Indeed) or the in-app browser and skip gracefully with a note if unavailable. Titles = Andrew's dashboard dropdown families + the recurring variants from the 120-day email scan (job-title-search-list.md), containment-tuned: e.g. 'Power BI Developer' already matches 'Senior Power BI Developer' as a phrase, so seniority prefixes are omitted. Bias is recall — the /job-hunt-scan grader is the precision filter (keeps only strong fits >=65).",
+  "titles": [
+    "Power BI Developer",
+    "Power BI Engineer",
+    "Power BI Architect",
+    "Power BI Analyst",
+    "BI Developer",
+    "BI Analyst",
+    "Business Intelligence Developer",
+    "Business Intelligence Engineer",
+    "Business Intelligence Analyst",
+    "Microsoft Fabric Developer",
+    "Azure Data Engineer",
+    "Analytics Engineer",
+    "Data Integration Engineer",
+    "Senior Data Analyst"
+  ],
+  "boolean": "(\"Power BI Developer\" OR \"Power BI Engineer\" OR \"Power BI Architect\" OR \"Power BI Analyst\" OR \"BI Developer\" OR \"BI Analyst\" OR \"Business Intelligence Developer\" OR \"Business Intelligence Engineer\" OR \"Business Intelligence Analyst\" OR \"Microsoft Fabric Developer\" OR \"Azure Data Engineer\" OR \"Analytics Engineer\" OR \"Data Integration Engineer\" OR \"Senior Data Analyst\")",
+  "addStrongOnly": true,
+  "strongThreshold": 65,
+  "freshnessDays": 7,
+  "sweeps": [
+    {
+      "name": "LinkedIn search (remote, past week)",
+      "source": "LinkedIn Search",
+      "method": "browser",
+      "base": "https://www.linkedin.com/jobs/search/?f_TPR=r604800&f_WT=2&geoId=103644278&keywords={KW}",
+      "space": "%20"
+    },
+    {
+      "name": "Glassdoor x-ray",
+      "source": "Glassdoor",
+      "method": "websearch",
+      "scope": "site:glassdoor.com/job-listing/"
+    },
+    {
+      "name": "Wellfound x-ray",
+      "source": "Wellfound",
+      "method": "websearch",
+      "scope": "site:wellfound.com"
+    },
+    {
+      "name": "BuiltIn x-ray",
+      "source": "BuiltIn",
+      "method": "websearch",
+      "scope": "site:builtin.com/job/"
+    },
+    {
+      "name": "Careers-pages x-ray",
+      "source": "Careers page",
+      "method": "websearch",
+      "scope": "(site:*/employment/* OR site:*/opportunities/* OR site:*/openings/* OR site:*/join-us/* OR site:*/work-with-us/*)"
+    },
+    {
+      "name": "Talent-subdomain x-ray",
+      "source": "Careers page",
+      "method": "websearch",
+      "scope": "site:talent.*"
+    },
+    {
+      "name": "Dice (remote, past week)",
+      "source": "Dice",
+      "method": "browser",
+      "base": "https://www.dice.com/jobs?filters.postedDate=SEVEN&workplaceTypes=Remote&q={KW}",
+      "space": "+"
+    },
+    {
+      "name": "Indeed (Boolean)",
+      "source": "Indeed",
+      "method": "browser",
+      "base": "https://www.indeed.com/jobs?fromage=7&q={KW}",
+      "space": "+"
+    }
+  ]
+}

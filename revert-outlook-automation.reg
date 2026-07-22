@@ -1,0 +1,14 @@
+Windows Registry Editor Version 5.00
+
+; REVERT: removes the auto-approve values, restoring Outlook's default programmatic-access
+; guard (it will prompt again on COM access). Double-click and confirm, then restart Outlook.
+
+[HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\Outlook\Security]
+"AdminSecurityMode"=-
+"PromptOOMSend"=-
+"PromptOOMAddressBookAccess"=-
+"PromptOOMAddressInformationAccess"=-
+"PromptOOMAttachmentRead"=-
+"PromptOOMSaveAs"=-
+"PromptOOMFormulaAccess"=-
+"PromptOOMMeetingTaskRequestResponse"=-

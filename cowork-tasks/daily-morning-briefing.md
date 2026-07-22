@@ -119,6 +119,18 @@ For each new role found:
 
 Surface the top 3 roles in the briefing, ranked by fit score.
 
+### Board Search Coverage
+
+Target-company scanning misses roles at firms not on the list. The board searches in `context-library/job-search-tracker.md` (built from the 120-day title scan in `context-library/job-title-search-list.md`) are the second discovery channel.
+
+1. Read `context-library/job-search-tracker.md` — 20 search strings, each with a per-board checkbox matrix (LinkedIn, Indeed, Dice, ZipRecruiter, Glassdoor) and a last-run date in Notes.
+2. Surface the **3-5 stalest searches** (never run, or oldest date), round-robined across families (don't surface five Power BI variants). Give the exact string + which board(s) to run it on (prefer unchecked boxes).
+3. On Monday or if nothing's been run in 7+ days, also surface the combined Boolean string for a full sweep.
+4. Remind: set remote + past-24h/week + comp-floor filters, save each as a board job alert, then mark the box `[x]` and note `date · # hits`.
+5. **Direct-ATS channel:** point to `dashboard/job-hunt.html` (one-click x-ray links per ATS). If `context-library/board-scan-log.json` shows no `/board-scan` in 3+ days, suggest running it. If the dashboard's `ALERT_UPDATED` stamp is 3+ days old, suggest `/job-hunt-scan` to refresh Inbox Job Prospects.
+
+Do NOT auto-edit the tracker — Andrew checks boxes after running each search.
+
 ---
 
 ## Part 2: Networking
@@ -134,7 +146,7 @@ Generate 25 connection requests, round-robin distributed across gap companies (d
 **[FUNCTION-ADAPTIVE]** Target function-appropriate contacts for connection requests, not PMs.
 
 For each person:
-- One personalized message (300 characters max, LinkedIn limit)
+- One personalized message (200 characters max — LinkedIn free-tier note limit)
 - Must include: a specific reference to the person's work/background, a connection point (mutual connection, shared school, shared company, location, or something specific about their role), and the user's one-line qualifier
 - Tone: warm, human, slightly casual. Not corporate. Not desperate.
 
@@ -229,6 +241,14 @@ Use this exact format for the saved file:
 - [Company] [Role] - Fit: [score] - [SKIP / APPLY WITH REFERRAL ONLY]
 - [Company] [Role] - Fit: [score] - [SKIP / APPLY WITH REFERRAL ONLY]
 
+### Board Searches To Run Today
+Second discovery channel (from job-search-tracker.md — stalest first):
+- [ ] [Search string] → run on [board(s)] — [never run / last run [date]]
+- [ ] [Search string] → run on [board(s)] — [never run / last run [date]]
+- [ ] [Search string] → run on [board(s)] — [never run / last run [date]]
+
+[Monday / 7+ days idle only] Full-sweep Boolean → LinkedIn / Dice advanced. Set remote + date + comp filters, save as an alert, then check the box in job-search-tracker.md.
+
 ### Search Failures
 Companies that could not be checked (web search unavailable or returned errors):
 - [Company]: could not verify -- check manually
@@ -240,10 +260,10 @@ Companies that could not be checked (web search unavailable or returned errors):
 
 | # | Name | Company | Role | Message |
 |---|------|---------|------|---------|
-| 1 | [Name] | [Company] | [Role] | [300 char message] |
-| 2 | [Name] | [Company] | [Role] | [300 char message] |
+| 1 | [Name] | [Company] | [Role] | [200 char message] |
+| 2 | [Name] | [Company] | [Role] | [200 char message] |
 | ... | | | | |
-| 25 | [Name] | [Company] | [Role] | [300 char message] |
+| 25 | [Name] | [Company] | [Role] | [200 char message] |
 
 ---
 

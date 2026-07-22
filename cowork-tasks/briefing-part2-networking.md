@@ -38,7 +38,7 @@ Identify companies in target-companies.md where the user has fewer than 4 connec
 **CAREER RETURNER MODE:** If career-plan.md shows a career gap, check if user has re-engaged any dormant connections this week. If not: "NETWORK RE-ENGAGEMENT: Send 3-5 messages to former colleagues at or near target companies. Template: 'Hi [Name], it's been a while! I'm exploring [function] roles again -- would love to hear what you've been up to. Any chance you'd be open to a quick catch-up?'"
 
 For each connection request:
-- One personalized message (300 characters max, LinkedIn limit)
+- One personalized message (200 characters max — LinkedIn free-tier note limit)
 - Must include: specific reference to the person's work/background, a connection point (mutual connection, shared school, shared company, location, or role-specific detail), and user's one-line qualifier
 - Tone: warm, human, slightly casual. Not corporate. Not desperate.
 
@@ -94,7 +94,7 @@ Save everything to `job-search-os/briefings/[YYYY-MM-DD]-part2-networking.md` us
 
 | # | Name | Company | Role | Message |
 |---|------|---------|------|---------|
-| 1 | [Name] | [Company] | [Role] | [300 char message] |
+| 1 | [Name] | [Company] | [Role] | [200 char message] |
 | ... | | | | |
 
 ## Follow-Ups (Newly Accepted)

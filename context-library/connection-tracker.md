@@ -1,34 +1,38 @@
 # Connection Tracker
 
-Last updated: [date]
+Last updated: 2026-07-21
 
 Auto-maintained by the OS. Updated after connection requests, referral requests, coffee chats, and interview rounds.
 
 To bulk-import: provide your LinkedIn connections CSV export and Claude will auto-populate this, cross-referencing against target-companies.md.
 
-## [Company Name]
+## Fractal Analytics
 
-### [Person Name]
-- **LinkedIn connected:** [yes/no, date]
-- **Met in person/Zoom:** [yes/no, date]
-- **Meeting notes:** [from Google Calendar / user input]
-- **Referral requested:** [yes/no, date, for which role]
-- **Referral received:** [yes/no, date]
-- **Strong referral (HM pinged):** [yes/no]
-- **Last contact:** [date]
-- **Next action:** [e.g., "follow up on coffee chat offer"]
+_Context: applying to Senior Power BI Developer (SR-39113, MANDELBROT, deadline 2026-07-31). No 1st-degree connections; these are the top 2nd-degree targets, surfaced 2026-07-21 via LinkedIn company people page. Mutuals come from Andrew's Power BI community network._
 
-### [Person Name]
-- **LinkedIn connected:**
-- **Met in person/Zoom:**
-- **Meeting notes:**
-- **Referral requested:**
-- **Referral received:**
-- **Strong referral (HM pinged):**
-- **Last contact:**
-- **Next action:**
+### Srikar Malapaka — Associate Director, Retail & CPG Analytics
+- **LinkedIn:** linkedin.com/in/contactsrikarmalapaka · 2nd degree
+- **Mutuals:** Chris Webb, Jeroen ter Heerdt + 5 more (7 total — strongest mutual set)
+- **Why him:** senior (referral weight), CPG analytics = the exact JD preferred domain, heavy Power BI community overlap
+- **LinkedIn connected:** requested 2026-07-21 (awaiting accept)
+- **Referral requested:** no
+- **Next action:** send connection request; if accepted, soft referral ask for SR-39113
 
-## [Company Name]
+### Suresh Krishna — Senior Consultant, Fractal Analytics
+- **LinkedIn:** linkedin.com/in/suresh-krishna-b960119b · 2nd degree
+- **Mutuals:** Bas Dohmen (How to Power BI), Injae Park
+- **LinkedIn connected:** requested 2026-07-21 (awaiting accept)
+- **Referral requested:** no
+- **Next action:** send connection request; ask about delivery-team life at Fractal
 
-### [Person Name]
-...
+### Vrushali Valmik Pawar — Senior Consultant, Fractal Analytics
+- **LinkedIn:** linkedin.com/in/vrushali-pawar-2210 · 2nd degree
+- **Mutuals:** Sam McKay (Enterprise DNA)
+- **LinkedIn connected:** requested 2026-07-21 (awaiting accept)
+- **Referral requested:** no
+- **Next action:** send connection request
+
+### Bench (not yet contacted)
+- Gagan Pratap Chauhan — Sr Consultant Analytics (CPG/supply chain) · mutuals: Patrick LeBlanc, Brian Julius
+- Abhinav Das — Senior Consultant @ Fractal
+- Hemanth C — PL-300/ADF certified · mutuals: Bas Dohmen, Injae Park +1

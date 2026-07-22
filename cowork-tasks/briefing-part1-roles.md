@@ -104,6 +104,22 @@ Research hooks:
 
 ---
 
+## Board Search Coverage
+
+Target-company scanning misses roles at firms not on the list. The board searches in `context-library/job-search-tracker.md` (built from the 120-day title scan in `context-library/job-title-search-list.md`) are the second discovery channel. Surface them daily so no search goes stale.
+
+1. Read `context-library/job-search-tracker.md`. Each of the 20 search strings has a per-board checkbox matrix (LinkedIn, Indeed, Dice, ZipRecruiter, Glassdoor) and a Notes column with the last-run date.
+2. Identify the **3-5 stalest searches** — never run (all boxes `[ ]`), or with the oldest date in Notes. Round-robin across search families (don't surface five Power BI variants; mix in a Data Engineer, an Analytics Engineer, etc.).
+3. Surface them as today's board picks with the exact string and which board(s) to run them on. Prefer boards still unchecked for that string.
+4. If it's Monday (or no search has been run in 7+ days), also surface the combined Boolean string for a full sweep.
+5. Remind: set the **remote + past-24h/week + comp-floor** filters, save each as a board **job alert**, then mark the box `[x]` and note `date · # hits` in the tracker.
+6. **Direct-ATS channel:** point to `dashboard/job-hunt.html` (one-click Google x-ray links per ATS — Greenhouse, Lever, Ashby, Workday, etc. — where postings land hours before the aggregators). If `context-library/board-scan-log.json` shows no `/board-scan` run in the last 3 days, suggest: "Run `/board-scan` — Claude x-rays the ATS platforms directly and reports only 65+ fits."
+7. **Inbox alerts channel:** if the `ALERT_UPDATED` stamp in `dashboard/job-hunt.html` is more than 3 days old, suggest running `/job-hunt-scan` to refresh the Inbox Job Prospects section from job-alert emails.
+
+Do **not** auto-edit the tracker — Andrew checks boxes after he runs each search. Just surface the picks.
+
+---
+
 ## Output
 
 Save everything to `job-search-os/briefings/[YYYY-MM-DD]-part1-roles.md` using this format:
@@ -130,6 +146,17 @@ Save everything to `job-search-os/briefings/[YYYY-MM-DD]-part1-roles.md` using t
 
 ### Other Roles Reviewed
 - [Company] [Role] - Fit: [score] - [SKIP / APPLY WITH REFERRAL ONLY]
+
+### Board Searches To Run Today
+Second discovery channel (from job-search-tracker.md — stalest searches first):
+- [ ] [Search string] → run on [board(s)] — [never run / last run [date]]
+- [ ] [Search string] → run on [board(s)] — [never run / last run [date]]
+- [ ] [Search string] → run on [board(s)] — [never run / last run [date]]
+
+[Monday / 7+ days idle only] Full-sweep Boolean → LinkedIn keyword box / Dice advanced:
+`("Power BI Developer" OR "Power BI Engineer" OR ... ) AND (remote) AND ("Power BI" OR DAX OR Fabric OR Azure OR SQL OR SSIS OR ETL)`
+
+_Set remote + date-posted + comp-floor filters, save as a job alert, then check the box in job-search-tracker.md._
 
 ### Search Failures
 - [Company]: could not verify -- check manually

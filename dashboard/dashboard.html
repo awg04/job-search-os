@@ -1,0 +1,277 @@
+<title>Job Search Command Center</title>
+<style>
+  :root {
+    --ground: #F0F3F5;
+    --card: #FFFFFF;
+    --ink: #0E1B26;
+    --ink-soft: #47586B;
+    --line: #D8DFE4;
+    --accent: #0A7E8C;
+    --accent-tint: #E2F0F2;
+    --good: #2E8B57;
+    --good-tint: #E4F1E9;
+    --warn: #B65C12;
+    --warn-tint: #F7ECDF;
+    --crit: #C0392B;
+    --crit-tint: #F8E7E4;
+    --mono: Consolas, "Cascadia Mono", monospace;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "Segoe UI", system-ui, sans-serif;
+    margin: 0;
+    padding: 28px 20px 48px;
+    line-height: 1.45;
+  }
+  .wrap { max-width: 1060px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+
+  /* Header */
+  header { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 16px; }
+  header h1 { font-size: 22px; font-weight: 600; margin: 0; letter-spacing: -0.01em; }
+  .weekbadge {
+    font-family: var(--mono); font-size: 13px; color: var(--accent);
+    background: var(--accent-tint); border-radius: 3px; padding: 2px 8px;
+  }
+  .stamp { margin-left: auto; font-size: 13px; color: var(--ink-soft); }
+  .stamp b { color: var(--ink); font-weight: 600; }
+
+  /* Freshness strip */
+  .fresh {
+    display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+    background: var(--warn-tint); border: 1px solid #E8CFAE; border-radius: 6px;
+    padding: 10px 14px; font-size: 13.5px;
+  }
+  .fresh .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--warn); flex: none; }
+  .fresh b { font-weight: 600; }
+
+  /* KPI row */
+  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+  .kpi {
+    background: var(--card); border: 1px solid var(--line); border-radius: 6px;
+    padding: 12px 14px 10px; display: flex; flex-direction: column; gap: 2px;
+    border-top: 3px solid var(--line);
+  }
+  .kpi.attn { border-top-color: var(--crit); }
+  .kpi.ok { border-top-color: var(--good); }
+  .kpi.neutral { border-top-color: var(--accent); }
+  .kpi .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--ink-soft); }
+  .kpi .value { font-family: var(--mono); font-size: 30px; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1.1; }
+  .kpi .sub { font-size: 12px; color: var(--ink-soft); }
+
+  /* Sections */
+  h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-soft); margin: 0 0 10px; font-weight: 600; }
+  .cols { display: grid; grid-template-columns: 3fr 2fr; gap: 20px; align-items: start; }
+  @media (max-width: 800px) { .cols { grid-template-columns: 1fr; } }
+
+  /* Role cards */
+  .roles { display: flex; flex-direction: column; gap: 12px; }
+  .role {
+    background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .role-top { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .role-top .title { font-weight: 600; font-size: 15.5px; }
+  .role-top .co { color: var(--ink-soft); font-size: 14px; }
+  .fit { margin-left: auto; display: flex; align-items: center; gap: 8px; flex: none; }
+  .fit .num { font-family: var(--mono); font-size: 18px; font-weight: 700; color: var(--accent); }
+  .meter { width: 90px; height: 6px; background: var(--line); border-radius: 3px; overflow: hidden; }
+  .meter i { display: block; height: 100%; background: var(--accent); }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip {
+    font-size: 11.5px; font-weight: 600; border-radius: 3px; padding: 2px 8px;
+    background: var(--ground); color: var(--ink-soft);
+  }
+  .chip.good { background: var(--good-tint); color: var(--good); }
+  .chip.warn { background: var(--warn-tint); color: var(--warn); }
+  .chip.crit { background: var(--crit-tint); color: var(--crit); }
+  .chip.teal { background: var(--accent-tint); color: var(--accent); }
+  .role .note { font-size: 13px; color: var(--ink-soft); margin: 0; }
+  .also { font-size: 13px; color: var(--ink-soft); margin: 4px 0 0; }
+  .also span { font-family: var(--mono); font-size: 12px; }
+
+  /* Priority stack */
+  .panel { background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; }
+  .bottleneck {
+    border-left: 4px solid var(--crit); background: var(--crit-tint);
+    border-radius: 0 6px 6px 0; padding: 10px 14px; margin-bottom: 14px; font-size: 13.5px;
+  }
+  .bottleneck b { color: var(--crit); }
+  ol.stack { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; font-size: 13.5px; }
+  ol.stack .t { font-family: var(--mono); font-size: 12px; color: var(--ink-soft); white-space: nowrap; }
+  ol.stack code { font-family: var(--mono); font-size: 12.5px; background: var(--ground); padding: 1px 5px; border-radius: 3px; }
+
+  /* Pipeline table */
+  .tablewrap { overflow-x: auto; background: var(--card); border: 1px solid var(--line); border-radius: 6px; }
+  table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+  th, td { text-align: left; padding: 9px 14px; border-bottom: 1px solid var(--line); }
+  tr:last-child td { border-bottom: none; }
+  th { font-size: 11px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--ink-soft); font-weight: 600; }
+  td.n { font-family: var(--mono); font-variant-numeric: tabular-nums; font-weight: 700; }
+  td.detail { color: var(--ink-soft); }
+
+  /* Data health */
+  .health { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; }
+  .hcard { background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 11px 14px; font-size: 13px; display: flex; gap: 10px; align-items: flex-start; }
+  .hcard .dot { width: 9px; height: 9px; border-radius: 50%; margin-top: 5px; flex: none; }
+  .dot.g { background: var(--good); } .dot.w { background: var(--warn); } .dot.r { background: var(--crit); }
+  .hcard b { display: block; font-size: 12.5px; }
+  .hcard span { color: var(--ink-soft); }
+
+  footer { font-size: 12.5px; color: var(--ink-soft); border-top: 1px solid var(--line); padding-top: 14px; }
+  footer code { font-family: var(--mono); font-size: 11.5px; }
+</style>
+
+<div class="wrap">
+
+  <header>
+    <h1>Job Search Command Center</h1>
+    <span class="weekbadge">WEEK 3 &middot; DAY 15</span>
+    <span class="stamp">Updated <b>Mon, Jul 6, 2026</b> &middot; refreshes weekday mornings</span>
+  </header>
+
+  <div class="fresh">
+    <span class="dot"></span>
+    <span><b>Latest full briefing is 13 days old</b> (Jun 23). Role listings below may have closed &mdash; the next scheduled refresh re-scans your top target companies. Pipeline counts reflect current tracker files.</span>
+  </div>
+
+  <section>
+    <div class="kpis">
+      <div class="kpi attn">
+        <span class="label">Applications</span>
+        <span class="value">0</span>
+        <span class="sub">none logged &mdash; today's bottleneck</span>
+      </div>
+      <div class="kpi neutral">
+        <span class="label">Interviews</span>
+        <span class="value">0</span>
+        <span class="sub">0 scheduled this week</span>
+      </div>
+      <div class="kpi neutral">
+        <span class="label">Offers</span>
+        <span class="value">0</span>
+        <span class="sub">&mdash;</span>
+      </div>
+      <div class="kpi attn">
+        <span class="label">Connections</span>
+        <span class="value">0</span>
+        <span class="sub">tracker empty &mdash; 25 drafted &amp; ready</span>
+      </div>
+      <div class="kpi ok">
+        <span class="label">Roles scored 70+</span>
+        <span class="value">3</span>
+        <span class="sub">all remote-confirmed</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="cols">
+
+    <section>
+      <h2>Top Roles &mdash; from Jun 23 briefing</h2>
+      <div class="roles">
+
+        <div class="role">
+          <div class="role-top">
+            <span class="title">BI Developer Senior/Lead</span>
+            <span class="co">Progressive Insurance</span>
+            <span class="fit"><span class="num">82</span><span class="meter"><i style="width:82%"></i></span></span>
+          </div>
+          <div class="chips">
+            <span class="chip good">Remote confirmed</span>
+            <span class="chip good">ATS PASS</span>
+            <span class="chip teal">87% keyword coverage</span>
+            <span class="chip warn">No referral path yet</span>
+          </div>
+          <p class="note">Strongest match on the board. ELT/ETL, data quality, and Azure map near-perfectly. Apply first &mdash; comp range $134K&ndash;$200K.</p>
+        </div>
+
+        <div class="role">
+          <div class="role-top">
+            <span class="title">Senior Data Engineer</span>
+            <span class="co">Samsara</span>
+            <span class="fit"><span class="num">80</span><span class="meter"><i style="width:80%"></i></span></span>
+          </div>
+          <div class="chips">
+            <span class="chip good">Remote confirmed</span>
+            <span class="chip warn">ATS pass w/ warnings</span>
+            <span class="chip teal">78% keyword coverage</span>
+            <span class="chip warn">No referral path yet</span>
+          </div>
+          <p class="note">Fleet IoT domain overlaps Carnival work directly. Strengthen Databricks and IoT language before submitting.</p>
+        </div>
+
+        <div class="role">
+          <div class="role-top">
+            <span class="title">Senior Data Engineer</span>
+            <span class="co">dbt Labs</span>
+            <span class="fit"><span class="num">79</span><span class="meter"><i style="width:79%"></i></span></span>
+          </div>
+          <div class="chips">
+            <span class="chip good">Remote confirmed</span>
+            <span class="chip warn">ATS pass w/ warnings</span>
+            <span class="chip teal">70% keyword coverage</span>
+            <span class="chip crit">Verify dbt depth first</span>
+          </div>
+          <p class="note">Strong platform-build match, but dbt is skills-listed without a production project. Join the dbt community Slack &mdash; best referral channel.</p>
+        </div>
+
+      </div>
+      <p class="also">Also reviewed: Samsara Sr BI Developer <span>74</span> (referral only &middot; Salesforce stack mismatch) &middot; Royal Caribbean Sr Data Engineer <span>67</span> (on-site warning) &middot; RC BI Analyst <span>58</span> (skip)</p>
+    </section>
+
+    <section>
+      <h2>Today's Priority Stack</h2>
+      <div class="panel">
+        <div class="bottleneck">
+          <b>BOTTLENECK: Volume.</b> No applications logged. Three roles scored 70+ &mdash; submit at least 2 today, starting with Progressive.
+        </div>
+        <ol class="stack">
+          <li>Tailor resume &rarr; apply at Progressive <code>/resume-tailor</code> <span class="t">35 min</span></li>
+          <li>Send 2 connection requests to Progressive BI team before submitting <span class="t">10 min</span></li>
+          <li>Send 8 more requests: Samsara, dbt Labs, Microsoft, Databricks <span class="t">20 min</span></li>
+          <li>Tailor + apply at Samsara <code>/resume-tailor</code> <span class="t">30 min</span></li>
+          <li>Create app-tracker and log both <code>/app-tracker add</code> <span class="t">5 min</span></li>
+          <li>Join dbt community Slack <span class="t">10 min</span></li>
+        </ol>
+      </div>
+    </section>
+
+  </div>
+
+  <section>
+    <h2>Pipeline</h2>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr><th>Stage</th><th>Count</th><th>Detail</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Applied, waiting</td><td class="n">0</td><td class="detail">&mdash;</td></tr>
+          <tr><td>Referral requested</td><td class="n">0</td><td class="detail">&mdash;</td></tr>
+          <tr><td>Interview scheduled</td><td class="n">0</td><td class="detail">&mdash;</td></tr>
+          <tr><td>Interviewed, awaiting result</td><td class="n">0</td><td class="detail">&mdash;</td></tr>
+          <tr><td>Offer stage</td><td class="n">0</td><td class="detail">&mdash;</td></tr>
+          <tr><td>Rejected this week</td><td class="n">0</td><td class="detail">&mdash;</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Data Health</h2>
+    <div class="health">
+      <div class="hcard"><span class="dot w"></span><div><b>Morning briefing</b><span>Last run Jun 23 &mdash; 13 days stale. Refresh runs a condensed re-scan.</span></div></div>
+      <div class="hcard"><span class="dot r"></span><div><b>app-tracker.md</b><span>Missing. Pipeline counts assembled from other trackers. Run <code>/app-tracker add</code> after each application.</span></div></div>
+      <div class="hcard"><span class="dot r"></span><div><b>connection-tracker.md</b><span>Empty template. Import your LinkedIn CSV or log requests as you send them.</span></div></div>
+      <div class="hcard"><span class="dot g"></span><div><b>target-companies.md</b><span>Populated Jun 22 &mdash; ~100 companies, 12 Tier 1, preferences current.</span></div></div>
+    </div>
+  </section>
+
+  <footer>
+    Sources: <code>job-search-os/briefings/</code>, <code>context-library/target-companies.md</code>, <code>connection-tracker.md</code>, <code>interview-history.md</code>.
+    Rebuilt every weekday morning by the scheduled dashboard agent; role data re-verified against company careers pages on each run. Job Search OS v1.0.
+  </footer>
+
+</div>

@@ -1,7 +1,19 @@
 {
   "permissions": {
     "allow": [
-      "WebFetch(domain:www.dice.com)"
+      "WebFetch(domain:www.dice.com)",
+      "Bash(git fetch *)",
+      "Bash(git pull *)",
+      "mcp__plugin_powerbi-authoring_powerbi-modeling-mcp__connection_operations",
+      "mcp__plugin_powerbi-authoring_powerbi-modeling-mcp__database_operations",
+      "mcp__plugin_powerbi-authoring_powerbi-modeling-mcp__model_operations",
+      "Bash(cd /tmp)",
+      "Bash(python3)",
+      "PowerShell(powerbi-report-author *)",
+      "PowerShell(powerbi-desktop *)",
+      "PowerShell(New-Item *)",
+      "mcp__plugin_powerbi-authoring_powerbi-modeling-mcp__measure_operations",
+      "mcp__plugin_powerbi-authoring_powerbi-modeling-mcp__dax_query_operations"
     ]
   }
 }
