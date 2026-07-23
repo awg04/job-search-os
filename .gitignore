@@ -4,3 +4,9 @@
 # Uncomment the line below if you don't want your personal data synced to GitHub.
 # Your context-library contains salary expectations, visa status, and career details.
 # context-library/
+
+# Runtime logs from the dashboard URI handlers - regenerated locally, never source.
+dashboard/*.log
+
+# Unrelated local tooling that happens to live in this folder.
+SillyTavern-Launcher/

@@ -13,7 +13,8 @@ Tier-2 automation of the x-ray technique behind `dashboard/job-hunt.html`: inste
 "<title>" site:<ats-domain> remote
 ```
 
-ATS domains (rotate through): `greenhouse.io`, `lever.co`, `ashbyhq.com`, `myworkdayjobs.com`, `icims.com`, `jobs.smartrecruiters.com`, `jobs.workable.com`, `breezy.hr`, `applytojob.com`, `recruitee.com`, `teamtailor.com`, `recruiting.paylocity.com`, `dayforcehcm.com`, `workforcenow.adp.com`, `oraclecloud.com`.
+ATS domains (rotate through): `greenhouse.io`, `lever.co`, `ashbyhq.com`, `myworkdayjobs.com`, `icims.com`, `jobs.smartrecruiters.com`, `jobs.workable.com`, `breezy.hr`, `applytojob.com`, `recruitee.com`, `teamtailor.com`, `recruiting.paylocity.com`, `dayforcehcm.com`, `workforcenow.adp.com`, `oraclecloud.com`, `taleo.net`.
+(`taleo.net` is Oracle's legacy ATS — big old-line employers: banks, hospitals, airlines. Poorly indexed and JS-heavy, so expect thin results; most of that segment has migrated to `oraclecloud.com`. Keep it in the rotation but don't over-weight it.)
 Titles: top entries in `context-library/job-title-search-list.md` (Senior BI Developer, Power BI Developer/Engineer/Architect, Business Intelligence Developer/Engineer, Microsoft Fabric Developer, Azure Data Engineer, Analytics Engineer, …).
 
 ## Steps

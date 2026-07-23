@@ -131,39 +131,11 @@ function New-GmailReplyDraft {
   $reply.FlagRequest = "Follow up - review & send"
   $reply.Save()
   $reply.Display()                                  # open the actual draft in Outlook
-  if ($ThreadId) { try { Add-RecruiterDraftLog -ThreadId $ThreadId } catch {} }
-  return $reply.EntryID
-}
-
-# Log that recruiter-action created a draft for this Gmail thread, then refresh the dashboard's
-# embedded DRAFTED map so its recruiter-action line auto-flips to "done".
-function Add-RecruiterDraftLog {
-  param([Parameter(Mandatory)][string]$ThreadId, [string]$RepoRoot = "C:\Users\andre\OneDrive\Claude\job-search-os")
-  $logPath = Join-Path $RepoRoot "context-library\recruiter-drafts.json"
-  $map = @{}
-  if (Test-Path $logPath) { try { (Get-Content -Raw $logPath | ConvertFrom-Json).PSObject.Properties | ForEach-Object { $map[$_.Name] = $_.Value } } catch {} }
-  $map[$ThreadId] = (Get-Date -Format 'yyyy-MM-dd')
-  [IO.File]::WriteAllText($logPath, ($map | ConvertTo-Json), (New-Object System.Text.UTF8Encoding($false)))
-  Update-DashboardDrafted -RepoRoot $RepoRoot
-}
-
-# Rewrite the dashboard's embedded `const DRAFTED = {...};` from the JSON log (a browser can't read
-# a local file at runtime, so the flag is baked into the HTML). UTF-8 read/write preserves emoji.
-function Update-DashboardDrafted {
-  param([string]$RepoRoot = "C:\Users\andre\OneDrive\Claude\job-search-os")
-  $logPath  = Join-Path $RepoRoot "context-library\recruiter-drafts.json"
-  $dashPath = Join-Path $RepoRoot "dashboard\recruiter-inbox.html"
-  if (-not (Test-Path $dashPath)) { return }
-  $json = "{}"
-  if (Test-Path $logPath) { try { $json = ((Get-Content -Raw $logPath) | ConvertFrom-Json | ConvertTo-Json -Compress) } catch {} }
-  $html = [IO.File]::ReadAllText($dashPath, [Text.Encoding]::UTF8)
-  $tag = 'const DRAFTED = '
-  $i = $html.IndexOf($tag)
-  if ($i -ge 0) {
-    $semi = $html.IndexOf(';', $i)
-    $html = $html.Substring(0,$i) + $tag + $json + ';' + $html.Substring($semi+1)
-    [IO.File]::WriteAllText($dashPath, $html, (New-Object System.Text.UTF8Encoding($false)))
+  # Record the run in the unified dashboard state so the Recruiter-Action button flips to green.
+  if ($ThreadId) {
+    try { & (Join-Path "C:\Users\andre\OneDrive\Claude\job-search-os" "dashboard\Record-DashboardRun.ps1") -Ref $ThreadId -Command recruiter-action } catch {}
   }
+  return $reply.EntryID
 }
 
 # Resolve the Drafts folder where Save() actually lands — profile/layout independent.

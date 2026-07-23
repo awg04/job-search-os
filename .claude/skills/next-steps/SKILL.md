@@ -40,3 +40,7 @@ Always fold in the open logistics for this thread (e.g., **ask bill rate / confi
 
 ### 4. Record + output
 Optionally update the thread's Next-action in `app-tracker.md` (if tracked) — never change the user's Disposition. Then print the prioritized checklist with timings, the current stage, and the single **highest-leverage next action** called out first. Note dates as absolute.
+
+**Log the run** so the dashboard's Next-Steps button shows its green check: in PowerShell from the repo root, run
+`dashboard\Record-DashboardRun.ps1 -Ref "<ref>" -Command next-steps`
+where `<ref>` is the exact argument you were given (Gmail thread id, LinkedIn thread URL, or posting URL — quote it). This updates `context-library/dashboard-state.json` and re-syncs both dashboards.

@@ -1,0 +1,58 @@
+{
+    "archived":  {
+                     "19f7f8cdc84867d1":  "2026-07-22",
+                     "https://www.linkedin.com/jobs/view/4440792262/":  "2026-07-22",
+                     "19f7fb5868e2c05d":  "2026-07-22",
+                     "19f771183237f1d0":  "2026-07-22",
+                     "https://www.glassdoor.com/job-listing/sr-power-bi-developer-broadcast-music-inc-JV_KO0,21_KE22,41.htm?jl=1009852236950":  "2026-07-22",
+                     "https://www.linkedin.com/jobs/view/4441911111/":  "2026-07-22",
+                     "https://www.linkedin.com/messaging/thread/2-ZDM4NjE2YWUtNGQxZC00YWQwLTk4YWMtZTVkNDU2N2MzMTA0XzEwMA==/":  "2026-07-22",
+                     "19f864bf13a1c8ee":  "2026-07-22",
+                     "https://www.linkedin.com/messaging/thread/2-YjA5ZjE3MTItM2E2ZC00MDlhLWJlMzgtNzQyYzQ3NGZiMTA1XzEwMA==/":  "2026-07-22",
+                     "19f80af86048e18d":  "2026-07-22",
+                     "https://www.linkedin.com/messaging/thread/2-ZTQ3MWQyNjQtYjc3MS00YWRiLWEzZDMtZTlkNTk0MTAwNDliXzEwMA==/":  "2026-07-22",
+                     "19f853b1990d7ad7":  "2026-07-22",
+                     "19f808f24146d81f":  "2026-07-22",
+                     "https://www.linkedin.com/messaging/thread/2-YTBkNzY2NGUtYmZkOC00MmQ5LTlmNGYtYTA2MTE3MjIwNWE0XzEwMA==/":  "2026-07-22",
+                     "19f8091b2c1ef05f":  "2026-07-22",
+                     "https://www.linkedin.com/messaging/thread/2-YTdlMGZhNDItMGY4Zi00ZGE1LWJiN2ItYzg0NmQ4ZDI4YjAwXzEwMA==/":  "2026-07-22",
+                     "https://www.linkedin.com/messaging/thread/2-NjRlYzVjYWUtNzY2Ny00ZjBjLWIwMGMtOTI1MzNjNzYwMTU3XzEwMA==/":  "2026-07-22"
+                 },
+    "skipped":  {
+                    "19f7fdfe7ee3bedf":  "2026-07-22",
+                    "19f7fb5868e2c05d":  "2026-07-22",
+                    "19f8091b2c1ef05f":  "2026-07-22",
+                    "19f8065a7ac37096":  "2026-07-22",
+                    "19f7f8cdc84867d1":  "2026-07-22"
+                },
+    "runs":  {
+                 "19f8064120818784":  {
+                                          "job-fit-inbox":  "2026-07-22",
+                                          "recruiter-action":  "2026-07-22"
+                                      },
+                 "19f771183237f1d0":  {
+                                          "next-steps":  "2026-07-22T18:57:18"
+                                      },
+                 "19f853b1990d7ad7":  {
+                                          "next-steps":  "2026-07-22"
+                                      },
+                 "19f8a11a6f842033":  {
+                                          "next-steps":  "2026-07-22T19:47:50"
+                                      },
+                 "https://www.linkedin.com/messaging/thread/2-YmRiODJiN2YtYjljNS00YmNlLThjOTItNTY1NWQ1ZWJkMTczXzEwMA==/":  {
+                                                                                                                               "next-steps":  "2026-07-22T18:34:07"
+                                                                                                                           },
+                 "https://www.linkedin.com/jobs/view/4440792262/":  {
+                                                                        "next-steps":  "2026-07-22T18:58:26"
+                                                                    },
+                 "19f80cb44c91d7bb":  {
+                                          "job-fit-inbox":  "2026-07-22T18:27:56",
+                                          "recruiter-action":  "2026-07-21"
+                                      },
+                 "19f7fee6bf8218cd":  {
+                                          "job-fit-inbox":  "2026-07-21",
+                                          "recruiter-action":  "2026-07-21"
+                                      }
+             },
+    "_comment":  "Source of truth for dashboard run-state (green checkmarks) and archived opportunities. Keyed by each card\u0027s ref: Gmail thread id, LinkedIn thread URL, or job-posting URL - the same arg the dashboard button passes to the command. Updated by the skills (Record step) and the /archive skill, then injected into both dashboards by dashboard/Sync-Dashboards.ps1. Syncs to GitHub/mobile with the rest of context-library."
+}

@@ -64,23 +64,103 @@
   .cmd button{background:var(--chip);border:1px solid var(--line);color:var(--dim);border-radius:6px;padding:4px 9px;font-size:12px;cursor:pointer;white-space:nowrap}
   .cmd button:hover{border-color:var(--accent);color:var(--accent2)}
   .cmd button.copied{color:var(--strong);border-color:var(--strong)}
+  .runbtn{background:#1e3a5f;border:1px solid var(--accent);color:var(--accent2);border-radius:6px;padding:5px 11px;font-size:12px;cursor:pointer;white-space:nowrap;text-decoration:none;font-weight:600;display:inline-block}
+  .runbtn:hover{background:#25507f;color:#fff}
+  .runbtn.inline{padding:2px 9px}
+  .actions{display:flex;gap:6px;flex-wrap:nowrap;margin-top:4px}
+  .actions>a{flex:1 1 auto;min-width:0;padding:5px 8px;font-size:11px;text-align:center;overflow:hidden;text-overflow:ellipsis}
+  .actions>.archbtn{flex:0 0 auto}   /* fixed width — Next Steps/View Posting grow to fill, so Archive is the same size at 3 or 4 buttons */
+  .linkbtn{background:var(--chip);border:1px solid var(--line);color:var(--dim);border-radius:6px;padding:5px 11px;font-size:12px;font-weight:600;text-decoration:none;white-space:nowrap;display:inline-block}
+  .linkbtn:hover{border-color:var(--accent);color:var(--accent2)}
+  .runbtn.done{background:rgba(52,211,153,.15);border-color:var(--strong);color:var(--strong)}
+  .runbtn.done:hover{background:rgba(52,211,153,.28);color:#fff}
+  .archbtn{background:#b3342f;border:1px solid #5e1a1a;color:#fff;border-radius:6px;padding:5px 11px;font-size:12px;font-weight:600;text-decoration:none;white-space:nowrap;cursor:pointer;display:inline-block}
+  .archbtn:hover{background:#c0392b;border-color:#7a2323}
+  .archbtn.un{background:#1e7a4d;border-color:#0f3b24}
+  .archbtn.un:hover{background:#22885a;border-color:#154f31}
+  .archtoggle{background:var(--chip);border:1px solid var(--line);color:var(--dim);border-radius:20px;padding:5px 14px;font-size:12px;cursor:pointer}
+  .archtoggle.on{color:#fff;border-color:var(--accent);background:#1e3a5f}
+  /* Shown only when this browser hides cards the state file doesn't know about yet. */
+  .archtoggle.syncchip{background:#3a3010;border-color:#7a6420;color:#f5c542;font-weight:600}
+  .archtoggle.syncchip:hover{background:#4a3d15}
+  .jcard.archived{opacity:.55}
   .empty{color:var(--dim);padding:26px;border:1px dashed var(--line);border-radius:12px;text-align:center}
+
+  /* ===== Recruiter Inbox tab (folded in from recruiter-inbox.html; all selectors scoped
+     under #panel-recruiter so they can't collide with the prospects/search styles) ===== */
+  #panel-recruiter .ri-kpis{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0 18px}
+  #panel-recruiter .kpi{flex:1;min-width:130px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  #panel-recruiter .kpi .n{font-size:24px;font-weight:700}
+  #panel-recruiter .kpi .l{color:var(--dim);font-size:12px;margin-top:2px}
+  #panel-recruiter .toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+  #panel-recruiter .filter{background:var(--card2);border:1px solid var(--line);color:var(--text);padding:6px 12px;border-radius:20px;cursor:pointer;font-size:12.5px}
+  #panel-recruiter .filter.active{background:var(--accent);border-color:var(--accent);color:#08122a;font-weight:600}
+  #panel-recruiter .filter.syncchip{margin-left:auto;background:#3a3010;border-color:#7a6420;color:#f5c542;font-weight:600}
+  #panel-recruiter .filter.syncchip:hover{background:#4a3d15}
+  #panel-recruiter .row{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:10px;display:grid;grid-template-columns:52px 1fr auto;gap:14px;align-items:start}
+  #panel-recruiter .score{width:52px;height:52px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:700}
+  #panel-recruiter .s-strong{background:#12351f;color:#5fe0a0;border:1px solid #1e7a4d}
+  #panel-recruiter .s-look{background:#3a3010;color:#f5c542;border:1px solid #7a6216}
+  #panel-recruiter .s-low{background:#20283c;color:#6b7690;border:1px solid #38425e}
+  #panel-recruiter .role{display:block;font-weight:600;font-size:15px;color:var(--text);text-decoration:none}
+  #panel-recruiter .meta{display:block;color:var(--dim);font-size:12.5px;margin-top:2px;text-decoration:none}
+  #panel-recruiter .role:hover,#panel-recruiter .meta:hover{text-decoration:underline}
+  #panel-recruiter .tags{margin-top:8px;display:flex;gap:6px;flex-wrap:wrap}
+  #panel-recruiter .tag{font-size:11.5px;padding:2px 9px;border-radius:6px;background:var(--card2);border:1px solid var(--line);color:var(--dim)}
+  #panel-recruiter .tag.good{color:#6fe0a6;border-color:#1e7a4d}
+  #panel-recruiter .tag.bad{color:#ff9b9b;border-color:#7a2323}
+  #panel-recruiter .tag.warn{color:#f5c542;border-color:#7a6216}
+  #panel-recruiter .tag.proc{color:#8fc2ff;border-color:#2b5a9e}
+  #panel-recruiter .tag.li{color:#7ec8ff;border-color:#2b5a9e;background:#12233b}
+  #panel-recruiter .right{text-align:right;display:flex;flex-direction:column;gap:8px;align-items:flex-end;min-width:150px}
+  #panel-recruiter select{min-width:0;background:var(--card2);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:6px 8px;font-size:12.5px;cursor:pointer}
+  #panel-recruiter select.set-pursue{border-color:#16a766;color:#6fe0a6}
+  #panel-recruiter select.set-skip{border-color:#7a2323;color:#ff9b9b}
+  #panel-recruiter select.set-maybe{border-color:#7a6216;color:#f5c542}
+  #panel-recruiter select.set-applied{border-color:var(--accent);color:#8fc2ff}
+  #panel-recruiter .flag{margin-top:8px;font-size:12px;color:#ffb4b4;background:#2a1414;border:1px solid #7a2323;border-radius:8px;padding:7px 10px}
+  #panel-recruiter .btns{display:flex;flex-direction:column;gap:6px;margin-top:6px;width:100%;min-width:170px}
+  #panel-recruiter .runbtn{background:#12233b;border:1px solid var(--accent);color:#8fc2ff;border-radius:7px;padding:6px 12px;font-size:12.5px;font-weight:600;text-decoration:none;cursor:pointer;text-align:center;display:block;white-space:nowrap}
+  #panel-recruiter .runbtn:hover{background:#1b3355;color:#fff}
+  #panel-recruiter .runbtn.done{background:#12351f;border-color:#2f7a4d;color:#5fe0a0}
+  #panel-recruiter .runbtn.done:hover{background:#164f2d;color:#fff}
+  #panel-recruiter .runbtn.bg{border-style:dashed}
+  #panel-recruiter .runbtn.running{background:#3a3010;border:1px dashed #f5c542;color:#f5c542;cursor:default;animation:pulse 1.2s ease-in-out infinite}
+  #panel-recruiter .archbtn{background:#b3342f;border:1px solid #5e1a1a;color:#fff;border-radius:7px;padding:5px 12px;font-size:12px;font-weight:600;text-decoration:none;text-align:center;display:block;cursor:pointer}
+  #panel-recruiter .archbtn:hover{background:#c0392b;border-color:#7a2323}
+  #panel-recruiter .archbtn.un{background:#1e7a4d;border-color:#0f3b24}
+  #panel-recruiter .archbtn.un:hover{background:#22885a;border-color:#154f31}
+  #panel-recruiter .row.archived{opacity:.5}
+  #panel-recruiter .empty{border:none;padding:40px}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+  #toast{position:fixed;right:18px;bottom:18px;max-width:340px;background:#12233b;border:1px solid var(--accent);color:#cfe3ff;padding:12px 16px;border-radius:10px;font-size:13px;box-shadow:0 8px 28px rgba(0,0,0,.45);opacity:0;transform:translateY(8px);transition:.25s;pointer-events:none;z-index:50}
+  #toast.show{opacity:1;transform:none}
+  @media(max-width:640px){#panel-recruiter .row{grid-template-columns:44px 1fr}#panel-recruiter .right{grid-column:1/-1;align-items:stretch;flex-direction:row;flex-wrap:wrap}}
 </style>
 </head>
 <body>
 
 <h1>Job Hunt
-  <span class="sub">Graded good-fit prospects from your inbox + weekly web sweep, plus a direct-source x-ray search.</span>
+  <span class="sub">Scored recruiter outreach, graded good-fit prospects from your inbox + weekly web sweep, and a direct-source x-ray search.</span>
 </h1>
 
 <div class="tabs">
-  <button class="tab on" data-tab="prospects">Job Prospects<span class="count" id="tabCount"></span></button>
+  <button class="tab on" data-tab="recruiter">Recruiter Inbox<span class="count" id="riCount"></span></button>
+  <button class="tab" data-tab="prospects">Job Prospects<span class="count" id="tabCount"></span></button>
   <button class="tab" data-tab="search">Direct Source Search</button>
 </div>
 
-<section class="panel" id="panel-prospects">
+<section class="panel" id="panel-recruiter">
+  <h2>Recruiter Inbox <small>last scan <span id="scandate">2026-07-22</span></small></h2>
+  <div class="meta-line">Human-recruiter emails + LinkedIn InMails scored against your career plan · dispositions save in this browser · source of truth is <code>context-library/recruiter-inbox.md</code>. Refresh with: <a id="riScanBtn" class="runbtn inline" href="#" title="Open Claude Code in Claude Desktop (job-search-os folder) with /recruiter-scan prefilled">▶ /recruiter-scan</a></div>
+  <div class="ri-kpis" id="kpis"></div>
+  <div class="toolbar" id="filters"></div>
+  <div id="list"></div>
+</section>
+
+<section class="panel" id="panel-prospects" hidden>
   <h2>Inbox Job Prospects <small id="updated"></small></h2>
-  <div class="meta-line">Good-fit postings from job-alert emails + the weekly web sweep (LinkedIn/Dice/Indeed searches, Glassdoor/Wellfound/BuiltIn x-rays — strong fits only from sweeps). Refresh with: <b style="color:var(--accent2)">/job-hunt-scan</b></div>
+  <div class="meta-line">Good-fit postings from job-alert emails + the weekly web sweep (LinkedIn/Dice/Indeed searches, Glassdoor/Wellfound/BuiltIn x-rays — strong fits only from sweeps). Refresh with: <a id="scanBtn" class="runbtn inline" href="#" title="Open Claude Code in Claude Desktop (job-search-os folder) with /job-hunt-scan prefilled">▶ /job-hunt-scan</a></div>
   <div class="chips" id="chips"></div>
   <div class="cards" id="cards"></div>
   <div class="empty" id="empty" style="display:none">No prospects loaded yet — tell Claude <b>/job-hunt-scan</b> to scan your job-alert emails.</div>
@@ -164,6 +244,7 @@ const ATS = [
   ["Dayforce","site:dayforcehcm.com"],
   ["ADP","(site:workforcenow.adp.com OR site:myjobs.adp.com)"],
   ["Oracle Cloud","site:oraclecloud.com"],
+  ["Taleo","site:taleo.net"],
   ["Pinpoint","site:pinpointhq.com"],
   ["Jobvite","site:jobvite.com"]
 ];
@@ -174,7 +255,8 @@ const GENERIC = [
   ["Other pages","(site:*/employment/* OR site:*/opportunities/* OR site:*/openings/* OR site:*/join-us/* OR site:*/work-with-us/*)"],
   ["Builtin","site:builtin.com/job/"],
   ["Wellfound","site:wellfound.com"],
-  ["Glassdoor listings","site:glassdoor.com/job-listing/"]
+  ["Glassdoor listings","site:glassdoor.com/job-listing/"],
+  ["aijobs.net","site:aijobs.net/job/"]
 ];
 // freshness → params per engine
 const FRESH = {
@@ -231,111 +313,401 @@ const ALERT_UPDATED = "2026-07-22";
 // ALERT_UPDATED_END
 // ALERT_DATA_START
 const ALERT_DATA = [
-{"title":"Senior BI Analyst","company":"Walker & Dunlop","source":"BuiltIn","date":"2026-06-30","score":82,"tier":"strong","url":"https://builtin.com/job/senior-bi-analyst/9598809","threadId":"","note":"✓ Verified live; fully remote US; $140-160K + bonus; Power BI semantic models, SQL Server, SSRS, SSAS, dimensional modeling; reposted ~21d ago; surfaced by NEW family 'BI Analyst'"},
-{"title":"Senior Fabric Data Engineer","company":"Precision Technologies","source":"LinkedIn","date":"2026-07-21","score":80,"tier":"strong","url":"https://www.linkedin.com/jobs/view/4442073754/","threadId":"19f853b1990d7ad7","note":"Microsoft Fabric named in title, US-wide (remote implied), no salary listed"},
-{"title":"PowerBI/Analytics Engineer - 100% Remote","company":"ConsultNet Technology Services","source":"LinkedIn","date":"2026-07-18","score":78,"tier":"strong","url":"https://www.linkedin.com/jobs/view/4441911111/","threadId":"19f771183237f1d0","note":"100% remote in title, exact Power BI + analytics engineering match, staffing firm"},
-{"title":"Solutions Engineer - Data Visualization","company":"SHI International","source":"BuiltIn","date":"2026-07-13","score":78,"tier":"strong","url":"https://builtin.com/job/solutions-engineer-data-visualization/10175658","threadId":"","note":"✓ Verified live (~8d ago, early applicant); remote US; $144-169K; Power BI/DAX/Power Query/Fabric/Azure Synapse/SQL; PL-300+DP-600; Power BI Engineer-adjacent"},
-{"title":"Power BI Developer - Netherlands, UK, or US - Remote","company":"NTEN","source":"LinkedIn","date":"2026-07-19","score":74,"tier":"strong","url":"https://www.linkedin.com/jobs/view/4442457717/","threadId":"19f7bca050bd0b1e","note":"Remote confirmed in title, nonprofit tech org, no salary listed"},
-{"title":"Senior BI Analyst","company":"HealthEdge","source":"Indeed","date":"2026-07-17","score":72,"tier":"strong","url":"https://cts.indeed.com/v3/H4sIAAAAAAAA_42R0W6iQBSG34VkvVoqDMKACdnomiJaiwVd296YYRiGYWBAHKTS9N0Xe9GLXvXqJN-fk5Pzf-9Kq0yVTMr6PB2Pu667YyIhJLnDVTlu8BgX_E_OXWIB0yYGwJpp6whqo7SpSjevYgbQcRglkjhTG4KwZBckWSVUItR9dCQlYsVIclfPpeDpqXYonVS2po_i2KV1KcVSu87mwUtweir73IMbO4URgMv7QIbbyGfkzRczGrZt3p7h0gyyZ73b4weyODxNVvRVNeaboPKdXXy0OEyLI_SjHnjUd14f244l_54XB3XZ7FHRCt8TXvOQXfY80tPQqyPsHBCf9P2aeWsDaMYV48YJ8cQK5-uNl2fYW7P7s3yxffuXsRi9cRy7UTWXFtwYmUG73RUG5kqbxT1P_ibb7ajJ669X6xOvLSpszVR-K6UyfVcQxlUrpJ8MjQMAdMOwPkNE6aqKP7Gu6Q7UgWWDW4ALhvkua6qWZkMom5Z80WtNBnRhpBvqH-hNyAB-qmTYkPx28JsW5ePjPwe9DrcTAgAA/z-7aR7hpFvuWmks-lBLy0ewbyyDHORsGgiBVy4Tf0EY","threadId":"19f6f47f41363c9a","note":"Remote, $114K-$122K, Power BI + data modeling; slightly under $130K floor but full remote + core BI fit"},
-{"title":"Sr. Power BI Developer","company":"Broadcast Music Inc (BMI)","source":"Glassdoor","date":"2026-07-22","score":72,"tier":"strong","url":"https://www.glassdoor.com/job-listing/sr-power-bi-developer-broadcast-music-inc-JV_KO0,21_KE22,41.htm?jl=1009852236950","threadId":"","note":"Remote, senior Power BI at a real brand; MS-stack. Salary not shown. Glassdoor freshness unverified - confirm live before applying"},
-{"title":"Power BI Engineer (Remote)","company":"WistronITS","source":"Glassdoor","date":"2026-07-21","score":70,"tier":"strong","url":"https://www.glassdoor.com/job-listing/power-bi-engineer-wistronits-JV_KO0,17_KE18,28.htm?jl=1008273934292","threadId":"","note":"$78-80/hr (clears $70/hr floor); Power BI + SQL/Oracle + Azure + SSRS/SSAS/SSIS; 10+ yrs; PST hours; unverified"},
-{"title":"Power BI Report Developer","company":"CGI","source":"LinkedIn","date":"2026-07-17","score":70,"tier":"strong","url":"https://www.linkedin.com/jobs/view/4440823877/","threadId":"19f6da0856785940","note":"US-wide posting (remote implied), large consultancy, exact title match"},
-{"title":"Power BI Engineer (VA ESOM)","company":"Kentro","source":"LinkedIn","date":"2026-07-17","score":68,"tier":"strong","url":"https://www.linkedin.com/jobs/view/4441483326/","threadId":"19f70a3821a475a3","note":"US-wide gov-contract posting (remote likely), exact Power BI engineer title"},
-{"title":"Senior Business Intelligence Developer (Remote)","company":"Vaya Health","source":"Glassdoor","date":"2026-07-22","score":68,"tier":"strong","url":"https://www.glassdoor.com/job-listing/senior-business-intelligence-developer-remote-vaya-health-JV_KO0,45_KE46,57.htm?jl=1009453653911","threadId":"","note":"Remote (NC-based), senior BI dev. Salary not shown. Glassdoor freshness unverified - confirm live before applying"},
-{"title":"Senior Data Analytics Consultant, Power BI / Federal Financial Data","company":"Aretum","source":"Careers page","date":"2026-07-21","score":67,"tier":"strong","url":"https://apply.workable.com/aretum/j/4F6CF22B2D/","threadId":"","note":"Fetched live on Workable; senior Power BI, federal financial analytics; salary/remote details not shown - confirm before applying"},
-{"title":"Azure Data Engineer","company":"Highbrow Technology Inc","source":"LinkedIn","date":"2026-07-18","score":66,"tier":"strong","url":"https://www.linkedin.com/jobs/view/4440753924/","threadId":"19f7635cdbceecb5","note":"Azure stack match, US-wide (remote implied), staffing firm, no salary"},
-{"title":"Business Intelligence Developer (Tableau & Power BI) - 1099 US Remote","company":"CompassX Group","source":"Careers page","date":"2026-07-21","score":66,"tier":"strong","url":"https://jobs.lever.co/compassx/a3b72a72-04d9-438f-b2fd-197a49f02ddb","threadId":"","note":"US remote 1099 contract; Power BI + Tableau dashboard delivery; rate not listed; unverified"},
-{"title":"Finance Data & Analytics Manager (Remote)","company":"CrowdStrike","source":"Indeed","date":"2026-07-15","score":66,"tier":"strong","url":"https://cts.indeed.com/v3/H4sIAAAAAAAA_41S2W7iMBT9l0j0aShZyAISGjFkQgKNIEAL6QtybCdxdlKHAFX_fS4ZaVTxNJJ1bZ-7nevjT6ERxkLMefUxHgxQVWXXZ1YQSskzLvPB32MHD5iMfvJ0IiWchXlBTgn6SAxRekrSychA-pAYohoSUcIqfqrJpKvZU6Y92YLVtu23ugDUGAzO0p5iJWDMxxI9WQtriFTMpAyg9RG2HHEc92uKMGdnxFlZ9GnRf90eaY5YBhn8XumRIOBBALglntNi-MY92T5El1Bi18Px5E9Hm1W7yP3b3uFbN17EXlZvMHs3XZXsb0fZ0QLTizaotew4387D085Zsd38xTSx_xtYkdrXuO5TVqTMvpTDF3e595ermNhTelPXDR6Feq4kUX92mCdaYOuR6KDT1XLU2dT3NLdaRWqkt1McG_bb0LXkYFfC8KpiAu9Liu_Mt-UvT9NdJb4eXjUabO13cRncUjIj6zVE1Un1bfA8G1XnE4WXFH4IuTD-FBDGZVNwh4DSsixLiqJ1ThRFizLoYEmUjKGkjzTJAAfOGE53cV02UQxOXjf0H3qtKEDdjwDsLhFc_1ciyODpvd2DRMLX1x-g0-Q6iQIAAA/pQnWBAfVMuY6tjTZ0InVEpd3-rj4Dt8c_h4I31z_Ewk","threadId":"19f64fb6b925c4df","note":"Remote, $125K-$180K; analytics-leadership lean but comp well above floor"},
-{"title":"Power BI Developer","company":"Phoenix Cyber","source":"Glassdoor","date":"2026-07-22","score":66,"tier":"strong","url":"https://www.glassdoor.com/job-listing/power-bi-developer-job-id-20250409-phoenix-cyber-JV_KO0,34_KE35,48.htm?jl=1009704374636","threadId":"","note":"WFH/remote, Power BI core. Salary not shown. Glassdoor freshness unverified - confirm live before applying"},
-{"title":"Power BI Developer (DAX, SQL & MS Fabric)","company":"Technogen, Inc.","source":"LinkedIn","date":"2026-07-18","score":65,"tier":"strong","url":"https://www.linkedin.com/jobs/view/4440792262/","threadId":"19f771183237f1d0","note":"Exact stack (DAX/SQL/Fabric) in title; listed Oaks PA - remote NOT confirmed, verify"},
-{"title":"Power BI Developer - Financial Analytics","company":"Amentum","source":"Careers page","date":"2026-07-21","score":65,"tier":"strong","url":"https://pae.wd1.myworkdayjobs.com/en-US/amentum_careers/job/us-remote/power-bi-developer---financial-analytics_r0158367","threadId":"","note":"US-remote Workday req; Power BI/DAX/SQL/Azure, 5+ yrs; $115-125K is BELOW $130K floor - negotiate or skip; unverified"},
-{"title":"Power BI Developer (Cybersecurity) - Remote","company":"Cornerstone Technology","source":"Glassdoor","date":"2026-07-21","score":65,"tier":"strong","url":"https://www.glassdoor.com/job-listing/power-bi-developer-cybersecurity-secret-clearance-preferred-remote-cornerstone-technology-JV_KO0,66_KE67,89.htm?jl=1010186888647","threadId":"","note":"Remote US; 3+ yrs BI/dashboards, Secret clearance preferred not required; no salary shown; unverified"},
-{"title":"Power BI Developer (Contract)","company":"Emergent Software","source":"Glassdoor","date":"2026-07-22","score":65,"tier":"strong","url":"https://www.glassdoor.com/job-listing/power-bi-developer-contract-emergent-software-JV_KO0,27_KE28,45.htm?jl=1009789530574","threadId":"","note":"Fully remote or hybrid Minneapolis; contract, MS-stack dashboards. Rate not shown. Glassdoor freshness unverified"},
-{"title":"Business Intelligence Engineer","company":"MedEvolve","source":"Indeed","date":"2026-07-18","score":62,"tier":"look","url":"https://cts.indeed.com/v3/H4sIAAAAAAAA_42RTW-qQBSG_wvJdVUqzPBVE3JTURstKhZJ1Q0ZhuEbRocBhKb_vfQuurirrk7yvDk5Oe_zITTCTEg4v9az6bTruse0CgkJHzEtpwxPcZH_zXKTqFiGhoYMGRAFk3ASMVqaGQ1SgPxxlIjjRGQEYZ62iKe0Ekkleq5PSpQWE56bcsZvWh1KOA-jxJCUSRCYKlyuj8sMZpHxphahrR0CV1optnIT99YwAPxsKL7BUq5EVsoGFKlyfdD1pite0V0v90ouas9qLv7CPfwPPyxEHv9LveMwYnAFRZPLt2Yq8Urxnsd3Cq16FKohcv2sdvhXjf1_3NOunKu7tdPEEHAq9yButw3F63tq9egk17lq2Ys_x1Tv_AxeSe48B06bzV9C1MtJVozYG_uUhOMOShFTrOhGXXn1cx0WiNAkOShQehFGYfAsKYNhVfh2PjAAAZQk1SxxDF8YYG_7AsAQnICtDB0xjgIsX5MWG0iZMx5KwhP7S_khG1KenG-kf6LWQEv1UybvD8--B_WoTPzy8HWa3pEwIAAA/mnAXWnpz0zz0HM6u7Lf4yz6BancnlsQjmtAn_GcMOdc","threadId":"19f746e3c4293632","note":"Work setting: Remote confirmed, full-time; no salary listed (healthcare RCM analytics)"},
-{"title":"Senior Data Analyst","company":"Healthpilot Technologies","source":"Indeed","date":"2026-07-16","score":60,"tier":"look","url":null,"threadId":"19f8692ab6effc33","note":"Remote (US), $100K-$140K; Data Analyst title, 5+ yrs BI/analytics; alert link mangled - search title+company"},
-{"title":"Senior Data Engineer","company":"Verisma","source":"LinkedIn","date":"2026-07-18","score":60,"tier":"look","url":"https://www.linkedin.com/jobs/view/4417525368/","threadId":"19f7635cdbceecb5","note":"US-wide (remote implied); company's Sr BI Dev role capped $109K so comp may be light"},
-{"title":"Principal BI Engineer","company":"Prodege, LLC","source":"LinkedIn","date":"2026-07-21","score":60,"tier":"look","url":"https://www.linkedin.com/jobs/view/4414646240/","threadId":"19f853b1990d7ad7","note":"US-wide (remote implied), principal level - may skew above/adjacent to target seniority"},
-{"title":"Senior Business Intelligence Engineer","company":"Tebra","source":"LinkedIn","date":"2026-07-20","score":58,"tier":"look","url":"https://www.linkedin.com/comm/jobs/view/4405258770/","threadId":"19f815e427b1c0ce","note":"Listed Corona del Mar CA; Tebra often remote - verify remote; strong BI Engineer title"},
-{"title":"Data Engineer - Remote","company":"Sundayy","source":"LinkedIn","date":"2026-07-21","score":58,"tier":"look","url":"https://www.linkedin.com/jobs/view/4442700264/","threadId":"19f853b1990d7ad7","note":"Remote in title; reposted repeatedly all week (possible evergreen/ghost posting), unknown company"},
-{"title":"Senior BI Engineer","company":"Humana","source":"Indeed","date":"2026-07-21","score":56,"tier":"look","url":"https://cts.indeed.com/v3/H4sIAAAAAAAA_42RTW-bQBiE_wsHTnW8LMaLLKEqOIprXBLzYVxxQbAssCywLl4gEOW_d9NDDj311ErPaPRqZt6VQdkplRC3-269nqbpgXY5IfkD5u26x2vcsO81s4oUIaKbqCDEzA1C1KLnrVXzjMI0kadNBa5WPUmxoGMqKO9WpFtdgoS0KW1UwSytHrQB5iWoWV2YQFOzzILb8z14FV198JuYLuL6FGbemxY9gihZ0uiV76F3RRQcZidhd9v0f4x1XKAlf2GjG4ah7_7KMnxpTo7t4Cl-Wc3aLe76S9FB3tV-4DnRdjPn6fh8jIJHaKLTkU7IY6E9_o6W0348VsEw03B69ulQmu7CPHcz1hutawtkhEh9YzizAv5EtsjVSxsc3AQY1xj8zBaW7_PzWe3r21c4POYt5r0Mp3xTWmX3rqQY86ETx1x2DCHUdH0LDCmmZenw7C_WAAQGgBBtdCnghmIWVj0fykqKoh_IF51vRKKRkkkWLunnBBL87wjSIdjnw3-GUD4-_gDWw3vPBQIAAA/9LQYy5xBtbcMf_kJxguJ_yJHlzws5CeZHybLaqeWLU0","threadId":"19f83e143fdb29d7","note":"Remote confirmed but $89K-$121.4K tops out below $130K floor; strong brand, Power BI named"},
-{"title":"Senior, Data Engineer","company":"Carrington Holding Company","source":"LinkedIn","date":"2026-07-18","score":56,"tier":"look","url":"https://www.linkedin.com/jobs/view/4441613384/","threadId":"19f7635cdbceecb5","note":"US-wide (remote implied), mortgage/real-estate firm, no salary listed"},
-{"title":"Clinical Business Intelligence Manager","company":"Alignerr","source":"LinkedIn","date":"2026-07-17","score":55,"tier":"look","url":"https://www.linkedin.com/comm/jobs/view/4441407376/","threadId":"19f71eb27e106f28","note":"Miami/remote, up to $80/hr (above floor); Alignerr is AI-training platform - confirm employment type"},
-{"title":"Senior Data Engineer","company":"JMD Technologies Inc.","source":"LinkedIn","date":"2026-07-16","score":55,"tier":"look","url":"https://www.linkedin.com/jobs/view/4440229268/","threadId":"19f6d32a9fc311c5","note":"US-wide (remote implied), staffing firm, stack unspecified"}
+{"title": "Senior BI Analyst", "company": "Walker & Dunlop", "source": "BuiltIn", "date": "2026-06-30", "score": 90, "tier": "strong", "url": "https://builtin.com/job/senior-bi-analyst/9598809", "threadId": "", "note": "Fully remote US, $140-160K. Power BI semantic models, SQL Server, SSRS/SSAS."},
+{"title": "Senior Power BI Developer (Remote)", "company": "Flik Hospitality Group", "source": "Indeed", "date": "2026-07-22", "score": 90, "tier": "strong", "url": "https://cts.indeed.com/v3/H4sIAAAAAAAA_42RzW6jMBRG3wVpWA2NwZjgSGgUEmZKK9K0SZPJbJCxzW_ACdiQpOq7l86ii1nN6krn09XV_c6bprSZlkt56maTyTAMd0XDOGd3VNSTlk7osfpRVt6Uu8zlrktsjjGygZ62ovZKkRQWicdRE0lzo-WEyqInshCNwRvjdRPzmhRHXVaeWSo7S5sStzRtXGDqSeJVwOdLhnP7EpbTAju9fwSyXx0QKnfLrjGhip39pfMX5-J0X50RezkbjWms0RlfbmiD9g_MDbbKd-2tTJ8UhxiRp_l98HNFmtwJ5v2uzosYP6tovU2njwvQ4YiZf2K4w_gswkOF_M2zuPqtW3aPt5UfOJFlw1-hqmvVi5foEIUQvVqmvY--waV-qWjibcQcOtMIZoEY4uvvg--DMLlVbMHWa70tT1-v1nUJHQgAoNp3rdZmbxqhVKhGhmxs3LIsE0IHoDEkWfYgkr_YBBZwTAxdF4wBPRa02uatUFk-hrJV_IteT3xEfcGHsf6RfgoZwf8qGTdk9XnwHy3a-_sHyEmoUBMCAAA/jrGkdB3VgDxjbgoTsKfuCfv-ykS9nH2BazSNZ7tcrBE", "threadId": "19f8907e6e43d590", "note": "Fully remote, $120-150K, scalable Power BI reporting lead role."},
+{"title": "Solutions Engineer - Data Visualization", "company": "SHI International", "source": "BuiltIn", "date": "2026-07-13", "score": 88, "tier": "strong", "url": "https://builtin.com/job/solutions-engineer-data-visualization/10175658", "threadId": "", "note": "Remote, $144-169K. Power BI, DAX, Fabric, Tabular Editor, Synapse."},
+{"title": "Senior Data Engineer (Business Intelligence)", "company": "Fractal", "source": "LinkedIn", "date": "2026-07-18", "score": 84, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4441121195/", "threadId": "19f7635cdbceecb5", "note": "US remote, up to $150K. Separate req from the Sr PBI Dev already applied to."},
+{"title": "Senior Power BI Developer", "company": "EtiVenture Analytics", "source": "LinkedIn", "date": "2026-07-22", "score": 82, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4442755689/", "threadId": "19f8baafb0a80e60", "note": "US remote, pure Power BI senior IC. Hit by both inbox alert and LI sweep."},
+{"title": "Sr. Lead AI & Azure Data Engineer - FABRIC", "company": "Source Select Group", "source": "LinkedIn Search", "date": "2026-07-21", "score": 82, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4443531980/", "threadId": "", "note": "Remote USA, direct-hire, Fabric + Azure lead. No sponsorship; minimal travel."},
+{"title": "Senior BI Analyst", "company": "HealthEdge", "source": "Indeed", "date": "2026-07-17", "score": 78, "tier": "strong", "url": "https://cts.indeed.com/v3/H4sIAAAAAAAA_42R0W6iQBSG34VkvVoqDMKACdnomiJaiwVd296YYRiGYWBAHKTS9N0Xe9GLXvXqJN-fk5Pzf-9Kq0yVTMr6PB2Pu667YyIhJLnDVTlu8BgX_E_OXWIB0yYGwJpp6whqo7SpSjevYgbQcRglkjhTG4KwZBckWSVUItR9dCQlYsVIclfPpeDpqXYonVS2po_i2KV1KcVSu87mwUtweir73IMbO4URgMv7QIbbyGfkzRczGrZt3p7h0gyyZ73b4weyODxNVvRVNeaboPKdXXy0OEyLI_SjHnjUd14f244l_54XB3XZ7FHRCt8TXvOQXfY80tPQqyPsHBCf9P2aeWsDaMYV48YJ8cQK5-uNl2fYW7P7s3yxffuXsRi9cRy7UTWXFtwYmUG73RUG5kqbxT1P_ibb7ajJ669X6xOvLSpszVR-K6UyfVcQxlUrpJ8MjQMAdMOwPkNE6aqKP7Gu6Q7UgWWDW4ALhvkua6qWZkMom5Z80WtNBnRhpBvqH-hNyAB-qmTYkPx28JsW5ePjPwe9DrcTAgAA/z-7aR7hpFvuWmks-lBLy0ewbyyDHORsGgiBVy4Tf0EY", "threadId": "19f6f47f41363c9a", "note": "Remote, $114-122K. Power BI dashboards + data modeling; just under comp floor."},
+{"title": "Power BI Developer - Netherlands, UK, or US - Remote", "company": "NTEN", "source": "LinkedIn", "date": "2026-07-19", "score": 76, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4442457717/", "threadId": "19f7bca050bd0b1e", "note": "Remote-first Power BI developer, US eligible. Nonprofit sector."},
+{"title": "Senior BI Engineer", "company": "Humana", "source": "LinkedIn", "date": "2026-07-22", "score": 74, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4440184939/", "threadId": "19f8a61789970a5a", "note": "US remote, $89-121K. Solid BI fit but tops out under the $130K floor."},
+{"title": "Senior Data Engineer: Power BI & Fabric Architect (Remote)", "company": "Zealogics.com", "source": "Lensa", "date": "2026-07-21", "score": 74, "tier": "strong", "url": "https://sg2email.lensa.com/ls/click?upn=u001.jmU3g-2BpCjR8B5yHZB902pIHN8Ut4zPAWQeLRnk2pxxXy13gPQ5CCSqp571-2BeZfo-2Bt2T7itdUuKkQ7Rre3Ph0F515S2xZI5jsj9g8TIVuolEc8lIQusRHQTcJ28dgN9tWEooLDabI2kfOk8k5W-2BueGJbhCT-2BGUAfiUxvJUUjWuc8JuLohtOXDXoW2ylF9pq7yHTZEA0PHqTdh8MjyScQ6M1RgKDdBUWzEQVMvBq-2BFn6w-3DMEAk_QXnTW6f9jV7ots26-2Fd0iCA40nBTbwrnPprB64EaCS9zkmj-2BCWIv7rzc4TNxeyGR9uyp-2BODyM2g3Pm1Gg0AMMxZDXVgI1R0gV4Lko2s1idces-2BAqLJlMOIyFyWEQ7h1KHWlTdwrf7rdNuBIjiKQlB2gvmBMPKhdxKFlpOjTLOjIikQb8cDRekU6m-2BST2VHSaEDiUr45iA0C-2FmGrjRmlVMdv2SW3cW-2BpD-2B-2FeSET65kLoT-2BUDL1Ypbx6jvR6pUhIUC3lkpd-2BTW5-2FZOOy5tA45lOYYYiSqAje4kWsZ-2ByQX0WkvrqXhxGpiOp4HFFpVstfxQtUqIKMVM6i187cukAHtD8WeCTGQtefB-2FKlf7a2lBsu2P5wxBKMemH4X2XDGYQdDC1AOEpaTbk40QMvJ4iLT0YLusy7H4goYDZZWNGBkSCOiUb4zNmw6tVYi5R69nTeOPYWZjz3iZR6mFaXFBcosFZKHJmFTpCLyyugM8k5RjnKJvXpc-2FaxBh3Bps2JHroz8fMaWtQmW-2B0-2BpKlOadJuaK4jHelpoMq3C3fecDuK6YhJ85CdJTiCx0xbThUD-2Fl0aN73uVLes39aqiuUsBQ6IFzLMhXJac5k0nwWzT1dfVIYJtA-3D", "threadId": "19f84fa6f5190de8", "note": "Remote, est $100-122K. Exact Power BI + Microsoft Fabric architect stack."},
+{"title": "Sr. Business Intelligence Developer", "company": "Orion Steel", "source": "LinkedIn Search", "date": "2026-07-22", "score": 74, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4443544396/", "threadId": "", "note": "Chicago-based but posted remote. Title bullseye; stack unverified."},
+{"title": "Lead Data Engineer", "company": "Verisma", "source": "Indeed", "date": "2026-07-22", "score": 74, "tier": "strong", "url": "https://www.indeed.com/viewjob?jk=9fdfb5aa92f086e2", "threadId": "", "note": "Remote, $140-160K — above floor. Healthcare data; same employer as their Sr BI Dev req."},
+{"title": "Sr. Business Intelligence Developer", "company": "Verisma", "source": "LinkedIn", "date": "2026-07-17", "score": 72, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4425814868/", "threadId": "19f6da0856785940", "note": "US remote, up to $109K. Healthcare BI dev; comp below floor."},
+{"title": "BI Developer, Data Analyst", "company": "Sand Cherry", "source": "LinkedIn", "date": "2026-07-22", "score": 72, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4442226838/", "threadId": "19f8baafb0a80e60", "note": "US remote consulting BI developer role. No comp listed."},
+{"title": "Remote Power BI Developer", "company": "Trilogy Federal", "source": "Careers page", "date": "2026-06-23", "score": 72, "tier": "strong", "url": "https://www.talent.com/view?id=625135621860824593", "threadId": "", "note": "Remote incl. FL, $115-125K. PBI/DAX/Synapse/ADF; needs Public Trust."},
+{"title": "Business Intelligence Data Engineer", "company": "Connexus Credit Union", "source": "Indeed", "date": "2026-07-22", "score": 72, "tier": "strong", "url": "https://www.indeed.com/viewjob?jk=17489ce3b83eeabe", "threadId": "", "note": "Remote full-time, credit union. BI + data engineering blend; no comp posted."},
+{"title": "Power BI Engineer (VA ESOM)", "company": "Kentro", "source": "LinkedIn", "date": "2026-07-17", "score": 70, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4440208652/", "threadId": "19f6da0856785940", "note": "US remote fed-contract Power BI engineer. May require clearance."},
+{"title": "Azure Data Engineer", "company": "Highbrow Technology Inc", "source": "LinkedIn", "date": "2026-07-18", "score": 70, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4440753924/", "threadId": "19f7635cdbceecb5", "note": "US remote, ADF/Synapse stack fit. Staffing firm — confirm end client."},
+{"title": "Business Intelligence Engineer", "company": "MedEvolve", "source": "Indeed", "date": "2026-07-18", "score": 70, "tier": "strong", "url": "https://cts.indeed.com/v3/H4sIAAAAAAAA_42RTW-qQBSG_wvJdVUqzPBVE3JTURstKhZJ1Q0ZhuEbRocBhKb_vfQuurirrk7yvDk5Oe_zITTCTEg4v9az6bTruse0CgkJHzEtpwxPcZH_zXKTqFiGhoYMGRAFk3ASMVqaGQ1SgPxxlIjjRGQEYZ62iKe0Ekkleq5PSpQWE56bcsZvWh1KOA-jxJCUSRCYKlyuj8sMZpHxphahrR0CV1optnIT99YwAPxsKL7BUq5EVsoGFKlyfdD1pched-35cq_kovYs9qLv7CPfwPPyxEHv9LveMwYnAFRZPLt2Yq8Urxnsd3Cq16FKohcv2sdvhXjf1_3NOunKu7tdPEEHAq9yButw3F63tq9egk17lq2Ys_x1Tv_AxeSe48B06bzV9C1MtJVozYG_uUhOMOShFTrOhGXXn1cx0WiNAkOShQehFGYfAsKYNhVfh2PjAAAZQk1SxxDF8YYG_7AsAQnICtDB0xjgIsX5MWG0iZMx5KwhP7S_khG1KenG-kf6LWQEv1UybvD8--B_WoTPzy8HWa3pEwIAAA/mnAXWnpz0zz0HM6u7Lf4yz6BancnlsQjmtAn_GcMOdc", "threadId": "19f746e3c4293632", "note": "Remote (AR-based). ETL + data warehousing BI engineer; no comp shown."},
+{"title": "Senior Business Intelligence Engineer", "company": "Tebra", "source": "LinkedIn Search", "date": "2026-07-22", "score": 70, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4405246982/", "threadId": "", "note": "US remote healthtech BI engineer. Stack unverified — check before applying."},
+{"title": "Power BI Report Developer", "company": "CGI", "source": "LinkedIn", "date": "2026-07-17", "score": 68, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4440823877/", "threadId": "19f6da0856785940", "note": "US remote at a major SI. Lensa est. $70-86K — likely well under floor."},
+{"title": "Remote Power BI Analytics Developer - Finance", "company": "SwiftCruit", "source": "Lensa", "date": "2026-07-22", "score": 68, "tier": "strong", "url": "https://sg2email.lensa.com/ls/click?upn=u001.jmU3g-2BpCjR8B5yHZB902pAK8zxwtPcOUE4l3Tfmu55Q0J664WcGzs9wdrk0hxvNOzFld7PUJR9Z4LP540wCmr5w8DRqgMklvH8s1Eyj7RSgFBOPqFw7hZjh3VteYIgCLj-2F0e4zpkw-2FPjJMbpOV8NI6su3I1JnlXDLAPeQZ9C-2FsT2hRk0AipAjomyqtWfuzO7fRS5x4PsQtpYb1xYhyx4hIz5JQPr0VZ-2Bv-2ByyxmCOhtg-3DTzvv_QXnTW6f9jV7ots26-2Fd0iCA40nBTbwrnPprB64EaCS9zkmj-2BCWIv7rzc4TNxeyGR9uyp-2BODyM2g3Pm1Gg0AMMxZDXVgI1R0gV4Lko2s1idces-2BAqLJlMOIyFyWEQ7h1KHWlTdwrf7rdNuBIjiKQlB2gvmBMPKhdxKFlpOjTLOjIikQb8cDRekU6m-2BST2VHSaEDiUr45iA0C-2FmGrjRmlVMdt4qOdsNCNayDa19rB14t5cdtD0IdsgVkW5rKrpPn8KXynX96P50KvFmB8yMkwS8uCf8EK20KbgeUcTZhGgNjkSb8ZWYjr2PAaxKKzZf94PB6drAdGO7aOJPHhoKXusiv42ZEe45NZBCkcNW9K7-2FtkJFWXdZN6c8TmSvFzr25Epm09XfJRjg5Ypji7vrXU2xswLIlC0QKdfjjoctFo5XmxQDqrr82tCSvKvJlMQqk0LBqMekCt5lY9rcsB3II8fnAtTxgRSe2OSOFT-2BXyaTSQo63r67WYUrtwpYjCp-2BcF2N3CM2xHRMywmDwc-2F3uHyQ6szF35wldsXHhqeawvlQQK-2BgdNAsu7pwP445csZbz5B9SvuF0Tt7cs8MMvuXuR8uGvQaqHlGOe5c-2FCFznSClanyRSr0D7pMQnfqLfQm-2FwRZsx", "threadId": "19f8a20d7c6b19f5", "note": "Remote, $115-125K posted (not estimated). Power BI in a finance domain."},
+{"title": "Senior ETL Developer (Azure & MDM/Reltio Focus)", "company": "Undisclosed (agency via Dice)", "source": "Lensa", "date": "2026-07-22", "score": 68, "tier": "strong", "url": "https://sg2email.lensa.com/ls/click?upn=u001.jmU3g-2BpCjR8B5yHZB902pBEEvv02yYrt5q0IHHbZov86p22zP75DQHNY2f4kTuUOJ72NLySedgUKrHgsr4jywW4YvEamk207PmQ3m2E64-2BAdgBBvSme7wHBgrK8ylso27HCT5jmK9JKyF-2FoCUGPoLght6YKsVaGnmrn-2FOfK2Lr5H9WdLhywtqWZmJ99xw-2Fo8oyf7IIviirG8F6-2FzR4RwX4u0vkMkwIkeh3vtBmA0k78-3DQQtB_QXnTW6f9jV7ots26-2Fd0iCA40nBTbwrnPprB64EaCS9zkmj-2BCWIv7rzc4TNxeyGR9uyp-2BODyM2g3Pm1Gg0AMMxZDXVgI1R0gV4Lko2s1idces-2BAqLJlMOIyFyWEQ7h1KHWlTdwrf7rdNuBIjiKQlB2gvmBMPKhdxKFlpOjTLOjIikQb8cDRekU6m-2BST2VHSaEoEZXJ-2BJXxqY8-2BCGMe1SYLgO7iHXbUjtAnu8W3OSabkm3QjCV9xtIyVQZ8TuXiALdGw8gkdVsg2V8KpkQtvZI-2B8H4ENXJHdPmd1K1rjukB0a-2BXNSd93xWqGTxqU2LionR6OaruoFgpI3QF0qbYGOl3lS8TbMJh433y0pH-2F7fYIHPeyBcFx13fcZ4SoB11FLGuVIY71nKM0ynnV12Paipm5DGFKI8KBZkjIZzSQWFQ9XICfby9jeY3m1nKfn9zS53B8IvBCVDX8yrhpiZxtT6GanryfmSAc3vcXErWUwKMXpUa3wS5IfJEf8LGD9TGqAfpIxSoTT-2B9c16GHoNMzwkAOngAkQ-2F71Boli6BjEajiq4lN8VDHxOGGvcJPBZPb8u5d", "threadId": "19f8a2066dfaffea", "note": "Remote, est $124-152K — highest Lensa band in the family. Azure ETL."},
+{"title": "Lead, Business Intelligence Analyst - People Analytics", "company": "L3Harris Technologies", "source": "LinkedIn Search", "date": "2026-07-22", "score": 68, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4414234495/", "threadId": "", "note": "US remote lead BI analyst. Defense employer — clearance may be required."},
+{"title": "Solution Architect, Data (Remote US)", "company": "Atmosera", "source": "Indeed", "date": "2026-07-22", "score": 68, "tier": "strong", "url": "https://www.indeed.com/viewjob?jk=218af96edb0c06d2", "threadId": "", "note": "Remote US at a Microsoft/Azure partner. Architect scope, not pure BI IC."},
+{"title": "Sr. Business Intelligence Developer", "company": "Mutual of Omaha", "source": "Lensa", "date": "2026-07-22", "score": 66, "tier": "strong", "url": "https://sg2email.lensa.com/ls/click?upn=u001.jmU3g-2BpCjR8B5yHZB902pOfmGr7n3d5ur7QX0jcfIVC4RXwe-2BPS5-2BG6-2B1wSY-2Fuu0oOtWkiotScmIiXwL8PR7dD-2F-2BdieK7qFI7SgOwY75UuwOvUr3ld6SFXJV8jquyligA8DWcMHjcswHQSM0WeY86t7qpECaWJJL6EOZ-2B4ZMh1Bs4KqqprREpjhtihizrEwfvQ-2BMP-2BY-2BdE85V1CAeI8PCbF5q48WNYqKulGjsNpN5mQ-3DNwZ7_QXnTW6f9jV7ots26-2Fd0iCA40nBTbwrnPprB64EaCS9zkmj-2BCWIv7rzc4TNxeyGR9uyp-2BODyM2g3Pm1Gg0AMMxZDXVgI1R0gV4Lko2s1idces-2BAqLJlMOIyFyWEQ7h1KHWlTdwrf7rdNuBIjiKQlB2gvmBMPKhdxKFlpOjTLOjIikQb8cDRekU6m-2BST2VHSaEDiUr45iA0C-2FmGrjRmlVMdt4qOdsNCNayDa19rB14t5cdtD0IdsgVkW5rKrpPn8KXynX96P50KvFmB8yMkwS8uCf8EK20KbgeUcTZhGgNjkSb8ZWYjr2PAaxKKzZf94PB6drAdGO7aOJPHhoKXusiv42ZEe45NZBCkcNW9K7-2FtkJFWXdZN6c8TmSvFzr25Epm8xcpzTBHvHSUFMNefIsR-2F7OMJ2QTCEt-2Bg7Z60Ep7zlmwGNBQrJ6UXRfwaCpxUtzfT2sIU07buLlC-2BPDl7cnsd1Yy3T226t1Sk6KI2wZ6BFZxvtIiVXq7WeDfg7N7BROTrIxfSBajHv7-2FWJGg1-2Bj04fHnJJeTFbKRQSlMIQBcsQpxsaNRN2ozzBabnNP-2B-2FwTK1IZMUJoswGlmhp-2FRPiTvdCM1Jl6OA6J8Gy9ah1a6OUDX1WRbFtRL8kooXQoAYYTo", "threadId": "19f8a20d7c6b19f5", "note": "Remote, est $105-129K. Insurance BI developer at a stable employer."}
 ];
 // ALERT_DATA_END
 
-let tierFilter="all";
+// Claude Desktop deep link (verified scheme: claude://code/new?folder=..&q=..).
+// Opens Claude Code inside Claude Desktop with the command prefilled — press Enter to run.
+// Desktop shows a one-time confirmation before adopting the folder (link folders are untrusted).
+const CLAUDE_CWD = "C:\\Users\\andre\\OneDrive\\Claude\\job-search-os";
+const claudeUri = cmd => "claude://code/new?folder="+encodeURIComponent(CLAUDE_CWD)+"&q="+encodeURIComponent(cmd);
+// Archive is browser-local until you push it: it updates localStorage, the ⇪ chip counts
+// it, and one click downloads {"archived":[ref,...],"unarchived":[ref,...]} for the
+// widget's ↻ (Sync-Widgets.ps1) to merge and delete.
+//
+// This replaced a per-click jobhunt-archive:// protocol launch. Chrome launches custom
+// protocols unreliably — it can prompt, and a missed prompt silently drops the click, so
+// archives went missing. A download always lands, needs no registration, and batches.
+function downloadState(payload){
+  const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download="job-search-os-state.json";
+  document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(a.href),10000);
+}
+const onDisk=(map,ref)=>!!(map&&map[ref]);
+function pendingState(){
+  return {
+    archived:[...localArch].filter(r=>!onDisk(ARCHIVED,r)),
+    unarchived:[...localUnarch].filter(r=>onDisk(ARCHIVED,r))
+  };
+}
+const pendingCount=p=>p.archived.length+p.unarchived.length;
+const scanBtn=$("scanBtn"); if(scanBtn) scanBtn.href=claudeUri("/job-hunt-scan");
+
+// Run-state (green ✓ once a command is logged) + archived opportunities.
+// Injected from context-library/dashboard-state.json by dashboard/Sync-Dashboards.ps1 — do not hand-edit.
+// DASH_STATE_START
+  const RUN_STATE = {"19f8064120818784":{"job-fit-inbox":"2026-07-22","recruiter-action":"2026-07-22"},"19f7fee6bf8218cd":{"job-fit-inbox":"2026-07-21","recruiter-action":"2026-07-21"},"19f771183237f1d0":{"next-steps":"2026-07-22T18:57:18"},"19f853b1990d7ad7":{"next-steps":"2026-07-22"},"19f8a11a6f842033":{"next-steps":"2026-07-22T19:47:50"},"https://www.linkedin.com/messaging/thread/2-YmRiODJiN2YtYjljNS00YmNlLThjOTItNTY1NWQ1ZWJkMTczXzEwMA==/":{"next-steps":"2026-07-22T18:34:07"},"19f80cb44c91d7bb":{"job-fit-inbox":"2026-07-22T18:27:56","recruiter-action":"2026-07-21"},"https://www.linkedin.com/jobs/view/4440792262/":{"next-steps":"2026-07-22T18:58:26"}};
+  const ARCHIVED = {"19f7f8cdc84867d1":"2026-07-22","19f8091b2c1ef05f":"2026-07-22","https://www.linkedin.com/jobs/view/4440792262/":"2026-07-22","19f771183237f1d0":"2026-07-22","https://www.glassdoor.com/job-listing/sr-power-bi-developer-broadcast-music-inc-JV_KO0,21_KE22,41.htm?jl=1009852236950":"2026-07-22","https://www.linkedin.com/jobs/view/4441911111/":"2026-07-22","https://www.linkedin.com/messaging/thread/2-ZDM4NjE2YWUtNGQxZC00YWQwLTk4YWMtZTVkNDU2N2MzMTA0XzEwMA==/":"2026-07-22","19f864bf13a1c8ee":"2026-07-22","https://www.linkedin.com/messaging/thread/2-YjA5ZjE3MTItM2E2ZC00MDlhLWJlMzgtNzQyYzQ3NGZiMTA1XzEwMA==/":"2026-07-22","https://www.linkedin.com/messaging/thread/2-NjRlYzVjYWUtNzY2Ny00ZjBjLWIwMGMtOTI1MzNjNzYwMTU3XzEwMA==/":"2026-07-22","19f80af86048e18d":"2026-07-22","https://www.linkedin.com/messaging/thread/2-ZTQ3MWQyNjQtYjc3MS00YWRiLWEzZDMtZTlkNTk0MTAwNDliXzEwMA==/":"2026-07-22","19f853b1990d7ad7":"2026-07-22","19f808f24146d81f":"2026-07-22","19f7fb5868e2c05d":"2026-07-22","https://www.linkedin.com/messaging/thread/2-YTBkNzY2NGUtYmZkOC00MmQ5LTlmNGYtYTA2MTE3MjIwNWE0XzEwMA==/":"2026-07-22","https://www.linkedin.com/messaging/thread/2-YTdlMGZhNDItMGY4Zi00ZGE1LWJiN2ItYzg0NmQ4ZDI4YjAwXzEwMA==/":"2026-07-22"};
+  const SKIPPED = {"19f7fdfe7ee3bedf":"2026-07-22","19f7fb5868e2c05d":"2026-07-22","19f8091b2c1ef05f":"2026-07-22","19f8065a7ac37096":"2026-07-22","19f7f8cdc84867d1":"2026-07-22"};
+// DASH_STATE_END
+
+const refOf=d=>d.threadId||d.url||"";
+// Two local sets: refs this browser archived that disk doesn't have yet, and refs disk
+// has that this browser un-archived. Both are pushed by the ⇪ chip (adds and removals).
+const LARCH="job-hunt-archived", LUNARCH="job-hunt-unarchived";
+let localArch=new Set(JSON.parse(localStorage.getItem(LARCH)||"[]"));
+let localUnarch=new Set(JSON.parse(localStorage.getItem(LUNARCH)||"[]"));
+const isArchived=ref=>localArch.has(ref)||(!!(ARCHIVED&&ARCHIVED[ref])&&!localUnarch.has(ref));
+const ranOn=(ref,cmd)=>(RUN_STATE&&RUN_STATE[ref]&&RUN_STATE[ref][cmd])||null;
+function runBtn(cmd,ref,label){
+  const on=ranOn(ref,cmd);
+  const t=on?("Ran "+on+" — click to reopen /"+cmd+" in Claude Desktop"):("Open Claude Code in Claude Desktop (job-search-os) with /"+cmd+" prefilled");
+  return '<a class="runbtn'+(on?' done':'')+'" href="'+claudeUri('/'+cmd+' '+ref)+'" title="'+t+'">'+(on?'✓ ':'▶ ')+label+'</a>';
+}
+let showArchived=false, tierFilter="all";
 function renderCards(){
   const cards=$("cards"), chips=$("chips");
+  const live=ALERT_DATA.filter(d=>!isArchived(refOf(d)));   // non-archived
+  const src=showArchived?ALERT_DATA:live;                    // what the list draws from
+  const archCount=ALERT_DATA.length-live.length;
   // "new": strong + look only, newest first (score breaks date ties)
   const data=tierFilter==="new"
-    ?ALERT_DATA.filter(d=>d.tier==="strong"||d.tier==="look")
-               .slice().sort((a,b)=>(b.date||"").localeCompare(a.date||"")||b.score-a.score)
-    :ALERT_DATA.filter(d=>tierFilter==="all"||d.tier===tierFilter)
-               .slice().sort((a,b)=>b.score-a.score);
+    ?src.filter(d=>d.tier==="strong"||d.tier==="look")
+        .slice().sort((a,b)=>(b.date||"").localeCompare(a.date||"")||b.score-a.score)
+    :src.filter(d=>tierFilter==="all"||d.tier===tierFilter)
+        .slice().sort((a,b)=>b.score-a.score);
   $("updated").textContent = ALERT_UPDATED ? "last scan "+ALERT_UPDATED : "";
   chips.innerHTML="";
-  [["all","All ("+ALERT_DATA.length+")"],
-   ["new","New ("+ALERT_DATA.filter(d=>d.tier==="strong"||d.tier==="look").length+")"],
-   ["strong","Strong ("+ALERT_DATA.filter(d=>d.tier==="strong").length+")"],
-   ["look","Worth a look ("+ALERT_DATA.filter(d=>d.tier==="look").length+")"]]
+  [["all","All ("+live.length+")"],
+   ["new","New ("+live.filter(d=>d.tier==="strong"||d.tier==="look").length+")"],
+   ["strong","Strong ("+live.filter(d=>d.tier==="strong").length+")"],
+   ["look","Worth a look ("+live.filter(d=>d.tier==="look").length+")"]]
   .forEach(([v,lbl])=>{
     const b=document.createElement("button");b.textContent=lbl;
     if(tierFilter===v)b.classList.add("on");
     b.onclick=()=>{tierFilter=v;renderCards();};chips.appendChild(b);
   });
+  if(archCount){
+    const t=document.createElement("button");
+    t.className="archtoggle"+(showArchived?" on":"");
+    t.textContent=(showArchived?"Hide":"Show")+" archived ("+archCount+")";
+    t.onclick=()=>{showArchived=!showArchived;renderCards();};chips.appendChild(t);
+  }
+  const pend=pendingState(), pendN=pendingCount(pend);
+  if(pendN){
+    const s=document.createElement("button");
+    s.className="archtoggle syncchip";
+    s.textContent="⇪ Sync "+pendN+" to disk";
+    s.title=pendN+" change"+(pendN>1?"s":"")+" live only in this browser. Click to save them for the widget, then hit ↻ on the widget to apply.";
+    s.onclick=()=>{
+      downloadState(pend);
+      s.textContent="⇪ Saved — click ↻ on the widget";
+      s.disabled=true;
+    };
+    chips.appendChild(s);
+  }
   cards.innerHTML="";
-  $("empty").style.display = ALERT_DATA.length ? "none" : "block";
+  $("empty").style.display = live.length ? "none" : "block";
   data.forEach(d=>{
-    const c=document.createElement("div");c.className="jcard";
+    const ref=refOf(d), archived=isArchived(ref);
+    const c=document.createElement("div");c.className="jcard"+(archived?" archived":"");
     const badge='<span class="badge '+d.tier+'">'+d.score+'</span>';
     const titleHtml = d.url
       ? '<a class="title" href="'+d.url+'" target="_blank" rel="noopener">'+d.title+'</a>'
       : '<span class="title">'+d.title+'</span>';
-    const gmail = d.threadId
-      ? '<a href="https://mail.google.com/mail/u/0/#all/'+d.threadId+'" target="_blank" rel="noopener">open email</a>'
+    const emailBtn = d.threadId
+      ? '<a class="linkbtn" href="https://mail.google.com/mail/u/0/#all/'+d.threadId+'" target="_blank" rel="noopener">Open Email</a>'
       : '';
     // /next-steps carries the resolvable ref: thread id for alert hits, posting URL for web hits.
-    const ref = d.threadId || d.url || '';
-    const cmd = ref ? '/next-steps '+ref : '';
-    const cmdRow = cmd
-      ? '<div class="cmd"><code title="'+cmd.replace(/"/g,'&quot;')+'">'+cmd+'</code>'+
-        '<button data-cmd="'+cmd.replace(/"/g,'&quot;')+'">📋 next steps</button></div>'
+    const nextBtn = ref ? runBtn('next-steps',ref,'Next Steps') : '';
+    const postBtn = d.url
+      ? '<a class="linkbtn" href="'+d.url+'" target="_blank" rel="noopener">View Posting</a>'
+      : '';
+    const archBtn = ref
+      ? '<a class="archbtn'+(archived?' un':'')+'" href="#" data-ref="'+ref+'" data-un="'+(archived?1:0)+'" title="'+(archived?'Unarchive — bring it back. Applies here now; push it with the ⇪ chip so the widget and scans agree.':'Archive — hide it. Applies here now; push it with the ⇪ chip so the widget hides it too and scans won\'t re-add it.')+'">'+(archived?'↩':'🗑')+'</a>'
       : '';
     c.innerHTML =
       '<div class="top"><div>'+titleHtml+'<div class="co">'+d.company+'</div></div>'+badge+'</div>'+
       (d.note?'<div class="note">'+d.note+'</div>':'')+
-      '<div class="foot"><span class="src">'+d.source+' · '+d.date+'</span>'+
-      (d.url?'<a href="'+d.url+'" target="_blank" rel="noopener">view posting</a>':'')+gmail+'</div>'+
-      cmdRow;
+      '<div class="foot"><span class="src">'+d.source+' · '+d.date+'</span></div>'+
+      '<div class="actions">'+nextBtn+postBtn+emailBtn+archBtn+'</div>';
     cards.appendChild(c);
   });
-  cards.querySelectorAll('.cmd button').forEach(b=>{
-    b.onclick=()=>{
-      const t=b.getAttribute('data-cmd');
-      navigator.clipboard?.writeText(t).then(()=>{
-        const o=b.textContent;b.textContent='✓ copied';b.classList.add('copied');
-        setTimeout(()=>{b.textContent=o;b.classList.remove('copied');},1400);
-      });
-    };
+  cards.querySelectorAll('.archbtn').forEach(a=>{
+    a.addEventListener('click',e=>{
+      e.preventDefault();
+      const r=a.getAttribute('data-ref'), un=a.getAttribute('data-un')==="1";
+      if(un){ localArch.delete(r); if(onDisk(ARCHIVED,r)) localUnarch.add(r); }
+      else  { localArch.add(r); localUnarch.delete(r); }
+      localStorage.setItem(LARCH,JSON.stringify([...localArch]));
+      localStorage.setItem(LUNARCH,JSON.stringify([...localUnarch]));
+      renderCards();   // the ⇪ chip's count moves with it
+    });
   });
-  const tc=$("tabCount"); if(tc) tc.textContent = ALERT_DATA.length ? "("+ALERT_DATA.length+")" : "";
+  const tc=$("tabCount"); if(tc) tc.textContent = live.length ? "("+live.length+")" : "";
 }
 renderCards();
 
-// ============ TABS ============
-// Direct Source Search links build lazily the first time that tab is opened, so
-// the default Job Prospects view stays light.
-let searchBuilt=false;
-document.querySelectorAll('.tabs .tab').forEach(t=>{
-  t.onclick=()=>{
-    const tab=t.getAttribute('data-tab');
-    document.querySelectorAll('.tabs .tab').forEach(x=>x.classList.toggle('on', x===t));
-    $("panel-prospects").hidden = tab!=="prospects";
-    $("panel-search").hidden = tab!=="search";
-    if(tab==="search" && !searchBuilt){ renderLinks(); searchBuilt=true; }
+// ============ RECRUITER INBOX ============
+// Folded in from dashboard/recruiter-inbox.html (2026-07-22). Shares the DASH_STATE block,
+// claudeUri, downloadState, onDisk and ranOn defined above. Its own pending-state helpers
+// are prefixed ri- because the prospects tab has a narrower pair of the same name.
+// RECRUITER_DATA_START — regenerated by /recruiter-scan + /linkedin-scan; do not hand-edit.
+const DATA = [
+  {id:"19f8064120818784",date:"2026-07-20",recruiter:"Sham",firm:"Virtual Networx",role:"Data Analyst & Power BI Engineer",client:"undisclosed",score:85,tier:"strong",remote:{t:"Remote",k:"good"},comp:"Rate not stated",tags:[["Power BI","good"],["Fabric","good"],["SQL / ETL","good"],["12+ mo contract",""]],flag:"Rate not stated — ask bill rate before tailoring."},
+  {id:"19f80cb44c91d7bb",date:"2026-07-20",recruiter:"Aviral Srivastava",firm:"Talenzaa",role:"Business Analyst (Business Intelligence)",client:"Tavant / Kubota",score:82,tier:"strong",remote:{t:"100% Remote",k:"good"},comp:"Rate not stated (contract)",tags:[["Power BI","good"],["Azure / ADF","good"],["SQL","good"],["BA-flavored",""]],flag:"Rate not stated — ask bill rate before tailoring."},
+  {id:"19f7fee6bf8218cd",date:"2026-07-20",recruiter:"Max Garcia",firm:"Synergy Interactive",role:"PowerBI Engineer",client:"Publicis Sapient",score:80,tier:"strong",remote:{t:"Fully Remote",k:"good"},comp:"$65/hr LLC · $55/hr W2",tags:[["Power BI","good"],["IN PROCESS","proc"],["6 mo+ contract",""],["rate ~under target","warn"]],flag:"Already live — you had a call and sent your resume 2026-07-20. Consider adding to app-tracker as In Process."},
+  {id:"19f8a11a6f842033",date:"2026-07-22",recruiter:"Theron Griffin",firm:"Armanino",role:"Senior BI & Analytics Developer",client:"Armanino (direct)",score:72,tier:"strong",remote:{t:"Hybrid — Boca Raton (~30 min)",k:"warn"},comp:"Not stated",tags:[["Power BI / Fabric","good"],["IN PROCESS","proc"],["direct hire","good"],["hybrid Boca","warn"]],flag:"In process — call held 2026-07-22, resume sent. Direct hire at a reputable advisory firm; hybrid Boca office ~30 min away. App folder: applications/2026-07-21_armanino_senior-bi-analytics-developer_compass."},
+  {id:"19f7fdfe7ee3bedf",date:"2026-07-20",recruiter:"Reeba Saini",firm:"Nityo Infotech",role:"Power BI Developer",client:"undisclosed",score:42,tier:"look",remote:{t:"Raleigh NC / Dallas TX",k:"warn"},comp:"Full-time perm",tags:[["Power BI","good"],["Tableau",""],["SharePoint",""],["onsite?","warn"]],flag:"Location listed as NC/TX. Worth a one-line reply asking if remote is possible before writing it off."},
+  {id:"19f8091b2c1ef05f",date:"2026-07-20",recruiter:"Prakash K. Singh",firm:"Nityo Infotech",role:"Azure Data Engineer / Architect",client:"undisclosed",score:32,tier:"low",remote:{t:"Onsite (NC/TX/MI/CA)",k:"bad"},comp:"—",tags:[["Azure","good"],["onsite","bad"]],flag:""},
+  {id:"19f7f8cdc84867d1",date:"2026-07-20",recruiter:"Colton Collins",firm:"Capital Staffing",role:"Business Systems Analyst (Python/SQL)",client:"undisclosed",score:28,tier:"low",remote:{t:"Juno Beach, FL onsite",k:"bad"},comp:"—",tags:[["onsite","bad"],["not BI-core","bad"]],flag:""},
+  {id:"19f864bf13a1c8ee",date:"2026-07-21",recruiter:"Kaila Timko",firm:"Capital Staffing",role:"Business Systems Analyst (Python/SQL/ML)",client:"undisclosed",score:26,tier:"low",remote:{t:"Juno Beach, FL onsite",k:"bad"},comp:"Rate not stated",tags:[["onsite","bad"],["not BI-core","bad"],["12mo+ contract",""]],flag:""},
+  {id:"19f7fb5868e2c05d",date:"2026-07-20",recruiter:"Yash Agarwal",firm:"Exarca (via Dice)",role:"IT Business Systems Analyst II",client:"undisclosed",score:25,tier:"low",remote:{t:"Juno Beach, FL onsite",k:"bad"},comp:"W2 only",tags:[["onsite","bad"],["not BI-core","bad"]],flag:""},
+  {id:"19f8b5a20bb846ad",date:"2026-07-22",recruiter:"Moumita Dey",firm:"Nityo Infotech",role:"Data Warehouse Developer",client:"undisclosed",score:22,tier:"low",remote:{t:"Charlotte, NC onsite",k:"bad"},comp:"Not stated",tags:[["onsite","bad"],["non-MS: Snowflake/AWS","bad"],["SQL/Python",""]],flag:""},
+  {id:"19f80af86048e18d",date:"2026-07-20",recruiter:"Avneesh Tyagi",firm:"Nityo Infotech",role:"Business Analyst, Treasury Systems",client:"undisclosed",score:20,tier:"low",remote:{t:"Miami hybrid",k:"bad"},comp:"$30/hr W2",tags:[["comp far below floor","bad"],["hybrid","bad"]],flag:""},
+  {id:"19f8065a7ac37096",date:"2026-07-20",recruiter:"Veena",firm:"ATVS LLC",role:"Data Engineer (Hadoop / Ab Initio)",client:"undisclosed",score:15,tier:"low",remote:{t:"Berkeley Heights, NJ onsite",k:"bad"},comp:"$50/hr W2",tags:[["non-MS stack","bad"],["onsite","bad"],["asks SSN/DOB","bad"]],flag:"⚠️ This email asks for your SSN last-4 and DOB in the reply. Never send that to source a role. Ignore or ask them to submit without it."},
+  {id:"19f808f24146d81f",date:"2026-07-20",recruiter:"Saurav Sahil",firm:"Nityo Infotech",role:"Infor LN Functional Consultant",client:"undisclosed",score:12,tier:"low",remote:{t:"unspecified",k:"warn"},comp:"—",tags:[["ERP functional","bad"],["off-target","bad"]],flag:""},
+  {id:"2-NjRlYzVjYWUtNzY2Ny00ZjBjLWIwMGMtOTI1MzNjNzYwMTU3XzEwMA==",date:"2026-07-17",recruiter:"Lourdes Verde",firm:"Baptist Health South Florida",role:"BI / Data role (title TBC)",client:"Baptist Health",score:58,tier:"look",remote:{t:"Leader open to remote",k:"good"},comp:"Full-time perm · not stated",tags:[["remote-open","good"],["full-time perm",""],["healthcare",""],["title/stack TBC","warn"]],flag:"Baptist Health SF, full-time, leader open to remote — you already sent your resume. Confirm exact title + Power BI/MS-stack fit + comp. Likely the same opening Caroline Dybala flagged (Sr System Engineer – Power BI).",source:"linkedin"},
+  {id:"2-YmRiODJiN2YtYjljNS00YmNlLThjOTItNTY1NWQ1ZWJkMTczXzEwMA==",date:"2026-07-08",recruiter:"Caroline Dybala",firm:"Baptist Health South Florida",role:"Senior System Engineer – Power BI & Automation",client:"Baptist Health",score:52,tier:"look",remote:{t:"Coral Gables, FL · 8:30–5 (onsite?)",k:"warn"},comp:"Not stated",tags:[["Power BI","good"],["automation",""],["Coral Gables onsite?","warn"]],flag:"Power BI role at Baptist Health (Coral Gables, 8:30–5 → likely onsite/hybrid). Wants her name in the employee-referral field. Likely the same role Lourdes Verde flagged as 'leader open to remote' — confirm remote before applying.",source:"linkedin"},
+  {id:"2-ZTQ3MWQyNjQtYjc3MS00YWRiLWEzZDMtZTlkNTk0MTAwNDliXzEwMA==",date:"2026-07-16",recruiter:"Jason Wolpow",firm:"Lawrence Harvey",role:"Solution Engineer – Analytics (Power BI)",client:"undisclosed (manufacturing)",score:35,tier:"low",remote:{t:"Onsite — Anderson, SC",k:"bad"},comp:"$120–155K base + 10%",tags:[["Power BI","good"],["onsite Anderson SC","bad"],["can't relocate","bad"]],flag:"Exact Power BI stack fit BUT onsite Anderson SC — you already declined (can't relocate) and offered to refer. Dead unless they open remote.",source:"linkedin"},
+  {id:"2-YjA5ZjE3MTItM2E2ZC00MDlhLWJlMzgtNzQyYzQ3NGZiMTA1XzEwMA==",date:"2026-07-19",recruiter:"Dominique Hughes",firm:"AUKU",role:"Data Architect (BigQuery/Looker)",client:"undisclosed",score:35,tier:"low",remote:{t:"remote unstated",k:"warn"},comp:"6-mo C2H · rate not stated",tags:[["non-MS: BigQuery/Looker","bad"],["Data Architect",""],["C2H 6mo",""]],flag:"Google BigQuery/Looker/Fivetran stack (marketing data) — not your Microsoft/Power BI wheelhouse. Dimensional modeling transfers but this isn't a Power BI role.",source:"linkedin"},
+  {id:"2-ZDM4NjE2YWUtNGQxZC00YWQwLTk4YWMtZTVkNDU2N2MzMTA0XzEwMA==",date:"2026-07-17",recruiter:"Mariam Khan",firm:"MSC Cruises USA",role:"eCommerce Data Analyst",client:"MSC Cruises",score:30,tier:"low",remote:{t:"Hybrid — 4 days Miami office",k:"bad"},comp:"Not stated · strong benefits",tags:[["hybrid 4d Miami","bad"],["eComm Data Analyst",""],["no MS-stack signal","warn"]],flag:"Hybrid — 4 days/week in downtown Miami office. Fails your remote-only requirement.",source:"linkedin"},
+  {id:"2-YTBkNzY2NGUtYmZkOC00MmQ5LTlmNGYtYTA2MTE3MjIwNWE0XzEwMA==",date:"2026-07-19",recruiter:"Ashish Awasthi",firm:"undisclosed (staffing)",role:"Unnamed — staffing inquiry",client:"undisclosed",score:30,tier:"low",remote:{t:"unstated",k:"warn"},comp:"you quoted $75–85/hr W2",tags:[["no role named yet","warn"],["staffing fishing",""]],flag:"Generic staffing inquiry — no role, company, or JD named; only asked availability, work-auth, and rate. Ask what the actual role + client are before investing.",source:"linkedin"},
+  {id:"2-YTdlMGZhNDItMGY4Zi00ZGE1LWJiN2ItYzg0NmQ4ZDI4YjAwXzEwMA==",date:"2026-07-10",recruiter:"Michael Bloor",firm:"Pivotal Solutions",role:"Data/Web Developer",client:"undisclosed (Boca Raton)",score:25,tier:"low",remote:{t:"Boca Raton, FL (local)",k:"bad"},comp:"Not stated · perm",tags:[["not BI-core","bad"],["Data/Web dev","bad"],["local Boca","warn"]],flag:"Data/Web Developer (not BI-core), Boca local, permanent. Off-target — web-dev role, no Power BI signal.",source:"linkedin"}
+];
+// RECRUITER_DATA_END
+// base64url + jobhunt-cmd:// deep links (headless background runs — see Register-CmdProtocol.ps1).
+const b64url=s=>btoa(unescape(encodeURIComponent(s))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+const cmdUri=(cmd,arg)=>"jobhunt-cmd://"+cmd+"/"+b64url(arg);
+const fromB64url=t=>{let b=t.replace(/-/g,'+').replace(/_/g,'/');while(b.length%4)b+='=';return decodeURIComponent(escape(atob(b)));};
+function toast(msg){
+  let t=document.getElementById('toast');
+  if(!t){t=document.createElement('div');t.id='toast';document.body.appendChild(t);}
+  t.textContent=msg;t.classList.add('show');
+  clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('show'),9000);
+}
+// Browser-local archive/skip state (same localStorage keys as the old standalone page —
+// file:// pages share one origin, so existing selections carry straight over).
+const LARCHR="recruiter-archived", LUNARCHR="recruiter-unarchived";
+let localArchR=new Set(JSON.parse(localStorage.getItem(LARCHR)||"[]"));
+let localUnarchR=new Set(JSON.parse(localStorage.getItem(LUNARCHR)||"[]"));
+let showArchivedR=localStorage.getItem("ri-sharch")==="1";
+const isArchivedR=ref=>localArchR.has(ref)||(!!(ARCHIVED&&ARCHIVED[ref])&&!localUnarchR.has(ref));
+
+// "Running…" state for background commands. On click we stamp {cmd|ref: clickTime}; a run is done once
+// RUN_STATE shows a fresh timestamp (>= click time) for it. While any run is active we auto-reload every
+// ~25s (the only way a static file:// page can pick up the freshly-injected RUN_STATE), giving up after
+// RUN_MAX_MS. tab/filter/scroll are persisted so the poll-reload doesn't jump the view.
+const RUNSTORE="recruiter-running", RUN_MAX_MS=12*60*1000;
+let running=JSON.parse(localStorage.getItem(RUNSTORE)||"{}");
+function saveRunning(){localStorage.setItem(RUNSTORE,JSON.stringify(running));}
+function reconcileRunning(){
+  let active=false,changed=false;
+  for(const k of Object.keys(running)){
+    const i=k.indexOf('|'),cmd=k.slice(0,i),ref=k.slice(i+1),started=running[k];
+    const v=RUN_STATE&&RUN_STATE[ref]&&RUN_STATE[ref][cmd];
+    const doneFresh=v&&Date.parse(v)>=started-5000;
+    if(doneFresh||(Date.now()-started)>RUN_MAX_MS){delete running[k];changed=true;} else active=true;
+  }
+  if(changed)saveRunning();
+  return active;
+}
+const isRunning=(cmd,ref)=>running[cmd+'|'+ref]!=null;
+
+const TIERLABEL={strong:"Strong-Fit",look:"Worth-a-Look",low:"Low-Fit"};
+const SCLASS={strong:"s-strong",look:"s-look",low:"s-low"};
+const STORE="recruiter-inbox-dispositions";
+let disp=JSON.parse(localStorage.getItem(STORE)||"{}");
+// Skips recorded in dashboard-state.json seed this browser, so dashboard, widget and mobile
+// hide the same cards. `in`, not falsiness: an explicitly-cleared "" means you un-skipped it
+// and haven't pushed yet, so re-seeding would silently undo that.
+if(typeof SKIPPED!=="undefined") for(const id of Object.keys(SKIPPED)) if(!(id in disp)) disp[id]="Skip";
+// Cards marked Skip are hidden from this point on; snapshot taken at load so a mid-session skip
+// doesn't vanish under you — it clears on the next refresh.
+const initialSkips=new Set(Object.keys(disp).filter(id=>disp[id]==="Skip"));
+let riFilter=localStorage.getItem("ri-filter")||"all";
+
+function setDisp(id,val){
+  disp[id]=val;localStorage.setItem(STORE,JSON.stringify(disp));
+  // Skip hides the card here, so it has to reach dashboard-state.json — render() picks the
+  // change up in the ⇪ chip's count; the chip pushes it. Other dispositions stay browser-only.
+  render();
+}
+// Everything this browser hides (or un-hides) that the state file doesn't agree with yet.
+const skipMap=()=>(typeof SKIPPED!=="undefined")?SKIPPED:null;
+function riPendingState(){
+  const sm=skipMap();
+  return {
+    archived:[...localArchR].filter(r=>!onDisk(ARCHIVED,r)),
+    unarchived:[...localUnarchR].filter(r=>onDisk(ARCHIVED,r)),
+    skipped:Object.keys(disp).filter(id=>disp[id]==="Skip"&&!onDisk(sm,id)),
+    unskipped:Object.keys(sm||{}).filter(id=>disp[id]!=="Skip")
   };
-});
+}
+const riPendingCount=p=>p.archived.length+p.unarchived.length+p.skipped.length+p.unskipped.length;
+
+const cardRefOf=d=>d.source==="linkedin"?`https://www.linkedin.com/messaging/thread/${d.id}/`:d.id;
+function render(){
+  // Poll: while a background run is active, reload every ~25s to pick up the re-injected RUN_STATE.
+  const pollActive=reconcileRunning();
+  clearTimeout(window.__poll);
+  if(pollActive) window.__poll=setTimeout(()=>{ sessionStorage.setItem("ri-scroll",window.scrollY); location.reload(); }, 25000);
+  const ALLVIS=DATA.filter(d=>!initialSkips.has(d.id));
+  const VIS=ALLVIS.filter(d=>!isArchivedR(cardRefOf(d)));   // live (non-archived) — drives KPIs/counts
+  const archCount=ALLVIS.length-VIS.length;
+  const base=showArchivedR?ALLVIS:VIS;                       // what the list draws from
+  const rc=$("riCount"); if(rc) rc.textContent = VIS.length ? "("+VIS.length+")" : "";
+  // KPIs
+  const strong=VIS.filter(d=>d.tier==="strong").length;
+  const pursue=Object.values(disp).filter(v=>v==="Pursue").length;
+  const undis=VIS.filter(d=>!disp[d.id]||disp[d.id]==="").length;
+  $("kpis").innerHTML=`
+    <div class="kpi"><div class="n">${VIS.length}</div><div class="l">recruiter emails</div></div>
+    <div class="kpi"><div class="n" style="color:#6fe0a6">${strong}</div><div class="l">strong-fit</div></div>
+    <div class="kpi"><div class="n" style="color:#8fc2ff">${pursue}</div><div class="l">marked pursue</div></div>
+    <div class="kpi"><div class="n" style="color:#f5c542">${undis}</div><div class="l">need a call</div></div>`;
+  // Filters
+  const counts={all:VIS.length,new:strong+VIS.filter(d=>d.tier==="look").length,strong,look:VIS.filter(d=>d.tier==="look").length,low:VIS.filter(d=>d.tier==="low").length};
+  $("filters").innerHTML=["all","new","strong","look","low"].map(f=>
+    `<div class="filter ${riFilter===f?'active':''}" data-f="${f}">${f==="all"?"All":(f==="new"?"New":TIERLABEL[f])} · ${counts[f]}</div>`).join("")
+    + (archCount?`<div class="filter ${showArchivedR?'active':''}" data-arch="1">${showArchivedR?'Hide':'Show'} archived · ${archCount}</div>`:``)
+    + (()=>{const n=riPendingCount(riPendingState());
+        return n?`<div class="filter syncchip" data-sync="1" title="${n} change${n>1?'s':''} live only in this browser. Click to save them for the widget — then hit ↻ on the widget to apply.">⇪ Sync ${n} to disk</div>`:``;})();
+  document.querySelectorAll("#filters .filter:not(.syncchip)").forEach(el=>el.onclick=()=>{ if(el.dataset.arch){showArchivedR=!showArchivedR;localStorage.setItem("ri-sharch",showArchivedR?"1":"0");} else {riFilter=el.dataset.f;localStorage.setItem("ri-filter",riFilter);} render();});
+  const sc=document.querySelector("#filters .filter.syncchip");
+  if(sc) sc.onclick=()=>{
+    const p=riPendingState();
+    downloadState(p);
+    toast("Saved "+riPendingCount(p)+" change(s) to your Downloads folder. Now click ↻ on the Recruiter Inbox widget — it merges the file, deletes it, and the counts will match. Reload this page afterwards and the chip goes away.");
+  };
+  // List — "new": strong + look only, newest first (score breaks date ties)
+  const rows=riFilter==="new"
+    ?base.filter(d=>d.tier==="strong"||d.tier==="look").slice().sort((a,b)=>(b.date||"").localeCompare(a.date||"")||b.score-a.score)
+    :base.filter(d=>riFilter==="all"||d.tier===riFilter);
+  const list=$("list");
+  if(!rows.length){list.innerHTML='<div class="empty">Nothing in this filter.</div>';return;}
+  list.innerHTML=rows.map(d=>{
+    const cur=disp[d.id]||"";
+    const setcls=cur?("set-"+cur.toLowerCase()):"";
+    const tags=d.tags.map(t=>`<span class="tag ${t[1]}">${t[0]}</span>`).join("");
+    const flag=d.flag?`<div class="flag">${d.flag}</div>`:"";
+    // source-aware: LinkedIn cards link to the conversation and use LinkedIn-appropriate commands;
+    // Gmail cards keep the Outlook-reply (/recruiter-action) flow.
+    const isLI=d.source==="linkedin";
+    const threadUrl=isLI?`https://www.linkedin.com/messaging/thread/${d.id}/`:`https://mail.google.com/mail/u/0/#all/${d.id}`;
+    const openTitle=isLI?"Open conversation in LinkedIn":"Open thread in Gmail";
+    const srcTag=isLI?`<span class="tag li">LinkedIn</span>`:``;
+    const cardRef=cardRefOf(d), archived=isArchivedR(cardRef);
+    // job-fit-inbox runs headless in the background (jobhunt-cmd://). recruiter-action + next-steps
+    // open an interactive Claude Desktop session (claude://). ✓ + ran-date show once a command is logged.
+    const BG=new Set(['job-fit-inbox']);
+    const rbtn=(name,arg,label)=>{
+      const bg=BG.has(name);
+      if(bg && isRunning(name,arg))
+        return `<span class="runbtn bg running" title="Running in the background — the button flips to a green check when it finishes (~1–2 min)">⏳ Running…</span>`;
+      const on=ranOn(arg,name);
+      const href=bg?cmdUri(name,arg):claudeUri('/'+name+' '+arg);
+      const t=on
+        ? `Ran ${on.slice(0,10)}${bg?' — click to re-run in the background':' — click to reopen /'+name+' in Claude Desktop'}`
+        : (bg?`Runs headless in the background — no window, no Trust prompt`:`Open Claude Code in Claude Desktop (job-search-os) with /${name} prefilled`);
+      return `<a class="runbtn${on?' done':''}${bg?' bg':''}" href="${href}"${bg?` data-key="${b64url(name+'|'+arg)}"`:''} title="${t}">${on?'✓':'▶'} ${label}</a>`;
+    };
+    // "In process" = recruiter-action already run (logged) or an explicit IN PROCESS tag.
+    const inProcess = ranOn(d.id,'recruiter-action') || d.tags.some(t=>/in\s*process/i.test(t[0]));
+    const btns=isLI
+      ? rbtn('next-steps',threadUrl,'Next Steps') + rbtn('job-fit-inbox',threadUrl,'Job Fit Inbox')
+      : rbtn('recruiter-action',d.id,'Recruiter-Action')
+        + (inProcess ? rbtn('next-steps',d.id,'Next Steps') : ``)
+        + rbtn('job-fit-inbox',d.id,'Job Fit Inbox');
+    const archBtn=`<a class="archbtn${archived?' un':''}" href="#" data-ref="${cardRef}" data-un="${archived?1:0}" title="${archived?'Unarchive - bring it back. Applies here now; push it with the ⇪ chip so the widget and scans agree.':'Archive - hide it. Applies here now; push it with the ⇪ chip so the widget hides it too and scans will not re-add it.'}">${archived?'↩ Unarchive':'🗑 Archive'}</a>`;
+    return `<div class="row${archived?' archived':''}">
+      <div class="score ${SCLASS[d.tier]}">${d.score}</div>
+      <div>
+        <a class="role" href="${threadUrl}" target="_blank" title="${openTitle}">${d.role}</a>
+        <a class="meta" href="${threadUrl}" target="_blank" title="${openTitle}">${d.recruiter} · ${d.firm}${d.client!=="undisclosed"?" → "+d.client:""} · ${d.comp}</a>
+        <div class="tags">${srcTag}<span class="tag ${d.remote.k}">${d.remote.t}</span>${tags}</div>
+        ${flag}
+      </div>
+      <div class="right">
+        <select class="${setcls}" onchange="setDisp('${d.id}',this.value)">
+          ${["","Pursue","Maybe","Skip","Applied"].map(o=>`<option value="${o}" ${cur===o?"selected":""}>${o||"— set —"}</option>`).join("")}
+        </select>
+        <div class="btns">${btns}${archBtn}</div>
+      </div>
+    </div>`;
+  }).join("");
+  // Scoped to #list so these never double-bind the prospects tab's .archbtn / .runbtn.
+  document.querySelectorAll('#list .archbtn').forEach(a=>{
+    a.addEventListener('click',e=>{
+      e.preventDefault();
+      const r=a.getAttribute('data-ref'), un=a.getAttribute('data-un')==="1";
+      if(un){ localArchR.delete(r); if(onDisk(ARCHIVED,r)) localUnarchR.add(r); }
+      else  { localArchR.add(r); localUnarchR.delete(r); }
+      localStorage.setItem(LARCHR,JSON.stringify([...localArchR]));
+      localStorage.setItem(LUNARCHR,JSON.stringify([...localUnarchR]));
+      render();   // the ⇪ chip's count moves with it
+    });
+  });
+  document.querySelectorAll('#list .runbtn.bg[data-key]').forEach(a=>{
+    a.addEventListener('click',()=>{
+      const key=fromB64url(a.getAttribute('data-key'));
+      const name=key.slice(0,key.indexOf('|'));
+      running[key]=Date.now(); saveRunning();
+      toast(name==='job-fit-inbox'
+        ? 'Job Fit running in the background — the scorecard opens in a new tab when ready (~1–2 min).'
+        : 'Recruiter-Action running in the background — the tailored draft opens in Outlook when ready (~1–2 min).');
+      setTimeout(render,80); // flip the button to "Running…" and start the poll after the protocol handoff
+    });
+  });
+}
+const riScan=$("riScanBtn"); if(riScan) riScan.href=claudeUri("/recruiter-scan");
+render();
+// After a poll-reload, restore the scroll position so the refresh is seamless.
+(function(){const sy=sessionStorage.getItem("ri-scroll"); if(sy!=null){window.scrollTo(0,+sy); sessionStorage.removeItem("ri-scroll");}})();
+
+// ============ TABS ============
+// Recruiter Inbox is the default tab. The active tab persists in sessionStorage so the
+// recruiter poll-reload (and any manual reload) comes back to where you were.
+let searchBuilt=false;
+function showTab(tab){
+  document.querySelectorAll('.tabs .tab').forEach(x=>x.classList.toggle('on', x.getAttribute('data-tab')===tab));
+  $("panel-recruiter").hidden = tab!=="recruiter";
+  $("panel-prospects").hidden = tab!=="prospects";
+  $("panel-search").hidden = tab!=="search";
+  if(tab==="search" && !searchBuilt){ renderLinks(); searchBuilt=true; }
+  sessionStorage.setItem("jh-tab",tab);
+}
+document.querySelectorAll('.tabs .tab').forEach(t=>{ t.onclick=()=>showTab(t.getAttribute('data-tab')); });
+showTab(sessionStorage.getItem("jh-tab")||"recruiter");
 </script>
 </body>
 </html>

@@ -189,7 +189,7 @@
   <div class="legend">
     <span class="item"><span class="pill sched">Scheduled</span> runs automatically (daily, app open)</span>
     <span class="item"><span class="pill skill">On-demand</span> a skill you invoke in chat</span>
-    <span class="item"><span class="pill desk">Desktop</span> Rainmeter widget / one-click</span>
+    <span class="item"><span class="pill desk">Desktop</span> Zebar widget / one-click</span>
   </div>
 </header>
 
@@ -283,7 +283,7 @@
         <span class="pill sched">Scheduled</span>
       </div>
       <p class="desc">A daily Gmail scan that pulls <em>human-recruiter</em> emails, scores each against the career plan, and surfaces them for a one-glance triage. Acting on a role tailors a resume and drafts the reply — with the PDF attached — through Outlook.</p>
-      <div class="flow"><b>Gmail</b><span class="sep">→</span> score &amp; label <span class="sep">→</span> dashboard + widget <span class="sep">→</span> <b>act</b></div>
+      <div class="flow"><b>Gmail</b><span class="sep">→</span> score &amp; label <span class="sep">→</span> Recruiter Inbox tab + widget <span class="sep">→</span> <b>act</b></div>
       <div class="rows">
         <div class="cmdrow"><span class="cmd">recruiter-inbox-scan</span><span class="what">Daily ~07:57 scheduled task → writes the tracker, labels threads (Strong/Look/Low), syncs the widget.</span></div>
         <div class="cmdrow"><span class="cmd">/recruiter-scan</span><span class="what">The same scan on demand — wired to the widget's refresh button.</span></div>
@@ -291,8 +291,8 @@
         <div class="cmdrow"><span class="cmd">/job-fit-inbox</span> · <span class="cmd">/next-steps</span><span class="what">Read-only fit score, and a stage-aware next-steps plan grounded in the methodology.</span></div>
       </div>
       <div class="surf">
-        <span class="s"><span class="file">dashboard/recruiter-inbox.html</span></span>
-        <span class="s">RecruiterInbox widget</span>
+        <span class="s"><span class="file">dashboard/job-hunt.html</span> — Recruiter Inbox tab (first + default)</span>
+        <span class="s">Job Search Zebar widget — Recruiters tab</span>
         <span class="s"><span class="file">recruiter-inbox.md</span></span>
       </div>
     </div>
@@ -308,12 +308,12 @@
       <div class="rows">
         <div class="cmdrow"><span class="cmd">/job-hunt-scan</span><span class="what">Scan job-alert emails + run the saved sweeps (LinkedIn/Dice/Indeed + Glassdoor/Wellfound/BuiltIn x-rays) → merge strong fits, refresh the widget.</span></div>
         <div class="cmdrow"><span class="cmd">/board-scan</span><span class="what">Claude runs rotating ATS x-ray searches itself and reports only 65+ fits — no clicking 40 links.</span></div>
-        <div class="cmdrow"><span class="file">job-hunt-sweep.json</span><span class="what">Single source of truth: 14 title families → one Boolean the sweeps rebuild from.</span></div>
+        <div class="cmdrow"><span class="file">job-hunt-sweep.json</span><span class="what">Single source of truth: 22 title families → one Boolean for browser sweeps + two batched x-ray queries, plus the hybrid-local (≤20 mi of 33301) exception rules.</span></div>
         <div class="cmdrow"><span class="file">job-title-search-list.md</span> · <span class="file">job-search-tracker.md</span><span class="what">The 120-day title corpus and the board-coverage tracker that feeds the briefing.</span></div>
       </div>
       <div class="surf">
-        <span class="s"><span class="file">dashboard/job-hunt.html</span> (tabbed)</span>
-        <span class="s">JobHunt widget</span>
+        <span class="s"><span class="file">dashboard/job-hunt.html</span> — Job Prospects + Direct Source Search tabs</span>
+        <span class="s">Job Search Zebar widget — Jobs tab</span>
       </div>
     </div>
 
@@ -375,7 +375,7 @@
   <p class="sec-sub">What the machinery hands you each morning, and where your judgment actually goes.</p>
   <div class="loop">
     <div class="step"><div class="t">READ</div><h4>The briefing</h4><p>Top roles, board searches to run, networking batch, today's bottleneck.</p></div>
-    <div class="step"><div class="t">TRIAGE</div><h4>Two dashboards</h4><p>Recruiter Inbox + Job Hunt — set dispositions on anything new since yesterday.</p></div>
+    <div class="step"><div class="t">TRIAGE</div><h4>One dashboard, three tabs</h4><p>Recruiter Inbox · Job Prospects · Direct Source Search — set dispositions on anything new since yesterday.</p></div>
     <div class="step"><div class="t">ACT</div><h4>One strong fit</h4><p><span class="cmd">/recruiter-action</span> or <span class="cmd">/resume-tailor</span> the single best role — build the referral path first.</p></div>
     <div class="step"><div class="t">OUTREACH</div><h4>Send the batch</h4><p>Connection requests + any drafted replies. You review and send; the OS never sends for you.</p></div>
     <div class="step"><div class="t">LOG</div><h4>Track it</h4><p><span class="cmd">/app-tracker</span> keeps the pipeline honest and feeds tomorrow's briefing.</p></div>
@@ -395,13 +395,13 @@
         <tr><td><span class="co">Publicis Sapient</span> — PowerBI Engineer</td><td>Recruiter Inbox</td><td><span class="status st-process">In process</span></td><td class="num">80</td></tr>
         <tr><td><span class="co">Talenzaa</span> — Business Analyst (BI)</td><td>Recruiter Inbox</td><td><span class="status st-process">Reply drafted</span></td><td class="num">82</td></tr>
         <tr><td><span class="co">Virtual Networx</span> — Data Analyst &amp; Power BI</td><td>Recruiter Inbox</td><td><span class="status st-process">Reply drafted</span></td><td class="num">85</td></tr>
-        <tr><td><span class="co">Armanino</span> — Sr BI &amp; Analytics Developer</td><td>Recruiter Inbox</td><td><span class="status st-watch">Watching</span></td><td class="num">60</td></tr>
+        <tr><td><span class="co">Armanino</span> — Sr BI &amp; Analytics Developer</td><td>Recruiter Inbox</td><td><span class="status st-process">In process</span></td><td class="num">72</td></tr>
       </tbody>
     </table>
   </div>
   <div class="metabar" style="border:none;padding-top:14px">
-    <span><b>Job Hunt prospects</b> 31 graded</span>
-    <span><b>Recruiter Inbox</b> 18 scored (7 via LinkedIn)</span>
+    <span><b>Job Hunt prospects</b> 26 live</span>
+    <span><b>Recruiter Inbox</b> 6 live of 20 scored (7 via LinkedIn; rest archived/skipped)</span>
     <span><b>Referral paths open</b> Fractal ×3 · Baptist ×2</span>
   </div>
 </section>
@@ -421,15 +421,17 @@
     <div class="fm">
       <h4>Surfaces — dashboards &amp; widgets</h4>
       <ul>
-        <li><span class="file">dashboard/recruiter-inbox.html</span><span>RecruiterInbox Rainmeter widget</span></li>
-        <li><span class="file">dashboard/job-hunt.html</span><span>JobHunt Rainmeter widget</span></li>
-        <li><span>Both widgets show a live "Last scan" timestamp and open the dashboard / re-scan on click.</span></li>
+        <li><span class="file">dashboard/job-hunt.html</span><span>the one merged dashboard — tabs: Recruiter Inbox (default) · Job Prospects · Direct Source Search</span></li>
+        <li><span class="file">dashboard/recruiter-inbox.html</span><span>redirect stub only (folded into job-hunt.html 2026-07-22)</span></li>
+        <li><span>Job Search Zebar widget (Recruiters | Jobs tabs, 344×900): live "Last scan" stamp, ↻ quick refresh of both tabs (auto every 15 min), ✨ full scan for the active tab, grid → dashboard.</span></li>
       </ul>
     </div>
     <div class="fm">
       <h4>Engines — the plumbing</h4>
       <ul>
         <li><span class="file">recruiter-action/outlook-helpers.ps1</span><span>Outlook COM: read attachments, draft reply + signature, attach PDF</span></li>
+        <li><span class="file">dashboard/Sync-Widgets.ps1</span><span>dashboard HTML → widget JSON: merges ⤴ chip downloads, drops archived/skipped, mutex-serialized</span></li>
+        <li><span class="file">context-library/dashboard-state.json</span><span>shared truth: runs · archived · skipped → injected as the DASH_STATE block</span></li>
         <li><span>Word COM (docx → PDF) · Gmail MCP · Chrome MCP (LinkedIn) · WebSearch (sweeps)</span></li>
       </ul>
     </div>

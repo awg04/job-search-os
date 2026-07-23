@@ -52,7 +52,7 @@ Then create the draft:
 . "<skill>\outlook-helpers.ps1"
 $eid = New-GmailReplyDraft -Subject "<exact original subject>" -BodyHtmlFile "<folder>\reply-body.html" -AttachmentPath "<folder>\Andrew Green Resume.pdf" -ThreadId "<threadId>"
 ```
-This saves an unsent reply to the Gmail Drafts folder (syncs to Gmail), tags it "Job Search" + adds a follow-up flag (so it stands out and its fresh timestamp sorts it to the top of Drafts), **opens the actual draft in Outlook**, and — because `-ThreadId` was passed — logs the draft to `context-library/recruiter-drafts.json` and refreshes the dashboard so this thread's recruiter-action line flips to `✓ Done`. (Always pass `-ThreadId <threadId>`; if a draft is created without `New-GmailReplyDraft`, call `Add-RecruiterDraftLog -ThreadId <threadId>` manually.) Note: a reply carries the original sender's inline signature images as *hidden* attachments — the only *visible* attachment is the PDF; that's expected, don't strip them.
+This saves an unsent reply to the Gmail Drafts folder (syncs to Gmail), tags it "Job Search" + adds a follow-up flag (so it stands out and its fresh timestamp sorts it to the top of Drafts), **opens the actual draft in Outlook**, and — because `-ThreadId` was passed — records the run via `dashboard\Record-DashboardRun.ps1` so this thread's Recruiter-Action button on the dashboard flips to a green ✓ (and its in-process Next Steps button unlocks). (Always pass `-ThreadId <threadId>`; if a draft is created without `New-GmailReplyDraft`, record it manually per step 7.) Note: a reply carries the original sender's inline signature images as *hidden* attachments — the only *visible* attachment is the PDF; that's expected, don't strip them.
 
 Then write a double-click launcher into the application folder so Andrew can reopen the draft anytime:
 - `open-draft.ps1` — finds the draft by its reply subject and `.Display()`s it (attach to running Outlook, else launch it).
@@ -65,7 +65,9 @@ If you regenerate and need to remove a superseded draft, use `Remove-StaleReplyD
 
 ### 7. Update trackers
 - Set the recruiter-inbox.md Disposition for this thread to `Pursue` (or `Applied` if a draft went out for review).
-- Prompt to add/update the role in `/app-tracker`.
+- Add/update the role in `/app-tracker` (in headless/background runs do it automatically; interactively you may prompt first).
+- **Thread the opportunity** so it is never an orphan run: append one dated line to `context-library/opportunity-threads/<firm-slug>_<role-slug>.md` (create it with a short header — opportunity name, Gmail thread id, firm, role, remote, comp — if missing; use the SAME `firm-slug_role-slug` as the application-folder naming so recruiter-action and job-fit-inbox for the same opportunity share ONE thread file). Line format: `- <YYYY-MM-DD HH:MM> recruiter-action: <one-line outcome> | Next: <single next action>`.
+- **Log the run** so the dashboard's Recruiter-Action button shows its green check (and unlocks the in-process Next Steps button): `New-GmailReplyDraft -ThreadId` already does this automatically. Only if you drafted some other way, run it manually — in PowerShell from the repo root: `dashboard\Record-DashboardRun.ps1 -Ref <threadId> -Command recruiter-action`. This updates `context-library/dashboard-state.json` and re-syncs both dashboards.
 
 ### 8. Report
 Output: the fit summary, the folder path, the resume keyword-coverage score + any UNVERIFIED flags, whether the draft was created, and whether the attachment succeeded or needs a manual drag. Remind the user to review the draft before sending.

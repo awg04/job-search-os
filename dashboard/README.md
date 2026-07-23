@@ -26,3 +26,102 @@ The dashboard is only as good as the trackers:
 
 - `dashboard.html` — the page itself (source of truth for the artifact)
 - Task definition: `C:\Users\agr9010\.claude\scheduled-tasks\job-search-dashboard-refresh\SKILL.md`
+
+## Desktop widget refresh (Zebar)
+
+The **consolidated Job Search widget** (`~/.glzr/zebar/job-search/`, 344×900) has
+**Recruiters | Jobs** tabs — the same split as the dashboard — each with its own KPIs,
+bucket pills, and a top-12 list. Header buttons:
+
+| Button | What it runs | Cost |
+|--------|--------------|------|
+| ✨ sparkle | Full scan **for the active tab** — `/recruiter-scan` or `/job-hunt-scan` in a visible Claude Code window (reads Gmail, scores, rewrites the dashboard) | minutes |
+| ↻ refresh | **Quick refresh** — `Sync-Widgets.ps1` for both tabs (via `sync-widgets.vbs`), hidden, no Gmail and no model | ~1s |
+
+The quick refresh also runs **automatically every 15 minutes** while the widget is up
+(first fires 45s after start). The refresh icon spins during an auto-sync just as it
+does for a manual one. Separately, the widget re-reads its two JSONs every 5 minutes —
+that part is just a file read.
+
+_The old single-purpose `job-hunt` and `recruiter-inbox` packs still exist and still
+receive data (`Sync-Widgets.ps1` writes every pack dir that exists) but are no longer
+in Zebar's startup list; delete their folders whenever._
+
+Because the auto-sync also runs the Downloads ingest below, a ⇪ chip push applies on its
+own within 15 minutes; clicking ↻ just makes it immediate.
+
+Both widgets run the same script against the same files, so `Sync-Widgets.ps1` takes a
+named mutex (`Global\JobSearchOS-SyncWidgets`) for the state-file and dashboard-rewrite
+section. Concurrent runs queue; if the 30s wait expires, the run exits quietly, since
+whoever held the lock just did the same work.
+
+`Sync-Widgets.ps1` is the single implementation of "dashboard HTML → widget JSON":
+
+- re-injects `RUN_STATE`/`ARCHIVED` into both dashboards (`Sync-Dashboards.ps1` logic), then
+- parses `ALERT_DATA` out of `job-hunt.html` → `~/.glzr/zebar/job-hunt/jobs.json`, and
+  `DATA` out of `job-hunt.html` (Recruiter Inbox tab) → `~/.glzr/zebar/recruiter-inbox/recruiters.json`
+- **drops archived opportunities**, so the widget KPIs match the dashboard's live counts
+- preserves the real last-scan stamp (`updated`) and adds a separate `synced` stamp
+
+So the refresh button picks up anything that changed the dashboards since the last
+scan — archiving a card, a hand-edit, a `/job-fit-inbox` run — without re-scanning.
+
+### Why widget and dashboard counts can drift
+
+The widget reads files; the dashboard reads files **plus its own browser's
+`localStorage`**. Anything that lives only in the browser is invisible to the widget.
+
+`context-library/dashboard-state.json` is the shared truth, with three maps:
+
+| Map | Written by | Effect |
+|---|---|---|
+| `runs` | the `▶`/`✓` command buttons | green ✓ + ran-date on the card |
+| `archived` | Archive button (via the ⇪ chip), or `/archive` | hidden everywhere; scans won't re-add it |
+| `skipped` | the **Skip** disposition (via the ⇪ chip) | hidden everywhere; scans may still re-surface it |
+
+Skip used to be browser-only, which is the main way the two used to disagree. It now
+persists like Archive, and a persisted skip seeds any other browser (so mobile matches too).
+
+### How hide-state reaches disk: the ⇪ chip
+
+Archive, Unarchive and Skip apply **immediately in the browser** and are recorded in
+`localStorage`. They reach disk in one batch, when you click the **⇪ Sync N to disk** chip
+in the toolbar. The chip counts every pending change and only appears when there is one,
+so an empty toolbar means browser and disk agree.
+
+The chip **downloads** `job-search-os-state.json`:
+
+```json
+{ "archived": [ref, ...], "unarchived": [ref, ...],
+  "skipped":  [id,  ...], "unskipped":  [id,  ...] }
+```
+
+`Sync-Widgets.ps1` checks `~/Downloads` for `job-search-os-state*.json` on every run,
+applies the adds and the removals, and deletes the file. So the loop is:
+**click the chip → click ↻ on the widget → done.** Reload the dashboard and the chip is gone.
+
+This replaced a per-click `jobhunt-archive://` protocol launch. Chrome launches custom
+protocols unreliably — it can prompt, and a missed or dismissed prompt drops the click
+silently, which is how archives went missing without any error. A download always lands,
+needs no registration, and batches naturally.
+
+The `jobhunt-archive://` handler, its launcher, and `Register-ArchiveProtocol.ps1` are
+still on disk and still work if invoked directly (`archive-uri-handler.ps1 -Uri …`), but
+nothing in the dashboards calls them. Unregistering the protocol is safe if you want to
+tidy up. **`jobhunt-cmd://` is a different protocol and is still in use** — it's what the
+Job Fit Inbox / Recruiter-Action buttons fire to run a command headlessly. If those
+buttons ever seem to do nothing, suspect the same Chrome protocol-launch problem.
+
+Dispositions other than Skip (Pursue / Maybe / Applied) stay browser-only on purpose —
+they don't hide anything, so they can't cause a count mismatch.
+
+Run it by hand with:
+
+```
+powershell -ExecutionPolicy Bypass -File dashboard\Sync-Widgets.ps1 [-Target job-hunt|recruiter|both]
+```
+
+- `sync-job-hunt.vbs` / `sync-recruiter-inbox.vbs` — hidden, waiting launchers the widgets call
+  via `zebar.shellExec` (argument-free; each widget's `zpack.json` `argsRegex` anchors on the filename)
+- `Rainmeter\Skins\*\Update-*Data.ps1` — legacy paths, now thin shims over `Sync-Widgets.ps1`,
+  kept so the scan skills and scheduled tasks keep working
