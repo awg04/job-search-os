@@ -120,12 +120,14 @@
   #panel-recruiter select.set-applied{border-color:var(--accent);color:#8fc2ff}
   #panel-recruiter .flag{margin-top:8px;font-size:12px;color:#ffb4b4;background:#2a1414;border:1px solid #7a2323;border-radius:8px;padding:7px 10px}
   #panel-recruiter .btns{display:flex;flex-direction:column;gap:6px;margin-top:6px;width:100%;min-width:170px}
-  #panel-recruiter .runbtn{background:#12233b;border:1px solid var(--accent);color:#8fc2ff;border-radius:7px;padding:6px 12px;font-size:12.5px;font-weight:600;text-decoration:none;cursor:pointer;text-align:center;display:block;white-space:nowrap}
-  #panel-recruiter .runbtn:hover{background:#1b3355;color:#fff}
-  #panel-recruiter .runbtn.done{background:#12351f;border-color:#2f7a4d;color:#5fe0a0}
-  #panel-recruiter .runbtn.done:hover{background:#164f2d;color:#fff}
-  #panel-recruiter .runbtn.bg{border-style:dashed}
-  #panel-recruiter .runbtn.running{background:#3a3010;border:1px dashed #f5c542;color:#f5c542;cursor:default;animation:pulse 1.2s ease-in-out infinite}
+  /* Card buttons only (inside .btns) — the meta-line's ▶ /recruiter-scan button keeps the
+     shared .runbtn.inline look so it matches the prospects tab's ▶ /job-hunt-scan. */
+  #panel-recruiter .btns .runbtn{background:#12233b;border:1px solid var(--accent);color:#8fc2ff;border-radius:7px;padding:6px 12px;font-size:12.5px;font-weight:600;text-decoration:none;cursor:pointer;text-align:center;display:block;white-space:nowrap}
+  #panel-recruiter .btns .runbtn:hover{background:#1b3355;color:#fff}
+  #panel-recruiter .btns .runbtn.done{background:#12351f;border-color:#2f7a4d;color:#5fe0a0}
+  #panel-recruiter .btns .runbtn.done:hover{background:#164f2d;color:#fff}
+  #panel-recruiter .btns .runbtn.bg{border-style:dashed}
+  #panel-recruiter .btns .runbtn.running{background:#3a3010;border:1px dashed #f5c542;color:#f5c542;cursor:default;animation:pulse 1.2s ease-in-out infinite}
   #panel-recruiter .archbtn{background:#b3342f;border:1px solid #5e1a1a;color:#fff;border-radius:7px;padding:5px 12px;font-size:12px;font-weight:600;text-decoration:none;text-align:center;display:block;cursor:pointer}
   #panel-recruiter .archbtn:hover{background:#c0392b;border-color:#7a2323}
   #panel-recruiter .archbtn.un{background:#1e7a4d;border-color:#0f3b24}
