@@ -121,6 +121,25 @@ Remote-only search: every entry carries a `remote-policy` field. Non-remote-firs
   - 2026-07-21 Tailored 1-page resume built (100% coverage, PDF) + call-prep sheet (md/PDF, on desktop). Ready for the HM hand-off.
   - 2026-07-22 **Exploratory call with Theron HELD** (Teams; thread `19f8a11a6f842033`); resume sent. `/next-steps` run → post-call plan set: follow-up note (comp on record), salary-research, interview-prep, reporting-transformation work product.
 
+### Kentro (IT Concepts dba Kentro) — Power BI Engineer, VA ESOM (MERIDIAN)
+- **Status:** ✅ APPLIED 2026-07-23 via careers.kentro.us — iCIMS application **2026-4175**, candidate-dashboard status **"Received Submission"**. Login: andrewgreen04@gmail.com. ⚠️ Sibling req: **4202 "Major Incident Management Power BI Engineer (VA ESOM)"** $147–166K — ServiceNow REQUIRED there, custom visuals + Python preferred; HOLD — if pursued, re-tune resume (restore Deneb/Vega-Lite + Python bullets) and flag both apps to Brooks Keener.
+- **Date added:** 2026-07-22
+- **Remote policy:** ✅ posting states "Remote within the United States," Eastern Time hours (Andrew = ET, Fort Lauderdale)
+- **Job fit:** score 92 (`/job-hunt-scan` 2026-07-17 — tied with Fractal for top prospect); resume coverage 100% (13/13 — 11 STRONG / 2 PARTIAL)
+- **Referral:** In motion — 5 connection requests drafted 2026-07-22 (Laelaf A. — Lead Power BI Engineer; Jeff Brown — Sr BI Analyst; Dr. Timothy McGee — Director Data Services & AI; Jacouri Givens — Data Engineer; Brooks Keener — VA ESOM Sr Technical Recruiting Lead). See connection-tracker.md → Kentro. **Apply by 7/24 regardless of accepts.**
+- **Resume version:** JD-tailored, 1-page verified → `applications/2026-07-22_kentro_power-bi-engineer_meridian/Andrew Green Resume.pdf` (coverage 100%, all bullets traceable to experience-library.md; ServiceNow honestly excluded — screen language in coverage.md)
+- **Comp (posted):** $147,000–$165,000 ✅ clears floor; anchor **$160–165K**. ⚠️ ZipRecruiter variant shows "$52–68" and an April 15 req-origin date — confirm the band at screen; LinkedIn official posting is the anchor.
+- **Clearance:** US Citizen/Green Card + obtainable Public Trust + GSA ID standards — attestations handled by Andrew during the 2026-07-23 submission. Public Trust suitability process will follow if advanced.
+- **Stack fit:** Line-for-line — Power BI Desktop/Service, DAX, Power Query, SQL, star schema, SharePoint/Excel integration, SDLC, governance, exec insights. Gaps: ServiceNow (pattern-transfer language ready); no federal history (JD's "or large enterprise" clause covers via Carnival/Merrill).
+- **Next action:** (1) **Send the 5 Kentro connection requests today** — post-application referral still pulls the file; once Brooks Keener (VA ESOM recruiting lead) accepts, mention the submitted application (2026-4175). (2) If quiet by ~2026-07-30, check the iCIMS candidate dashboard and send one follow-up. (3) When a screen lands: `/interview-prep Kentro` (no pre-loaded intel — web + frameworks; rehearse the ServiceNow pattern-transfer and federal-rigor answers in coverage.md; confirm comp band vs the ZipRecruiter discrepancy). (4) Close **PL-300** — the JD's named preferred qual.
+- **History:**
+  - 2026-07-17 Surfaced by `/job-hunt-scan` (LinkedIn alert digest + LI sweep, score 92).
+  - 2026-07-22 `/next-steps` run → referral-first plan; posting verified live (131 applicants); direct iCIMS path found (careers.kentro.us).
+  - 2026-07-22 `/connection-request Kentro` → 5 personalized drafts (tracker updated).
+  - 2026-07-22 `/resume-tailor` → 1-page PDF built + verified (100% coverage), codename MERIDIAN.
+  - 2026-07-23 Applied via careers.kentro.us: found req **4175** = exact LinkedIn JD (verified word-for-word) + sibling req 4202 (Major Incident Mgmt variant, ServiceNow-required — held). Claude filled the iCIMS Candidate Profile: resume PDF uploaded (parse pre-filled name/phone/city/state), cover letter (top-3 matches, ServiceNow note, no clearance claims) written into form, address type Home, source Job Board→LinkedIn. Handed off for zip/password/captcha/Submit Profile.
+  - 2026-07-23 **SUBMITTED by Andrew** (zip, account password, captcha, Submit Profile). Verified on candidate dashboard: application **2026-4175, "Received Submission."** Moved to In Process.
+
 ---
 
 ## Watching / Pre-Application
