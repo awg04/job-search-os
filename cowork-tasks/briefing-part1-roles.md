@@ -39,7 +39,16 @@ Stats since start: Applications: [N] | Interviews: [N] | Offers: [N]
 
 ---
 
-## New Roles Scan
+## Step 1A — Recruiter Inbox Check (run FIRST)
+
+Run `/recruiter-inbox` to check Gmail for inbound recruiter messages from the last 72 hours BEFORE scanning job boards. Inbound messages are higher-signal than cold applications.
+
+- If Gmail MCP is unavailable, note it and continue to Step 1B.
+- Any role scoring 70+ from the inbox gets a full role card and slots into the combined Top Roles list.
+- Draft responses are saved to Gmail drafts — never auto-sent.
+- Output a "Recruiter Inbox" section at the top of the Top Roles block.
+
+## Step 1B — Target-Company Scan
 
 Search each company in target-companies.md for new postings in the user's target function from the last 24 hours. Check careers pages and LinkedIn.
 
@@ -54,9 +63,9 @@ Search each company in target-companies.md for new postings in the user's target
 
 **REMOTE-ONLY MODE:** If career-plan.md shows remote-only preference, filter for roles mentioning "remote," "distributed," or "work from anywhere." Flag "hybrid" or "onsite" roles with a WARNING before scoring.
 
-## Scoring & Tailoring
+## Scoring & Tailoring (for target-company results)
 
-For each new role found:
+For each new role found from the target-company scan:
 1. Run job-fit-scorer (score 1-100 across 5 dimensions: skill match, seniority fit, culture signals, comp range, growth trajectory)
 2. **Roles scoring 70+:**
    - Run resume-tailor using experience-library.md as source
@@ -67,11 +76,27 @@ For each new role found:
 3. **Roles scoring 60-69:** Flag as "Apply with referral only" and note which connections could refer
 4. **Roles below 60:** Skip but log that they were reviewed
 
-Surface the top 3 roles ranked by fit score.
+## Step 1C — Broad Job Board Scan (run AFTER target-company scan)
+
+Run `/job-scan` to search LinkedIn, Indeed, Glassdoor, Dice, Builtin, and ZipRecruiter for roles beyond target-companies.md.
+
+- Deduplication is automatic: job-scan cross-references today's target-company scan results and skips companies already covered.
+- Top results slot into the combined Top Roles list, labeled [FROM JOB BOARDS].
+- Any new employer discovered with a role scoring 75+ triggers a note to add the company to target-companies.md.
+
+## Combined Top Roles Output
+
+Merge all sources (recruiter inbox, target-company scan, job board scan) into one ranked list by fit score. Surface up to **6 role cards total** (expanded from the previous limit of 3):
+- Up to 3 from target-company scan
+- Up to 3 from job board scan
+- Inbound recruiter roles (70+) count toward the 6 and slot in by score
+- Label each card's source: [TARGET CO], [FROM JOB BOARDS], or [INBOUND — Recruiter Name]
+
+If total roles scoring 70+ exceeds 6, take the top 6 by score. Move extras to "Other Roles Reviewed" table.
 
 ## Top Role Cards
 
-For each of the top 3 roles (scoring 70+), include:
+For each of the top 6 roles (scoring 70+), include:
 
 ### [Role Title] at [Company] (Fit Score: [X]/100)
 
