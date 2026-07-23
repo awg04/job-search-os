@@ -1,0 +1,46 @@
+Andrew Green
+andrewgreen04@gmail.com | (561) 339-1806 | linkedin.com/in/agreen8 | Fort Lauderdale, FL
+
+SUMMARY
+
+Senior BI Developer with 10+ years of experience delivering enterprise Power BI solutions and data engineering pipelines on the Microsoft stack -- SQL Server, Azure Data Factory, Azure Synapse, SSIS. Built three enterprise data warehouses from scratch and reduced production data processing time 25% through SQL performance tuning. Proven track record delivering actionable, executive-trusted reporting across operations, finance, and cross-functional teams. Local South Florida candidate. PL-300 (Power BI Data Analyst Associate) and DP-203 (Azure Data Engineer Associate) certifications in progress.
+
+SKILLS
+
+BI & Reporting: Power BI (Tabular Data Models, DAX), Power BI Report Builder, SSRS, Power Query, Tableau
+ETL / Data Engineering: Azure Data Factory, SSIS, Azure Synapse Analytics, Microsoft Fabric (Lakehouse, Pipelines, Dataflows)
+Databases: SQL Server, Azure SQL, Oracle, Snowflake, Databricks
+Languages: SQL, T-SQL, DAX, Python
+Cloud: Microsoft Azure
+Certifications (In Progress): PL-300 Power BI Data Analyst Associate; DP-203 Azure Data Engineer Associate
+
+EXPERIENCE
+
+Senior Business Intelligence Developer | Carnival Cruise Line | 2025 - Present
+- Automated ETL workflows integrating heterogeneous HVAC and energy management data sources -- SQL databases, IoT sensor feeds, vendor automation tags, and APIs -- into governed reporting pipelines, achieving 99% data accuracy for near-real-time Power BI reporting
+- Optimized SQL-based extraction, transformation, and validation logic for large-scale energy datasets, diagnosing and resolving production processing bottlenecks and reducing data processing time 25% while improving refresh performance
+- Designed scalable Power BI Tabular Data Models and semantic layers supporting real-time KPI reporting -- energy targets, variance-to-target, and operating mode metrics -- for engineering, operations, and executive audiences
+- Used Azure Synapse Analytics to schedule, orchestrate, and automate ETL tasks, improving refresh reliability and enabling standardized, auditable data delivery
+
+Senior Business Intelligence Engineer | Basic Fun | 2023 - 2025
+- Designed Basic Fun's first enterprise data warehouse from scratch -- full stack from source ingestion through ETL, dimensional modeling, star schema, and semantic layer -- creating the company's foundational analytics platform
+- Built custom Python-based API integrations via Azure Data Factory, calling the Amazon Selling Partner API and Walmart vendor API directly, parsing JSON payloads into a Microsoft Fabric Lakehouse -- powering Power BI demand forecasting for Marketing, Operations, Demand Planning, and Sales, improving forecast accuracy 25% YoY to 78%
+- Built and maintained enterprise Power BI dashboards covering sales performance, budget tracking, forecast accuracy, and inventory position -- contributing to a 20% improvement in Performance-to-Plan outcomes
+- Conducted ongoing data quality validation, reconciliation, and performance tuning across data warehouse tables, ETL jobs, semantic models, and dashboards, ensuring accuracy and executive trust in reported metrics
+
+Business Intelligence Engineer | Twin-Star International | 2020 - 2023
+- Architected Twin-Star's first enterprise data warehouse: defined dimensional models, implemented star schema, built SSIS ETL packages, and leveraged Azure Synapse Analytics for parallel analytical processing
+- Led migration of on-premise SQL Server schemas to Azure SQL Server, migrating transactional data from multiple siloed ERP systems into an Azure SQL Server operational data store using ETL pipelines
+- Integrated general ledger data across three portfolio companies, modeling a unified chart of accounts and automating P&L, Balance Sheet, and Cash Flow reporting -- saving 20-25 hours/month in manual Finance team preparation
+- Built paginated reports in SSRS/Power BI Report Builder for complex data exports, and engineered a Power Apps write-back solution enabling report users to input commentary directly within Power BI
+
+Business Analyst/Buyer | AutoNation | 2016 - 2017
+- Built an automated tool using Python to ingest and parse Vehicle Report data from PDFs, applying custom appraisal logic to calculate optimal bid prices and profit margins at auction
+- Created advanced DAX measures for real-time KPI tracking covering financial forecasting, sales performance, and inventory optimization
+
+Financial Advisor | Merrill Lynch | 2009 - 2016
+- Co-managed $250M in client assets as junior partner; built foundational financial reporting expertise (P&L, Balance Sheet, Cash Flow) that underpins current BI and data engineering work
+
+EDUCATION
+
+BS, Finance & Economics -- Florida State University

@@ -41,7 +41,7 @@ job-search-os/
 └── setup/                       # Installation guide + checklist
 ```
 
-## Skills (18 total)
+## Skills (20 total)
 
 | Command | Description |
 |---------|-------------|
@@ -63,6 +63,8 @@ job-search-os/
 | `/salary-research [company + role + level]` | Market comp from levels.fyi, Glassdoor, Blind |
 | `/negotiate [offer details]` | Offer analysis, leverage, counter-offer language |
 | `/weekly-retro` | End-of-week performance analysis with coaching |
+| `/job-scan` | Scan LinkedIn, Indeed, Glassdoor, Dice, Builtin for BI/Data roles beyond target-companies list — returns top 3 scored matches for the briefing |
+| `/recruiter-inbox` | Check Gmail for inbound recruiter messages (last 72h), score each role, draft responses, log new contacts to connection-tracker |
 
 ## Sub-Agents (4 total)
 
