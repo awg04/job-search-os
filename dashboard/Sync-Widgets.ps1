@@ -200,8 +200,10 @@ function Sync-JobHunt {
     $s     = $o.Value
     $url   = JsonField $s 'url'
     $gmail = JsonField $s 'threadId'
-    $ref   = if ($gmail) { $gmail } else { $url }        # dashboard's refOf()
-    if ($ref -and $hidden.Contains($ref)) { $skipped++; continue }
+    # dashboard's refOf() is url-first (per-posting - one digest email spans many cards,
+    # so thread ids are not unique per posting), but older state entries were keyed by
+    # thread id. Hide on either key, matching the dashboard's isArchived().
+    if (($url -and $hidden.Contains($url)) -or ($gmail -and $hidden.Contains($gmail))) { $skipped++; continue }
 
     $rows.Add([pscustomobject][ordered]@{
       title   = ToAscii (JsonField $s 'title')

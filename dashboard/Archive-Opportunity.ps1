@@ -19,8 +19,14 @@ param(
 $state = Get-DashboardState
 $verb  = if ($Kind -eq 'skipped') { 'skipped' } else { 'archived' }
 if ($Unarchive) {
-  if ($state[$Kind].ContainsKey($Ref)) { $state[$Kind].Remove($Ref) }
-  Write-Host "un$($verb): $Ref"
+  if ($state[$Kind].ContainsKey($Ref)) {
+    $state[$Kind].Remove($Ref)
+    Write-Host "un$($verb): $Ref"
+  } else {
+    # Job-hunt refs are per-posting urls, but entries written before 2026-07-23 could be
+    # keyed by the card's Gmail threadId - the caller should retry with that if this hits.
+    Write-Host "un$($verb): $Ref was not in the '$Kind' map - nothing removed (legacy job-hunt entries may be keyed by the card's threadId)"
+  }
 } else {
   $state[$Kind][$Ref] = $Date
   Write-Host "$($verb): $Ref ($Date)"

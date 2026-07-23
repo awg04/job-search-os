@@ -12,9 +12,9 @@ Records an opportunity as archived (or unarchived) in the single source of truth
 ## Input
 
 The argument is the card's **ref** - exactly what the button passed:
-- a **Gmail thread id** (hex, e.g. `19f8091b2c1ef05f`) - a recruiter-inbox Gmail card,
+- a **Gmail thread id** (hex, e.g. `19f8091b2c1ef05f`) - a recruiter-inbox Gmail card, or a Job Hunt prospect with no posting link (`url: null`),
 - a **LinkedIn thread URL** (`https://www.linkedin.com/messaging/thread/<id>/`) - a recruiter-inbox LinkedIn card, or
-- a **job-posting URL** (`http…`) - a Job Hunt web-sweep prospect.
+- a **job-posting URL** (`http…`) - a Job Hunt prospect (alert-email or web-sweep). The url is the ref because one digest email yields many cards sharing a `threadId` - a thread-keyed archive would hide them all, so job-hunt cards archive per-posting.
 
 If the argument begins with the word `unarchive` (e.g. `/archive unarchive 19f8091b2c1ef05f`), it's an **un-archive** request - strip that word and pass `-Unarchive`.
 
@@ -34,3 +34,4 @@ Report back: archived vs. unarchived, the ref, and that both dashboards were re-
 ## Notes
 - Archived refs are respected by the scan skills (`job-hunt-scan`, `recruiter-scan`, `linkedin-scan`) - they read `dashboard-state.json` and skip archived refs when regenerating the dashboards, so an archived opportunity stays gone.
 - This is reversible: `/archive unarchive <ref>` brings it back.
+- **Legacy refs:** job-hunt entries archived before 2026-07-23 may be keyed by the card's Gmail `threadId` instead of its url (the dashboard and widget still match those on read). If an unarchive by url prints "nothing removed", look up the card's `threadId` in `dashboard/job-hunt.html`'s `ALERT_DATA` and unarchive that ref too. Never *archive* a url-bearing job-hunt card by its threadId - that would hide every card from the same digest email.

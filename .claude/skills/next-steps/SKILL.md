@@ -5,13 +5,14 @@ description: Produce a prioritized, methodology-driven next-steps plan for one j
 
 # /next-steps [threadId | posting-URL]
 
-Given a single opportunity, output the **concrete next actions to advance it**, prioritized and dated, using the Job Search OS methodology. Read-only: it recommends and can update the tracker's Next-action field, but never drafts or sends. Fed by the "/next-steps" buttons on both the recruiter-inbox dashboard (thread IDs) and the Job Hunt dashboard's Job Prospects tiles.
+Given a single opportunity, output the **concrete next actions to advance it**, prioritized and dated, using the Job Search OS methodology. Read-only: it recommends and can update the tracker's Next-action field, but never drafts or sends. Fed by the "/next-steps" buttons on both the recruiter-inbox dashboard (Gmail thread IDs / LinkedIn thread URLs) and the Job Hunt dashboard's Job Prospects tiles (the card's per-posting ref: its posting URL, or its alert thread id only when the card has no link).
 
 Gmail MCP prefix: `mcp__deef110b-6a80-4c37-9ca1-359ef23e5e88__`.
 
 ## Input type — detect first
-- **Gmail thread ID** (hex, e.g. `19f8064120818784`) → recruiter/alert opportunity. Use the Gmail + recruiter-inbox flow below.
-- **A URL** (starts `http`) → a Job Hunt **web-sweep prospect** (no recruiter, no email thread). Instead: find the matching card in `dashboard/job-hunt.html`'s `ALERT_DATA` for its title/company/score/note, then **WebFetch the URL** to confirm it's live + remote and pull JD facts (salary, stack, seniority, application path). There is no recruiter to reply to — the path is a **direct application** (referral-first) via the posting, not `/recruiter-action`. Skip Gmail steps; everything else (stage detection, methodology, output) applies. If the fetch fails (dead/403), say so and recommend confirming the posting is still open before investing.
+- **Gmail thread ID** (hex, e.g. `19f8064120818784`) → a recruiter thread — or a url-less Job Hunt prospect (if it's not in `recruiter-inbox.md`, check `ALERT_DATA` for a matching `threadId`). Use the Gmail + recruiter-inbox flow below.
+- **A LinkedIn messaging-thread URL** (`https://www.linkedin.com/messaging/thread/…`) → a recruiter-inbox LinkedIn card; same recruiter flow with LinkedIn in place of Gmail.
+- **Any other URL** (starts `http`) → a Job Hunt **prospect card**; the URL is the card's per-posting ref (refs switched from thread ids to posting URLs 2026-07-23 — one digest email yields many cards sharing a `threadId`, so the url is what identifies the posting). Find the matching card in `dashboard/job-hunt.html`'s `ALERT_DATA` by its `url` for title/company/score/note; if the card carries a `threadId`, that's the source alert email — `get_thread` it only if the alert's wording would help. Then **WebFetch the URL** to confirm it's live + remote and pull JD facts (salary, stack, seniority, application path). There is no recruiter to reply to — the path is a **direct application** (referral-first) via the posting, not `/recruiter-action`. Skip the recruiter-inbox steps; everything else (stage detection, methodology, output) applies. If the fetch fails (dead/403), say so and recommend confirming the posting is still open before investing.
 
 ## OS methodology (the lens for every recommendation)
 - **Referrals before cold applications** — a referral is ~5x more effective. Always build the referral path first.

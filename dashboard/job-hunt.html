@@ -134,6 +134,51 @@
   #panel-recruiter .archbtn.un:hover{background:#22885a;border-color:#154f31}
   #panel-recruiter .row.archived{opacity:.5}
   #panel-recruiter .empty{border:none;padding:40px}
+
+  /* ===== App Tracker tab (pipeline mirror of context-library/app-tracker.md; selectors
+     scoped under #panel-tracker so they can't collide with the other tabs) ===== */
+  #panel-tracker .at-kpis{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0 18px}
+  #panel-tracker .kpi{flex:1;min-width:130px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  #panel-tracker .kpi .n{font-size:24px;font-weight:700}
+  #panel-tracker .kpi .l{color:var(--dim);font-size:12px;margin-top:2px}
+  #panel-tracker .stagehdr{color:var(--dim);font-size:11px;text-transform:uppercase;letter-spacing:.7px;margin:22px 0 8px}
+  #panel-tracker .trow{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:10px;display:grid;grid-template-columns:92px 1fr auto;gap:14px;align-items:start}
+  #panel-tracker .stg{width:92px;border-radius:10px;padding:10px 6px;text-align:center;font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+  #panel-tracker .st-offer{background:#12351f;color:#5fe0a0;border:1px solid #1e7a4d}
+  #panel-tracker .st-int{background:#12233b;color:#8fc2ff;border:1px solid #2b5a9e}
+  #panel-tracker .st-app{background:#0f2b33;color:#67d8c4;border:1px solid #1e6e5e}
+  #panel-tracker .st-out{background:#3a3010;color:#f5c542;border:1px solid #7a6216}
+  #panel-tracker .st-watch{background:#20283c;color:#6b7690;border:1px solid #38425e}
+  #panel-tracker .st-closed{background:#2a1919;color:#c58f8f;border:1px solid #5e2a2a}
+  #panel-tracker .role{font-weight:600;font-size:15px;color:var(--text);text-decoration:none;display:inline-block}
+  #panel-tracker a.role:hover{color:var(--accent2)}
+  #panel-tracker .meta{color:var(--dim);font-size:12.5px;margin-top:2px}
+  #panel-tracker .tags{margin-top:8px;display:flex;gap:6px;flex-wrap:wrap}
+  #panel-tracker .tag{font-size:11.5px;padding:2px 9px;border-radius:6px;background:var(--card2);border:1px solid var(--line);color:var(--dim)}
+  #panel-tracker .tag.good{color:#6fe0a6;border-color:#1e7a4d}
+  #panel-tracker .tag.bad{color:#ff9b9b;border-color:#7a2323}
+  #panel-tracker .tag.warn{color:#f5c542;border-color:#7a6216}
+  #panel-tracker .nextact{margin-top:9px;font-size:12.5px;color:var(--text);background:var(--card2);border:1px solid var(--line);border-radius:8px;padding:7px 10px}
+  #panel-tracker .nextact .lbl{color:var(--dim);font-weight:700;margin-right:7px}
+  #panel-tracker .nextact.today{background:#2e2708;border-color:#7a6216}
+  #panel-tracker .nextact.today .lbl{color:#f5c542}
+  #panel-tracker .nextact.over{background:#2a1414;border-color:#7a2323}
+  #panel-tracker .nextact.over .lbl{color:#ffb4b4}
+  #panel-tracker .right{display:flex;flex-direction:column;gap:6px;align-items:stretch;min-width:150px}
+  #panel-tracker .right .runbtn{background:#12233b;border:1px solid var(--accent);color:#8fc2ff;border-radius:7px;padding:6px 12px;font-size:12.5px;font-weight:600;text-decoration:none;cursor:pointer;text-align:center;display:block;white-space:nowrap}
+  #panel-tracker .right .runbtn:hover{background:#1b3355;color:#fff}
+  #panel-tracker .right .linkbtn{display:block;text-align:center}
+  #panel-tracker .attn{border:1px solid;border-radius:12px;padding:12px 16px;margin:0 0 6px}
+  #panel-tracker .attn.over{background:#2a1414;border-color:#7a2323}
+  #panel-tracker .attn.today{background:#2e2708;border-color:#7a6216}
+  #panel-tracker .attn .t{font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.7px;margin-bottom:8px}
+  #panel-tracker .attn.over .t{color:#ffb4b4}
+  #panel-tracker .attn.today .t{color:#f5c542}
+  #panel-tracker .attn .it{font-size:13px;margin:5px 0}
+  #panel-tracker .attn .d{font-weight:700;margin-right:8px;color:#ffb4b4}
+  #panel-tracker .attn .d.today{color:#f5c542}
+  @media(max-width:640px){#panel-tracker .trow{grid-template-columns:64px 1fr}#panel-tracker .stg{width:64px;font-size:10.5px}#panel-tracker .right{grid-column:1/-1;flex-direction:row;flex-wrap:wrap}}
+
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
   #toast{position:fixed;right:18px;bottom:18px;max-width:340px;background:#12233b;border:1px solid var(--accent);color:#cfe3ff;padding:12px 16px;border-radius:10px;font-size:13px;box-shadow:0 8px 28px rgba(0,0,0,.45);opacity:0;transform:translateY(8px);transition:.25s;pointer-events:none;z-index:50}
   #toast.show{opacity:1;transform:none}
@@ -143,12 +188,13 @@
 <body>
 
 <h1>Job Hunt
-  <span class="sub">Scored recruiter outreach, graded good-fit prospects from your inbox + weekly web sweep, and a direct-source x-ray search.</span>
+  <span class="sub">Scored recruiter outreach, graded good-fit prospects from your inbox + weekly web sweep, your live application pipeline, and a direct-source x-ray search.</span>
 </h1>
 
 <div class="tabs">
   <button class="tab on" data-tab="recruiter">Recruiter Inbox<span class="count" id="riCount"></span></button>
   <button class="tab" data-tab="prospects">Job Prospects<span class="count" id="tabCount"></span></button>
+  <button class="tab" data-tab="tracker">App Tracker<span class="count" id="atCount"></span></button>
   <button class="tab" data-tab="search">Direct Source Search</button>
 </div>
 
@@ -166,6 +212,14 @@
   <div class="chips" id="chips"></div>
   <div class="cards" id="cards"></div>
   <div class="empty" id="empty" style="display:none">No prospects loaded yet — tell Claude <b>/job-hunt-scan</b> to scan your job-alert emails.</div>
+</section>
+
+<section class="panel" id="panel-tracker" hidden>
+  <h2>Application Pipeline <small>synced <span id="at-updated"></span></small></h2>
+  <div class="meta-line">Live mirror of <code>context-library/app-tracker.md</code> — every <code>/app-tracker</code> add/update rewrites this tab; days waiting + overdue flags compute from today's date on load. Refresh with: <a id="atScanBtn" class="runbtn inline" href="#" title="Open Claude Code in Claude Desktop (job-search-os folder) with /app-tracker pipeline prefilled">▶ /app-tracker pipeline</a></div>
+  <div class="at-kpis" id="at-kpis"></div>
+  <div id="at-attn"></div>
+  <div id="at-groups"></div>
 </section>
 
 <section class="panel" id="panel-search" hidden>
@@ -315,32 +369,31 @@ const ALERT_UPDATED = "2026-07-22";
 // ALERT_UPDATED_END
 // ALERT_DATA_START
 const ALERT_DATA = [
-{"title": "Senior BI Analyst", "company": "Walker & Dunlop", "source": "BuiltIn", "date": "2026-06-30", "score": 90, "tier": "strong", "url": "https://builtin.com/job/senior-bi-analyst/9598809", "threadId": "", "note": "Fully remote US, $140-160K. Power BI semantic models, SQL Server, SSRS/SSAS."},
-{"title": "Senior Power BI Developer (Remote)", "company": "Flik Hospitality Group", "source": "Indeed", "date": "2026-07-22", "score": 90, "tier": "strong", "url": "https://cts.indeed.com/v3/H4sIAAAAAAAA_42RzW6jMBRG3wVpWA2NwZjgSGgUEmZKK9K0SZPJbJCxzW_ACdiQpOq7l86ii1nN6krn09XV_c6bprSZlkt56maTyTAMd0XDOGd3VNSTlk7osfpRVt6Uu8zlrktsjjGygZ62ovZKkRQWicdRE0lzo-WEyqInshCNwRvjdRPzmhRHXVaeWSo7S5sStzRtXGDqSeJVwOdLhnP7EpbTAju9fwSyXx0QKnfLrjGhip39pfMX5-J0X50RezkbjWms0RlfbmiD9g_MDbbKd-2tTJ8UhxiRp_l98HNFmtwJ5v2uzosYP6tovU2njwvQ4YiZf2K4w_gswkOF_M2zuPqtW3aPt5UfOJFlw1-hqmvVi5foEIUQvVqmvY--waV-qWjibcQcOtMIZoEY4uvvg--DMLlVbMHWa70tT1-v1nUJHQgAoNp3rdZmbxqhVKhGhmxs3LIsE0IHoDEkWfYgkr_YBBZwTAxdF4wBPRa02uatUFk-hrJV_IteT3xEfcGHsf6RfgoZwf8qGTdk9XnwHy3a-_sHyEmoUBMCAAA/jrGkdB3VgDxjbgoTsKfuCfv-ykS9nH2BazSNZ7tcrBE", "threadId": "19f8907e6e43d590", "note": "Fully remote, $120-150K, scalable Power BI reporting lead role."},
-{"title": "Solutions Engineer - Data Visualization", "company": "SHI International", "source": "BuiltIn", "date": "2026-07-13", "score": 88, "tier": "strong", "url": "https://builtin.com/job/solutions-engineer-data-visualization/10175658", "threadId": "", "note": "Remote, $144-169K. Power BI, DAX, Fabric, Tabular Editor, Synapse."},
-{"title": "Senior Data Engineer (Business Intelligence)", "company": "Fractal", "source": "LinkedIn", "date": "2026-07-18", "score": 84, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4441121195/", "threadId": "19f7635cdbceecb5", "note": "US remote, up to $150K. Separate req from the Sr PBI Dev already applied to."},
-{"title": "Senior Power BI Developer", "company": "EtiVenture Analytics", "source": "LinkedIn", "date": "2026-07-22", "score": 82, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4442755689/", "threadId": "19f8baafb0a80e60", "note": "US remote, pure Power BI senior IC. Hit by both inbox alert and LI sweep."},
-{"title": "Sr. Lead AI & Azure Data Engineer - FABRIC", "company": "Source Select Group", "source": "LinkedIn Search", "date": "2026-07-21", "score": 82, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4443531980/", "threadId": "", "note": "Remote USA, direct-hire, Fabric + Azure lead. No sponsorship; minimal travel."},
-{"title": "Senior BI Analyst", "company": "HealthEdge", "source": "Indeed", "date": "2026-07-17", "score": 78, "tier": "strong", "url": "https://cts.indeed.com/v3/H4sIAAAAAAAA_42R0W6iQBSG34VkvVoqDMKACdnomiJaiwVd296YYRiGYWBAHKTS9N0Xe9GLXvXqJN-fk5Pzf-9Kq0yVTMr6PB2Pu667YyIhJLnDVTlu8BgX_E_OXWIB0yYGwJpp6whqo7SpSjevYgbQcRglkjhTG4KwZBckWSVUItR9dCQlYsVIclfPpeDpqXYonVS2po_i2KV1KcVSu87mwUtweir73IMbO4URgMv7QIbbyGfkzRczGrZt3p7h0gyyZ73b4weyODxNVvRVNeaboPKdXXy0OEyLI_SjHnjUd14f244l_54XB3XZ7FHRCt8TXvOQXfY80tPQqyPsHBCf9P2aeWsDaMYV48YJ8cQK5-uNl2fYW7P7s3yxffuXsRi9cRy7UTWXFtwYmUG73RUG5kqbxT1P_ibb7ajJ669X6xOvLSpszVR-K6UyfVcQxlUrpJ8MjQMAdMOwPkNE6aqKP7Gu6Q7UgWWDW4ALhvkua6qWZkMom5Z80WtNBnRhpBvqH-hNyAB-qmTYkPx28JsW5ePjPwe9DrcTAgAA/z-7aR7hpFvuWmks-lBLy0ewbyyDHORsGgiBVy4Tf0EY", "threadId": "19f6f47f41363c9a", "note": "Remote, $114-122K. Power BI dashboards + data modeling; just under comp floor."},
-{"title": "Power BI Developer - Netherlands, UK, or US - Remote", "company": "NTEN", "source": "LinkedIn", "date": "2026-07-19", "score": 76, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4442457717/", "threadId": "19f7bca050bd0b1e", "note": "Remote-first Power BI developer, US eligible. Nonprofit sector."},
-{"title": "Senior BI Engineer", "company": "Humana", "source": "LinkedIn", "date": "2026-07-22", "score": 74, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4440184939/", "threadId": "19f8a61789970a5a", "note": "US remote, $89-121K. Solid BI fit but tops out under the $130K floor."},
-{"title": "Senior Data Engineer: Power BI & Fabric Architect (Remote)", "company": "Zealogics.com", "source": "Lensa", "date": "2026-07-21", "score": 74, "tier": "strong", "url": "https://sg2email.lensa.com/ls/click?upn=u001.jmU3g-2BpCjR8B5yHZB902pIHN8Ut4zPAWQeLRnk2pxxXy13gPQ5CCSqp571-2BeZfo-2Bt2T7itdUuKkQ7Rre3Ph0F515S2xZI5jsj9g8TIVuolEc8lIQusRHQTcJ28dgN9tWEooLDabI2kfOk8k5W-2BueGJbhCT-2BGUAfiUxvJUUjWuc8JuLohtOXDXoW2ylF9pq7yHTZEA0PHqTdh8MjyScQ6M1RgKDdBUWzEQVMvBq-2BFn6w-3DMEAk_QXnTW6f9jV7ots26-2Fd0iCA40nBTbwrnPprB64EaCS9zkmj-2BCWIv7rzc4TNxeyGR9uyp-2BODyM2g3Pm1Gg0AMMxZDXVgI1R0gV4Lko2s1idces-2BAqLJlMOIyFyWEQ7h1KHWlTdwrf7rdNuBIjiKQlB2gvmBMPKhdxKFlpOjTLOjIikQb8cDRekU6m-2BST2VHSaEDiUr45iA0C-2FmGrjRmlVMdv2SW3cW-2BpD-2B-2FeSET65kLoT-2BUDL1Ypbx6jvR6pUhIUC3lkpd-2BTW5-2FZOOy5tA45lOYYYiSqAje4kWsZ-2ByQX0WkvrqXhxGpiOp4HFFpVstfxQtUqIKMVM6i187cukAHtD8WeCTGQtefB-2FKlf7a2lBsu2P5wxBKMemH4X2XDGYQdDC1AOEpaTbk40QMvJ4iLT0YLusy7H4goYDZZWNGBkSCOiUb4zNmw6tVYi5R69nTeOPYWZjz3iZR6mFaXFBcosFZKHJmFTpCLyyugM8k5RjnKJvXpc-2FaxBh3Bps2JHroz8fMaWtQmW-2B0-2BpKlOadJuaK4jHelpoMq3C3fecDuK6YhJ85CdJTiCx0xbThUD-2Fl0aN73uVLes39aqiuUsBQ6IFzLMhXJac5k0nwWzT1dfVIYJtA-3D", "threadId": "19f84fa6f5190de8", "note": "Remote, est $100-122K. Exact Power BI + Microsoft Fabric architect stack."},
-{"title": "Sr. Business Intelligence Developer", "company": "Orion Steel", "source": "LinkedIn Search", "date": "2026-07-22", "score": 74, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4443544396/", "threadId": "", "note": "Chicago-based but posted remote. Title bullseye; stack unverified."},
-{"title": "Lead Data Engineer", "company": "Verisma", "source": "Indeed", "date": "2026-07-22", "score": 74, "tier": "strong", "url": "https://www.indeed.com/viewjob?jk=9fdfb5aa92f086e2", "threadId": "", "note": "Remote, $140-160K — above floor. Healthcare data; same employer as their Sr BI Dev req."},
-{"title": "Sr. Business Intelligence Developer", "company": "Verisma", "source": "LinkedIn", "date": "2026-07-17", "score": 72, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4425814868/", "threadId": "19f6da0856785940", "note": "US remote, up to $109K. Healthcare BI dev; comp below floor."},
-{"title": "BI Developer, Data Analyst", "company": "Sand Cherry", "source": "LinkedIn", "date": "2026-07-22", "score": 72, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4442226838/", "threadId": "19f8baafb0a80e60", "note": "US remote consulting BI developer role. No comp listed."},
-{"title": "Remote Power BI Developer", "company": "Trilogy Federal", "source": "Careers page", "date": "2026-06-23", "score": 72, "tier": "strong", "url": "https://www.talent.com/view?id=625135621860824593", "threadId": "", "note": "Remote incl. FL, $115-125K. PBI/DAX/Synapse/ADF; needs Public Trust."},
-{"title": "Business Intelligence Data Engineer", "company": "Connexus Credit Union", "source": "Indeed", "date": "2026-07-22", "score": 72, "tier": "strong", "url": "https://www.indeed.com/viewjob?jk=17489ce3b83eeabe", "threadId": "", "note": "Remote full-time, credit union. BI + data engineering blend; no comp posted."},
-{"title": "Power BI Engineer (VA ESOM)", "company": "Kentro", "source": "LinkedIn", "date": "2026-07-17", "score": 70, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4440208652/", "threadId": "19f6da0856785940", "note": "US remote fed-contract Power BI engineer. May require clearance."},
-{"title": "Azure Data Engineer", "company": "Highbrow Technology Inc", "source": "LinkedIn", "date": "2026-07-18", "score": 70, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4440753924/", "threadId": "19f7635cdbceecb5", "note": "US remote, ADF/Synapse stack fit. Staffing firm — confirm end client."},
-{"title": "Business Intelligence Engineer", "company": "MedEvolve", "source": "Indeed", "date": "2026-07-18", "score": 70, "tier": "strong", "url": "https://cts.indeed.com/v3/H4sIAAAAAAAA_42RTW-qQBSG_wvJdVUqzPBVE3JTURstKhZJ1Q0ZhuEbRocBhKb_vfQuurirrk7yvDk5Oe_zITTCTEg4v9az6bTruse0CgkJHzEtpwxPcZH_zXKTqFiGhoYMGRAFk3ASMVqaGQ1SgPxxlIjjRGQEYZ62iKe0Ekkleq5PSpQWE56bcsZvWh1KOA-jxJCUSRCYKlyuj8sMZpHxphahrR0CV1optnIT99YwAPxsKL7BUq5EVsoGFKlyfdD1pched-35cq_kovYs9qLv7CPfwPPyxEHv9LveMwYnAFRZPLt2Yq8Urxnsd3Cq16FKohcv2sdvhXjf1_3NOunKu7tdPEEHAq9yButw3F63tq9egk17lq2Ys_x1Tv_AxeSe48B06bzV9C1MtJVozYG_uUhOMOShFTrOhGXXn1cx0WiNAkOShQehFGYfAsKYNhVfh2PjAAAZQk1SxxDF8YYG_7AsAQnICtDB0xjgIsX5MWG0iZMx5KwhP7S_khG1KenG-kf6LWQEv1UybvD8--B_WoTPzy8HWa3pEwIAAA/mnAXWnpz0zz0HM6u7Lf4yz6BancnlsQjmtAn_GcMOdc", "threadId": "19f746e3c4293632", "note": "Remote (AR-based). ETL + data warehousing BI engineer; no comp shown."},
-{"title": "Senior Business Intelligence Engineer", "company": "Tebra", "source": "LinkedIn Search", "date": "2026-07-22", "score": 70, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4405246982/", "threadId": "", "note": "US remote healthtech BI engineer. Stack unverified — check before applying."},
-{"title": "Power BI Report Developer", "company": "CGI", "source": "LinkedIn", "date": "2026-07-17", "score": 68, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4440823877/", "threadId": "19f6da0856785940", "note": "US remote at a major SI. Lensa est. $70-86K — likely well under floor."},
-{"title": "Remote Power BI Analytics Developer - Finance", "company": "SwiftCruit", "source": "Lensa", "date": "2026-07-22", "score": 68, "tier": "strong", "url": "https://sg2email.lensa.com/ls/click?upn=u001.jmU3g-2BpCjR8B5yHZB902pAK8zxwtPcOUE4l3Tfmu55Q0J664WcGzs9wdrk0hxvNOzFld7PUJR9Z4LP540wCmr5w8DRqgMklvH8s1Eyj7RSgFBOPqFw7hZjh3VteYIgCLj-2F0e4zpkw-2FPjJMbpOV8NI6su3I1JnlXDLAPeQZ9C-2FsT2hRk0AipAjomyqtWfuzO7fRS5x4PsQtpYb1xYhyx4hIz5JQPr0VZ-2Bv-2ByyxmCOhtg-3DTzvv_QXnTW6f9jV7ots26-2Fd0iCA40nBTbwrnPprB64EaCS9zkmj-2BCWIv7rzc4TNxeyGR9uyp-2BODyM2g3Pm1Gg0AMMxZDXVgI1R0gV4Lko2s1idces-2BAqLJlMOIyFyWEQ7h1KHWlTdwrf7rdNuBIjiKQlB2gvmBMPKhdxKFlpOjTLOjIikQb8cDRekU6m-2BST2VHSaEDiUr45iA0C-2FmGrjRmlVMdt4qOdsNCNayDa19rB14t5cdtD0IdsgVkW5rKrpPn8KXynX96P50KvFmB8yMkwS8uCf8EK20KbgeUcTZhGgNjkSb8ZWYjr2PAaxKKzZf94PB6drAdGO7aOJPHhoKXusiv42ZEe45NZBCkcNW9K7-2FtkJFWXdZN6c8TmSvFzr25Epm09XfJRjg5Ypji7vrXU2xswLIlC0QKdfjjoctFo5XmxQDqrr82tCSvKvJlMQqk0LBqMekCt5lY9rcsB3II8fnAtTxgRSe2OSOFT-2BXyaTSQo63r67WYUrtwpYjCp-2BcF2N3CM2xHRMywmDwc-2F3uHyQ6szF35wldsXHhqeawvlQQK-2BgdNAsu7pwP445csZbz5B9SvuF0Tt7cs8MMvuXuR8uGvQaqHlGOe5c-2FCFznSClanyRSr0D7pMQnfqLfQm-2FwRZsx", "threadId": "19f8a20d7c6b19f5", "note": "Remote, $115-125K posted (not estimated). Power BI in a finance domain."},
-{"title": "Senior ETL Developer (Azure & MDM/Reltio Focus)", "company": "Undisclosed (agency via Dice)", "source": "Lensa", "date": "2026-07-22", "score": 68, "tier": "strong", "url": "https://sg2email.lensa.com/ls/click?upn=u001.jmU3g-2BpCjR8B5yHZB902pBEEvv02yYrt5q0IHHbZov86p22zP75DQHNY2f4kTuUOJ72NLySedgUKrHgsr4jywW4YvEamk207PmQ3m2E64-2BAdgBBvSme7wHBgrK8ylso27HCT5jmK9JKyF-2FoCUGPoLght6YKsVaGnmrn-2FOfK2Lr5H9WdLhywtqWZmJ99xw-2Fo8oyf7IIviirG8F6-2FzR4RwX4u0vkMkwIkeh3vtBmA0k78-3DQQtB_QXnTW6f9jV7ots26-2Fd0iCA40nBTbwrnPprB64EaCS9zkmj-2BCWIv7rzc4TNxeyGR9uyp-2BODyM2g3Pm1Gg0AMMxZDXVgI1R0gV4Lko2s1idces-2BAqLJlMOIyFyWEQ7h1KHWlTdwrf7rdNuBIjiKQlB2gvmBMPKhdxKFlpOjTLOjIikQb8cDRekU6m-2BST2VHSaEoEZXJ-2BJXxqY8-2BCGMe1SYLgO7iHXbUjtAnu8W3OSabkm3QjCV9xtIyVQZ8TuXiALdGw8gkdVsg2V8KpkQtvZI-2B8H4ENXJHdPmd1K1rjukB0a-2BXNSd93xWqGTxqU2LionR6OaruoFgpI3QF0qbYGOl3lS8TbMJh433y0pH-2F7fYIHPeyBcFx13fcZ4SoB11FLGuVIY71nKM0ynnV12Paipm5DGFKI8KBZkjIZzSQWFQ9XICfby9jeY3m1nKfn9zS53B8IvBCVDX8yrhpiZxtT6GanryfmSAc3vcXErWUwKMXpUa3wS5IfJEf8LGD9TGqAfpIxSoTT-2B9c16GHoNMzwkAOngAkQ-2F71Boli6BjEajiq4lN8VDHxOGGvcJPBZPb8u5d", "threadId": "19f8a2066dfaffea", "note": "Remote, est $124-152K — highest Lensa band in the family. Azure ETL."},
-{"title": "Lead, Business Intelligence Analyst - People Analytics", "company": "L3Harris Technologies", "source": "LinkedIn Search", "date": "2026-07-22", "score": 68, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4414234495/", "threadId": "", "note": "US remote lead BI analyst. Defense employer — clearance may be required."},
-{"title": "Solution Architect, Data (Remote US)", "company": "Atmosera", "source": "Indeed", "date": "2026-07-22", "score": 68, "tier": "strong", "url": "https://www.indeed.com/viewjob?jk=218af96edb0c06d2", "threadId": "", "note": "Remote US at a Microsoft/Azure partner. Architect scope, not pure BI IC."},
-{"title": "Sr. Business Intelligence Developer", "company": "Mutual of Omaha", "source": "Lensa", "date": "2026-07-22", "score": 66, "tier": "strong", "url": "https://sg2email.lensa.com/ls/click?upn=u001.jmU3g-2BpCjR8B5yHZB902pOfmGr7n3d5ur7QX0jcfIVC4RXwe-2BPS5-2BG6-2B1wSY-2Fuu0oOtWkiotScmIiXwL8PR7dD-2F-2BdieK7qFI7SgOwY75UuwOvUr3ld6SFXJV8jquyligA8DWcMHjcswHQSM0WeY86t7qpECaWJJL6EOZ-2B4ZMh1Bs4KqqprREpjhtihizrEwfvQ-2BMP-2BY-2BdE85V1CAeI8PCbF5q48WNYqKulGjsNpN5mQ-3DNwZ7_QXnTW6f9jV7ots26-2Fd0iCA40nBTbwrnPprB64EaCS9zkmj-2BCWIv7rzc4TNxeyGR9uyp-2BODyM2g3Pm1Gg0AMMxZDXVgI1R0gV4Lko2s1idces-2BAqLJlMOIyFyWEQ7h1KHWlTdwrf7rdNuBIjiKQlB2gvmBMPKhdxKFlpOjTLOjIikQb8cDRekU6m-2BST2VHSaEDiUr45iA0C-2FmGrjRmlVMdt4qOdsNCNayDa19rB14t5cdtD0IdsgVkW5rKrpPn8KXynX96P50KvFmB8yMkwS8uCf8EK20KbgeUcTZhGgNjkSb8ZWYjr2PAaxKKzZf94PB6drAdGO7aOJPHhoKXusiv42ZEe45NZBCkcNW9K7-2FtkJFWXdZN6c8TmSvFzr25Epm8xcpzTBHvHSUFMNefIsR-2F7OMJ2QTCEt-2Bg7Z60Ep7zlmwGNBQrJ6UXRfwaCpxUtzfT2sIU07buLlC-2BPDl7cnsd1Yy3T226t1Sk6KI2wZ6BFZxvtIiVXq7WeDfg7N7BROTrIxfSBajHv7-2FWJGg1-2Bj04fHnJJeTFbKRQSlMIQBcsQpxsaNRN2ozzBabnNP-2B-2FwTK1IZMUJoswGlmhp-2FRPiTvdCM1Jl6OA6J8Gy9ah1a6OUDX1WRbFtRL8kooXQoAYYTo", "threadId": "19f8a20d7c6b19f5", "note": "Remote, est $105-129K. Insurance BI developer at a stable employer."}
+{"title": "Power BI Engineer (VA ESOM)", "company": "Kentro", "source": "LinkedIn", "date": "2026-07-17", "score": 92, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4441483326/", "threadId": "19f70a3821a475a3", "note": "Remote US (EST hours), $147-165K. Power BI/DAX/Power Query/SQL, star schema; VA federal, Public Trust. Alert + LI sweep."},
+{"title": "Senior Power BI Developer (Remote)", "company": "Flik Hospitality Group", "source": "Indeed", "date": "2026-07-22", "score": 88, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4443707441/", "threadId": "19f8907e6e43d590", "note": "Fully remote, $120-150K stated. Exact-fit senior Power BI lead (Compass Group brand); Indeed + LinkedIn alerts."},
+{"title": "Senior BI Analyst", "company": "Walker & Dunlop", "source": "LinkedIn", "date": "2026-07-22", "score": 88, "tier": "strong", "url": "https://builtin.com/job/senior-bi-analyst/9598809", "threadId": "", "note": "Remote US, $140-160K + bonus. Power BI semantic models core; SSRS/SSAS/SQL Server preferred. Alert + LI sweep."},
+{"title": "Remote Senior Data Analyst - Power BI and SQL Automation", "company": "UnitedHealth Group", "source": "Lensa", "date": "2026-07-17", "score": 82, "tier": "strong", "url": "https://sg2email.lensa.com/ls/click?upn=u001.jmU3g-2BpCjR8B5yHZB902pK6ssbzDLLx7LrEMXpbH7ysAhF-2BFrAqtKh3490gCgupYyO1gzMZxnXhTxlG34wpTkAGX-2FQIciNd04cTFaret31s6G9cwO9zRWoYxsFPuXXjZ644A88PkxiOU6K9dp1Y7rF-2B9VRLIL7cnLgLByf5QxaSoaFvm0WnhBypic3KNxUp0b5YS-2FgWm0p9og3fiUKh05KaC-2FXYPCCgEzUKqz9bC1Sa3EMUdTfrOH5ZgT6LhICjhpt_C_QXnTW6f9jV7ots26-2Fd0iCA40nBTbwrnPprB64EaCS9zkmj-2BCWIv7rzc4TNxeyGR9uyp-2BODyM2g3Pm1Gg0AMMxZDXVgI1R0gV4Lko2s1idces-2BAqLJlMOIyFyWEQ7h1KHWlTdwrf7rdNuBIjiKQlB2gvmBMPKhdxKFlpOjTLOjIikQb8cDRekU6m-2BST2VHSaEDiUr45iA0C-2FmGrjRmlVMdt4qOdsNCNayDa19rB14t5cdtD0IdsgVkW5rKrpPn8KXynX96P50KvFmB8yMkwS8uCf8EK20KbgeUcTZhGgNjkSb8ZWYjr2PAaxKKzZf94PB6drAdGO7aOJPHhoKXusiv42ZEe45NZBCkcNW9K7-2FtkJFWXdZN6c8TmSvFzr25EpmvyIJgMOOFqNhZ8xkQr0dPHRawIhrCyPYU1flPGF9pXhkotc7Xb1B9G-2FT4wLagCcMOMYtQjBUPCcy9-2FA9d0EnfSKUX6bHmyLk-2Bv8jK-2BwaKX-2F1uPBpVrqebrhAcbn4kOOCkr7z2Su7Ap2ZvL5ppTZ4bqbcupIPI-2FMBQ7fs1TXPHcPB1WgN5uZo1fpAcnHjPRt1cnc-2BbG0P1red-2Bfb-2Fq9V6zEbFY9OWv8xy7VOb0-2FBB-2Bh1lRZ", "threadId": "19f70609d5c66388", "note": "Remote, $142-177K posted. Power BI + SQL automation at Optum/UHG — core MS stack, senior IC."},
+{"title": "Power BI Developer - Netherlands, UK, or US - Remote", "company": "NTEN", "source": "LinkedIn", "date": "2026-07-19", "score": 76, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4442457717/", "threadId": "19f7bca050bd0b1e", "note": "Remote-first Power BI developer, US eligible. Nonprofit sector; comp unstated."},
+{"title": "Sales Operations Business Intelligence Analyst (PowerBI/SQL)", "company": "INSPYR Solutions", "source": "LinkedIn Search", "date": "2026-07-21", "score": 76, "tier": "look", "url": "https://www.linkedin.com/jobs/view/4429968157/", "threadId": "", "note": "Hybrid 3d — Deerfield Beach. $65-75/hr (top meets $70 floor). Power BI semantic models + DAX + SQL; 12-mo contract."},
+{"title": "Senior Power BI Developer", "company": "EtiVenture Analytics", "source": "LinkedIn", "date": "2026-07-22", "score": 74, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4442755689/", "threadId": "19f8baafb0a80e60", "note": "US remote long-term contract. Power BI + Kimball DW + SQL/ETL; comp unstated; 100+ applicants. Alert + LI sweep."},
+{"title": "Senior Power BI Engineer", "company": "Foot Locker", "source": "LinkedIn", "date": "2026-07-22", "score": 72, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4411988691/", "threadId": "19f8b0e3b1732552", "note": "Remote per alert. Lensa variant shows $78-130K — top end right at floor; verify band."},
+{"title": "Business Intelligence (BI) Engineer", "company": "Robert Half", "source": "LinkedIn Search", "date": "2026-07-22", "score": 72, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4443905894/", "threadId": "", "note": "Remote contract-to-perm (Columbus OH client). Power BI + DAX + SQL Server incl. light DBA; posted today."},
+{"title": "Sr. Data Engineer - US (Remote)", "company": "Luxury Presence", "source": "Lensa", "date": "2026-07-21", "score": 70, "tier": "strong", "url": "https://sg2email.lensa.com/ls/click?upn=u001.jmU3g-2BpCjR8B5yHZB902pPBEbA88HsKDc-2Fkufzv4nbg2aG3ozSZ0XyvlbFvkm4eWCgyJqIY4JTZrONCfF4NjN2o5MUMMwLrCZNfPshMW2LLTQ5-2BITYq6fqDkomOrhARsORFGl2pwYRiWliTKlADUrrSRZwLpXZgQ-2BVGNZfvLRSwjmMbfMZYHCUYZ1-2BB3NKEFR8h9us3OrVBHkdL0cEz-2BEV16gJUOf7OQz2HAkcdvvw-2BXsIkY1ZC43-2FKEy9Ph06JgkVNT_QXnTW6f9jV7ots26-2Fd0iCA40nBTbwrnPprB64EaCS9zkmj-2BCWIv7rzc4TNxeyGR9uyp-2BODyM2g3Pm1Gg0AMMxZDXVgI1R0gV4Lko2s1idces-2BAqLJlMOIyFyWEQ7h1KHWlTdwrf7rdNuBIjiKQlB2gvmBMPKhdxKFlpOjTLOjIikQb8cDRekU6m-2BST2VHSaEDiUr45iA0C-2FmGrjRmlVMdt4qOdsNCNayDa19rB14t5cdtD0IdsgVkW5rKrpPn8KXynX96P50KvFmB8yMkwS8uCf8EK20KbgeUcTZhGgNjkSb8ZWYjr2PAaxKKzZf94PB6drAdGO7aOJPHhoKXusiv42ZEe45NZBCkcNW9K7-2FtkJFWXdZN6c8TmSvFzr25EpmYIRPHy9-2BpZ1BM3ci-2B0YSy8-2FKuJp0lyH-2FqIzBK9jsY4mDVGz7-2FYh5jm9K0pOU5b0jVCitkiycvUu9AsdiMzC5c8dQ5N7mYbebe4W-2FpXvZUthwvyKgLDgMBaLtRlvfV6IlYrGpFcRDgw76JZC-2BEmxaHiimZ00nfCwYpN8Zg-2BqW2tqOu29foI9EFapVo6l-2FI-2FwzcNoJytxdxbVWCwEJ8fnCJk-2Fn9NhO-2Fjhw6HKY", "threadId": "19f84fa92ce43909", "note": "Remote US, $150-190K posted. Real-estate SaaS; stack not listed in alert — verify Azure/MS fit."},
+{"title": "Fabric Power BI Developer", "company": "Franklin Fitch", "source": "LinkedIn", "date": "2026-07-22", "score": 68, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4437162489/", "threadId": "19f8c58ea752eafc", "note": "US-wide; Microsoft Fabric + Power BI in title — core differentiator. Recruiter posting, comp unstated."},
+{"title": "Business Intelligence Engineer", "company": "MedEvolve", "source": "Indeed", "date": "2026-07-18", "score": 66, "tier": "strong", "url": "https://cts.indeed.com/v3/H4sIAAAAAAAA_42RTW-qQBSG_wvJdVUqzPBVE3JTURstKhZJ1Q0ZhuEbRocBhKb_vfQuurirrk7yvDk5Oe_zITTCTEg4v9az6bTruse0CgkJHzEtpwxPcZH_zXKTqFiGhoYMGRAFk3ASMVqaGQ1SgPxxlIjjRGQEYZ62iKe0Ekkleq5PSpQWE56bcsZvWh1KOA-jxJCUSRCYKlyuj8sMZpHxphahrR0CV1optnIT99YwAPxsKL7BUq5EVsoGFKlyfdD1pted-35cq_kovYs9qLv7CPfwPPyxEHv9LveMwYnAFRZPLt2Yq8Urxnsd3Cq16FKohcv2sdvhXjf1_3NOunKu7tdPEEHAq9yButw3F63tq9egk17lq2Ys_x1Tv_AxeSe48B06bzV9C1MtJVozYG_uUhOMOShFTrOhGXXn1cx0WiNAkOShQehFGYfAsKYNhVfh2PjAAAZQk1SxxDF8YYG_7csS0ACsgJ08DQGuEhxfkwYbeJkDDlryA_tr2REbUq6sf6RfgsZwW-VjBs8_z74nxbh8_PLQVZr-oQAAAA/mnAXWnpz0zz0HM6u7Lf4yz6BancnlsQjmtAn_GcMOdc", "threadId": "19f746e3c4293632", "note": "Remote (AR-based). Healthcare RCM analytics, SQL-heavy shop; comp unstated."},
+{"title": "Senior Power BI Developer", "company": "Aretec", "source": "LinkedIn", "date": "2026-07-22", "score": 65, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4426707806/", "threadId": "19f8c58ea752eafc", "note": "US-wide; federal data/AI consultancy; comp unstated."},
+{"title": "Power BI Report Developer", "company": "CGI", "source": "LinkedIn", "date": "2026-07-17", "score": 64, "tier": "look", "url": "https://www.linkedin.com/jobs/view/4440823877/", "threadId": "19f6da0856785940", "note": "US remote at a major SI. Lensa est $70-86K — likely under floor; verify level."},
+{"title": "Senior Data Analyst", "company": "Healthpilot Technologies", "source": "Indeed", "date": "2026-07-22", "score": 62, "tier": "look", "url": "https://www.indeed.com/viewjob?jk=5981bdbcb9234728", "threadId": "19f8c45b65347a65", "note": "Remote-eligible, $100-140K straddles the floor. 5+ yrs BI/analytics, healthtech."},
+{"title": "Senior Business Intelligence Engineer", "company": "eBay", "source": "LinkedIn", "date": "2026-07-22", "score": 62, "tier": "look", "url": "https://www.linkedin.com/jobs/view/4443714822/", "threadId": "19f8c58ea752eafc", "note": "US-wide big-tech BI; likely non-MS stack (SQL/Tableau); comp unstated."},
+{"title": "Power BI Developer", "company": "GES Group", "source": "Indeed", "date": "2026-07-16", "score": 62, "tier": "look", "url": null, "threadId": "19f6a21ae32e884f", "note": "Remote, exact title. Alert's '$350 an hour' is a posting error — comp unknown; find via Indeed search (no clean link)."},
+{"title": "Power BI Developer", "company": "Franklin Fitch", "source": "LinkedIn", "date": "2026-07-22", "score": 61, "tier": "look", "url": "https://www.linkedin.com/jobs/view/4437176077/", "threadId": "19f8c58ea752eafc", "note": "US-wide recruiter posting (sibling of their Fabric role); comp unstated."},
+{"title": "Reporting & Power BI Developer", "company": "LingaTech", "source": "LinkedIn", "date": "2026-07-22", "score": 61, "tier": "look", "url": "https://www.linkedin.com/jobs/view/4433882077/", "threadId": "19f8c58ea752eafc", "note": "US-wide staffing posting; reporting + Power BI focus; comp unstated."},
+{"title": "Sr. Business Intelligence Developer", "company": "Montage Health", "source": "LinkedIn", "date": "2026-07-22", "score": 61, "tier": "look", "url": "https://www.linkedin.com/jobs/view/4417052114/", "threadId": "19f8c58ea752eafc", "note": "US-wide healthcare BI (Epic/SQL environment); comp unstated."},
+{"title": "Sr. BI Developer", "company": "KCI", "source": "LinkedIn", "date": "2026-07-22", "score": 60, "tier": "look", "url": "https://www.linkedin.com/jobs/view/4437574753/", "threadId": "19f8c58ea752eafc", "note": "US-wide; BI developer title family; comp unstated."},
+{"title": "Senior BI Developer - Remote Data Insights Lead", "company": "Navitus Health Solutions", "source": "Lensa", "date": "2026-07-22", "score": 60, "tier": "look", "url": "https://sg2email.lensa.com/ls/click?upn=u001.jmU3g-2BpCjR8B5yHZB902pAm03SbaWAhuWyKCDVFjmz60MlWW0qix5z-2FWEpCkYkJNWmiFPDjp1Ax2fHFgHVSJHndjne3TnEzSmTRy-2FuzoemsTunIeMch-2FZ-2FZTOKfhadJy9RNvFXxAlyXpWykTguulH1AcKspbXIxyH1zanp2Hlukh2f7fc8-2BI4fpKyGPROBzdJRnTtj7K-2FbbU39k4-2BA6iX4J47QpsDbbR-2BoPav7abpfQh-2FCWfDm8REh-2FC2WmPtq5Zv1yq_QXnTW6f9jV7ots26-2Fd0iCA40nBTbwrnPprB64EaCS9zkmj-2BCWIv7rzc4TNxeyGR9uyp-2BODyM2g3Pm1Gg0AMMxZDXVgI1R0gV4Lko2s1idces-2BAqLJlMOIyFyWEQ7h1KHWlTdwrf7rdNuBIjiKQlB2gvmBMPKhdxKFlpOjTLOjIikQb8cDRekU6m-2BST2VHSaEDiUr45iA0C-2FmGrjRmlVMdt4qOdsNCNayDa19rB14t5cdtD0IdsgVkW5rKrpPn8KXynX96P50KvFmB8yMkwS8uCf8EK20KbgeUcTZhGgNjkSb8ZWYjr2PAaxKKzZf94PB6drAdGO7aOJPHhoKXusiv42ZEe45NZBCkcNW9K7-2FtkJFWXdZN6c8TmSvFzr25Epm0EnRTZ8AZ7EAoInB0-2BsHK1WLQ9-2FAZC-2B14gah7WV9dqxNvzP6d-2BEbeGuLBAP5Cy8u7HkX90ANvi6L-2BSZmXW0OSJPmpe5FZ2LtcpuqzsxlWigirfN-2FYDidkA4egOFY0R7dChjpg6IEen5NEQtqjmvcJ4Aj-2Fal-2BJPjbUKbY1lUnvpg3nUuLl-2BFotACuvHY0DcRxeu4mzT1I0Yc0-2FqhuNRJ2GX-2Bnr9pV-2Fbi1lOBiXqIH-2BE", "threadId": "19f8a20d7c6b19f5", "note": "Remote; PBM/pharmacy analytics. Lensa est $72-88K (not employer-stated) — verify range."},
+{"title": "Senior Data Engineer: Power BI & Fabric Architect (Remote)", "company": "Zealogics", "source": "Lensa", "date": "2026-07-21", "score": 60, "tier": "look", "url": "https://sg2email.lensa.com/ls/click?upn=u001.jmU3g-2BpCjR8B5yHZB902pIHN8Ut4zPAWQeLRnk2pxxXy13gPQ5CCSqp571-2BeZfo-2Bt2T7itdUuKkQ7Rre3Ph0F515S2xZI5jsj9g8TIVuolEc8lIQusRHQTcJ28dgN9tWEooLDabI2kfOk8k5W-2BueGJbhCT-2BGUAfiUxvJUUjWuc8JuLohtOXDXoW2ylF9pq7yHTZEA0PHqTdh8MjyScQ6M1RgKDdBUWzEQVMvBq-2BFn6w-3DMEAk_QXnTW6f9jV7ots26-2Fd0iCA40nBTbwrnPprB64EaCS9zkmj-2BCWIv7rzc4TNxeyGR9uyp-2BODyM2g3Pm1Gg0AMMxZDXVgI1R0gV4Lko2s1idces-2BAqLJlMOIyFyWEQ7h1KHWlTdwrf7rdNuBIjiKQlB2gvmBMPKhdxKFlpOjTLOjIikQb8cDRekU6m-2BST2VHSaEDiUr45iA0C-2FmGrjRmlVMdv2SW3cW-2BpD-2B-2FeSET65kLoT-2BUDL1Ypbx6jvR6pUhIUC3lkpd-2BTW5-2FZOOy5tA45lOYYYiSqAje4kWsZ-2ByQX0WkvrqXhxGpiOp4HFFpVstfxQtUqIKMVM6i187cukAHtD8WeCTGQtefB-2FKlf7a2lBsu2P5wxBKMemH4X2XDGYQdDC1AOEpaTbk40QMvJ4iLT0YLusy7H4goYDZZWNGBkSCOiUb4zNmw6tVYi5R69nTeOPYWZjz3iZR6mFaXFBcosFZKHJmFTpCLyyugM8k5RjnKJvXpc-2FaxBh3Bps2JHroz8fMaWtQmW-2B0-2BpKlOadJuaK4jHelpoMq3C3fecDuK6YhJ85CdJTiCx0xbThUD-2Fl0aN73uVLes39aqiuUsBQ6IFzLMhXJac5k0nwWzT1dfVIYJtA-3D", "threadId": "19f84fa6f5190de8", "note": "Remote; Power BI + Fabric architect scope via IT staffing firm; Lensa est $100-122K."},
+{"title": "Lead Business Intelligence Developer, Founding Team", "company": "Annuity Health", "source": "Lensa", "date": "2026-07-20", "score": 60, "tier": "look", "url": "https://sg2email.lensa.com/ls/click?upn=u001.jmU3g-2BpCjR8B5yHZB902pCGg4NQ-2Be558wI5XDbsRKz07jpVBcHtvY7SXu-2Fi0-2F-2BIRLXhXyg-2FuYjivfSsvEg1S8R1dS4t8GhRsM2Y-2FlI-2FGdgNBFkE9n10ZFSdZFTMzsFedhEY0Q02J18ZYHIVsF9HkaTm5Z-2FciMsn5OhXT3kk1YwOe9n2lGzoQd-2BOGtrx3XrJ1eO35TM2YEScAdUKavn18IUidRthAffvhhB9JGFQog5e3AAg1t12rZUObOxTq3BZcsXB0_QXnTW6f9jV7ots26-2Fd0iCA40nBTbwrnPprB64EaCS9zkmj-2BCWIv7rzc4TNxeyGR9uyp-2BODyM2g3Pm1Gg0AMMxZDXVgI1R0gV4Lko2s1idces-2BAqLJlMOIyFyWEQ7h1KHWlTdwrf7rdNuBIjiKQlB2gvmBMPKhdxKFlpOjTLOjIikQb8cDRekU6m-2BST2VHSaEDiUr45iA0C-2FmGrjRmlVMdt4qOdsNCNayDa19rB14t5cdtD0IdsgVkW5rKrpPn8KXynX96P50KvFmB8yMkwS8uCf8EK20KbgeUcTZhGgNjkSb8ZWYjr2PAaxKKzZf94PB6drAdGO7aOJPHhoKXusiv42ZEe45NZBCkcNW9K7-2FtkJFWXdZN6c8TmSvFzr25EpmYIdIiTz6HHnjLmY6PXV6euj7B4ymuQdVvda3QbzewCZLR-2Fq5-2FZbaczANsIRB7Q9EppMzMcm5-2FZOh9DAWt-2FWL5jJi3WlUxpx6JV7Sk8sX8jyxvL5jxep5W2j0AsxTTdGz-2FCvQ4T5b3xO4vXY-2BZ33jVWBEbHrIYA6RGGb-2B6c0hzoAoTIgSWKuFT8LG-2BuPKddbaWi-2FdVCSY6VgvV2AoTk8Byki2Uw6VqspBUmqi-2FyeeUFN", "threadId": "19f7fd3d348cdcc3", "note": "Healthcare RCM BI lead, founding team. Lensa est $132-161K (above floor); work arrangement unlisted — verify remote."},
+{"title": "Microsoft Azure ETL Developer - Remote", "company": "PeopleCorp America", "source": "Lensa", "date": "2026-07-22", "score": 60, "tier": "look", "url": "https://sg2email.lensa.com/ls/click?upn=u001.jmU3g-2BpCjR8B5yHZB902pK9Gdyn2Clq6CJMkse8axzulFDblI0L-2BzeZMdBGvyys7eZvzSLkZj6gyaaYFNlgwS3LWuWY6KQRy0QRv37mzPxekwSifHa3p3OzSFT3ew6Zp0ewxx4wHkDpDw4rD26bALwvMZaK1rN8ujDYQBaSE8ZCGeM-2BeqNgZ3NJJ8NLw3-2B2hg0CJwbi1snmtm0-2F2wbey4tVRdorqZXzxW8ta2V-2F3u1-2BORQBJyRAHNGYikDgcWRKA2RFP_QXnTW6f9jV7ots26-2Fd0iCA40nBTbwrnPprB64EaCS9zkmj-2BCWIv7rzc4TNxeyGR9uyp-2BODyM2g3Pm1Gg0AMMxZDXVgI1R0gV4Lko2s1idces-2BAqLJlMOIyFyWEQ7h1KHWlTdwrf7rdNuBIjiKQlB2gvmBMPKhdxKFlpOjTLOjIikQb8cDRekU6m-2BST2VHSaEDiUr45iA0C-2FmGrjRmlVMdt4qOdsNCNayDa19rB14t5cdtD0IdsgVkW5rKrpPn8KXynX96P50KvFmB8yMkwS8uCf8EK20KbgeUcTZhGgNjkSb8ZWYjr2PAaxKKzZf94PB6drAdGO7aOJPHhoKXusiv42ZEe45NZBCkcNW9K7-2FtkJFWXdZN6c8TmSvFzr25EpmfvY-2BFRnNIddSJH0hSsWQZmvXBqRoyfow7SXajh3W-2FSZ9-2F-2BFTFDpFJcvivt4YfIqSXPojWyygifiUXCzo5-2B4-2F8-2Fzz-2BEuPTuzq9OJH1KRxUcXygofrn-2FGWou-2B-2BQ0V-2FrgnDGYY1AN-2Fzx3aygEYQ0V3Tv-2FZChfsFA-2FBW-2FDPuCTBw-2FQwbYBsPvXeVNXo9v6LMSTV0v0i4iN-2Bh5ZC7bZ2csm1v6xUnb87ojXm", "threadId": "19f8a2066dfaffea", "note": "Remote; Azure ETL Developer family. Lensa est $90-110K (below floor) — verify actual range."}
 ];
 // ALERT_DATA_END
 
@@ -377,28 +430,41 @@ const scanBtn=$("scanBtn"); if(scanBtn) scanBtn.href=claudeUri("/job-hunt-scan")
 // Run-state (green ✓ once a command is logged) + archived opportunities.
 // Injected from context-library/dashboard-state.json by dashboard/Sync-Dashboards.ps1 — do not hand-edit.
 // DASH_STATE_START
-  const RUN_STATE = {"19f8064120818784":{"job-fit-inbox":"2026-07-22","recruiter-action":"2026-07-22"},"19f7fee6bf8218cd":{"job-fit-inbox":"2026-07-21","recruiter-action":"2026-07-21"},"19f771183237f1d0":{"next-steps":"2026-07-22T18:57:18"},"19f853b1990d7ad7":{"next-steps":"2026-07-22"},"19f8a11a6f842033":{"next-steps":"2026-07-22T19:47:50"},"https://www.linkedin.com/messaging/thread/2-YmRiODJiN2YtYjljNS00YmNlLThjOTItNTY1NWQ1ZWJkMTczXzEwMA==/":{"next-steps":"2026-07-22T18:34:07"},"19f80cb44c91d7bb":{"job-fit-inbox":"2026-07-22T18:27:56","recruiter-action":"2026-07-21"},"https://www.linkedin.com/jobs/view/4440792262/":{"next-steps":"2026-07-22T18:58:26"}};
+  const RUN_STATE = {"19f8064120818784":{"job-fit-inbox":"2026-07-22","recruiter-action":"2026-07-22"},"19f7fee6bf8218cd":{"job-fit-inbox":"2026-07-21","recruiter-action":"2026-07-21"},"19f771183237f1d0":{"next-steps":"2026-07-22T18:57:18"},"19f853b1990d7ad7":{"next-steps":"2026-07-22"},"https://builtin.com/job/senior-bi-analyst/9598809":{"next-steps":"2026-07-22T23:15:22"},"19f8a11a6f842033":{"next-steps":"2026-07-22T19:47:50"},"https://www.linkedin.com/messaging/thread/2-YmRiODJiN2YtYjljNS00YmNlLThjOTItNTY1NWQ1ZWJkMTczXzEwMA==/":{"next-steps":"2026-07-22T18:34:07"},"19f70a3821a475a3":{"next-steps":"2026-07-22T23:37:50"},"19f80cb44c91d7bb":{"job-fit-inbox":"2026-07-22T18:27:56","recruiter-action":"2026-07-21"},"https://www.linkedin.com/jobs/view/4440792262/":{"next-steps":"2026-07-22T18:58:26"}};
   const ARCHIVED = {"19f7f8cdc84867d1":"2026-07-22","19f8091b2c1ef05f":"2026-07-22","https://www.linkedin.com/jobs/view/4440792262/":"2026-07-22","19f771183237f1d0":"2026-07-22","https://www.glassdoor.com/job-listing/sr-power-bi-developer-broadcast-music-inc-JV_KO0,21_KE22,41.htm?jl=1009852236950":"2026-07-22","https://www.linkedin.com/jobs/view/4441911111/":"2026-07-22","https://www.linkedin.com/messaging/thread/2-ZDM4NjE2YWUtNGQxZC00YWQwLTk4YWMtZTVkNDU2N2MzMTA0XzEwMA==/":"2026-07-22","19f864bf13a1c8ee":"2026-07-22","https://www.linkedin.com/messaging/thread/2-YjA5ZjE3MTItM2E2ZC00MDlhLWJlMzgtNzQyYzQ3NGZiMTA1XzEwMA==/":"2026-07-22","https://www.linkedin.com/messaging/thread/2-NjRlYzVjYWUtNzY2Ny00ZjBjLWIwMGMtOTI1MzNjNzYwMTU3XzEwMA==/":"2026-07-22","19f80af86048e18d":"2026-07-22","https://www.linkedin.com/messaging/thread/2-ZTQ3MWQyNjQtYjc3MS00YWRiLWEzZDMtZTlkNTk0MTAwNDliXzEwMA==/":"2026-07-22","19f853b1990d7ad7":"2026-07-22","19f808f24146d81f":"2026-07-22","19f7fb5868e2c05d":"2026-07-22","https://www.linkedin.com/messaging/thread/2-YTBkNzY2NGUtYmZkOC00MmQ5LTlmNGYtYTA2MTE3MjIwNWE0XzEwMA==/":"2026-07-22","https://www.linkedin.com/messaging/thread/2-YTdlMGZhNDItMGY4Zi00ZGE1LWJiN2ItYzg0NmQ4ZDI4YjAwXzEwMA==/":"2026-07-22"};
   const SKIPPED = {"19f7fdfe7ee3bedf":"2026-07-22","19f7fb5868e2c05d":"2026-07-22","19f8091b2c1ef05f":"2026-07-22","19f8065a7ac37096":"2026-07-22","19f7f8cdc84867d1":"2026-07-22"};
 // DASH_STATE_END
 
-const refOf=d=>d.threadId||d.url||"";
+// A card's ref is per-POSTING: the posting URL, falling back to the alert email's thread
+// id only when the card has no url. URL-first matters — one LinkedIn digest email yields
+// many cards sharing a threadId, so a thread-keyed ref would archive/✓ all its siblings.
+const refOf=d=>d.url||d.threadId||"";
+// Every key a card's state may live under: its ref plus its threadId. Older
+// dashboard-state.json entries were keyed by thread id even when the card had a url,
+// and those must keep matching (hides and ✓s) after the url-first switch.
+const keysOf=d=>[d.url,d.threadId].filter(Boolean);
 // Two local sets: refs this browser archived that disk doesn't have yet, and refs disk
 // has that this browser un-archived. Both are pushed by the ⇪ chip (adds and removals).
 const LARCH="job-hunt-archived", LUNARCH="job-hunt-unarchived";
 let localArch=new Set(JSON.parse(localStorage.getItem(LARCH)||"[]"));
 let localUnarch=new Set(JSON.parse(localStorage.getItem(LUNARCH)||"[]"));
-const isArchived=ref=>localArch.has(ref)||(!!(ARCHIVED&&ARCHIVED[ref])&&!localUnarch.has(ref));
+const diskArchKeys=d=>keysOf(d).filter(k=>onDisk(ARCHIVED,k));
+function isArchived(d){
+  if(keysOf(d).some(k=>localArch.has(k))) return true;
+  const dk=diskArchKeys(d);
+  return dk.length>0&&!dk.every(k=>localUnarch.has(k));
+}
 const ranOn=(ref,cmd)=>(RUN_STATE&&RUN_STATE[ref]&&RUN_STATE[ref][cmd])||null;
-function runBtn(cmd,ref,label){
-  const on=ranOn(ref,cmd);
+const ranOnCard=(d,cmd)=>keysOf(d).map(k=>ranOn(k,cmd)).find(Boolean)||null;
+function runBtn(cmd,d,label){
+  const on=ranOnCard(d,cmd);
   const t=on?("Ran "+on+" — click to reopen /"+cmd+" in Claude Desktop"):("Open Claude Code in Claude Desktop (job-search-os) with /"+cmd+" prefilled");
-  return '<a class="runbtn'+(on?' done':'')+'" href="'+claudeUri('/'+cmd+' '+ref)+'" title="'+t+'">'+(on?'✓ ':'▶ ')+label+'</a>';
+  return '<a class="runbtn'+(on?' done':'')+'" href="'+claudeUri('/'+cmd+' '+refOf(d))+'" title="'+t+'">'+(on?'✓ ':'▶ ')+label+'</a>';
 }
 let showArchived=false, tierFilter="all";
 function renderCards(){
   const cards=$("cards"), chips=$("chips");
-  const live=ALERT_DATA.filter(d=>!isArchived(refOf(d)));   // non-archived
+  const live=ALERT_DATA.filter(d=>!isArchived(d));   // non-archived
   const src=showArchived?ALERT_DATA:live;                    // what the list draws from
   const archCount=ALERT_DATA.length-live.length;
   // "new": strong + look only, newest first (score breaks date ties)
@@ -440,7 +506,7 @@ function renderCards(){
   cards.innerHTML="";
   $("empty").style.display = live.length ? "none" : "block";
   data.forEach(d=>{
-    const ref=refOf(d), archived=isArchived(ref);
+    const ref=refOf(d), archived=isArchived(d);
     const c=document.createElement("div");c.className="jcard"+(archived?" archived":"");
     const badge='<span class="badge '+d.tier+'">'+d.score+'</span>';
     const titleHtml = d.url
@@ -449,8 +515,8 @@ function renderCards(){
     const emailBtn = d.threadId
       ? '<a class="linkbtn" href="https://mail.google.com/mail/u/0/#all/'+d.threadId+'" target="_blank" rel="noopener">Open Email</a>'
       : '';
-    // /next-steps carries the resolvable ref: thread id for alert hits, posting URL for web hits.
-    const nextBtn = ref ? runBtn('next-steps',ref,'Next Steps') : '';
+    // /next-steps carries the card's ref: its posting URL, or the alert thread id when url is null.
+    const nextBtn = ref ? runBtn('next-steps',d,'Next Steps') : '';
     const postBtn = d.url
       ? '<a class="linkbtn" href="'+d.url+'" target="_blank" rel="noopener">View Posting</a>'
       : '';
@@ -468,7 +534,11 @@ function renderCards(){
     a.addEventListener('click',e=>{
       e.preventDefault();
       const r=a.getAttribute('data-ref'), un=a.getAttribute('data-un')==="1";
-      if(un){ localArch.delete(r); if(onDisk(ARCHIVED,r)) localUnarch.add(r); }
+      const card=ALERT_DATA.find(d=>refOf(d)===r), keys=card?keysOf(card):[r];
+      // Unarchive clears every key the card is held by — including a legacy thread-keyed
+      // disk entry — so one click really brings it back. Archive stays ref-only: new
+      // hides are per-posting and never touch a digest sibling's state.
+      if(un){ keys.forEach(k=>localArch.delete(k)); keys.filter(k=>onDisk(ARCHIVED,k)).forEach(k=>localUnarch.add(k)); }
       else  { localArch.add(r); localUnarch.delete(r); }
       localStorage.setItem(LARCH,JSON.stringify([...localArch]));
       localStorage.setItem(LUNARCH,JSON.stringify([...localUnarch]));
@@ -696,6 +766,93 @@ render();
 // After a poll-reload, restore the scroll position so the refresh is seamless.
 (function(){const sy=sessionStorage.getItem("ri-scroll"); if(sy!=null){window.scrollTo(0,+sy); sessionStorage.removeItem("ri-scroll");}})();
 
+// ============ APP TRACKER ============
+// Pipeline mirror of context-library/app-tracker.md (that file stays the source of truth —
+// full histories, notes, and comp details live there; this block is the render snapshot).
+// Updated by /app-tracker add|update|pipeline — do not hand-edit between the markers.
+// Dates are ISO YYYY-MM-DD; days-waiting and OVERDUE/DUE-TODAY are computed on load, so the
+// tab stays honest even when the snapshot is a few days old.
+// TRACKER_UPDATED_START
+const TRACKER_UPDATED = "2026-07-23";
+// TRACKER_UPDATED_END
+// TRACKER_DATA_START
+const TRACKER_DATA = [
+{company:"Baptist Health South Florida",role:"Senior System Engineer, Power BI & Automation",stage:"screen",note:"Phone screen 7/23 1:00 PM with Caroline Dybala (561.339.1806). Double-submission resolved — she is looping in Lourdes. Apply after the call with her name in the employee-referral field.",added:"2026-07-21",applied:null,last:"2026-07-22",next:"On the 1 PM call: (1) remote in writing — dealbreaker; (2) confirm genuine Power BI development, not sysadmin; (3) comp range. Then apply via Caroline's referral.",due:"2026-07-23",remote:{t:"Conflicting — Coral Gables 8:30–5 vs 'leader open to remote'",k:"warn"},comp:{t:"Not stated — ask on call",k:"warn"},referral:{t:"employee-referral via Caroline",k:"good"},tags:[["local health system",""],["resume not yet tailored","warn"]],li:"https://www.linkedin.com/messaging/thread/2-YmRiODJiN2YtYjljNS00YmNlLThjOTItNTY1NWQ1ZWJkMTczXzEwMA==/"},
+{company:"Armanino",role:"Senior BI & Analytics Developer",codename:"COMPASS",stage:"screen",note:"Exploratory call with Theron Griffin HELD 7/22 (Teams) — resume sent. Awaiting HM / technical round. Direct hire; Armanino accepts no agency submissions.",added:"2026-07-20",applied:null,last:"2026-07-22",next:"Send the thank-you to Theron — $140–160K target in writing + confirm onsite cadence, HM name, next-round timeline (/thank-you-note). Then /salary-research the FL band + build the reporting-transformation work product.",due:"2026-07-22",remote:{t:"Hybrid — Boca Raton ~30 min, cadence negotiable",k:"warn"},comp:{t:"FL band undisclosed — target $140–160K",k:"warn"},referral:{t:"warm inbound — Theron (Americas Talent Partner)",k:"good"},tags:[["Fabric + FP&A scope","good"],["resume 100% coverage","good"],["direct hire","good"]],gmail:"19f8a11a6f842033"},
+{company:"Publicis Sapient",role:"PowerBI Engineer (via Synergy Interactive)",codename:"KESTREL",stage:"screen",note:"Recruiter screen with Max Garcia done 7/20 — prior resume in his hands; tailored 93% version drafted but unsent.",added:"2026-07-20",applied:null,last:"2026-07-20",next:"Send the reply draft to Max (tailored resume attached); follow up if no update by 7/24.",due:"2026-07-24",remote:{t:"Fully remote — confirmed in writing",k:"good"},comp:{t:"$65/hr LLC · $55/hr W2 — under $70 floor",k:"warn"},referral:{t:"no — agency inbound",k:""},tags:[["Power Platform 80/20","good"],["6-mo contract + ext",""]],gmail:"19f7fee6bf8218cd"},
+{company:"Kentro",role:"Power BI Engineer, VA ESOM",codename:"MERIDIAN",stage:"applied",note:"APPLIED 7/23 via careers.kentro.us — iCIMS application 2026-4175, status 'Received Submission'. Sibling req 4202 (Major Incident Mgmt, ServiceNow-required) on hold.",added:"2026-07-22",applied:"2026-07-23",last:"2026-07-23",next:"Send the 5 drafted connection requests (Brooks Keener = VA ESOM recruiting lead — mention app 2026-4175 once he accepts). Quiet by 7/30 → check iCIMS dashboard + one follow-up. Close PL-300.",due:"2026-07-23",remote:{t:"Remote US, ET hours — verified",k:"good"},comp:{t:"$147–165K posted — anchor $160–165K",k:"good"},referral:{t:"5 requests drafted, not sent",k:"warn"},tags:[["score 92","good"],["resume 100% coverage","good"],["Public Trust path",""]],posting:"https://www.linkedin.com/jobs/view/4441483326/",gmail:"19f70a3821a475a3"},
+{company:"Fractal Analytics",role:"Senior Power BI Developer (SR-39113)",codename:"MANDELBROT",stage:"applied",note:"APPLIED 7/21 via Workday — 10 days ahead of the July 31 deadline. Desired salary on file: $165K.",added:"2026-07-21",applied:"2026-07-21",last:"2026-07-21",next:"Quiet by 7/28 → check Workday Candidate Home. If Srikar / Suresh / Vrushali accept, run /referral-request — a post-application referral still pulls the file. Before any screen: /interview-prep (RLS + capacity planning named in req).",due:"2026-07-28",remote:{t:"Remote — verified on official req",k:"good"},comp:{t:"$150–170K + bonus (geo differential possible)",k:"good"},referral:{t:"3 LinkedIn requests sent 7/21 — awaiting accepts",k:"warn"},tags:[["score 92","good"],["resume 100% coverage","good"],["CPG + finance domain hit","good"]],posting:"https://fractal.wd1.myworkdayjobs.com/en-US/Careers/job/California/Senior-Power-BI-Developer_SR-39113"},
+{company:"Talenzaa",role:"Business Analyst (BI) — Tavant / Kubota",codename:"TIDEWATER",stage:"outreach",note:"Inbound agency role with named end client. Reply drafted 7/21 with tailored resume attached — NOT SENT. Video interview is the stated next step.",added:"2026-07-21",applied:null,last:"2026-07-21",next:"Review + send the Gmail draft ('RE: Urgent Need — Business Analyst…'). Draft asks bill rate (confirm ~$70/hr floor). Follow up with Aviral 3–4 business days after sending.",due:"2026-07-23",remote:{t:"100% remote — stated in email",k:"good"},comp:{t:"rate not stated — draft asks",k:"warn"},referral:{t:"no — agency inbound",k:""},tags:[["resume 97% coverage","good"],["supply-chain domain hit","good"],["long-term contract",""]],gmail:"19f80cb44c91d7bb"},
+{company:"Virtual Networx",role:"Data Analyst & Power BI Engineer",codename:"RIPTIDE",stage:"outreach",note:"Inbound agency role, end client not yet named. Reply drafted 7/21 — NOT SENT; verify the resume PDF is attached before sending (notes conflict).",added:"2026-07-21",applied:null,last:"2026-07-21",next:"Review + send the Gmail draft ('RE: Looking for Data Analyst with Fabric Workspaces…') — ask bill rate + end client. Follow up with Sham 3–4 business days after sending.",due:"2026-07-23",remote:{t:"Remote — stated in email",k:"good"},comp:{t:"rate not stated — draft asks",k:"warn"},referral:{t:"no — agency inbound",k:""},tags:[["Fabric named in JD","good"],["resume 96% coverage","good"],["12+ mo contract",""]],gmail:"19f8064120818784"}
+];
+// TRACKER_DATA_END
+
+const AT_CLOSED=new Set(["rejected","withdrawn","ghosted"]);
+const AT_INT=new Set(["screen","interview","onsite"]);   // interview-family stages → ▶ Prep button
+const AT_META={offer:["Offer","st-offer"],onsite:["Onsite","st-int"],interview:["Interview","st-int"],screen:["Screen","st-int"],applied:["Applied","st-app"],outreach:["Outreach","st-out"],watching:["Watching","st-watch"],rejected:["Rejected","st-closed"],withdrawn:["Withdrawn","st-closed"],ghosted:["Ghosted","st-closed"]};
+const AT_GROUPS=[["offer","Offers"],["onsite","Onsite / Final Round"],["interview","Phone Interview"],["screen","Recruiter Screen / In Conversation"],["applied","Applied — Waiting"],["outreach","Recruiter Threads — Pre-Application"],["watching","Watching"],["closed","Closed"]];
+function atToday(){const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");}
+const atDays=iso=>iso?Math.max(0,Math.round((Date.parse(atToday())-Date.parse(iso))/864e5)):null;
+function atDueState(e){if(!e.due||AT_CLOSED.has(e.stage))return"";const t=atToday();return e.due<t?"over":(e.due===t?"today":"");}
+const atFmt=iso=>iso?iso.slice(5).replace("-","/"):"";
+function atRow(e){
+  const m=AT_META[e.stage]||[e.stage,""];
+  const ds=atDueState(e);
+  const roleHtml=e.posting
+    ? '<a class="role" href="'+e.posting+'" target="_blank" rel="noopener">'+e.role+'</a>'
+    : '<span class="role">'+e.role+'</span>';
+  const bits=[];
+  if(e.applied){const d=atDays(e.applied);bits.push(d===0?"applied today":"applied "+atFmt(e.applied)+" · waiting "+d+"d");}
+  else bits.push("added "+atFmt(e.added));
+  if(e.last&&e.last!==e.applied) bits.push("last action "+atFmt(e.last));
+  const chips=
+    (e.remote&&e.remote.t?'<span class="tag '+(e.remote.k||"")+'">'+e.remote.t+'</span>':"")+
+    (e.comp&&e.comp.t?'<span class="tag '+(e.comp.k||"")+'">'+e.comp.t+'</span>':"")+
+    (e.referral&&e.referral.t?'<span class="tag '+(e.referral.k||"")+'">referral: '+e.referral.t+'</span>':"")+
+    (e.tags||[]).map(t=>'<span class="tag '+t[1]+'">'+t[0]+'</span>').join("");
+  const nextLbl=ds==="over"?"OVERDUE "+atFmt(e.due):(ds==="today"?"DUE TODAY":"next"+(e.due?" by "+atFmt(e.due):""));
+  const next=e.next?'<div class="nextact'+(ds?" "+ds:"")+'"><span class="lbl">'+nextLbl+'</span>'+e.next+'</div>':"";
+  let btns='<a class="runbtn" href="'+claudeUri('/app-tracker status '+e.company)+'" title="Open Claude Code in Claude Desktop (job-search-os) with /app-tracker status prefilled">▶ Status</a>';
+  if(AT_INT.has(e.stage))
+    btns+='<a class="runbtn" href="'+claudeUri('/interview-prep '+e.company)+'" title="Open Claude Code in Claude Desktop (job-search-os) with /interview-prep prefilled">▶ Prep</a>';
+  if(e.posting) btns+='<a class="linkbtn" href="'+e.posting+'" target="_blank" rel="noopener">Posting</a>';
+  if(e.gmail) btns+='<a class="linkbtn" href="https://mail.google.com/mail/u/0/#all/'+e.gmail+'" target="_blank" rel="noopener">Email</a>';
+  if(e.li) btns+='<a class="linkbtn" href="'+e.li+'" target="_blank" rel="noopener">LinkedIn</a>';
+  return '<div class="trow"><div class="stg '+m[1]+'">'+m[0]+'</div><div>'+roleHtml+
+    '<div class="meta">'+e.company+(e.codename?" · "+e.codename:"")+" · "+bits.join(" · ")+'</div>'+
+    (e.note?'<div class="meta" style="margin-top:6px">'+e.note+'</div>':"")+
+    '<div class="tags">'+chips+'</div>'+next+'</div><div class="right">'+btns+'</div></div>';
+}
+function renderTracker(){
+  const u=$("at-updated"); if(u) u.textContent=TRACKER_UPDATED||"—";
+  const active=TRACKER_DATA.filter(e=>!AT_CLOSED.has(e.stage));
+  const closed=TRACKER_DATA.filter(e=>AT_CLOSED.has(e.stage));
+  const inInt=active.filter(e=>AT_INT.has(e.stage)).length;
+  const offers=active.filter(e=>e.stage==="offer").length;
+  const attn=active.filter(e=>atDueState(e)).sort((a,b)=>(a.due||"").localeCompare(b.due||""));
+  const hasOver=attn.some(e=>atDueState(e)==="over");
+  $("at-kpis").innerHTML=
+    '<div class="kpi"><div class="n">'+active.length+'</div><div class="l">active applications</div></div>'+
+    '<div class="kpi"><div class="n" style="color:#8fc2ff">'+inInt+'</div><div class="l">in interview stages</div></div>'+
+    '<div class="kpi"><div class="n" style="color:#5fe0a0">'+offers+'</div><div class="l">offers</div></div>'+
+    '<div class="kpi"><div class="n" style="color:'+(hasOver?"#ff9b9b":(attn.length?"#f5c542":"#6b7690"))+'">'+attn.length+'</div><div class="l">actions due now</div></div>';
+  $("at-attn").innerHTML=attn.length
+    ? '<div class="attn '+(hasOver?"over":"today")+'"><div class="t">Needs attention</div>'+attn.map(e=>{
+        const ds=atDueState(e);
+        return '<div class="it"><span class="d'+(ds==="today"?" today":"")+'">'+(ds==="over"?"OVERDUE "+atFmt(e.due):"TODAY")+'</span>'+e.company+" — "+e.next+'</div>';
+      }).join("")+'</div>'
+    : "";
+  let html="";
+  AT_GROUPS.forEach(g=>{
+    const rows=g[0]==="closed"?closed:active.filter(e=>e.stage===g[0]);
+    if(rows.length) html+='<div class="stagehdr">'+g[1]+' ('+rows.length+')</div>'+rows.map(atRow).join("");
+  });
+  $("at-groups").innerHTML=html||'<div class="empty">No applications tracked yet — run <b>/app-tracker add</b> after your next application.</div>';
+  const tc=$("atCount"); if(tc) tc.textContent=active.length?"("+active.length+")":"";
+}
+const atBtn=$("atScanBtn"); if(atBtn) atBtn.href=claudeUri("/app-tracker pipeline");
+renderTracker();
+
 // ============ TABS ============
 // Recruiter Inbox is the default tab. The active tab persists in sessionStorage so the
 // recruiter poll-reload (and any manual reload) comes back to where you were.
@@ -704,6 +861,7 @@ function showTab(tab){
   document.querySelectorAll('.tabs .tab').forEach(x=>x.classList.toggle('on', x.getAttribute('data-tab')===tab));
   $("panel-recruiter").hidden = tab!=="recruiter";
   $("panel-prospects").hidden = tab!=="prospects";
+  $("panel-tracker").hidden = tab!=="tracker";
   $("panel-search").hidden = tab!=="search";
   if(tab==="search" && !searchBuilt){ renderLinks(); searchBuilt=true; }
   sessionStorage.setItem("jh-tab",tab);

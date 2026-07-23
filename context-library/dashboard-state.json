@@ -9,22 +9,15 @@
                      "https://www.linkedin.com/messaging/thread/2-ZDM4NjE2YWUtNGQxZC00YWQwLTk4YWMtZTVkNDU2N2MzMTA0XzEwMA==/":  "2026-07-22",
                      "19f864bf13a1c8ee":  "2026-07-22",
                      "https://www.linkedin.com/messaging/thread/2-YjA5ZjE3MTItM2E2ZC00MDlhLWJlMzgtNzQyYzQ3NGZiMTA1XzEwMA==/":  "2026-07-22",
+                     "https://www.linkedin.com/messaging/thread/2-YTdlMGZhNDItMGY4Zi00ZGE1LWJiN2ItYzg0NmQ4ZDI4YjAwXzEwMA==/":  "2026-07-22",
                      "19f80af86048e18d":  "2026-07-22",
                      "https://www.linkedin.com/messaging/thread/2-ZTQ3MWQyNjQtYjc3MS00YWRiLWEzZDMtZTlkNTk0MTAwNDliXzEwMA==/":  "2026-07-22",
                      "19f853b1990d7ad7":  "2026-07-22",
                      "19f808f24146d81f":  "2026-07-22",
-                     "https://www.linkedin.com/messaging/thread/2-YTBkNzY2NGUtYmZkOC00MmQ5LTlmNGYtYTA2MTE3MjIwNWE0XzEwMA==/":  "2026-07-22",
                      "19f8091b2c1ef05f":  "2026-07-22",
-                     "https://www.linkedin.com/messaging/thread/2-YTdlMGZhNDItMGY4Zi00ZGE1LWJiN2ItYzg0NmQ4ZDI4YjAwXzEwMA==/":  "2026-07-22",
+                     "https://www.linkedin.com/messaging/thread/2-YTBkNzY2NGUtYmZkOC00MmQ5LTlmNGYtYTA2MTE3MjIwNWE0XzEwMA==/":  "2026-07-22",
                      "https://www.linkedin.com/messaging/thread/2-NjRlYzVjYWUtNzY2Ny00ZjBjLWIwMGMtOTI1MzNjNzYwMTU3XzEwMA==/":  "2026-07-22"
                  },
-    "skipped":  {
-                    "19f7fdfe7ee3bedf":  "2026-07-22",
-                    "19f7fb5868e2c05d":  "2026-07-22",
-                    "19f8091b2c1ef05f":  "2026-07-22",
-                    "19f8065a7ac37096":  "2026-07-22",
-                    "19f7f8cdc84867d1":  "2026-07-22"
-                },
     "runs":  {
                  "19f8064120818784":  {
                                           "job-fit-inbox":  "2026-07-22",
@@ -36,12 +29,18 @@
                  "19f853b1990d7ad7":  {
                                           "next-steps":  "2026-07-22"
                                       },
+                 "https://builtin.com/job/senior-bi-analyst/9598809":  {
+                                                                           "next-steps":  "2026-07-22T23:15:22"
+                                                                       },
                  "19f8a11a6f842033":  {
                                           "next-steps":  "2026-07-22T19:47:50"
                                       },
                  "https://www.linkedin.com/messaging/thread/2-YmRiODJiN2YtYjljNS00YmNlLThjOTItNTY1NWQ1ZWJkMTczXzEwMA==/":  {
                                                                                                                                "next-steps":  "2026-07-22T18:34:07"
                                                                                                                            },
+                 "19f70a3821a475a3":  {
+                                          "next-steps":  "2026-07-22T23:37:50"
+                                      },
                  "https://www.linkedin.com/jobs/view/4440792262/":  {
                                                                         "next-steps":  "2026-07-22T18:58:26"
                                                                     },
@@ -54,5 +53,12 @@
                                           "recruiter-action":  "2026-07-21"
                                       }
              },
-    "_comment":  "Source of truth for dashboard run-state (green checkmarks) and archived opportunities. Keyed by each card\u0027s ref: Gmail thread id, LinkedIn thread URL, or job-posting URL - the same arg the dashboard button passes to the command. Updated by the skills (Record step) and the /archive skill, then injected into both dashboards by dashboard/Sync-Dashboards.ps1. Syncs to GitHub/mobile with the rest of context-library."
+    "skipped":  {
+                    "19f7fdfe7ee3bedf":  "2026-07-22",
+                    "19f7fb5868e2c05d":  "2026-07-22",
+                    "19f8091b2c1ef05f":  "2026-07-22",
+                    "19f8065a7ac37096":  "2026-07-22",
+                    "19f7f8cdc84867d1":  "2026-07-22"
+                },
+    "_comment":  "Source of truth for dashboard run-state (green checkmarks) and archived opportunities. Keyed by each card\u0027s ref - the same arg the dashboard button passes to the command. Recruiter cards: Gmail thread id or LinkedIn thread URL. Job Hunt prospects: the job-posting URL, or the alert thread id only when the card has no url (one digest email spans many cards, so thread ids are not unique per posting). Job-hunt entries written before 2026-07-23 may still be thread-keyed; readers match either key. Updated by the skills (Record step) and the /archive skill, then injected into both dashboards by dashboard/Sync-Dashboards.ps1. Syncs to GitHub/mobile with the rest of context-library."
 }

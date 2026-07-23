@@ -79,6 +79,13 @@ The widget reads files; the dashboard reads files **plus its own browser's
 | `archived` | Archive button (via the ⇪ chip), or `/archive` | hidden everywhere; scans won't re-add it |
 | `skipped` | the **Skip** disposition (via the ⇪ chip) | hidden everywhere; scans may still re-surface it |
 
+A **ref** names one card. Recruiter cards: the Gmail thread id, or the LinkedIn thread
+URL. Job Hunt prospect cards: the **posting URL**, falling back to the alert email's
+thread id only when the card has no link — one LinkedIn digest email yields many cards
+sharing a thread id, so the url is what keeps archive/✓ state per-posting. Job-hunt
+entries written before 2026-07-23 may still be thread-keyed; the dashboard and
+`Sync-Widgets.ps1` match either key on read.
+
 Skip used to be browser-only, which is the main way the two used to disagree. It now
 persists like Archive, and a persisted skip seeds any other browser (so mobile matches too).
 
