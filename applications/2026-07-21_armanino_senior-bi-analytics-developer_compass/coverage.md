@@ -31,5 +31,5 @@ JD is broad (17 extracted requirements); coverage this complete on a JD this wid
 Finance/FP&A background (Merrill Lynch, P&L/BS/Cash Flow reporting, Twin-Star consolidation) is a genuine ASSET for an FP&A-team role at a CPA/advisory firm — foregrounded in the summary and Twin-Star bullets.
 
 ## Verification flags
-- **Phone number:** used **561.336.1806** (experience-library canonical). NOTE: the Fractal resume submitted 2026-07-21 used 561.339.1806 — one of these is wrong. **Confirm the correct number before sending this resume to Armanino.**
+- **Phone number:** **561.339.1806** (confirmed correct 2026-07-21; matches experience-library.md and all prior resumes). An earlier draft of this resume had a typo (.336) — corrected.
 - All bullets trace to experience-library.md (REWORDED from existing entries). No INFERRED/fabricated bullets. Single-source `[VERIFY]` library items (e.g., Redwood-Trust figures, GitHub Copilot SME) deliberately omitted.

@@ -30,20 +30,21 @@ Remote-only search: every entry carries a `remote-policy` field. Non-remote-firs
   - 2026-07-21 **APPLIED via Workday.** Claude drove the form (fixed parser errors: name "Fort FL"→Andrew Green, companies/dates/locations on all 5 roles; added Power BI/DAX/Power Query/SQL/ADF/SSIS/Python skills; LinkedIn URL); Andrew handled account creation, address, EEO disclosures, and final submit. Resume PDF attached via autofill.
 
 ### Baptist Health South Florida — Senior System Engineer, Power BI & Automation (LINKEDIN)
-- **Status:** Warm — two recruiters engaged via LinkedIn; resume sent to one. ⚠️ Resolve double-submission before applying.
+- **Status:** 🔥 Hot — **phone screen scheduled Thursday 2026-07-23 @ 1:00 PM with Caroline Dybala** (gave number 561.339.1806). Double-submission RESOLVED: Caroline confirmed same role and said she'll tell Lourdes they're already talking.
 - **Date added:** 2026-07-21 (sourced by `/linkedin-scan`)
 - **Remote policy:** ⚠️ CONFLICTING — Caroline's posting lists Coral Gables, FL, 8:30–5 (reads onsite/hybrid); Lourdes says "the leader is open to remote." **Confirm remote in writing before investing** (remote-only dealbreaker).
 - **Referral:** Yes-ish — Caroline Dybala (Baptist Health Technical Recruiter) explicitly asked Andrew to apply online with her name in the **employee-referral field**. Internal referral = strongest channel.
-- **Contacts (both Baptist Health SF, LinkedIn):** Lourdes Verde (recruiter — resume already sent 2026-07-18, thread `2-NjRlYzVj…`, remote-open) · Caroline Dybala (Technical Recruiter — named the role "Senior System Engineer – Power BI & Automation," Coral Gables; thread `2-YmRiODJi…`; Andrew has NOT replied yet).
+- **Contacts (both Baptist Health SF, LinkedIn):** Lourdes Verde (recruiter — resume already sent 2026-07-18, thread `2-NjRlYzVj…`, remote-open) · Caroline Dybala (Technical Recruiter — named the role "Senior System Engineer – Power BI & Automation," Coral Gables; thread `2-YmRiODJi…`; Andrew replied 2026-07-22, call booked).
 - **Resume version:** Not yet tailored to this JD.
 - **Comp (posted):** Not stated — ask.
 - **Company tier:** Unranked (major South Florida health system; local = commute-viable if hybrid).
 - **Stack fit:** Good on paper — "Power BI & Automation" maps to Andrew's Power BI + Power Automate/Power Apps work (Basic Fun scheduled distribution, Twin-Star write-back). ⚠️ "System Engineer" title is infra-flavored — confirm it's genuine Power BI development, not IT sysadmin-with-some-Power-BI.
-- **Next action:** Reply to Lourdes today to (1) confirm it's the "Senior System Engineer – Power BI & Automation" role, (2) get remote in writing, (3) coordinate ONE channel (avoid being double-submitted by two recruiters — can trigger an ownership dispute / disqualification). Then apply via Caroline's employee-referral once clear.
+- **Next action:** **Prep for Thursday 7/23 1PM call with Caroline.** Must-nail on the call: (1) **remote/location** — dealbreaker, her posting reads onsite/hybrid Coral Gables 8:30–5 vs. Lourdes's "leader open to remote"; (2) confirm role is genuine Power BI development, not IT sysadmin; (3) comp range. Then apply via Caroline's employee-referral. Consider tailoring resume to this JD before/after the call.
 - **History:**
   - 2026-07-08 Caroline Dybala InMailed the Power BI role + referral offer (no reply yet).
   - 2026-07-18 Lourdes Verde thread — Andrew sent resume; she confirmed leader is open to remote.
   - 2026-07-21 Surfaced by `/linkedin-scan` (Lourdes 58 / Caroline 52, both "look"). `/next-steps` run.
+  - 2026-07-22 Andrew replied to Caroline (flagged Lourdes overlap). Caroline confirmed same role, said she'll loop in Lourdes, and booked a phone screen Thu 7/23 @ 1PM. Andrew confirmed the reply.
 
 ### Talenzaa — Business Analyst (Business Intelligence), client Tavant/Kubota (TIDEWATER)
 - **Status:** Reply drafted (not sent) — awaiting your review + send
@@ -66,7 +67,7 @@ Remote-only search: every entry carries a `remote-policy` field. Non-remote-firs
 - **Date added:** 2026-07-21
 - **Remote policy:** remote-first — email states **Remote** ✅. Matches your remote-only search.
 - **Referral:** No — inbound via staffing agency (Virtual Networx Inc, TX)
-- **Resume version:** JD-tailored, Fabric-forward → `applications/2026-07-20_virtual-networx_data-analyst-powerbi-engineer_riptide/Andrew Green Resume.pdf` (coverage 96/100, all verified)
+- **Resume version:** JD-tailored, Fabric-forward → `applications/2026-07-22_virtual-networx_data-analyst-powerbi-engineer_beacon/Andrew Green Resume.pdf` (coverage 96/100, all verified)
 - **Cover letter:** No
 - **Connection at company:** Recruiter Sham (Shamraj), Sr Talent Acquisition Specialist — shamraj@virtualnetworx.com, +1 469-209-6233. (Virtual Networx also sent a LinkedIn connection req from Kartikeya, BD Mgr — same firm.)
 - **Comp (posted):** ❓ Rate not stated — draft asks for bill rate. Confirm it clears ~$70/hr floor before advancing.
@@ -98,19 +99,19 @@ Remote-only search: every entry carries a `remote-policy` field. Non-remote-firs
   - 2026-07-20 `/recruiter-action` run: JD extracted, resume tailored (93/100 coverage), reply draft created in Gmail Drafts (unsent) with tailored resume attached.
 
 ### Armanino — Senior BI & Analytics Developer (JR103988)
-- **Status:** In Process — direct note SENT to Theron (2026-07-21); awaiting his reply to schedule the exploratory call (proposed tomorrow 11:00–2:00 ET).
+- **Status:** In Process — **exploratory call with Theron HELD 2026-07-22** (Teams; thread `19f8a11a6f842033`, subject reframed "Sr AI/Analytics Developer"); resume sent. Awaiting next round (HM / technical).
 - **Date added:** 2026-07-20
 - **Job fit score:** was 60/100 (SKIP on remote dealbreaker) → **remote dealbreaker resolved**, now a genuine pursue. Raw stack fit ~90+.
 - **Remote policy:** ✅ RESOLVED — local hybrid. Nearest office is **Boca Raton (4755 Technology Way #109), ~30 min / 8 mi from Ft Lauderdale** — not Seattle. FPA leadership wants ~50% onsite but Theron says it "can be massaged" (e.g. 2 days/wk in Boca, or 1 week on / 2 weeks remote). Andrew previously commuted Ft Lauderdale→Boca a few days/week pre-Carnival, so viable.
 - **Referral / source:** Warm inbound — Theron Griffin sourced Andrew directly off his LinkedIn profile. Effectively a recruiter-championed intro, stronger than a cold app.
-- **Resume version:** ✅ JD-tailored, 1-page verified → `applications/2026-07-21_armanino_senior-bi-analytics-developer_compass/Andrew Green Resume.pdf` (coverage 100% — 17/17, 15 STRONG / 2 PARTIAL; PySpark + SCD are the partials, not claimed as projects). Leads with production Fabric + bridge/middle-layer identity + FP&A/finance. ⚠️ phone number needs confirming (used 561.336.1806 per library; Fractal resume used .339 — one is wrong).
+- **Resume version:** ✅ JD-tailored, 1-page verified → `applications/2026-07-21_armanino_senior-bi-analytics-developer_compass/Andrew Green Resume.pdf` (coverage 100% — 17/17, 15 STRONG / 2 PARTIAL; PySpark + SCD are the partials, not claimed as projects). Leads with production Fabric + bridge/middle-layer identity + FP&A/finance. Phone 561.339.1806 confirmed correct.
 - **Cover letter:** No
 - **Connection at company:** **Theron Griffin — Americas Talent Partner, Armanino Advisory LLC** (started ~1 week ago). Direct: theron.griffin@armanino.com. Cooper City, FL local. 1st-degree LinkedIn connection.
 - **Company tier:** Unranked (not in target-companies.md — top-25 US accounting & advisory firm)
 - **Comp (posted):** CO $103.3–140.7K · SoCal/NY/WA/IL $113.6–154.8K · NorCal $118.8–161.8K. ⚠️ **Florida band NOT disclosed** — FL likely maps to a lower-COL tier than the listed metros, so the actual FL number could land below your $140–160K target. **Comp is now the #1 open question** — Theron explicitly teed it up ("if the compensation is where you need it to be"). Surface your $140–160K target on the call.
 - **Stack fit:** Near-exact — Microsoft Fabric (Lakehouse/Warehouse, notebooks, pipelines), Power BI semantic models, advanced SQL, Python transformation (PySpark ideal), dimensional modeling / SCD. Role = re-engineering the reporting/middle layer during a company-wide reporting transformation, bridging back-end data eng ↔ front-end reporting for the FP&A team — strong architecture-influence scope. PySpark is your only soft spot.
 - **Last action:** 2026-07-21 — direct note SENT to theron.griffin@armanino.com proposing exploratory call tomorrow 11:00–2:00 ET. Body/launcher archived in `applications/2026-07-21_armanino_senior-bi-analytics-developer_compass/` (codename COMPASS).
-- **Next action:** Await Theron's reply to lock the call time; follow up if no response by ~2026-07-23. Then hold the exploratory call — goals: (1) confirm comp lands in $140–160K, (2) pin down real onsite cadence, (3) understand transformation scope + who the HM is. If aligned → HM conversation next; build tailored resume before it.
+- **Next action:** (call held) → **Same-day follow-up to Theron** (thank-you + put $140–160K target in writing + confirm onsite cadence, HM name, and next-round timeline) — run `/thank-you-note`. Then arm comp with `/salary-research` (FL band undisclosed), prep the HM/technical round with `/interview-prep Armanino` (no pre-loaded intel — web + frameworks; PySpark is the soft spot), and build the differentiator: a company-specific reporting-transformation 1-pager via `/work-product`. See next-steps run 2026-07-22.
 - **Notes:** Armanino LLP / Armanino Advisory LLC — explicitly does NOT accept third-party/agency submissions, so this direct-recruiter path is the right (only) channel. Finance background (Merrill Lynch, P&L/BS/CF; FP&A BI work at Basic Fun/Twin-Star) is a domain ASSET at a CPA/advisory firm and directly relevant to an FP&A-team role.
 - **History:**
   - 2026-07-20 Added to Watching — pending remote confirmation (Job Fit 60/100, SKIP on remote dealbreaker)
@@ -118,6 +119,7 @@ Remote-only search: every entry carries a `remote-policy` field. Non-remote-firs
   - 2026-07-21 Direct-email draft to theron.griffin@armanino.com created (unsent, Gmail Drafts) via Outlook COM — proposes call tomorrow 11:00–2:00 ET. Codename COMPASS. Pending review + send.
   - 2026-07-21 Note SENT to Theron. Awaiting reply to schedule the exploratory call.
   - 2026-07-21 Tailored 1-page resume built (100% coverage, PDF) + call-prep sheet (md/PDF, on desktop). Ready for the HM hand-off.
+  - 2026-07-22 **Exploratory call with Theron HELD** (Teams; thread `19f8a11a6f842033`); resume sent. `/next-steps` run → post-call plan set: follow-up note (comp on record), salary-research, interview-prep, reporting-transformation work product.
 
 ---
 

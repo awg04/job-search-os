@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fit Score — Virtual Networx · Data Analyst & Power BI Engineer</title>
+<style>
+  :root{
+    --bg:#0f1420; --panel:#171e2e; --panel2:#1e2740; --line:#2a3452;
+    --ink:#e8edf7; --muted:#95a1bd; --accent:#5b9dff;
+    --green:#16a766; --greenbg:#12351f; --yellow:#f5c542; --yellowbg:#3a3010; --gray:#6b7690; --graybg:#20283c;
+    --red:#ff9b9b; --redbg:#2a1414;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.55 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  header{padding:24px 26px 18px;border-bottom:1px solid var(--line);background:var(--bg)}
+  h1{margin:0 0 4px;font-size:21px;letter-spacing:.2px}
+  .sub{color:var(--muted);font-size:12.5px}
+  .wrap{padding:22px 26px 60px;max-width:1000px;margin:0 auto}
+  h2{font-size:15px;letter-spacing:.3px;text-transform:uppercase;color:var(--muted);margin:30px 0 12px;font-weight:600}
+
+  .verdict-bar{display:flex;gap:18px;flex-wrap:wrap;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin-top:18px}
+  .bigscore{width:88px;height:88px;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0}
+  .bigscore .n{font-size:32px;font-weight:800;line-height:1}
+  .bigscore .d{font-size:11px;color:var(--muted);margin-top:3px}
+  .s-strong{background:var(--greenbg);color:#5fe0a0;border:1px solid #1e7a4d}
+  .s-look{background:var(--yellowbg);color:var(--yellow);border:1px solid #7a6216}
+  .s-low{background:var(--graybg);color:var(--gray);border:1px solid #38425e}
+  .verdict-txt{flex:1;min-width:240px}
+  .verdict-txt .badge{display:inline-block;font-size:12px;font-weight:700;padding:4px 12px;border-radius:20px;background:var(--yellowbg);color:var(--yellow);border:1px solid #7a6216;margin-bottom:8px}
+  .verdict-txt .headline{font-size:16px;font-weight:600}
+  .verdict-txt p{margin:6px 0 0;color:var(--muted);font-size:13px}
+
+  table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:var(--panel2);color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.4px}
+  tr:last-child td{border-bottom:none}
+  td.dim{font-weight:600;white-space:nowrap}
+  td.pts{text-align:right;font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums}
+  .bar{display:inline-block;height:7px;border-radius:4px;background:var(--accent);vertical-align:middle;margin-left:8px;min-width:4px}
+  tr.total td{background:var(--panel2);font-size:15px;font-weight:800}
+  tr.total td.pts{color:#5fe0a0}
+  .just{color:var(--muted);font-size:12.5px}
+
+  .note{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;padding:12px 15px;margin-top:14px;font-size:13px;color:var(--muted)}
+  .note b{color:var(--ink)}
+
+  ul.clean{list-style:none;padding:0;margin:10px 0}
+  ul.clean li{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:11px 14px;margin-bottom:8px}
+  ul.clean li b{color:var(--ink)}
+  .flags{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+  .chip{font-size:12.5px;padding:5px 12px;border-radius:8px;border:1px solid var(--line);background:var(--panel2)}
+  .chip.g{color:#6fe0a6;border-color:#1e7a4d;background:var(--greenbg)}
+  .chip.y{color:var(--yellow);border-color:#7a6216;background:var(--yellowbg)}
+
+  ol.steps{padding-left:0;counter-reset:s;list-style:none;margin:10px 0}
+  ol.steps li{counter-increment:s;position:relative;background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:12px 15px 12px 46px;margin-bottom:9px}
+  ol.steps li::before{content:counter(s);position:absolute;left:12px;top:11px;width:22px;height:22px;border-radius:50%;background:var(--accent);color:#08122a;font-weight:700;font-size:12px;display:flex;align-items:center;justify-content:center}
+  ol.steps li b{color:var(--ink)}
+  code{font-family:ui-monospace,Menlo,Consolas,monospace;background:var(--panel2);border:1px solid var(--line);border-radius:5px;padding:1px 6px;font-size:12px;color:#8fa3c8}
+  footer{color:var(--muted);font-size:12px;text-align:center;padding:26px 20px;border-top:1px solid var(--line);margin-top:36px}
+  a{color:var(--accent)}
+</style>
+</head>
+<body>
+<header>
+  <h1>Fit Score — Data Analyst &amp; Power BI Engineer</h1>
+  <div class="sub">Virtual Networx (staffing) · Recruiter: Sham · Gmail thread <code style="font-size:11px">19f8064120818784</code> · codename RIPTIDE · scored 2026-07-22</div>
+</header>
+<div class="wrap">
+
+  <div class="verdict-bar">
+    <div class="bigscore s-look"><div class="n">74</div><div class="d">/ 100</div></div>
+    <div class="verdict-txt">
+      <span class="badge">APPLY · verify-first</span>
+      <div class="headline">Already in motion — confirm rate &amp; end client, then advance.</div>
+      <p>Top of the verify-first band, gated only on two logistics answers. Recruiter-action already ran 2026-07-21: a Fabric-forward resume and a reply to Sham (asking bill rate + end client) are drafted in this folder; disposition is already <b>Pursue</b>.</p>
+    </div>
+  </div>
+
+  <div class="note"><b>Source note:</b> Scored from the saved JD (<code>jd.md</code>, captured from the recruiter email 2026-07-20) plus the dashboard DATA object. Live Gmail/Chrome reads are unavailable in this headless run, but the full JD was already recovered — no scoring gaps result. Rate and end client are logistics the email never contained, not lost data.</div>
+
+  <h2>Scorecard · 5 dimensions × 0–20</h2>
+  <table>
+    <thead><tr><th>Dimension</th><th>Justification</th><th style="text-align:right">Score</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="dim">Skill match</td>
+        <td class="just">JD asks Power BI + <b>Fabric workspaces</b>, strong SQL, data modeling, ETL, data-accuracy/QC, storytelling — every item maps to real experience. Production Fabric (Carnival Direct Lake lakehouse; Basic Fun golden datasets) is both an explicit requirement and a rare differentiator. Pure Microsoft stack.</td>
+        <td class="pts">19 / 20<span class="bar" style="width:95px"></span></td>
+      </tr>
+      <tr>
+        <td class="dim">Seniority fit</td>
+        <td class="just">Scope (design/develop/maintain dashboards, modeling, ETL) fits the Senior BI Developer target. Docked because the title leans "Data Analyst" and the JD isn't explicitly senior — slightly more analysis/storytelling than heavy engineering, but well within range.</td>
+        <td class="pts">15 / 20<span class="bar" style="width:75px"></span></td>
+      </tr>
+      <tr>
+        <td class="dim">Culture signals</td>
+        <td class="just">Virtual Networx is a staffing firm and the <b>end client is unnamed</b> ("our clients"). Not a red-flag body-shop, but blind-placement risk until the client is named. No PII-harvesting / multi-client-spam signals.</td>
+        <td class="pts">12 / 20<span class="bar" style="width:60px"></span></td>
+      </tr>
+      <tr>
+        <td class="dim">Comp range</td>
+        <td class="just"><b>Rate not stated.</b> Can't credit the ~$70/hr contract floor without it. Contract / 12+ month format matches Andrew's track record; scored mid-band and flagged rather than penalized as sub-floor.</td>
+        <td class="pts">11 / 20<span class="bar" style="width:55px"></span></td>
+      </tr>
+      <tr>
+        <td class="dim">Growth trajectory</td>
+        <td class="just">Fabric + Power BI + Azure/SQL is exactly where Andrew is heading (Fabric/Azure BI leadership). Remote 12+ month contract is durable and deepens the Fabric story most of the market lacks.</td>
+        <td class="pts">17 / 20<span class="bar" style="width:85px"></span></td>
+      </tr>
+      <tr class="total"><td>Total</td><td></td><td class="pts">74 / 100</td></tr>
+    </tbody>
+  </table>
+
+  <div class="note"><b>Reconciliation with the dashboard scan score (85):</b> the scan graded raw skill/remote alignment, which is genuinely elite here. This rubric additionally discounts the unnamed end client (culture) and the unstated rate (comp). Confirm rate ≥ $70/hr <b>and</b> a named client and this lands ~84 → clear Apply.</div>
+
+  <h2>Role analysis</h2>
+  <ul class="clean">
+    <li><b>Strongest matches:</b> production Microsoft Fabric (explicit JD ask + differentiator), 10+ yrs Power BI/DAX/semantic models, strong SQL, ETL (ADF/SSIS/Synapse), data-quality rigor (99% accuracy, EXCEPT validation), storytelling (+35% adoption).</li>
+    <li><b>Real gaps:</b> none on skills — coverage scored 96/100. The only open items are <b>rate</b> and <b>end client</b>: logistics, not capability.</li>
+    <li><b>Remote verification:</b> JD states Remote; no on-site language. Passes the hard filter on the saved text.</li>
+  </ul>
+  <div class="flags">
+    <span class="chip g">🟢 Remote — clears hard filter</span>
+    <span class="chip g">🟢 12+ mo contract — matches history</span>
+    <span class="chip y">🟡 Staffing firm · client unnamed</span>
+    <span class="chip y">🟡 Rate not stated</span>
+  </div>
+
+  <h2>Verdict — Apply (verify-first) · already in motion</h2>
+  <ul class="clean">
+    <li>Score sits at the top of the verify-first band and is gated only on two logistics answers. <b>Recruiter-action already ran 2026-07-21</b> — a tailored Fabric-forward resume and a reply to Sham (asking bill rate + end client) are drafted in this folder; the recruiter-inbox disposition is already <b>Pursue</b>. Nothing new to launch — this is a confirm-and-advance.</li>
+  </ul>
+
+  <h2>Next steps</h2>
+  <ol class="steps">
+    <li><b>Send the drafted reply</b> (<code>reply-draft.md</code>) to Sham — it already asks the two open questions: confirm the <b>bill rate clears ~$70/hr</b> and <b>name the end client</b>. Attach <code>Andrew Green Resume.pdf</code>.</li>
+    <li><b>On the rate answer:</b> ≥ $70/hr and a named, non-body-shop client → advance to <code>/app-tracker</code> as In Process. Below floor or client stays hidden → hold.</li>
+    <li>Keep <b>leading with production Fabric</b> on any call — the single strongest hook and the JD's headline requirement.</li>
+    <li>Hold <code>/company-research</code> and <code>/interview-prep</code> until the end client is named.</li>
+  </ol>
+
+</div>
+<footer>Job Search OS · fit-score for Gmail thread 19f8064120818784 · read-only analysis, never sends · companion to <code>fit-score.md</code></footer>
+</body>
+</html>

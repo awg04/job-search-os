@@ -46,7 +46,7 @@ def para(text, size=9.5):
 
 name_line("Andrew Green")
 center("Senior BI & Analytics Developer — Microsoft Fabric · Power BI Semantic Modeling · SQL · Python", 10.5, bold=True)
-center("Fort Lauderdale, FL (Boca-local / hybrid, ET)  |  561.336.1806  |  andrewgreen04@gmail.com  |  linkedin.com/in/agreen8", 9.5)
+center("Fort Lauderdale, FL (Boca-local / hybrid, ET)  |  561.339.1806  |  andrewgreen04@gmail.com  |  linkedin.com/in/agreen8", 9.5)
 
 section_head("Summary")
 para("Senior BI & Analytics Developer, 10+ years on the Microsoft data stack, working the seam between back-end data engineering and front-end reporting — building curated data models in SQL and Python across Microsoft Fabric (Lakehouse, notebooks, pipelines) and the Power BI semantic models on top. Three enterprise data warehouses built from scratch; production Fabric adopter with an FP&A/finance background. Known for 99% data accuracy, 25% faster processing, and Git-governed delivery.")

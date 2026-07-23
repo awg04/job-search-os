@@ -11,7 +11,7 @@ Auto-compiled by the **recruiter-inbox-scan** scheduled task. Scans Gmail for em
 **Scoring** (0–100, aligned to career plan): remote fit, Microsoft-stack fit (Power BI / Fabric / Azure / SQL / DAX / ETL), comp vs. $130K / $70-hr floor, role-type fit (BI/Data Eng core vs. adjacent), and no-body-shop signal.
 - **Strong-Fit ≥ 65** · **Worth-a-Look 40–64** · **Low-Fit < 40**
 
-_Last scan: 2026-07-21 · Window: last 2 days · New this scan: 1_
+_Last scan: 2026-07-22 · Window: last 2 days · New this scan: 2_
 
 ---
 
@@ -19,9 +19,10 @@ _Last scan: 2026-07-21 · Window: last 2 days · New this scan: 1_
 
 | Date | Recruiter (Firm) | Role | Client | Remote | Comp | Score | Verdict | Disposition | Thread |
 |------|------------------|------|--------|--------|------|-------|---------|-------------|--------|
-| 2026-07-20 | Sham — Virtual Networx | Data Analyst & Power BI Engineer | (undisclosed) | ✅ Remote | ❓ not stated | **85** | Strong-Fit | Pursue (reply drafted 2026-07-21) | [open](https://mail.google.com/mail/u/0/#all/19f8064120818784) · `19f8064120818784` |
+| 2026-07-20 | Sham — Virtual Networx | Data Analyst & Power BI Engineer | (undisclosed) | ✅ Remote | ❓ not stated | **85** | Strong-Fit | Pursue (reply drafted 2026-07-22, awaiting review — asks rate + client) | [open](https://mail.google.com/mail/u/0/#all/19f8064120818784) · `19f8064120818784` |
 | 2026-07-20 | Aviral Srivastava — Talenzaa | Business Analyst (Business Intelligence) | Tavant / Kubota | ✅ 100% Remote | ❓ not stated (contract) | **82** | Strong-Fit | Pursue (reply drafted 2026-07-21) | [open](https://mail.google.com/mail/u/0/#all/19f80cb44c91d7bb) · `19f80cb44c91d7bb` |
 | 2026-07-20 | Max Garcia — Synergy Interactive | PowerBI Engineer | Publicis Sapient | ✅ Fully Remote | $65/hr LLC · $55/hr W2 | **80** | Strong-Fit · **IN PROCESS** | Applied (in app-tracker) | [open](https://mail.google.com/mail/u/0/#all/19f7fee6bf8218cd) · `19f7fee6bf8218cd` |
+| 2026-07-22 | Theron Griffin — Armanino | Senior BI & Analytics Developer | Armanino (direct) | ⚠️ Hybrid — Boca (~30 min) | ❓ not stated | **72** | Strong-Fit · **IN PROCESS** | Applied — call held 2026-07-22, resume sent (app folder: `applications/2026-07-21_armanino_senior-bi-analytics-developer_compass`) | [open](https://mail.google.com/mail/u/0/#all/19f8a11a6f842033) · `19f8a11a6f842033` |
 | 2026-07-20 | Reeba Saini — Nityo Infotech | Power BI Developer | (undisclosed) | ⚠️ Raleigh NC / Dallas TX | Full-time perm | **42** | Worth-a-Look | | [open](https://mail.google.com/mail/u/0/#all/19f7fdfe7ee3bedf) · `19f7fdfe7ee3bedf` |
 
 ## Low-fit (logged, no action needed)
@@ -32,6 +33,7 @@ _Last scan: 2026-07-21 · Window: last 2 days · New this scan: 1_
 | 2026-07-20 | Colton Collins — Capital Staffing | Business Systems Analyst (Python/SQL) | ❌ Juno Beach, FL onsite | — | 28 | Onsite; BSA not BI-core | | [open](https://mail.google.com/mail/u/0/#all/19f7f8cdc84867d1) · `19f7f8cdc84867d1` |
 | 2026-07-21 | Kaila Timko — Capital Staffing | Business Systems Analyst (Python/SQL/ML) | ❌ Juno Beach, FL onsite | ❓ not stated (12mo+ contract) | 26 | Onsite; BSA not BI-core; rate not stated; same Juno Beach client as Colton/Yash | | [open](https://mail.google.com/mail/u/0/#all/19f864bf13a1c8ee) · `19f864bf13a1c8ee` |
 | 2026-07-20 | Yash Agarwal — Exarca (via Dice) | IT Business Systems Analyst II | ❌ Juno Beach, FL onsite | W2 only | 25 | Onsite; BSA not BI-core | | [open](https://mail.google.com/mail/u/0/#all/19f7fb5868e2c05d) · `19f7fb5868e2c05d` |
+| 2026-07-22 | Moumita Dey — Nityo Infotech | Data Warehouse Developer | ❌ Charlotte, NC onsite | ❓ not stated | 22 | Onsite; non-MS stack (Snowflake/AWS ETL, Python/UNIX — no Power BI/Fabric); rate not stated | | [open](https://mail.google.com/mail/u/0/#all/19f8b5a20bb846ad) · `19f8b5a20bb846ad` |
 | 2026-07-20 | Avneesh Tyagi — Nityo | Business Analyst, Treasury Systems | ❌ Miami hybrid | $30/hr W2 | 20 | Comp far below floor; hybrid | | [open](https://mail.google.com/mail/u/0/#all/19f80af86048e18d) · `19f80af86048e18d` |
 | 2026-07-20 | Veena — ATVS LLC | Data Engineer (Hadoop / Ab Initio) | ❌ Berkeley Heights, NJ onsite | $50/hr W2 | 15 | Non-MS stack; onsite; ⚠️ email requests SSN-last-4 + DOB up front (do not send) | | [open](https://mail.google.com/mail/u/0/#all/19f8065a7ac37096) · `19f8065a7ac37096` |
 | 2026-07-20 | Saurav Sahil — Nityo | Infor LN Functional Consultant | ❓ | — | 12 | ERP functional role, off-target | | [open](https://mail.google.com/mail/u/0/#all/19f808f24146d81f) · `19f808f24146d81f` |

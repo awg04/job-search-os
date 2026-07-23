@@ -1,6 +1,6 @@
 # Andrew Green
 **Senior BI & Analytics Developer — Microsoft Fabric · Power BI Semantic Modeling · SQL · Python**
-Fort Lauderdale, FL (Boca-local / hybrid, ET) | 561.336.1806 | andrewgreen04@gmail.com | linkedin.com/in/agreen8
+Fort Lauderdale, FL (Boca-local / hybrid, ET) | 561.339.1806 | andrewgreen04@gmail.com | linkedin.com/in/agreen8
 
 _Final one-page version, matches resume.docx / Andrew Green Resume.pdf (Armanino JR103988, 2026-07-21)._
 
