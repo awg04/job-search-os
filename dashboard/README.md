@@ -27,6 +27,23 @@ The dashboard is only as good as the trackers:
 - `dashboard.html` — the page itself (source of truth for the artifact)
 - Task definition: `C:\Users\agr9010\.claude\scheduled-tasks\job-search-dashboard-refresh\SKILL.md`
 
+## App Tracker tab (job-hunt.html)
+
+`job-hunt.html` carries four tabs: **Recruiter Inbox | Job Prospects | App Tracker | Direct Source Search**.
+
+The **App Tracker** tab is a pipeline mirror of `context-library/app-tracker.md`: KPI row
+(active / in interview stages / offers / actions due now), a Needs Attention box, and
+stage-grouped cards (Screen → Applied → Pre-Application threads → … → Closed) with
+remote/comp/referral chips and per-card **▶ Status** / **▶ Prep** deep links plus
+Posting / Email / LinkedIn buttons.
+
+- Data lives in the `TRACKER_DATA` block (`// TRACKER_DATA_START…END`); `/app-tracker`
+  add/update/pipeline regenerates it. `app-tracker.md` stays the source of truth.
+- Only dates are stored — days-waiting and OVERDUE / DUE TODAY are computed from today's
+  date each load, so the flags stay honest even if the snapshot is a few days old.
+- No widget JSON derives from this block; `Sync-Widgets.ps1` ignores it (it anchors on
+  the `ALERT_DATA` / `DATA` const names).
+
 ## Desktop widget refresh (Zebar)
 
 The **consolidated Job Search widget** (`~/.glzr/zebar/job-search/`, 344×900) has

@@ -288,6 +288,33 @@ Auto-update the matching application: advance status to reflect the completed in
 
 Output: "Updated [Company] pipeline entry: [interview type] completed on [date]. Next action: [auto-generated]."
 
+### After every `add` / `update` (and on `pipeline`) — sync the dashboard's App Tracker tab:
+
+`dashboard/job-hunt.html` has an **App Tracker** tab (between Job Prospects and Direct Source Search) that mirrors `app-tracker.md`. Whenever this skill changes `app-tracker.md` — and whenever `pipeline` runs and the tab is stale — regenerate the two marker blocks in `dashboard/job-hunt.html`:
+
+- `// TRACKER_UPDATED_START … END` — `const TRACKER_UPDATED = "[YYYY-MM-DD]";` (today)
+- `// TRACKER_DATA_START … END` — `const TRACKER_DATA = [ … ];`, **one JS object per entry, one line each**:
+
+```js
+{company:"", role:"", codename:"",            // codename optional
+ stage:"",                                    // offer | onsite | interview | screen | applied | outreach | watching | rejected | withdrawn | ghosted
+ note:"",                                     // 1-2 sentence status summary shown on the card
+ added:"YYYY-MM-DD", applied:"YYYY-MM-DD"|null, last:"YYYY-MM-DD",
+ next:"",                                     // the entry's Next action, condensed
+ due:"YYYY-MM-DD",                            // when that action is due — drives OVERDUE / DUE TODAY
+ remote:{t:"",k:""}, comp:{t:"",k:""}, referral:{t:"",k:""},   // k: "good" | "warn" | "bad" | ""
+ tags:[["label","k"], …],                     // score, coverage %, domain hits, contract length …
+ posting:"url", gmail:"threadId", li:"url"}   // each optional — Posting / Email / LinkedIn buttons
+```
+
+Rules:
+- Status mapping: `recruiter-screen` → `screen`, `phone-interview` → `interview`, `referral-requested`/`referral-received` before an application exists → `outreach`; pre-application recruiter threads (reply drafted, not sent) → `outreach`; Watching section → `watching`.
+- Dates only, never computed day-counts — the tab computes days-waiting and OVERDUE/DUE-TODAY from today's date on load, so it stays honest between syncs.
+- Double-quoted strings; no literal double quotes inside values (use single quotes). Full histories and comp detail stay in `app-tracker.md` — the block is a render snapshot, not a second source of truth.
+- Touch nothing outside the two marker blocks. `Sync-Widgets.ps1` parses other blocks (`ALERT_DATA`, `DATA`) by exact const name and ignores `TRACKER_DATA`; no widget JSON is derived from it.
+
+Output line after syncing: "App Tracker tab refreshed (N active)."
+
 ## Example
 
 **Input:**
