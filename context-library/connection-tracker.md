@@ -1,6 +1,6 @@
 # Connection Tracker
 
-Last updated: 2026-07-22
+Last updated: 2026-07-23
 
 Auto-maintained by the OS. Updated after connection requests, referral requests, coffee chats, and interview rounds.
 
@@ -19,11 +19,12 @@ _Context: applying to Senior Power BI Developer (SR-39113, MANDELBROT, deadline 
 - **Next action:** send connection request; if accepted, soft referral ask for SR-39113
 
 ### Suresh Krishna — Senior Consultant, Fractal Analytics
-- **LinkedIn:** linkedin.com/in/suresh-krishna-b960119b · 2nd degree
+- **LinkedIn:** linkedin.com/in/suresh-krishna-b960119b · 1st degree ✅
 - **Mutuals:** Bas Dohmen (How to Power BI), Injae Park
-- **LinkedIn connected:** requested 2026-07-21 (awaiting accept)
-- **Referral requested:** no
-- **Next action:** send connection request; ask about delivery-team life at Fractal
+- **LinkedIn connected:** accepted 2026-07-23 — replied same morning (10:35 AM), positive: "life at Fractal is good given the client's nature," lots of BI projects, internal freedom to build tools + work RFPs
+- **Referral requested:** soft ask SENT 2026-07-23 — advice-ask inviting a referral offer (names req SR-39113) + Fabric agentic-AI hook
+- **Next action:** await his reply; if he offers to refer or asks for details, send resume PDF (MANDELBROT folder) + req SR-39113. Nudge gently ~2026-07-28 if quiet (req deadline 07-31)
+- **Thread:** linkedin.com/messaging/thread/2-ODI4MTUyM2QtZTE4Ni00MDg3LWFkYTktM2E4MjRlYTIwZTFjXzEwMA==/
 
 ### Vrushali Valmik Pawar — Senior Consultant, Fractal Analytics
 - **LinkedIn:** linkedin.com/in/vrushali-pawar-2210 · 2nd degree

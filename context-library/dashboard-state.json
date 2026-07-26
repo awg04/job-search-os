@@ -1,24 +1,38 @@
 {
     "archived":  {
-                     "19f7f8cdc84867d1":  "2026-07-22",
+                     "https://www.linkedin.com/messaging/thread/2-YmRiODJiN2YtYjljNS00YmNlLThjOTItNTY1NWQ1ZWJkMTczXzEwMA==/":  "2026-07-23",
                      "https://www.linkedin.com/jobs/view/4440792262/":  "2026-07-22",
                      "19f7fb5868e2c05d":  "2026-07-22",
+                     "19f7f8cdc84867d1":  "2026-07-22",
                      "19f771183237f1d0":  "2026-07-22",
                      "https://www.glassdoor.com/job-listing/sr-power-bi-developer-broadcast-music-inc-JV_KO0,21_KE22,41.htm?jl=1009852236950":  "2026-07-22",
                      "https://www.linkedin.com/jobs/view/4441911111/":  "2026-07-22",
                      "https://www.linkedin.com/messaging/thread/2-ZDM4NjE2YWUtNGQxZC00YWQwLTk4YWMtZTVkNDU2N2MzMTA0XzEwMA==/":  "2026-07-22",
                      "19f864bf13a1c8ee":  "2026-07-22",
                      "https://www.linkedin.com/messaging/thread/2-YjA5ZjE3MTItM2E2ZC00MDlhLWJlMzgtNzQyYzQ3NGZiMTA1XzEwMA==/":  "2026-07-22",
+                     "19f8b5a20bb846ad":  "2026-07-23",
                      "https://www.linkedin.com/messaging/thread/2-YTdlMGZhNDItMGY4Zi00ZGE1LWJiN2ItYzg0NmQ4ZDI4YjAwXzEwMA==/":  "2026-07-22",
                      "19f80af86048e18d":  "2026-07-22",
                      "https://www.linkedin.com/messaging/thread/2-ZTQ3MWQyNjQtYjc3MS00YWRiLWEzZDMtZTlkNTk0MTAwNDliXzEwMA==/":  "2026-07-22",
                      "19f853b1990d7ad7":  "2026-07-22",
                      "19f808f24146d81f":  "2026-07-22",
+                     "19f8a11a6f842033":  "2026-07-23",
                      "19f8091b2c1ef05f":  "2026-07-22",
                      "https://www.linkedin.com/messaging/thread/2-YTBkNzY2NGUtYmZkOC00MmQ5LTlmNGYtYTA2MTE3MjIwNWE0XzEwMA==/":  "2026-07-22",
                      "https://www.linkedin.com/messaging/thread/2-NjRlYzVjYWUtNzY2Ny00ZjBjLWIwMGMtOTI1MzNjNzYwMTU3XzEwMA==/":  "2026-07-22"
                  },
+    "_comment":  "Source of truth for dashboard run-state (green checkmarks) and archived opportunities. Keyed by each card\u0027s ref - the same arg the dashboard button passes to the command. Recruiter cards: Gmail thread id or LinkedIn thread URL. Job Hunt prospects: the job-posting URL, or the alert thread id only when the card has no url (one digest email spans many cards, so thread ids are not unique per posting). Job-hunt entries written before 2026-07-23 may still be thread-keyed; readers match either key. Updated by the skills (Record step) and the /archive skill, then injected into both dashboards by dashboard/Sync-Dashboards.ps1. Syncs to GitHub/mobile with the rest of context-library.",
+    "skipped":  {
+                    "19f7fdfe7ee3bedf":  "2026-07-22",
+                    "19f7fb5868e2c05d":  "2026-07-22",
+                    "19f8091b2c1ef05f":  "2026-07-22",
+                    "19f8065a7ac37096":  "2026-07-22",
+                    "19f7f8cdc84867d1":  "2026-07-22"
+                },
     "runs":  {
+                 "https://sg2email.lensa.com/ls/click?upn=u001.jmU3g-2BpCjR8B5yHZB902pK6ssbzDLLx7LrEMXpbH7ysAhF-2BFrAqtKh3490gCgupYyO1gzMZxnXhTxlG34wpTkAGX-2FQIciNd04cTFaret31s6G9cwO9zRWoYxsFPuXXjZ644A88PkxiOU6K9dp1Y7rF-2B9VRLIL7cnLgLByf5QxaSoaFvm0WnhBypic3KNxUp0b5YS-2FgWm0p9og3fiUKh05KaC-2FXYPCCgEzUKqz9bC1Sa3EMUdTfrOH5ZgT6LhICjhpt_C_QXnTW6f9jV7ots26-2Fd0iCA40nBTbwrnPprB64EaCS9zkmj-2BCWIv7rzc4TNxeyGR9uyp-2BODyM2g3Pm1Gg0AMMxZDXVgI1R0gV4Lko2s1idces-2BAqLJlMOIyFyWEQ7h1KHWlTdwrf7rdNuBIjiKQlB2gvmBMPKhdxKFlpOjTLOjIikQb8cDRekU6m-2BST2VHSaEDiUr45iA0C-2FmGrjRmlVMdt4qOdsNCNayDa19rB14t5cdtD0IdsgVkW5rKrpPn8KXynX96P50KvFmB8yMkwS8uCf8EK20KbgeUcTZhGgNjkSb8ZWYjr2PAaxKKzZf94PB6drAdGO7aOJPHhoKXusiv42ZEe45NZBCkcNW9K7-2FtkJFWXdZN6c8TmSvFzr25EpmvyIJgMOOFqNhZ8xkQr0dPHRawIhrCyPYU1flPGF9pXhkotc7Xb1B9G-2FT4wLagCcMOMYtQjBUPCcy9-2FA9d0EnfSKUX6bHmyLk-2Bv8jK-2BwaKX-2F1uPBpVrqebrhAcbn4kOOCkr7z2Su7Ap2ZvL5ppTZ4bqbcupIPI-2FMBQ7fs1TXPHcPB1WgN5uZo1fpAcnHjPRt1cnc-2BbG0P1red-2Bfb-2Fq9V6zEbFY9OWv8xy7VOb0-2FBB-2Bh1lRZ":  {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          "next-steps":  "2026-07-23T17:45:29"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      },
                  "19f8064120818784":  {
                                           "job-fit-inbox":  "2026-07-22",
                                           "recruiter-action":  "2026-07-22"
@@ -52,13 +66,5 @@
                                           "job-fit-inbox":  "2026-07-21",
                                           "recruiter-action":  "2026-07-21"
                                       }
-             },
-    "skipped":  {
-                    "19f7fdfe7ee3bedf":  "2026-07-22",
-                    "19f7fb5868e2c05d":  "2026-07-22",
-                    "19f8091b2c1ef05f":  "2026-07-22",
-                    "19f8065a7ac37096":  "2026-07-22",
-                    "19f7f8cdc84867d1":  "2026-07-22"
-                },
-    "_comment":  "Source of truth for dashboard run-state (green checkmarks) and archived opportunities. Keyed by each card\u0027s ref - the same arg the dashboard button passes to the command. Recruiter cards: Gmail thread id or LinkedIn thread URL. Job Hunt prospects: the job-posting URL, or the alert thread id only when the card has no url (one digest email spans many cards, so thread ids are not unique per posting). Job-hunt entries written before 2026-07-23 may still be thread-keyed; readers match either key. Updated by the skills (Record step) and the /archive skill, then injected into both dashboards by dashboard/Sync-Dashboards.ps1. Syncs to GitHub/mobile with the rest of context-library."
+             }
 }
