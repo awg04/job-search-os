@@ -209,7 +209,7 @@
 </div>
 
 <section class="panel" id="panel-recruiter">
-  <h2>Recruiter Inbox <small>last scan <span id="scandate">2026-07-26</span></small></h2>
+  <h2>Recruiter Inbox <small>last scan <span id="scandate">2026-07-28</span></small></h2>
   <div class="meta-line">Human-recruiter emails + LinkedIn InMails scored against your career plan · dispositions save in this browser · source of truth is <code>context-library/recruiter-inbox.md</code>. Refresh with: <a id="riScanBtn" class="runbtn inline" href="#" title="Open Claude Code in Claude Desktop (job-search-os folder) with /recruiter-scan prefilled">▶ /recruiter-scan</a></div>
   <div class="ri-kpis" id="kpis"></div>
   <div class="toolbar" id="filters"></div>
@@ -436,6 +436,13 @@ const ALERT_DATA = [
 // Desktop shows a one-time confirmation before adopting the folder (link folders are untrusted).
 const CLAUDE_CWD = "C:\\Users\\andre\\OneDrive\\Claude\\job-search-os";
 const claudeUri = cmd => "claude://code/new?folder="+encodeURIComponent(CLAUDE_CWD)+"&q="+encodeURIComponent(cmd);
+// base64url + jobhunt-cmd:// deep links — handled by cmd-uri-handler.ps1 (see Register-CmdProtocol.ps1).
+// The handler decides per command: next-steps opens an interactive Claude CLI terminal, while
+// recruiter-action and job-fit-inbox run headless in the background.
+// Defined here, above renderCards(), because the prospects cards build their run buttons on load.
+const b64url=s=>btoa(unescape(encodeURIComponent(s))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+const cmdUri=(cmd,arg)=>"jobhunt-cmd://"+cmd+"/"+b64url(arg);
+const fromB64url=t=>{let b=t.replace(/-/g,'+').replace(/_/g,'/');while(b.length%4)b+='=';return decodeURIComponent(escape(atob(b)));};
 // Archive is browser-local until you push it: it updates localStorage, the ⇪ chip counts
 // it, and one click downloads {"archived":[ref,...],"unarchived":[ref,...]} for the
 // widget's ↻ (Sync-Widgets.ps1) to merge and delete.
@@ -464,7 +471,7 @@ const scanBtn=$("scanBtn"); if(scanBtn) scanBtn.href=claudeUri("/job-hunt-scan")
 // Run-state (green ✓ once a command is logged) + archived opportunities.
 // Injected from context-library/dashboard-state.json by dashboard/Sync-Dashboards.ps1 — do not hand-edit.
 // DASH_STATE_START
-  const RUN_STATE = {"https://sg2email.lensa.com/ls/click?upn=u001.jmU3g-2BpCjR8B5yHZB902pK6ssbzDLLx7LrEMXpbH7ysAhF-2BFrAqtKh3490gCgupYyO1gzMZxnXhTxlG34wpTkAGX-2FQIciNd04cTFaret31s6G9cwO9zRWoYxsFPuXXjZ644A88PkxiOU6K9dp1Y7rF-2B9VRLIL7cnLgLByf5QxaSoaFvm0WnhBypic3KNxUp0b5YS-2FgWm0p9og3fiUKh05KaC-2FXYPCCgEzUKqz9bC1Sa3EMUdTfrOH5ZgT6LhICjhpt_C_QXnTW6f9jV7ots26-2Fd0iCA40nBTbwrnPprB64EaCS9zkmj-2BCWIv7rzc4TNxeyGR9uyp-2BODyM2g3Pm1Gg0AMMxZDXVgI1R0gV4Lko2s1idces-2BAqLJlMOIyFyWEQ7h1KHWlTdwrf7rdNuBIjiKQlB2gvmBMPKhdxKFlpOjTLOjIikQb8cDRekU6m-2BST2VHSaEDiUr45iA0C-2FmGrjRmlVMdt4qOdsNCNayDa19rB14t5cdtD0IdsgVkW5rKrpPn8KXynX96P50KvFmB8yMkwS8uCf8EK20KbgeUcTZhGgNjkSb8ZWYjr2PAaxKKzZf94PB6drAdGO7aOJPHhoKXusiv42ZEe45NZBCkcNW9K7-2FtkJFWXdZN6c8TmSvFzr25EpmvyIJgMOOFqNhZ8xkQr0dPHRawIhrCyPYU1flPGF9pXhkotc7Xb1B9G-2FT4wLagCcMOMYtQjBUPCcy9-2FA9d0EnfSKUX6bHmyLk-2Bv8jK-2BwaKX-2F1uPBpVrqebrhAcbn4kOOCkr7z2Su7Ap2ZvL5ppTZ4bqbcupIPI-2FMBQ7fs1TXPHcPB1WgN5uZo1fpAcnHjPRt1cnc-2BbG0P1red-2Bfb-2Fq9V6zEbFY9OWv8xy7VOb0-2FBB-2Bh1lRZ":{"next-steps":"2026-07-23T17:45:29"},"19f8064120818784":{"job-fit-inbox":"2026-07-22","recruiter-action":"2026-07-22"},"19f7fee6bf8218cd":{"job-fit-inbox":"2026-07-21","recruiter-action":"2026-07-21"},"19f771183237f1d0":{"next-steps":"2026-07-22T18:57:18"},"19f853b1990d7ad7":{"next-steps":"2026-07-22"},"https://builtin.com/job/senior-bi-analyst/9598809":{"next-steps":"2026-07-22T23:15:22"},"19f8a11a6f842033":{"next-steps":"2026-07-22T19:47:50"},"https://www.linkedin.com/messaging/thread/2-YmRiODJiN2YtYjljNS00YmNlLThjOTItNTY1NWQ1ZWJkMTczXzEwMA==/":{"next-steps":"2026-07-22T18:34:07"},"19f70a3821a475a3":{"next-steps":"2026-07-22T23:37:50"},"19f80cb44c91d7bb":{"job-fit-inbox":"2026-07-22T18:27:56","recruiter-action":"2026-07-21"},"https://www.linkedin.com/jobs/view/4440792262/":{"next-steps":"2026-07-22T18:58:26"}};
+  const RUN_STATE = {"https://sg2email.lensa.com/ls/click?upn=u001.jmU3g-2BpCjR8B5yHZB902pK6ssbzDLLx7LrEMXpbH7ysAhF-2BFrAqtKh3490gCgupYyO1gzMZxnXhTxlG34wpTkAGX-2FQIciNd04cTFaret31s6G9cwO9zRWoYxsFPuXXjZ644A88PkxiOU6K9dp1Y7rF-2B9VRLIL7cnLgLByf5QxaSoaFvm0WnhBypic3KNxUp0b5YS-2FgWm0p9og3fiUKh05KaC-2FXYPCCgEzUKqz9bC1Sa3EMUdTfrOH5ZgT6LhICjhpt_C_QXnTW6f9jV7ots26-2Fd0iCA40nBTbwrnPprB64EaCS9zkmj-2BCWIv7rzc4TNxeyGR9uyp-2BODyM2g3Pm1Gg0AMMxZDXVgI1R0gV4Lko2s1idces-2BAqLJlMOIyFyWEQ7h1KHWlTdwrf7rdNuBIjiKQlB2gvmBMPKhdxKFlpOjTLOjIikQb8cDRekU6m-2BST2VHSaEDiUr45iA0C-2FmGrjRmlVMdt4qOdsNCNayDa19rB14t5cdtD0IdsgVkW5rKrpPn8KXynX96P50KvFmB8yMkwS8uCf8EK20KbgeUcTZhGgNjkSb8ZWYjr2PAaxKKzZf94PB6drAdGO7aOJPHhoKXusiv42ZEe45NZBCkcNW9K7-2FtkJFWXdZN6c8TmSvFzr25EpmvyIJgMOOFqNhZ8xkQr0dPHRawIhrCyPYU1flPGF9pXhkotc7Xb1B9G-2FT4wLagCcMOMYtQjBUPCcy9-2FA9d0EnfSKUX6bHmyLk-2Bv8jK-2BwaKX-2F1uPBpVrqebrhAcbn4kOOCkr7z2Su7Ap2ZvL5ppTZ4bqbcupIPI-2FMBQ7fs1TXPHcPB1WgN5uZo1fpAcnHjPRt1cnc-2BbG0P1red-2Bfb-2Fq9V6zEbFY9OWv8xy7VOb0-2FBB-2Bh1lRZ":{"next-steps":"2026-07-23T17:45:29"},"19f8064120818784":{"job-fit-inbox":"2026-07-22","recruiter-action":"2026-07-22"},"19f7fee6bf8218cd":{"recruiter-action":"2026-07-21","next-steps":"2026-07-28T09:49:01","job-fit-inbox":"2026-07-21"},"19f771183237f1d0":{"next-steps":"2026-07-22T18:57:18"},"19f853b1990d7ad7":{"next-steps":"2026-07-22"},"https://www.linkedin.com/jobs/view/4437162489/":{"next-steps":"2026-07-28T10:53:16"},"https://builtin.com/job/senior-bi-analyst/9598809":{"next-steps":"2026-07-22T23:15:22"},"19f8a11a6f842033":{"next-steps":"2026-07-22T19:47:50"},"https://www.linkedin.com/messaging/thread/2-YmRiODJiN2YtYjljNS00YmNlLThjOTItNTY1NWQ1ZWJkMTczXzEwMA==/":{"next-steps":"2026-07-22T18:34:07"},"19f70a3821a475a3":{"next-steps":"2026-07-22T23:37:50"},"19f80cb44c91d7bb":{"job-fit-inbox":"2026-07-22T18:27:56","recruiter-action":"2026-07-21"},"https://www.linkedin.com/jobs/view/4440792262/":{"next-steps":"2026-07-22T18:58:26"}};
   const ARCHIVED = {"https://www.linkedin.com/messaging/thread/2-YmRiODJiN2YtYjljNS00YmNlLThjOTItNTY1NWQ1ZWJkMTczXzEwMA==/":"2026-07-23","19f8091b2c1ef05f":"2026-07-22","https://www.linkedin.com/jobs/view/4440792262/":"2026-07-22","19f7f8cdc84867d1":"2026-07-22","19f771183237f1d0":"2026-07-22","https://www.glassdoor.com/job-listing/sr-power-bi-developer-broadcast-music-inc-JV_KO0,21_KE22,41.htm?jl=1009852236950":"2026-07-22","https://www.linkedin.com/jobs/view/4441911111/":"2026-07-22","https://www.linkedin.com/messaging/thread/2-ZDM4NjE2YWUtNGQxZC00YWQwLTk4YWMtZTVkNDU2N2MzMTA0XzEwMA==/":"2026-07-22","19f864bf13a1c8ee":"2026-07-22","https://www.linkedin.com/messaging/thread/2-YjA5ZjE3MTItM2E2ZC00MDlhLWJlMzgtNzQyYzQ3NGZiMTA1XzEwMA==/":"2026-07-22","19f8b5a20bb846ad":"2026-07-23","https://www.linkedin.com/messaging/thread/2-NjRlYzVjYWUtNzY2Ny00ZjBjLWIwMGMtOTI1MzNjNzYwMTU3XzEwMA==/":"2026-07-22","19f80af86048e18d":"2026-07-22","https://www.linkedin.com/messaging/thread/2-ZTQ3MWQyNjQtYjc3MS00YWRiLWEzZDMtZTlkNTk0MTAwNDliXzEwMA==/":"2026-07-22","19f853b1990d7ad7":"2026-07-22","19f808f24146d81f":"2026-07-22","19f8a11a6f842033":"2026-07-23","19f7fb5868e2c05d":"2026-07-22","https://www.linkedin.com/messaging/thread/2-YTBkNzY2NGUtYmZkOC00MmQ5LTlmNGYtYTA2MTE3MjIwNWE0XzEwMA==/":"2026-07-22","https://www.linkedin.com/messaging/thread/2-YTdlMGZhNDItMGY4Zi00ZGE1LWJiN2ItYzg0NmQ4ZDI4YjAwXzEwMA==/":"2026-07-22"};
   const SKIPPED = {"19f7fdfe7ee3bedf":"2026-07-22","19f7fb5868e2c05d":"2026-07-22","19f8091b2c1ef05f":"2026-07-22","19f8065a7ac37096":"2026-07-22","19f7f8cdc84867d1":"2026-07-22"};
 // DASH_STATE_END
@@ -490,10 +497,40 @@ function isArchived(d){
 }
 const ranOn=(ref,cmd)=>(RUN_STATE&&RUN_STATE[ref]&&RUN_STATE[ref][cmd])||null;
 const ranOnCard=(d,cmd)=>keysOf(d).map(k=>ranOn(k,cmd)).find(Boolean)||null;
+// Prospects run buttons go to the Claude CLI, not Claude Desktop — over LOOPBACK HTTP, not the
+// jobhunt-cmd:// protocol. Chrome here silently refuses to launch that protocol (verified 2026-07-28
+// against a hyphen-free scheme and a plain-exe handler: none prompted, while claude:// does), so the
+// click posts to Start-JobHuntListener.ps1 instead, which hands the same URI to cmd-uri-handler.ps1.
+const LISTENER="http://127.0.0.1:47615";
 function runBtn(cmd,d,label){
   const on=ranOnCard(d,cmd);
-  const t=on?("Ran "+on+" — click to reopen /"+cmd+" in Claude Desktop"):("Open Claude Code in Claude Desktop (job-search-os) with /"+cmd+" prefilled");
-  return '<a class="runbtn'+(on?' done':'')+'" href="'+claudeUri('/'+cmd+' '+refOf(d))+'" title="'+t+'">'+(on?'✓ ':'▶ ')+label+'</a>';
+  const t=on?("Ran "+on+" — click to run /"+cmd+" again in the Claude CLI"):("Open the Claude CLI in a terminal (job-search-os) and run /"+cmd);
+  const paste=('/'+cmd+' '+refOf(d)).replace(/"/g,'&quot;');
+  return '<a class="runbtn'+(on?' done':'')+'" href="#" data-cmd="'+cmd+'" data-ref="'+b64url(refOf(d))+'" data-paste="'+paste+'" title="'+t+'">'+(on?'✓ ':'▶ ')+label+'</a>';
+}
+// ref is base64url, exactly as the protocol URI carried it. onOk only fires when the listener
+// really accepted the run — the ⏳ state must never latch on a failed hand-off.
+function runViaListener(cmd,ref,doneMsg,onOk){
+  fetch(LISTENER+"/run?cmd="+encodeURIComponent(cmd)+"&ref="+encodeURIComponent(ref),{cache:"no-store"})
+    .then(r=>{ if(!r.ok) throw new Error("HTTP "+r.status);
+      toast(doneMsg||("/"+cmd+" is running in the background (~1–2 min). The plan opens in your browser when it's done — nothing to watch."));
+      if(onOk) onOk(); })
+    .catch(err=>{
+      toast("Can't reach the local listener ("+err.message+"). Start it with dashboard\\Start-JobHuntListener.ps1. Meanwhile the command is on your clipboard — paste it into a terminal running claude.");
+    });
+}
+// Copy without navigator.clipboard's promise rejecting silently on odd origins: try the async API,
+// fall back to a throwaway textarea + execCommand, which works on file:// in every browser here.
+function copyText(s){
+  try{ if(navigator.clipboard&&navigator.clipboard.writeText) return navigator.clipboard.writeText(s).catch(()=>legacyCopy(s)); }catch(e){}
+  legacyCopy(s);
+}
+function legacyCopy(s){
+  const ta=document.createElement('textarea');
+  ta.value=s;ta.style.position='fixed';ta.style.opacity='0';
+  document.body.appendChild(ta);ta.select();
+  try{document.execCommand('copy');}catch(e){}
+  ta.remove();
 }
 let showArchived=false, tierFilter="all";
 function renderCards(){
@@ -579,6 +616,15 @@ function renderCards(){
       renderCards();   // the ⇪ chip's count moves with it
     });
   });
+  // Every click also copies the command, so a listener that isn't running costs you a paste rather
+  // than leaving a dead button — this is the failure mode the protocol version had, silently.
+  cards.querySelectorAll('.runbtn[data-cmd]').forEach(a=>{
+    a.addEventListener('click',e=>{
+      e.preventDefault();
+      copyText(a.getAttribute('data-paste'));
+      runViaListener(a.getAttribute('data-cmd'),a.getAttribute('data-ref'));
+    });
+  });
   const tc=$("tabCount"); if(tc) tc.textContent = live.length ? "("+live.length+")" : "";
 }
 renderCards();
@@ -592,18 +638,22 @@ const DATA = [
   {id:"19f8064120818784",date:"2026-07-20",recruiter:"Sham",firm:"Virtual Networx",role:"Data Analyst & Power BI Engineer",client:"undisclosed",score:85,tier:"strong",remote:{t:"Remote",k:"good"},comp:"Rate not stated",tags:[["Power BI","good"],["Fabric","good"],["SQL / ETL","good"],["12+ mo contract",""]],flag:"Rate not stated — ask bill rate before tailoring."},
   {id:"19f80cb44c91d7bb",date:"2026-07-20",recruiter:"Aviral Srivastava",firm:"Talenzaa",role:"Business Analyst (Business Intelligence)",client:"Tavant / Kubota",score:82,tier:"strong",remote:{t:"100% Remote",k:"good"},comp:"Rate not stated (contract)",tags:[["Power BI","good"],["Azure / ADF","good"],["SQL","good"],["BA-flavored",""]],flag:"Rate not stated — ask bill rate before tailoring."},
   {id:"19f7fee6bf8218cd",date:"2026-07-20",recruiter:"Max Garcia",firm:"Synergy Interactive",role:"PowerBI Engineer",client:"Publicis Sapient",score:80,tier:"strong",remote:{t:"Fully Remote",k:"good"},comp:"$65/hr LLC · $55/hr W2",tags:[["Power BI","good"],["IN PROCESS","proc"],["6 mo+ contract",""],["rate ~under target","warn"]],flag:"Already live — you had a call and sent your resume 2026-07-20. Consider adding to app-tracker as In Process."},
+  {id:"19fa453bd36fd364",date:"2026-07-27",recruiter:"Rajeev Upadhyay",firm:"Sibitalent (via Dice)",role:"Senior BI Data Analyst",client:"undisclosed (healthcare)",score:74,tier:"strong",remote:{t:"100% Remote (ET hours)",k:"good"},comp:"Rate not stated (contract-to-hire)",tags:[["Power BI","good"],["Advanced SQL","good"],["Azure Synapse","good"],["Databricks / dbt","warn"],["healthcare",""],["C2H",""]],flag:"Fully remote and Power BI dashboard development is the #1 listed skill — strongest new fit this week. Caveats: no rate quoted, client undisclosed, and the ETL side leans Databricks/dbt rather than SSIS/ADF. Ask for the bill rate and client name before tailoring."},
   {id:"19f8a11a6f842033",date:"2026-07-22",recruiter:"Theron Griffin",firm:"Armanino",role:"Senior BI & Analytics Developer",client:"Armanino (direct)",score:72,tier:"strong",remote:{t:"Hybrid — Boca Raton (~30 min)",k:"warn"},comp:"Not stated",tags:[["Power BI / Fabric","good"],["IN PROCESS","proc"],["direct hire","good"],["hybrid Boca","warn"]],flag:"In process — call held 2026-07-22, resume sent. Direct hire at a reputable advisory firm; hybrid Boca office ~30 min away. App folder: applications/2026-07-21_armanino_senior-bi-analytics-developer_compass."},
   {id:"19f7fdfe7ee3bedf",date:"2026-07-20",recruiter:"Reeba Saini",firm:"Nityo Infotech",role:"Power BI Developer",client:"undisclosed",score:42,tier:"look",remote:{t:"Raleigh NC / Dallas TX",k:"warn"},comp:"Full-time perm",tags:[["Power BI","good"],["Tableau",""],["SharePoint",""],["onsite?","warn"]],flag:"Location listed as NC/TX. Worth a one-line reply asking if remote is possible before writing it off."},
   {id:"19f8ff59b16fa063",date:"2026-07-23",recruiter:"\"Mr Ahmad\"",firm:"none (LinkedIn InMail)",role:"Lead Analyst – Business Intelligence",client:"Memorial Healthcare System",score:38,tier:"low",remote:{t:"Onsite Fort Lauderdale (local)",k:"bad"},comp:"Not stated",tags:[["BI role","good"],["local","warn"],["not a real recruiter","bad"],["affiliate links","bad"]],flag:"⚠️ Sender's own LinkedIn headline is \"Student at collage\" (Lahore, Pakistan) and the message routes through a jobg8 affiliate link plus a jobsinusa.us portal — link-farm traffic, not a staffed role. The underlying opening at Memorial Healthcare System is real and locally commutable; apply through Memorial's own careers site and do not click the links in the email."},
   {id:"19f8091b2c1ef05f",date:"2026-07-20",recruiter:"Prakash K. Singh",firm:"Nityo Infotech",role:"Azure Data Engineer / Architect",client:"undisclosed",score:32,tier:"low",remote:{t:"Onsite (NC/TX/MI/CA)",k:"bad"},comp:"—",tags:[["Azure","good"],["onsite","bad"]],flag:""},
   {id:"19f906bb43a4224d",date:"2026-07-23",recruiter:"Pratibha Pal",firm:"Nityo Infotech",role:"Azure Data Solutions Architect",client:"undisclosed",score:30,tier:"low",remote:{t:"Jersey City, NJ / Dallas, TX",k:"bad"},comp:"Not stated (FTE)",tags:[["Azure / ADF / Synapse","good"],["Fabric","good"],["out of state","bad"],["Databricks-first","warn"]],flag:"Closest MS-stack overlap of this batch (Azure, ADF, Synapse, Fabric, Unity Catalog) but it's an architecture role built on Databricks, with Power BI only listed as 'preferred' — and it's Jersey City/Dallas onsite. Also asks for two supervisory references before any conversation."},
+  {id:"19fa3d4e7e80b6e4",date:"2026-07-27",recruiter:"Battu Raghu",firm:"Futran Solutions (via Dice)",role:"Azure Databricks Architect",client:"undisclosed (financial services / insurance)",score:28,tier:"low",remote:{t:"Miami, FL — 100% onsite",k:"bad"},comp:"Not stated (full-time)",tags:[["Azure / ADF / ADLS","good"],["Synapse","good"],["100% onsite Miami","bad"],["Databricks/Spark-first","warn"],["no Power BI","bad"],["12+ yrs required","warn"]],flag:"Real Azure overlap (ADF, ADLS, Synapse) and Miami is the closest onsite yet (~30 mi), but it's 5-days-onsite against your remote-only baseline, the stack is Databricks/Spark/Python-Scala with zero Power BI content, it's an architect title at 12+ years, and no comp was quoted."},
   {id:"19f7f8cdc84867d1",date:"2026-07-20",recruiter:"Colton Collins",firm:"Capital Staffing",role:"Business Systems Analyst (Python/SQL)",client:"undisclosed",score:28,tier:"low",remote:{t:"Juno Beach, FL onsite",k:"bad"},comp:"—",tags:[["onsite","bad"],["not BI-core","bad"]],flag:""},
   {id:"19f864bf13a1c8ee",date:"2026-07-21",recruiter:"Kaila Timko",firm:"Capital Staffing",role:"Business Systems Analyst (Python/SQL/ML)",client:"undisclosed",score:26,tier:"low",remote:{t:"Juno Beach, FL onsite",k:"bad"},comp:"Rate not stated",tags:[["onsite","bad"],["not BI-core","bad"],["12mo+ contract",""]],flag:""},
   {id:"19f7fb5868e2c05d",date:"2026-07-20",recruiter:"Yash Agarwal",firm:"Exarca (via Dice)",role:"IT Business Systems Analyst II",client:"undisclosed",score:25,tier:"low",remote:{t:"Juno Beach, FL onsite",k:"bad"},comp:"W2 only",tags:[["onsite","bad"],["not BI-core","bad"]],flag:""},
   {id:"19f912d772e95e45",date:"2026-07-23",recruiter:"Edward",firm:"United IT Solutions",role:"Data Architect",client:"undisclosed",score:24,tier:"low",remote:{t:"Orlando, FL hybrid (~200 mi)",k:"bad"},comp:"Rate not stated (contract)",tags:[["Azure / ADF","good"],["Orlando hybrid","bad"],["Databricks-first","warn"],["no Power BI","bad"]],flag:"Orlando hybrid is a 200-mile commute from Fort Lauderdale — not viable. Databricks/Lakehouse architecture role with no Power BI content, 12-year requirement, and no rate quoted."},
   {id:"19f8b5a20bb846ad",date:"2026-07-22",recruiter:"Moumita Dey",firm:"Nityo Infotech",role:"Data Warehouse Developer",client:"undisclosed",score:22,tier:"low",remote:{t:"Charlotte, NC onsite",k:"bad"},comp:"Not stated",tags:[["onsite","bad"],["non-MS: Snowflake/AWS","bad"],["SQL/Python",""]],flag:""},
+  {id:"19fa4e3e4adf38cf",date:"2026-07-27",recruiter:"Tulsi Das",firm:"SoftSages",role:"Data/Reporting Analyst",client:"undisclosed (Miami)",score:22,tier:"low",remote:{t:"Hybrid — 3 days downtown Miami",k:"bad"},comp:"$45/hr C2C",tags:[["rate far below floor","bad"],["hybrid Miami","bad"],["GCP mandate","bad"],["Power BI optional","warn"],["process/PM-flavored","bad"]],flag:"$45/hr C2C is well under your $70/hr floor, 3 days onsite in downtown Miami, and the stack mandate is Google Cloud. Power BI is listed as \"highly desired but open to someone learning\" — i.e. incidental. Role is really process improvement + project coordination, not BI development."},
   {id:"19f80af86048e18d",date:"2026-07-20",recruiter:"Avneesh Tyagi",firm:"Nityo Infotech",role:"Business Analyst, Treasury Systems",client:"undisclosed",score:20,tier:"low",remote:{t:"Miami hybrid",k:"bad"},comp:"$30/hr W2",tags:[["comp far below floor","bad"],["hybrid","bad"]],flag:""},
   {id:"19f8065a7ac37096",date:"2026-07-20",recruiter:"Veena",firm:"ATVS LLC",role:"Data Engineer (Hadoop / Ab Initio)",client:"undisclosed",score:15,tier:"low",remote:{t:"Berkeley Heights, NJ onsite",k:"bad"},comp:"$50/hr W2",tags:[["non-MS stack","bad"],["onsite","bad"],["asks SSN/DOB","bad"]],flag:"⚠️ This email asks for your SSN last-4 and DOB in the reply. Never send that to source a role. Ignore or ask them to submit without it."},
+  {id:"19fa43b159b87be5",date:"2026-07-27",recruiter:"Aditya Kumar",firm:"Nityo Infotech",role:"Business Analyst (Mainframe)",client:"HCL",score:14,tier:"low",remote:{t:"Tysons, VA — onsite",k:"bad"},comp:"Not stated",tags:[["out-of-state onsite","bad"],["Mainframe / COBOL / DB2","bad"],["BSA not BI-core","bad"],["SQL/BI only 'preferred'","warn"]],flag:"Out-of-state onsite (Tysons, VA) BSA role centered on Mainframe/legacy analysis — COBOL, JCL, DB2, CICS, VSAM. SQL and BI tools appear once as 'preferred.' No comp quoted."},
   {id:"19f808f24146d81f",date:"2026-07-20",recruiter:"Saurav Sahil",firm:"Nityo Infotech",role:"Infor LN Functional Consultant",client:"undisclosed",score:12,tier:"low",remote:{t:"unspecified",k:"warn"},comp:"—",tags:[["ERP functional","bad"],["off-target","bad"]],flag:""},
   {id:"2-NjRlYzVjYWUtNzY2Ny00ZjBjLWIwMGMtOTI1MzNjNzYwMTU3XzEwMA==",date:"2026-07-17",recruiter:"Lourdes Verde",firm:"Baptist Health South Florida",role:"BI / Data role (title TBC)",client:"Baptist Health",score:58,tier:"look",remote:{t:"Leader open to remote",k:"good"},comp:"Full-time perm · not stated",tags:[["remote-open","good"],["full-time perm",""],["healthcare",""],["title/stack TBC","warn"]],flag:"Baptist Health SF, full-time, leader open to remote — you already sent your resume. Confirm exact title + Power BI/MS-stack fit + comp. Likely the same opening Caroline Dybala flagged (Sr System Engineer – Power BI).",source:"linkedin"},
   {id:"2-YmRiODJiN2YtYjljNS00YmNlLThjOTItNTY1NWQ1ZWJkMTczXzEwMA==",date:"2026-07-08",recruiter:"Caroline Dybala",firm:"Baptist Health South Florida",role:"Senior System Engineer – Power BI & Automation",client:"Baptist Health",score:52,tier:"look",remote:{t:"Coral Gables, FL · 8:30–5 (onsite?)",k:"warn"},comp:"Not stated",tags:[["Power BI","good"],["automation",""],["Coral Gables onsite?","warn"]],flag:"Power BI role at Baptist Health (Coral Gables, 8:30–5 → likely onsite/hybrid). Wants her name in the employee-referral field. Likely the same role Lourdes Verde flagged as 'leader open to remote' — confirm remote before applying.",source:"linkedin"},
@@ -614,10 +664,7 @@ const DATA = [
   {id:"2-YTdlMGZhNDItMGY4Zi00ZGE1LWJiN2ItYzg0NmQ4ZDI4YjAwXzEwMA==",date:"2026-07-10",recruiter:"Michael Bloor",firm:"Pivotal Solutions",role:"Data/Web Developer",client:"undisclosed (Boca Raton)",score:25,tier:"low",remote:{t:"Boca Raton, FL (local)",k:"bad"},comp:"Not stated · perm",tags:[["not BI-core","bad"],["Data/Web dev","bad"],["local Boca","warn"]],flag:"Data/Web Developer (not BI-core), Boca local, permanent. Off-target — web-dev role, no Power BI signal.",source:"linkedin"}
 ];
 // RECRUITER_DATA_END
-// base64url + jobhunt-cmd:// deep links (headless background runs — see Register-CmdProtocol.ps1).
-const b64url=s=>btoa(unescape(encodeURIComponent(s))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
-const cmdUri=(cmd,arg)=>"jobhunt-cmd://"+cmd+"/"+b64url(arg);
-const fromB64url=t=>{let b=t.replace(/-/g,'+').replace(/_/g,'/');while(b.length%4)b+='=';return decodeURIComponent(escape(atob(b)));};
+// b64url, cmdUri and fromB64url are defined up with claudeUri (the prospects tab needs them earlier).
 function toast(msg){
   let t=document.getElementById('toast');
   if(!t){t=document.createElement('div');t.id='toast';document.body.appendChild(t);}
@@ -736,19 +783,16 @@ function render(){
     const openTitle=isLI?"Open conversation in LinkedIn":"Open thread in Gmail";
     const srcTag=isLI?`<span class="tag li">LinkedIn</span>`:``;
     const cardRef=cardRefOf(d), archived=isArchivedR(cardRef);
-    // job-fit-inbox runs headless in the background (jobhunt-cmd://). recruiter-action + next-steps
-    // open an interactive Claude Desktop session (claude://). ✓ + ran-date show once a command is logged.
-    const BG=new Set(['job-fit-inbox']);
+    // All three run headless in the background via the loopback listener — no window, no Trust
+    // prompt, nothing for Chrome to veto. ✓ + ran-date show once a command is logged.
     const rbtn=(name,arg,label)=>{
-      const bg=BG.has(name);
-      if(bg && isRunning(name,arg))
+      if(isRunning(name,arg))
         return `<span class="runbtn bg running" title="Running in the background — the button flips to a green check when it finishes (~1–2 min)">⏳ Running…</span>`;
       const on=ranOn(arg,name);
-      const href=bg?cmdUri(name,arg):claudeUri('/'+name+' '+arg);
       const t=on
-        ? `Ran ${on.slice(0,10)}${bg?' — click to re-run in the background':' — click to reopen /'+name+' in Claude Desktop'}`
-        : (bg?`Runs headless in the background — no window, no Trust prompt`:`Open Claude Code in Claude Desktop (job-search-os) with /${name} prefilled`);
-      return `<a class="runbtn${on?' done':''}${bg?' bg':''}" href="${href}"${bg?` data-key="${b64url(name+'|'+arg)}"`:''} title="${t}">${on?'✓':'▶'} ${label}</a>`;
+        ? `Ran ${on.slice(0,10)} — click to re-run in the background`
+        : `Runs headless in the background — no window, no Trust prompt`;
+      return `<a class="runbtn${on?' done':''} bg" href="#" data-key="${b64url(name+'|'+arg)}" data-paste="${('/'+name+' '+arg).replace(/"/g,'&quot;')}" title="${t}">${on?'✓':'▶'} ${label}</a>`;
     };
     // "In process" = recruiter-action already run (logged) or an explicit IN PROCESS tag.
     const inProcess = ranOn(d.id,'recruiter-action') || d.tags.some(t=>/in\s*process/i.test(t[0]));
@@ -786,15 +830,21 @@ function render(){
       render();   // the ⇪ chip's count moves with it
     });
   });
+  const RIMSG={
+    'job-fit-inbox':'Job Fit running in the background — the scorecard opens in a new tab when ready (~1–2 min).',
+    'recruiter-action':'Recruiter-Action running in the background — the tailored draft opens in Outlook when ready (~1–2 min).',
+    'next-steps':'Next Steps running in the background — the plan opens in a new tab when ready (~1–2 min).'
+  };
   document.querySelectorAll('#list .runbtn.bg[data-key]').forEach(a=>{
-    a.addEventListener('click',()=>{
+    a.addEventListener('click',e=>{
+      e.preventDefault();
       const key=fromB64url(a.getAttribute('data-key'));
-      const name=key.slice(0,key.indexOf('|'));
-      running[key]=Date.now(); saveRunning();
-      toast(name==='job-fit-inbox'
-        ? 'Job Fit running in the background — the scorecard opens in a new tab when ready (~1–2 min).'
-        : 'Recruiter-Action running in the background — the tailored draft opens in Outlook when ready (~1–2 min).');
-      setTimeout(render,80); // flip the button to "Running…" and start the poll after the protocol handoff
+      const i=key.indexOf('|'), name=key.slice(0,i), arg=key.slice(i+1);
+      copyText(a.getAttribute('data-paste'));
+      runViaListener(name,b64url(arg),RIMSG[name],()=>{
+        running[key]=Date.now(); saveRunning();
+        setTimeout(render,80); // flip the button to "Running…" and start the poll
+      });
     });
   });
 }
