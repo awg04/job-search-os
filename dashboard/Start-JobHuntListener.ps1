@@ -74,8 +74,10 @@ try {
 
       if ($path -ne 'run') { $res.StatusCode = 404; $res.Close(); continue }
 
-      $cmd = $req.QueryString['cmd']
-      $ref = $req.QueryString['ref']    # base64url, exactly as the protocol URI carried it
+      $cmd   = $req.QueryString['cmd']
+      $ref   = $req.QueryString['ref']      # base64url, exactly as the protocol URI carried it
+      $label = $req.QueryString['label']    # optional: card's company/role, names the sidebar session
+      $group = $req.QueryString['group']    # optional: name prefix so these cluster, e.g. "WIP"
       if (-not $cmd -or -not $ref) { $res.StatusCode = 400; $res.Close(); Log "BAD REQUEST $($req.Url)"; continue }
       if ($ALLOWED -notcontains $cmd) {
         $res.StatusCode = 403; $res.Close()
@@ -90,10 +92,16 @@ try {
       $res.Close()
 
       $uri = "jobhunt-cmd://$cmd/$ref"
-      Log "RUN  $uri"
-      Start-Process -FilePath 'powershell.exe' `
-        -ArgumentList @('-NoProfile','-ExecutionPolicy','Bypass','-WindowStyle','Hidden','-File',$handler,'-Uri',$uri) `
-        -WindowStyle Hidden
+      Log "RUN  $uri  label='$label' group='$group'"
+      # ONE pre-quoted string, not an array. Windows PowerShell 5.1's -ArgumentList joins an array
+      # with spaces and adds NO quoting, so a label like "Aretec - Senior Power BI Developer"
+      # arrived as six separate arguments, parameter binding failed, and the handler died before
+      # its first log line - a completely silent failure. Quote it here and it survives intact.
+      $q = { param($s) '"' + ($s -replace '"','') + '"' }
+      $argLine = "-NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File $(& $q $handler) -Uri $(& $q $uri)"
+      if ($label) { $argLine += " -Label $(& $q $label)" }
+      if ($group) { $argLine += " -Group $(& $q $group)" }
+      Start-Process -FilePath 'powershell.exe' -ArgumentList $argLine -WindowStyle Hidden
     }
     catch {
       Log "ERROR handling request: $($_.Exception.Message)"

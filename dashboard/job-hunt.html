@@ -471,8 +471,8 @@ const scanBtn=$("scanBtn"); if(scanBtn) scanBtn.href=claudeUri("/job-hunt-scan")
 // Run-state (green ✓ once a command is logged) + archived opportunities.
 // Injected from context-library/dashboard-state.json by dashboard/Sync-Dashboards.ps1 — do not hand-edit.
 // DASH_STATE_START
-  const RUN_STATE = {"https://sg2email.lensa.com/ls/click?upn=u001.jmU3g-2BpCjR8B5yHZB902pK6ssbzDLLx7LrEMXpbH7ysAhF-2BFrAqtKh3490gCgupYyO1gzMZxnXhTxlG34wpTkAGX-2FQIciNd04cTFaret31s6G9cwO9zRWoYxsFPuXXjZ644A88PkxiOU6K9dp1Y7rF-2B9VRLIL7cnLgLByf5QxaSoaFvm0WnhBypic3KNxUp0b5YS-2FgWm0p9og3fiUKh05KaC-2FXYPCCgEzUKqz9bC1Sa3EMUdTfrOH5ZgT6LhICjhpt_C_QXnTW6f9jV7ots26-2Fd0iCA40nBTbwrnPprB64EaCS9zkmj-2BCWIv7rzc4TNxeyGR9uyp-2BODyM2g3Pm1Gg0AMMxZDXVgI1R0gV4Lko2s1idces-2BAqLJlMOIyFyWEQ7h1KHWlTdwrf7rdNuBIjiKQlB2gvmBMPKhdxKFlpOjTLOjIikQb8cDRekU6m-2BST2VHSaEDiUr45iA0C-2FmGrjRmlVMdt4qOdsNCNayDa19rB14t5cdtD0IdsgVkW5rKrpPn8KXynX96P50KvFmB8yMkwS8uCf8EK20KbgeUcTZhGgNjkSb8ZWYjr2PAaxKKzZf94PB6drAdGO7aOJPHhoKXusiv42ZEe45NZBCkcNW9K7-2FtkJFWXdZN6c8TmSvFzr25EpmvyIJgMOOFqNhZ8xkQr0dPHRawIhrCyPYU1flPGF9pXhkotc7Xb1B9G-2FT4wLagCcMOMYtQjBUPCcy9-2FA9d0EnfSKUX6bHmyLk-2Bv8jK-2BwaKX-2F1uPBpVrqebrhAcbn4kOOCkr7z2Su7Ap2ZvL5ppTZ4bqbcupIPI-2FMBQ7fs1TXPHcPB1WgN5uZo1fpAcnHjPRt1cnc-2BbG0P1red-2Bfb-2Fq9V6zEbFY9OWv8xy7VOb0-2FBB-2Bh1lRZ":{"next-steps":"2026-07-23T17:45:29"},"19f8064120818784":{"job-fit-inbox":"2026-07-22","recruiter-action":"2026-07-22"},"19f7fee6bf8218cd":{"recruiter-action":"2026-07-21","next-steps":"2026-07-28T09:49:01","job-fit-inbox":"2026-07-21"},"19f771183237f1d0":{"next-steps":"2026-07-22T18:57:18"},"19f853b1990d7ad7":{"next-steps":"2026-07-22"},"https://www.linkedin.com/jobs/view/4437162489/":{"next-steps":"2026-07-28T10:53:16"},"https://builtin.com/job/senior-bi-analyst/9598809":{"next-steps":"2026-07-22T23:15:22"},"19f8a11a6f842033":{"next-steps":"2026-07-22T19:47:50"},"https://www.linkedin.com/messaging/thread/2-YmRiODJiN2YtYjljNS00YmNlLThjOTItNTY1NWQ1ZWJkMTczXzEwMA==/":{"next-steps":"2026-07-22T18:34:07"},"19f70a3821a475a3":{"next-steps":"2026-07-22T23:37:50"},"19f80cb44c91d7bb":{"job-fit-inbox":"2026-07-22T18:27:56","recruiter-action":"2026-07-21"},"https://www.linkedin.com/jobs/view/4440792262/":{"next-steps":"2026-07-22T18:58:26"}};
-  const ARCHIVED = {"https://www.linkedin.com/messaging/thread/2-YmRiODJiN2YtYjljNS00YmNlLThjOTItNTY1NWQ1ZWJkMTczXzEwMA==/":"2026-07-23","19f8091b2c1ef05f":"2026-07-22","https://www.linkedin.com/jobs/view/4440792262/":"2026-07-22","19f7f8cdc84867d1":"2026-07-22","19f771183237f1d0":"2026-07-22","https://www.glassdoor.com/job-listing/sr-power-bi-developer-broadcast-music-inc-JV_KO0,21_KE22,41.htm?jl=1009852236950":"2026-07-22","https://www.linkedin.com/jobs/view/4441911111/":"2026-07-22","https://www.linkedin.com/messaging/thread/2-ZDM4NjE2YWUtNGQxZC00YWQwLTk4YWMtZTVkNDU2N2MzMTA0XzEwMA==/":"2026-07-22","19f864bf13a1c8ee":"2026-07-22","https://www.linkedin.com/messaging/thread/2-YjA5ZjE3MTItM2E2ZC00MDlhLWJlMzgtNzQyYzQ3NGZiMTA1XzEwMA==/":"2026-07-22","19f8b5a20bb846ad":"2026-07-23","https://www.linkedin.com/messaging/thread/2-NjRlYzVjYWUtNzY2Ny00ZjBjLWIwMGMtOTI1MzNjNzYwMTU3XzEwMA==/":"2026-07-22","19f80af86048e18d":"2026-07-22","https://www.linkedin.com/messaging/thread/2-ZTQ3MWQyNjQtYjc3MS00YWRiLWEzZDMtZTlkNTk0MTAwNDliXzEwMA==/":"2026-07-22","19f853b1990d7ad7":"2026-07-22","19f808f24146d81f":"2026-07-22","19f8a11a6f842033":"2026-07-23","19f7fb5868e2c05d":"2026-07-22","https://www.linkedin.com/messaging/thread/2-YTBkNzY2NGUtYmZkOC00MmQ5LTlmNGYtYTA2MTE3MjIwNWE0XzEwMA==/":"2026-07-22","https://www.linkedin.com/messaging/thread/2-YTdlMGZhNDItMGY4Zi00ZGE1LWJiN2ItYzg0NmQ4ZDI4YjAwXzEwMA==/":"2026-07-22"};
+  const RUN_STATE = {"https://builtin.com/job/senior-bi-analyst/9598809":{"next-steps":"2026-07-22T23:15:22"},"https://www.linkedin.com/messaging/thread/2-YmRiODJiN2YtYjljNS00YmNlLThjOTItNTY1NWQ1ZWJkMTczXzEwMA==/":{"next-steps":"2026-07-22T18:34:07"},"https://www.linkedin.com/jobs/view/4440792262/":{"next-steps":"2026-07-22T18:58:26"},"https://www.linkedin.com/jobs/view/4437162489/":{"next-steps":"2026-07-28T10:53:16"},"19f70a3821a475a3":{"next-steps":"2026-07-22T23:37:50"},"19f7fee6bf8218cd":{"recruiter-action":"2026-07-21","next-steps":"2026-07-28T09:49:01","job-fit-inbox":"2026-07-21"},"19f8a11a6f842033":{"next-steps":"2026-07-22T19:47:50"},"19f80cb44c91d7bb":{"job-fit-inbox":"2026-07-22T18:27:56","recruiter-action":"2026-07-21"},"19f771183237f1d0":{"next-steps":"2026-07-22T18:57:18"},"19f8064120818784":{"job-fit-inbox":"2026-07-22","recruiter-action":"2026-07-22"},"https://sg2email.lensa.com/ls/click?upn=u001.jmU3g-2BpCjR8B5yHZB902pK6ssbzDLLx7LrEMXpbH7ysAhF-2BFrAqtKh3490gCgupYyO1gzMZxnXhTxlG34wpTkAGX-2FQIciNd04cTFaret31s6G9cwO9zRWoYxsFPuXXjZ644A88PkxiOU6K9dp1Y7rF-2B9VRLIL7cnLgLByf5QxaSoaFvm0WnhBypic3KNxUp0b5YS-2FgWm0p9og3fiUKh05KaC-2FXYPCCgEzUKqz9bC1Sa3EMUdTfrOH5ZgT6LhICjhpt_C_QXnTW6f9jV7ots26-2Fd0iCA40nBTbwrnPprB64EaCS9zkmj-2BCWIv7rzc4TNxeyGR9uyp-2BODyM2g3Pm1Gg0AMMxZDXVgI1R0gV4Lko2s1idces-2BAqLJlMOIyFyWEQ7h1KHWlTdwrf7rdNuBIjiKQlB2gvmBMPKhdxKFlpOjTLOjIikQb8cDRekU6m-2BST2VHSaEDiUr45iA0C-2FmGrjRmlVMdt4qOdsNCNayDa19rB14t5cdtD0IdsgVkW5rKrpPn8KXynX96P50KvFmB8yMkwS8uCf8EK20KbgeUcTZhGgNjkSb8ZWYjr2PAaxKKzZf94PB6drAdGO7aOJPHhoKXusiv42ZEe45NZBCkcNW9K7-2FtkJFWXdZN6c8TmSvFzr25EpmvyIJgMOOFqNhZ8xkQr0dPHRawIhrCyPYU1flPGF9pXhkotc7Xb1B9G-2FT4wLagCcMOMYtQjBUPCcy9-2FA9d0EnfSKUX6bHmyLk-2Bv8jK-2BwaKX-2F1uPBpVrqebrhAcbn4kOOCkr7z2Su7Ap2ZvL5ppTZ4bqbcupIPI-2FMBQ7fs1TXPHcPB1WgN5uZo1fpAcnHjPRt1cnc-2BbG0P1red-2Bfb-2Fq9V6zEbFY9OWv8xy7VOb0-2FBB-2Bh1lRZ":{"next-steps":"2026-07-23T17:45:29"},"19f853b1990d7ad7":{"next-steps":"2026-07-22"},"https://www.linkedin.com/jobs/view/4442755689/":{"next-steps":"2026-07-28T11:02:18"}};
+  const ARCHIVED = {"https://www.linkedin.com/messaging/thread/2-YmRiODJiN2YtYjljNS00YmNlLThjOTItNTY1NWQ1ZWJkMTczXzEwMA==/":"2026-07-23","https://www.linkedin.com/jobs/view/4440792262/":"2026-07-22","19f7fb5868e2c05d":"2026-07-22","19f7f8cdc84867d1":"2026-07-22","19f771183237f1d0":"2026-07-22","https://www.glassdoor.com/job-listing/sr-power-bi-developer-broadcast-music-inc-JV_KO0,21_KE22,41.htm?jl=1009852236950":"2026-07-22","https://www.linkedin.com/jobs/view/4441911111/":"2026-07-22","https://www.linkedin.com/messaging/thread/2-ZDM4NjE2YWUtNGQxZC00YWQwLTk4YWMtZTVkNDU2N2MzMTA0XzEwMA==/":"2026-07-22","19f864bf13a1c8ee":"2026-07-22","https://www.linkedin.com/messaging/thread/2-YjA5ZjE3MTItM2E2ZC00MDlhLWJlMzgtNzQyYzQ3NGZiMTA1XzEwMA==/":"2026-07-22","19f8b5a20bb846ad":"2026-07-23","https://www.linkedin.com/messaging/thread/2-YTdlMGZhNDItMGY4Zi00ZGE1LWJiN2ItYzg0NmQ4ZDI4YjAwXzEwMA==/":"2026-07-22","19f80af86048e18d":"2026-07-22","https://www.linkedin.com/messaging/thread/2-ZTQ3MWQyNjQtYjc3MS00YWRiLWEzZDMtZTlkNTk0MTAwNDliXzEwMA==/":"2026-07-22","19f853b1990d7ad7":"2026-07-22","19f808f24146d81f":"2026-07-22","19f8a11a6f842033":"2026-07-23","19f8091b2c1ef05f":"2026-07-22","https://www.linkedin.com/messaging/thread/2-YTBkNzY2NGUtYmZkOC00MmQ5LTlmNGYtYTA2MTE3MjIwNWE0XzEwMA==/":"2026-07-22","https://www.linkedin.com/messaging/thread/2-NjRlYzVjYWUtNzY2Ny00ZjBjLWIwMGMtOTI1MzNjNzYwMTU3XzEwMA==/":"2026-07-22"};
   const SKIPPED = {"19f7fdfe7ee3bedf":"2026-07-22","19f7fb5868e2c05d":"2026-07-22","19f8091b2c1ef05f":"2026-07-22","19f8065a7ac37096":"2026-07-22","19f7f8cdc84867d1":"2026-07-22"};
 // DASH_STATE_END
 
@@ -497,23 +497,32 @@ function isArchived(d){
 }
 const ranOn=(ref,cmd)=>(RUN_STATE&&RUN_STATE[ref]&&RUN_STATE[ref][cmd])||null;
 const ranOnCard=(d,cmd)=>keysOf(d).map(k=>ranOn(k,cmd)).find(Boolean)||null;
-// Prospects run buttons go to the Claude CLI, not Claude Desktop — over LOOPBACK HTTP, not the
-// jobhunt-cmd:// protocol. Chrome here silently refuses to launch that protocol (verified 2026-07-28
-// against a hyphen-free scheme and a plain-exe handler: none prompted, while claude:// does), so the
-// click posts to Start-JobHuntListener.ps1 instead, which hands the same URI to cmd-uri-handler.ps1.
+// Prospects run buttons start a minimized interactive Claude CLI session — over LOOPBACK HTTP, not
+// the jobhunt-cmd:// protocol. Chrome here silently refuses to launch that protocol (verified
+// 2026-07-28 against a hyphen-free scheme and a plain-exe handler: none prompted, while claude://
+// does), so the click posts to Start-JobHuntListener.ps1, which hands the same URI to
+// cmd-uri-handler.ps1. Interactive, not headless, because Remote Control only attaches to
+// interactive sessions — that is what puts the run in your Claude sidebar.
 const LISTENER="http://127.0.0.1:47615";
 function runBtn(cmd,d,label){
   const on=ranOnCard(d,cmd);
-  const t=on?("Ran "+on+" — click to run /"+cmd+" again in the Claude CLI"):("Open the Claude CLI in a terminal (job-search-os) and run /"+cmd);
+  const t=on?("Ran "+on+" — click to run /"+cmd+" again"):("Starts a minimized /"+cmd+" session, in your Claude sidebar as \""+((d.company?d.company+' - ':'')+d.title).replace(/"/g,'&quot;')+"\"");
   const paste=('/'+cmd+' '+refOf(d)).replace(/"/g,'&quot;');
-  return '<a class="runbtn'+(on?' done':'')+'" href="#" data-cmd="'+cmd+'" data-ref="'+b64url(refOf(d))+'" data-paste="'+paste+'" title="'+t+'">'+(on?'✓ ':'▶ ')+label+'</a>';
+  const sess=((d.company?d.company+' - ':'')+d.title).replace(/"/g,'&quot;');
+  return '<a class="runbtn'+(on?' done':'')+'" href="#" data-cmd="'+cmd+'" data-ref="'+b64url(refOf(d))+'" data-paste="'+paste+'" data-label="'+sess+'" title="'+t+'">'+(on?'✓ ':'▶ ')+label+'</a>';
 }
-// ref is base64url, exactly as the protocol URI carried it. onOk only fires when the listener
-// really accepted the run — the ⏳ state must never latch on a failed hand-off.
-function runViaListener(cmd,ref,doneMsg,onOk){
-  fetch(LISTENER+"/run?cmd="+encodeURIComponent(cmd)+"&ref="+encodeURIComponent(ref),{cache:"no-store"})
+// ref is base64url, exactly as the protocol URI carried it. label names the session in the Claude
+// sidebar — without it every entry reads as the same auto-generated hostname-N. onOk only fires
+// when the listener really accepted the run: the ⏳ state must never latch on a failed hand-off.
+// Every dashboard-launched session is work-in-progress on an opportunity, so they all carry the
+// same group. It prefixes the session name — the CLI has no flag for real sidebar groups.
+const RUN_GROUP="WIP";
+function runViaListener(cmd,ref,doneMsg,onOk,label){
+  fetch(LISTENER+"/run?cmd="+encodeURIComponent(cmd)+"&ref="+encodeURIComponent(ref)
+        +(label?"&label="+encodeURIComponent(label):"")
+        +(RUN_GROUP?"&group="+encodeURIComponent(RUN_GROUP):""),{cache:"no-store"})
     .then(r=>{ if(!r.ok) throw new Error("HTTP "+r.status);
-      toast(doneMsg||("/"+cmd+" is running in the background (~1–2 min). The plan opens in your browser when it's done — nothing to watch."));
+      toast(doneMsg||("/"+cmd+" started — the window is minimized, and the session is in your Claude sidebar if you want to watch or steer it."));
       if(onOk) onOk(); })
     .catch(err=>{
       toast("Can't reach the local listener ("+err.message+"). Start it with dashboard\\Start-JobHuntListener.ps1. Meanwhile the command is on your clipboard — paste it into a terminal running claude.");
@@ -622,7 +631,7 @@ function renderCards(){
     a.addEventListener('click',e=>{
       e.preventDefault();
       copyText(a.getAttribute('data-paste'));
-      runViaListener(a.getAttribute('data-cmd'),a.getAttribute('data-ref'));
+      runViaListener(a.getAttribute('data-cmd'),a.getAttribute('data-ref'),null,null,a.getAttribute('data-label'));
     });
   });
   const tc=$("tabCount"); if(tc) tc.textContent = live.length ? "("+live.length+")" : "";
@@ -783,16 +792,18 @@ function render(){
     const openTitle=isLI?"Open conversation in LinkedIn":"Open thread in Gmail";
     const srcTag=isLI?`<span class="tag li">LinkedIn</span>`:``;
     const cardRef=cardRefOf(d), archived=isArchivedR(cardRef);
-    // All three run headless in the background via the loopback listener — no window, no Trust
-    // prompt, nothing for Chrome to veto. ✓ + ran-date show once a command is logged.
+    // All three start a minimized interactive session via the loopback listener — out of your way,
+    // but it appears in the Claude sidebar (named for this card) so you can watch or steer it.
+    // ✓ + ran-date show once a command is logged.
+    const sess=`${d.firm} - ${d.role}`.replace(/"/g,'&quot;');
     const rbtn=(name,arg,label)=>{
       if(isRunning(name,arg))
-        return `<span class="runbtn bg running" title="Running in the background — the button flips to a green check when it finishes (~1–2 min)">⏳ Running…</span>`;
+        return `<span class="runbtn bg running" title="Running — open it from your Claude sidebar to watch or steer it. The button flips to a green check when it finishes.">⏳ Running…</span>`;
       const on=ranOn(arg,name);
       const t=on
-        ? `Ran ${on.slice(0,10)} — click to re-run in the background`
-        : `Runs headless in the background — no window, no Trust prompt`;
-      return `<a class="runbtn${on?' done':''} bg" href="#" data-key="${b64url(name+'|'+arg)}" data-paste="${('/'+name+' '+arg).replace(/"/g,'&quot;')}" title="${t}">${on?'✓':'▶'} ${label}</a>`;
+        ? `Ran ${on.slice(0,10)} — click to run it again`
+        : `Starts a minimized session, named "${sess}" in your Claude sidebar`;
+      return `<a class="runbtn${on?' done':''} bg" href="#" data-key="${b64url(name+'|'+arg)}" data-paste="${('/'+name+' '+arg).replace(/"/g,'&quot;')}" data-label="${sess}" title="${t}">${on?'✓':'▶'} ${label}</a>`;
     };
     // "In process" = recruiter-action already run (logged) or an explicit IN PROCESS tag.
     const inProcess = ranOn(d.id,'recruiter-action') || d.tags.some(t=>/in\s*process/i.test(t[0]));
@@ -831,9 +842,9 @@ function render(){
     });
   });
   const RIMSG={
-    'job-fit-inbox':'Job Fit running in the background — the scorecard opens in a new tab when ready (~1–2 min).',
-    'recruiter-action':'Recruiter-Action running in the background — the tailored draft opens in Outlook when ready (~1–2 min).',
-    'next-steps':'Next Steps running in the background — the plan opens in a new tab when ready (~1–2 min).'
+    'job-fit-inbox':'Job Fit started — minimized, and in your Claude sidebar if you want to follow the scoring.',
+    'recruiter-action':'Recruiter-Action started — minimized. The tailored draft lands in Outlook; steer it from your Claude sidebar.',
+    'next-steps':'Next Steps started — minimized, and in your Claude sidebar if you want to follow along.'
   };
   document.querySelectorAll('#list .runbtn.bg[data-key]').forEach(a=>{
     a.addEventListener('click',e=>{
@@ -844,7 +855,7 @@ function render(){
       runViaListener(name,b64url(arg),RIMSG[name],()=>{
         running[key]=Date.now(); saveRunning();
         setTimeout(render,80); // flip the button to "Running…" and start the poll
-      });
+      },a.getAttribute('data-label'));
     });
   });
 }
