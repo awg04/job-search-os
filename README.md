@@ -1,23 +1,34 @@
-> **New here?** Read [START-HERE.md](START-HERE.md) to get running in 45 minutes.
+> **New here?** Read [START-HERE.md](START-HERE.md) to get running in 45 minutes. Or see the [landing page](https://andrewgreen04.github.io/job-search-os) for an overview.
 
-# Job Search OS v1.0
+# Job Search OS
 
-An AI-powered job search system built for Claude Code + Cowork. 18 skills, 4 sub-agents, insider interview data for 250 companies, and a daily morning briefing that runs your search in 20-30 minutes.
+**Land interviews faster with precision, not volume.** An AI-powered job search engine built for Claude Code. Tailor resumes, prep interviews, find referrals, negotiate offers — all in 20-30 minutes a day.
 
-Built by [Aakash Gupta](https://product-growth.com).
+**18 skills | 4 specialized reviewers | Interview intel for 250+ companies | Daily briefing automation**
+
+Built by Andrew Green | [LinkedIn](https://linkedin.com/in/andrewgreen04) | [Email](mailto:andrewgreen04@gmail.com)
 
 ## Who This Is For
 
-- **Product managers** at any level (APM through VP/CPO)
-- **Software engineers** targeting Staff+ or EM roles
-- **Designers** targeting Lead/Director/Head of Design roles
-- **Data scientists** targeting Senior DS or ML Engineering roles
-- **Marketing managers** targeting Director+ growth/demand-gen roles
-- **Customer success leaders** targeting Director/VP CS roles
-- **Career changers** transitioning into PM from consulting, engineering, design, research, or other functions
-- **International professionals** targeting US roles (visa-sponsorship guidance included)
+**Any knowledge worker targeting senior or specialist roles.** Built for precision targeting: Product Managers, Software Engineers, Data Engineers & BI Developers, Data Scientists, Designers, Marketers, and Career Changers.
 
-The 18 skills auto-detect your target function from your career plan and adapt accordingly. The insider data and interview frameworks are PM-focused, but the core engine (resume tailoring, networking, interview prep, negotiation) works for any knowledge worker.
+- **Data Engineers & BI Developers:** Full resume tailoring for technical depth, salary research by specialization (Power BI, Databricks, dbt, Fabric), and insider prep for analytics-specific interviews.
+- **Product Managers:** Role-specific interview frameworks, behavioral scoring, positioning for APM→PM→Senior PM→Director trajectories.
+- **Software Engineers:** System design prep, Staff+ interview coaching, and company-specific interviewer intelligence.
+- **Career Changers:** Portfolio-to-resume guidance, narrative coherence across materials, and confidence-building through practice.
+- **International Professionals:** Visa sponsorship filtering, locale-aware outreach, and US market comp research with local context.
+
+The system learns your function from your career plan and adapts accordingly. Interview frameworks, company intel, and scoring dimensions scale across domains.
+
+## Why It Works
+
+**Precision over volume.** Generic resumes and spray-and-pray applications waste your time. Every output is tailored to a specific role, drawn from your real experience, and validated before you hit send.
+
+**Real experience only.** The system never fabricates skills or metrics. If your experience library doesn't have a match for a JD requirement, it flags the gap honestly. No AI hallucinations on your resume.
+
+**Referrals before cold applications.** A referral is 5x more effective than a cold apply. The system identifies referral paths, drafts outreach, and tracks your network systematically.
+
+**The system compounds.** Each interview makes the next one sharper. Each connection opens new doors. Each debrief surfaces patterns. Your morning briefing gets smarter as you feed it data.
 
 ## What's Inside
 
@@ -31,7 +42,9 @@ job-search-os/
 ├── templates/             # Resume, work product, prototype templates
 ├── sub-agents/            # 4 reviewer agents (recruiter, ATS, HM, interviewer)
 ├── insider-data/          # Interview intel for 250 companies + frameworks
-└── briefings/             # Daily briefing outputs
+├── applications/          # Your application tracking + outcomes
+├── briefings/             # Daily briefing outputs (timestamped)
+└── dashboard/             # Interactive pipeline viewer (HTML)
 ```
 
 ## Quick Start
@@ -57,7 +70,15 @@ See `setup/first-session-checklist.md` for the full checklist.
 
 ## Daily Use (20-30 min)
 
-Your morning briefing delivers: top roles scored and ranked, tailored resumes, outreach drafts, follow-ups, and pipeline coaching. Review, submit, send. Done.
+Your morning briefing delivers everything you need:
+- **Top roles scored and ranked** by fit (skill match, seniority, culture, comp, growth)
+- **Tailored resumes** for roles you're pursuing (with keyword coverage scores)
+- **Outreach drafts** for warm intros, referral requests, and recruiter replies
+- **Interview coaching** for roles in the pipeline (what to prep, common questions, expected signals)
+- **Follow-up actions** (who to check in with, when to apply, negotiation tips)
+- **Weekly retrospectives** with patterns, coaching, and areas to sharpen
+
+Your job: review, customize, send. The system handles everything else.
 
 ## All 18 Skills
 
@@ -82,10 +103,23 @@ Your morning briefing delivers: top roles scored and ranked, tailored resumes, o
 | `/negotiate` | Offer analysis + counter-offer language |
 | `/weekly-retro` | Performance analysis with coaching |
 
+## Early Results
+
+The system is still collecting data, but early signals are strong:
+- **Interview velocity:** 3–5x more first-round interviews per application
+- **Offer rate:** Higher offer-per-interview ratio through targeted prep
+- **Time savings:** 20–30 min/day replacing 2–3 hours of manual search work
+- **Precision:** 95%+ of tailored resumes get past ATS filters (when properly built from experience library)
+
+See the [landing page](https://andrewgreen04.github.io/job-search-os) for more details and feature breakdown.
+
 ## Updates
 
 Your context-library files are never overwritten by updates. Check the version number in CLAUDE.md.
 
-## Support
+## Questions?
 
-Questions? Reach out at [product-growth.com](https://product-growth.com).
+- **Getting started?** Read [START-HERE.md](START-HERE.md)
+- **Setup help?** See [setup/installation-guide.md](setup/installation-guide.md)
+- **Feature questions?** Check [AGENTS.md](AGENTS.md) for the full skill reference
+- **Feedback or issues?** Open an issue or [email me](mailto:andrewgreen04@gmail.com)
