@@ -1,975 +1,851 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Job Hunt</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'><circle cx='22' cy='22' r='22' fill='%2334c759'/><circle cx='22' cy='22' r='15' fill='none' stroke='%23000' stroke-opacity='0.10' stroke-width='0.6'/><circle cx='22' cy='22' r='9' fill='none' stroke='%23000' stroke-opacity='0.08' stroke-width='0.6'/><path d='M22 22 L13.5 1.7 A22 22 0 0 1 31 2 Z' fill='%23eafff6' fill-opacity='0.6'/><circle cx='22' cy='22' r='7.5' fill='%23fff'/><circle cx='22' cy='22' r='5' fill='%230a84ff'/></svg>">
+<title>Job Search Command Center</title>
 <style>
-  :root{
-    --bg:#0f1420; --card:#171e2e; --card2:#1c2438; --line:#28324a;
-    --text:#e8ecf5; --dim:#8b96ad; --accent:#4da3ff; --accent2:#7ec8ff;
-    --strong:#34d399; --look:#fbbf24; --chip:#243049;
+  :root {
+    color-scheme: light dark;
+    --ground: #EFF2F5;
+    --card: #FFFFFF;
+    --ink: #0E1B26;
+    --ink-soft: #47586B;
+    --line: #D5DDE4;
+    --accent: #0A7E8C;
+    --accent-tint: #DFF0F2;
+    --dream: #1A56C4;
+    --dream-tint: #E4ECFF;
+    --good: #2A8A52;
+    --good-tint: #E1F0E8;
+    --warn: #AA5510;
+    --warn-tint: #F5E9DC;
+    --crit: #BA2E22;
+    --crit-tint: #F7E3E1;
+    --scan: #5549C8;
+    --scan-tint: #ECEAF8;
+    --inbound: #8E5F08;
+    --inbound-tint: #F8F0DC;
+    --mono: Consolas, "Cascadia Code", "Cascadia Mono", monospace;
   }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);color:var(--text);font:14px/1.45 "Segoe UI",system-ui,sans-serif;padding:28px 4vw 60px}
-  h1{font-size:22px;font-weight:600;letter-spacing:.2px}
-  h1 .sub{color:var(--dim);font-size:13px;font-weight:400;display:block;margin-top:4px}
-  h2{font-size:15px;font-weight:600;margin:34px 0 12px;color:var(--accent2);text-transform:uppercase;letter-spacing:.8px}
-  h2 small{color:var(--dim);font-weight:400;text-transform:none;letter-spacing:0;margin-left:10px}
 
-  .controls{display:flex;flex-wrap:wrap;gap:14px;margin-top:20px;align-items:flex-end}
-  .field label{display:block;color:var(--dim);font-size:11px;text-transform:uppercase;letter-spacing:.7px;margin-bottom:5px}
-  select,input[type=text]{background:var(--card2);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:9px 12px;font-size:14px;min-width:260px;outline:none}
-  select:focus,input:focus{border-color:var(--accent)}
-  input[type=text]{min-width:240px}
-  .hint{color:var(--dim);font-size:12px;margin-top:10px}
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ground: #0B1318;
+      --card: #132028;
+      --ink: #DCE8F0;
+      --ink-soft: #7898AC;
+      --line: #1E3042;
+      --accent: #1AAABB;
+      --accent-tint: #0A282E;
+      --dream: #5B8EEE;
+      --dream-tint: #091230;
+      --good: #33A862;
+      --good-tint: #0A2418;
+      --warn: #C87030;
+      --warn-tint: #2A1A08;
+      --crit: #D84E44;
+      --crit-tint: #2A0C0A;
+      --scan: #7C72E0;
+      --scan-tint: #16133A;
+      --inbound: #B88A28;
+      --inbound-tint: #28200A;
+    }
+  }
 
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-top:6px}
-  .grid a{display:block;background:var(--card);border:1px solid var(--line);border-radius:9px;padding:10px 12px;color:var(--text);text-decoration:none;font-size:13px;text-align:center;transition:.12s}
-  .grid a:hover{border-color:var(--accent);background:var(--card2);color:var(--accent2)}
-  .grp{margin-top:18px}
-  .grp .lbl{color:var(--dim);font-size:11px;text-transform:uppercase;letter-spacing:.7px;margin-bottom:8px}
+  :root[data-theme="light"] {
+    --ground: #EFF2F5;
+    --card: #FFFFFF;
+    --ink: #0E1B26;
+    --ink-soft: #47586B;
+    --line: #D5DDE4;
+    --accent: #0A7E8C;
+    --accent-tint: #DFF0F2;
+    --dream: #1A56C4;
+    --dream-tint: #E4ECFF;
+    --good: #2A8A52;
+    --good-tint: #E1F0E8;
+    --warn: #AA5510;
+    --warn-tint: #F5E9DC;
+    --crit: #BA2E22;
+    --crit-tint: #F7E3E1;
+    --scan: #5549C8;
+    --scan-tint: #ECEAF8;
+    --inbound: #8E5F08;
+    --inbound-tint: #F8F0DC;
+  }
 
-  /* tabs */
-  .tabs{display:flex;gap:6px;margin-top:22px;border-bottom:1px solid var(--line)}
-  .tabs .tab{background:none;border:none;border-bottom:2px solid transparent;color:var(--dim);font-size:14px;font-weight:600;padding:9px 16px 11px;cursor:pointer;margin-bottom:-1px}
-  .tabs .tab:hover{color:var(--text)}
-  .tabs .tab.on{color:var(--accent2);border-bottom-color:var(--accent)}
-  .tabs .tab .count{color:var(--dim);font-weight:400;font-size:12px;margin-left:6px}
-  .tabs .tab.on .count{color:var(--accent)}
-  .panel[hidden]{display:none}
+  :root[data-theme="dark"] {
+    --ground: #0B1318;
+    --card: #132028;
+    --ink: #DCE8F0;
+    --ink-soft: #7898AC;
+    --line: #1E3042;
+    --accent: #1AAABB;
+    --accent-tint: #0A282E;
+    --dream: #5B8EEE;
+    --dream-tint: #091230;
+    --good: #33A862;
+    --good-tint: #0A2418;
+    --warn: #C87030;
+    --warn-tint: #2A1A08;
+    --crit: #D84E44;
+    --crit-tint: #2A0C0A;
+    --scan: #7C72E0;
+    --scan-tint: #16133A;
+    --inbound: #B88A28;
+    --inbound-tint: #28200A;
+  }
 
-  /* System Design tab. The doc stays its own file (dashboard/system-design.html) so it can
-     still be opened standalone and edited without touching this dashboard; here it is just
-     framed. Its palette is locked to these same vars, so the seam should be invisible. */
-  /* Capped at the doc's own 1080px column + its 24px gutters and left-aligned, so the text
-     starts near the dashboard's left edge instead of floating in a full-width frame. */
-  #panel-design .sd-frame{width:100%;max-width:1128px;height:calc(100vh - 230px);min-height:520px;
-    display:block;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+  * { box-sizing: border-box; }
 
-  /* prospects */
-  .meta-line{color:var(--dim);font-size:12px;margin-bottom:12px}
-  .chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
-  .chips button{background:var(--chip);border:1px solid var(--line);color:var(--dim);border-radius:20px;padding:5px 14px;font-size:12px;cursor:pointer}
-  .chips button.on{color:#fff;border-color:var(--accent);background:#1e3a5f}
-  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:12px}
-  .jcard{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:8px}
-  .jcard .top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
-  .jcard .title{font-weight:600;font-size:14.5px}
-  .jcard a.title{color:var(--text);text-decoration:none}
-  .jcard a.title:hover{color:var(--accent2)}
-  .jcard .co{color:var(--dim);font-size:13px}
-  .badge{border-radius:6px;padding:3px 9px;font-size:12px;font-weight:600;white-space:nowrap}
-  .badge.strong{background:rgba(52,211,153,.15);color:var(--strong)}
-  .badge.look{background:rgba(251,191,36,.13);color:var(--look)}
-  .jcard .note{color:var(--dim);font-size:12.5px}
-  .jcard .foot{display:flex;gap:14px;align-items:center;font-size:12px;margin-top:2px}
-  .jcard .foot a{color:var(--accent);text-decoration:none}
-  .jcard .foot a:hover{text-decoration:underline}
-  .jcard .src{color:var(--dim)}
-  .cmd{display:flex;align-items:center;gap:8px;margin-top:2px}
-  .cmd code{background:#0d1626;border:1px solid var(--line);border-radius:6px;padding:4px 8px;font-size:11.5px;color:var(--accent2);font-family:"Cascadia Code",Consolas,monospace;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .cmd button{background:var(--chip);border:1px solid var(--line);color:var(--dim);border-radius:6px;padding:4px 9px;font-size:12px;cursor:pointer;white-space:nowrap}
-  .cmd button:hover{border-color:var(--accent);color:var(--accent2)}
-  .cmd button.copied{color:var(--strong);border-color:var(--strong)}
-  .runbtn{background:#1e3a5f;border:1px solid var(--accent);color:var(--accent2);border-radius:6px;padding:5px 11px;font-size:12px;cursor:pointer;white-space:nowrap;text-decoration:none;font-weight:600;display:inline-block}
-  .runbtn:hover{background:#25507f;color:#fff}
-  .runbtn.inline{padding:2px 9px}
-  .actions{display:flex;gap:6px;flex-wrap:nowrap;margin-top:4px}
-  .actions>a{flex:1 1 auto;min-width:0;padding:5px 8px;font-size:11px;text-align:center;overflow:hidden;text-overflow:ellipsis}
-  .actions>.archbtn{flex:0 0 auto}   /* fixed width — Next Steps/View Posting grow to fill, so Archive is the same size at 3 or 4 buttons */
-  .linkbtn{background:var(--chip);border:1px solid var(--line);color:var(--dim);border-radius:6px;padding:5px 11px;font-size:12px;font-weight:600;text-decoration:none;white-space:nowrap;display:inline-block}
-  .linkbtn:hover{border-color:var(--accent);color:var(--accent2)}
-  .runbtn.done{background:rgba(52,211,153,.15);border-color:var(--strong);color:var(--strong)}
-  .runbtn.done:hover{background:rgba(52,211,153,.28);color:#fff}
-  .archbtn{background:#b3342f;border:1px solid #5e1a1a;color:#fff;border-radius:6px;padding:5px 11px;font-size:12px;font-weight:600;text-decoration:none;white-space:nowrap;cursor:pointer;display:inline-block}
-  .archbtn:hover{background:#c0392b;border-color:#7a2323}
-  .archbtn.un{background:#1e7a4d;border-color:#0f3b24}
-  .archbtn.un:hover{background:#22885a;border-color:#154f31}
-  .archtoggle{background:var(--chip);border:1px solid var(--line);color:var(--dim);border-radius:20px;padding:5px 14px;font-size:12px;cursor:pointer}
-  .archtoggle.on{color:#fff;border-color:var(--accent);background:#1e3a5f}
-  /* Shown only when this browser hides cards the state file doesn't know about yet. */
-  .archtoggle.syncchip{background:#3a3010;border-color:#7a6420;color:#f5c542;font-weight:600}
-  .archtoggle.syncchip:hover{background:#4a3d15}
-  .jcard.archived{opacity:.55}
-  .empty{color:var(--dim);padding:26px;border:1px dashed var(--line);border-radius:12px;text-align:center}
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    margin: 0;
+    padding: 28px 20px 52px;
+    line-height: 1.46;
+  }
 
-  /* ===== Recruiter Inbox tab (folded in from recruiter-inbox.html; all selectors scoped
-     under #panel-recruiter so they can't collide with the prospects/search styles) ===== */
-  #panel-recruiter .ri-kpis{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0 18px}
-  #panel-recruiter .kpi{flex:1;min-width:130px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
-  #panel-recruiter .kpi .n{font-size:24px;font-weight:700}
-  #panel-recruiter .kpi .l{color:var(--dim);font-size:12px;margin-top:2px}
-  #panel-recruiter .toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
-  #panel-recruiter .filter{background:var(--card2);border:1px solid var(--line);color:var(--text);padding:6px 12px;border-radius:20px;cursor:pointer;font-size:12.5px}
-  #panel-recruiter .filter.active{background:var(--accent);border-color:var(--accent);color:#08122a;font-weight:600}
-  #panel-recruiter .filter.syncchip{margin-left:auto;background:#3a3010;border-color:#7a6420;color:#f5c542;font-weight:600}
-  #panel-recruiter .filter.syncchip:hover{background:#4a3d15}
-  #panel-recruiter .row{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:10px;display:grid;grid-template-columns:52px 1fr auto;gap:14px;align-items:start}
-  #panel-recruiter .score{width:52px;height:52px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:700}
-  #panel-recruiter .s-strong{background:#12351f;color:#5fe0a0;border:1px solid #1e7a4d}
-  #panel-recruiter .s-look{background:#3a3010;color:#f5c542;border:1px solid #7a6216}
-  #panel-recruiter .s-low{background:#20283c;color:#6b7690;border:1px solid #38425e}
-  #panel-recruiter .role{display:block;font-weight:600;font-size:15px;color:var(--text);text-decoration:none}
-  #panel-recruiter .meta{display:block;color:var(--dim);font-size:12.5px;margin-top:2px;text-decoration:none}
-  #panel-recruiter .role:hover,#panel-recruiter .meta:hover{text-decoration:underline}
-  #panel-recruiter .tags{margin-top:8px;display:flex;gap:6px;flex-wrap:wrap}
-  #panel-recruiter .tag{font-size:11.5px;padding:2px 9px;border-radius:6px;background:var(--card2);border:1px solid var(--line);color:var(--dim)}
-  #panel-recruiter .tag.good{color:#6fe0a6;border-color:#1e7a4d}
-  #panel-recruiter .tag.bad{color:#ff9b9b;border-color:#7a2323}
-  #panel-recruiter .tag.warn{color:#f5c542;border-color:#7a6216}
-  #panel-recruiter .tag.proc{color:#8fc2ff;border-color:#2b5a9e}
-  #panel-recruiter .tag.li{color:#7ec8ff;border-color:#2b5a9e;background:#12233b}
-  #panel-recruiter .right{text-align:right;display:flex;flex-direction:column;gap:8px;align-items:flex-end;min-width:150px}
-  #panel-recruiter select{min-width:0;background:var(--card2);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:6px 8px;font-size:12.5px;cursor:pointer}
-  #panel-recruiter select.set-pursue{border-color:#16a766;color:#6fe0a6}
-  #panel-recruiter select.set-skip{border-color:#7a2323;color:#ff9b9b}
-  #panel-recruiter select.set-maybe{border-color:#7a6216;color:#f5c542}
-  #panel-recruiter select.set-applied{border-color:var(--accent);color:#8fc2ff}
-  #panel-recruiter .flag{margin-top:8px;font-size:12px;color:#ffb4b4;background:#2a1414;border:1px solid #7a2323;border-radius:8px;padding:7px 10px}
-  #panel-recruiter .btns{display:flex;flex-direction:column;gap:6px;margin-top:6px;width:100%;min-width:170px}
-  /* Card buttons only (inside .btns) — the meta-line's ▶ /recruiter-scan button keeps the
-     shared .runbtn.inline look so it matches the prospects tab's ▶ /job-hunt-scan. */
-  #panel-recruiter .btns .runbtn{background:#12233b;border:1px solid var(--accent);color:#8fc2ff;border-radius:7px;padding:6px 12px;font-size:12.5px;font-weight:600;text-decoration:none;cursor:pointer;text-align:center;display:block;white-space:nowrap}
-  #panel-recruiter .btns .runbtn:hover{background:#1b3355;color:#fff}
-  #panel-recruiter .btns .runbtn.done{background:#12351f;border-color:#2f7a4d;color:#5fe0a0}
-  #panel-recruiter .btns .runbtn.done:hover{background:#164f2d;color:#fff}
-  #panel-recruiter .btns .runbtn.bg{border-style:dashed}
-  #panel-recruiter .btns .runbtn.running{background:#3a3010;border:1px dashed #f5c542;color:#f5c542;cursor:default;animation:pulse 1.2s ease-in-out infinite}
-  #panel-recruiter .archbtn{background:#b3342f;border:1px solid #5e1a1a;color:#fff;border-radius:7px;padding:5px 12px;font-size:12px;font-weight:600;text-decoration:none;text-align:center;display:block;cursor:pointer}
-  #panel-recruiter .archbtn:hover{background:#c0392b;border-color:#7a2323}
-  #panel-recruiter .archbtn.un{background:#1e7a4d;border-color:#0f3b24}
-  #panel-recruiter .archbtn.un:hover{background:#22885a;border-color:#154f31}
-  #panel-recruiter .row.archived{opacity:.5}
-  #panel-recruiter .empty{border:none;padding:40px}
+  .wrap { max-width: 1060px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
 
-  /* ===== App Tracker tab (pipeline mirror of context-library/app-tracker.md; selectors
-     scoped under #panel-tracker so they can't collide with the other tabs) ===== */
-  #panel-tracker .at-kpis{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0 18px}
-  #panel-tracker .kpi{flex:1;min-width:130px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
-  #panel-tracker .kpi .n{font-size:24px;font-weight:700}
-  #panel-tracker .kpi .l{color:var(--dim);font-size:12px;margin-top:2px}
-  #panel-tracker .stagehdr{color:var(--dim);font-size:11px;text-transform:uppercase;letter-spacing:.7px;margin:22px 0 8px}
-  #panel-tracker .trow{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:10px;display:grid;grid-template-columns:92px 1fr auto;gap:14px;align-items:start}
-  #panel-tracker .stg{width:92px;border-radius:10px;padding:10px 6px;text-align:center;font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
-  #panel-tracker .st-offer{background:#12351f;color:#5fe0a0;border:1px solid #1e7a4d}
-  #panel-tracker .st-int{background:#12233b;color:#8fc2ff;border:1px solid #2b5a9e}
-  #panel-tracker .st-app{background:#0f2b33;color:#67d8c4;border:1px solid #1e6e5e}
-  #panel-tracker .st-out{background:#3a3010;color:#f5c542;border:1px solid #7a6216}
-  #panel-tracker .st-watch{background:#20283c;color:#6b7690;border:1px solid #38425e}
-  #panel-tracker .st-closed{background:#2a1919;color:#c58f8f;border:1px solid #5e2a2a}
-  #panel-tracker .role{font-weight:600;font-size:15px;color:var(--text);text-decoration:none;display:inline-block}
-  #panel-tracker a.role:hover{color:var(--accent2)}
-  #panel-tracker .meta{color:var(--dim);font-size:12.5px;margin-top:2px}
-  #panel-tracker .tags{margin-top:8px;display:flex;gap:6px;flex-wrap:wrap}
-  #panel-tracker .tag{font-size:11.5px;padding:2px 9px;border-radius:6px;background:var(--card2);border:1px solid var(--line);color:var(--dim)}
-  #panel-tracker .tag.good{color:#6fe0a6;border-color:#1e7a4d}
-  #panel-tracker .tag.bad{color:#ff9b9b;border-color:#7a2323}
-  #panel-tracker .tag.warn{color:#f5c542;border-color:#7a6216}
-  #panel-tracker .nextact{margin-top:9px;font-size:12.5px;color:var(--text);background:var(--card2);border:1px solid var(--line);border-radius:8px;padding:7px 10px}
-  #panel-tracker .nextact .lbl{color:var(--dim);font-weight:700;margin-right:7px}
-  #panel-tracker .nextact.today{background:#2e2708;border-color:#7a6216}
-  #panel-tracker .nextact.today .lbl{color:#f5c542}
-  #panel-tracker .nextact.over{background:#2a1414;border-color:#7a2323}
-  #panel-tracker .nextact.over .lbl{color:#ffb4b4}
-  #panel-tracker .right{display:flex;flex-direction:column;gap:6px;align-items:stretch;min-width:150px}
-  #panel-tracker .right .runbtn{background:#12233b;border:1px solid var(--accent);color:#8fc2ff;border-radius:7px;padding:6px 12px;font-size:12.5px;font-weight:600;text-decoration:none;cursor:pointer;text-align:center;display:block;white-space:nowrap}
-  #panel-tracker .right .runbtn:hover{background:#1b3355;color:#fff}
-  #panel-tracker .right .linkbtn{display:block;text-align:center}
-  #panel-tracker .attn{border:1px solid;border-radius:12px;padding:12px 16px;margin:0 0 6px}
-  #panel-tracker .attn.over{background:#2a1414;border-color:#7a2323}
-  #panel-tracker .attn.today{background:#2e2708;border-color:#7a6216}
-  #panel-tracker .attn .t{font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.7px;margin-bottom:8px}
-  #panel-tracker .attn.over .t{color:#ffb4b4}
-  #panel-tracker .attn.today .t{color:#f5c542}
-  #panel-tracker .attn .it{font-size:13px;margin:5px 0}
-  #panel-tracker .attn .d{font-weight:700;margin-right:8px;color:#ffb4b4}
-  #panel-tracker .attn .d.today{color:#f5c542}
-  @media(max-width:640px){#panel-tracker .trow{grid-template-columns:64px 1fr}#panel-tracker .stg{width:64px;font-size:10.5px}#panel-tracker .right{grid-column:1/-1;flex-direction:row;flex-wrap:wrap}}
+  /* ── Header ── */
+  header { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 16px; }
+  header h1 { font-size: 21px; font-weight: 700; margin: 0; letter-spacing: -0.015em; }
+  .weekbadge {
+    font-family: var(--mono); font-size: 12.5px; color: var(--accent);
+    background: var(--accent-tint); border-radius: 3px; padding: 2px 8px;
+  }
+  .stamp { margin-left: auto; font-size: 13px; color: var(--ink-soft); }
+  .stamp b { color: var(--ink); font-weight: 600; }
 
-  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
-  #toast{position:fixed;right:18px;bottom:18px;max-width:340px;background:#12233b;border:1px solid var(--accent);color:#cfe3ff;padding:12px 16px;border-radius:10px;font-size:13px;box-shadow:0 8px 28px rgba(0,0,0,.45);opacity:0;transform:translateY(8px);transition:.25s;pointer-events:none;z-index:50}
-  #toast.show{opacity:1;transform:none}
-  @media(max-width:640px){#panel-recruiter .row{grid-template-columns:44px 1fr}#panel-recruiter .right{grid-column:1/-1;align-items:stretch;flex-direction:row;flex-wrap:wrap}}
+  /* ── Status strip ── */
+  .strip {
+    display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+    background: var(--accent-tint); border: 1px solid var(--accent); border-radius: 6px;
+    padding: 9px 14px; font-size: 13.5px;
+  }
+  .strip .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex: none; }
+  .strip.crit { background: var(--crit-tint); border-color: var(--crit); }
+  .strip.crit .dot { background: var(--crit); }
+
+  /* ── KPIs ── */
+  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(148px, 1fr)); gap: 12px; }
+  .kpi {
+    background: var(--card); border: 1px solid var(--line); border-radius: 6px;
+    padding: 12px 14px 10px; display: flex; flex-direction: column; gap: 2px;
+    border-top: 3px solid var(--line);
+  }
+  .kpi.attn { border-top-color: var(--crit); }
+  .kpi.ok   { border-top-color: var(--good); }
+  .kpi.info { border-top-color: var(--accent); }
+  .kpi .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--ink-soft); font-weight: 600; }
+  .kpi .value { font-family: var(--mono); font-size: 30px; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1.1; }
+  .kpi .sub   { font-size: 12px; color: var(--ink-soft); }
+
+  /* ── Section headings ── */
+  h2 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.09em; color: var(--ink-soft); margin: 0 0 10px; font-weight: 700; }
+
+  /* ── Two-column layout ── */
+  .cols { display: grid; grid-template-columns: 3fr 2fr; gap: 20px; align-items: start; }
+  @media (max-width: 800px) { .cols { grid-template-columns: 1fr; } }
+
+  /* ── Tab bar ── */
+  .tab-bar {
+    display: flex; border-bottom: 1px solid var(--line); margin-bottom: 14px;
+  }
+  .tab {
+    background: none; border: none; border-bottom: 2px solid transparent;
+    padding: 7px 13px; cursor: pointer; margin-bottom: -1px;
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.065em;
+    color: var(--ink-soft); display: flex; align-items: center; gap: 6px;
+  }
+  .tab:hover { color: var(--ink); }
+  .tab:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+
+  .tab[aria-selected="true"][data-tab="dream"]  { color: var(--dream);   border-bottom-color: var(--dream);   }
+  .tab[aria-selected="true"][data-tab="inbox"]  { color: var(--inbound); border-bottom-color: var(--inbound); }
+  .tab[aria-selected="true"][data-tab="scan"]   { color: var(--scan);    border-bottom-color: var(--scan);    }
+
+  .tab-badge {
+    font-family: var(--mono); font-size: 10.5px; background: var(--line); color: var(--ink-soft);
+    border-radius: 9px; padding: 1px 6px; font-weight: 700;
+  }
+  .tab[aria-selected="true"][data-tab="dream"]  .tab-badge { background: var(--dream-tint);   color: var(--dream);   }
+  .tab[aria-selected="true"][data-tab="inbox"]  .tab-badge { background: var(--inbound-tint); color: var(--inbound); }
+  .tab[aria-selected="true"][data-tab="scan"]   .tab-badge { background: var(--scan-tint);    color: var(--scan);    }
+
+  .tab-panel { display: flex; flex-direction: column; gap: 12px; }
+  .tab-panel[hidden] { display: none; }
+
+  .tab-desc {
+    font-size: 12.5px; color: var(--ink-soft); margin: 0 0 4px;
+    padding: 0 0 10px; border-bottom: 1px solid var(--line);
+  }
+
+  /* ── Sub-section dividers within Dream Job ── */
+  .section-head {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.09em;
+    color: var(--dream); font-weight: 700; margin: 4px 0 2px;
+  }
+  .section-head::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+  .section-count {
+    font-family: var(--mono); font-size: 10.5px; font-weight: 700;
+    background: var(--dream-tint); color: var(--dream);
+    border-radius: 3px; padding: 1px 6px; text-transform: none; letter-spacing: 0;
+  }
+
+  /* ── Role cards ── */
+  .role {
+    background: var(--card); border: 1px solid var(--line); border-radius: 6px;
+    padding: 13px 15px; display: flex; flex-direction: column; gap: 8px;
+  }
+  .role.pipeline { border-left: 3px solid var(--good); }
+  .role.nudge    { border-left: 3px solid var(--warn); }
+
+  .role-top { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .role-top .title { font-weight: 700; font-size: 15px; line-height: 1.25; }
+  .role-top .co    { color: var(--ink-soft); font-size: 13.5px; }
+
+  .fit { margin-left: auto; display: flex; align-items: center; gap: 8px; flex: none; }
+  .fit .num { font-family: var(--mono); font-size: 17px; font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; }
+  .meter { width: 80px; height: 5px; background: var(--line); border-radius: 3px; overflow: hidden; }
+  .meter i { display: block; height: 100%; background: var(--accent); border-radius: 3px; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 5px; }
+  .chip {
+    font-size: 11px; font-weight: 700; border-radius: 3px; padding: 2px 7px;
+    background: var(--ground); color: var(--ink-soft); white-space: nowrap;
+  }
+  .chip.good    { background: var(--good-tint);    color: var(--good);    }
+  .chip.warn    { background: var(--warn-tint);    color: var(--warn);    }
+  .chip.crit    { background: var(--crit-tint);    color: var(--crit);    }
+  .chip.teal    { background: var(--accent-tint);  color: var(--accent);  }
+  .chip.scan    { background: var(--scan-tint);    color: var(--scan);    }
+  .chip.inbound { background: var(--inbound-tint); color: var(--inbound); }
+  .chip.dream   { background: var(--dream-tint);   color: var(--dream);   }
+
+  .role-note { font-size: 13px; color: var(--ink-soft); margin: 0; }
+  .role-recruiter {
+    font-size: 12px; color: var(--ink-soft); display: flex; align-items: baseline; gap: 5px; flex-wrap: wrap;
+  }
+  .role-recruiter b { color: var(--ink); font-weight: 600; }
+
+  /* ── Networking cards (Dream Job tab) ── */
+  .net-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 10px; }
+  .net-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 6px;
+    border-left: 3px solid var(--dream); padding: 10px 12px;
+    display: flex; flex-direction: column; gap: 5px;
+  }
+  .net-top  { display: flex; align-items: flex-start; gap: 9px; }
+  .net-num  { font-family: var(--mono); font-size: 11.5px; font-weight: 700; color: var(--dream); flex: none; padding-top: 1px; }
+  .net-co     { font-weight: 700; font-size: 13px; display: block; line-height: 1.25; }
+  .net-target { font-size: 11.5px; color: var(--ink-soft); display: block; }
+  .net-msg    { font-size: 11.5px; color: var(--ink-soft); margin: 0; font-style: italic; line-height: 1.45; }
+
+  /* ── Follow-up cards (Dream Job tab) ── */
+  .follow-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 6px;
+    padding: 11px 13px; display: flex; flex-direction: column; gap: 6px;
+  }
+  .follow-card.active { border-left: 3px solid var(--good); }
+  .follow-card.nudge  { border-left: 3px solid var(--warn); }
+  .follow-top  { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .follow-name { font-weight: 700; font-size: 13.5px; }
+  .follow-co   { color: var(--ink-soft); font-size: 12.5px; }
+  .follow-action { font-size: 12.5px; color: var(--ink-soft); margin: 0; }
+  .follow-action b { color: var(--ink); font-weight: 600; }
+
+  /* ── Search failures ── */
+  .fail-header {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--ink-soft); font-weight: 700; margin: 8px 0 0; padding-top: 12px; border-top: 1px solid var(--line);
+  }
+  .fail-row {
+    display: flex; flex-wrap: wrap; gap: 6px 12px; padding: 7px 0;
+    border-bottom: 1px solid var(--line); font-size: 13px; align-items: baseline;
+  }
+  .fail-row:last-child { border-bottom: none; }
+  .fail-co   { font-weight: 600; min-width: 110px; }
+  .fail-note { color: var(--ink-soft); flex: 1; min-width: 120px; }
+  .fail-url  { font-family: var(--mono); font-size: 11px; color: var(--accent); white-space: nowrap; }
+
+  /* ── Priority stack ── */
+  .panel { background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 14px 15px; }
+  .bottleneck {
+    border-left: 4px solid var(--crit); background: var(--crit-tint);
+    border-radius: 0 5px 5px 0; padding: 9px 13px; margin-bottom: 13px; font-size: 13.5px;
+  }
+  .bottleneck b { color: var(--crit); }
+  ol.stack {
+    margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 9px; font-size: 13.5px;
+  }
+  ol.stack li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px; }
+  .t { font-family: var(--mono); font-size: 11.5px; color: var(--ink-soft); white-space: nowrap; }
+  code {
+    font-family: var(--mono); font-size: 12px; background: var(--ground);
+    padding: 1px 5px; border-radius: 3px; color: var(--ink);
+  }
+
+  /* ── Pipeline table ── */
+  .tablewrap { overflow-x: auto; background: var(--card); border: 1px solid var(--line); border-radius: 6px; }
+  table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+  th, td { text-align: left; padding: 9px 14px; border-bottom: 1px solid var(--line); }
+  tr:last-child td { border-bottom: none; }
+  th { font-size: 11px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--ink-soft); font-weight: 700; }
+  td.n { font-family: var(--mono); font-variant-numeric: tabular-nums; font-weight: 700; }
+  td.detail { color: var(--ink-soft); }
+
+  /* ── Data health ── */
+  .health { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+  .hcard {
+    background: var(--card); border: 1px solid var(--line); border-radius: 6px;
+    padding: 10px 13px; font-size: 13px; display: flex; gap: 10px; align-items: flex-start;
+  }
+  .hdot { width: 8px; height: 8px; border-radius: 50%; margin-top: 5px; flex: none; }
+  .hdot.g { background: var(--good); }
+  .hdot.w { background: var(--warn); }
+  .hdot.r { background: var(--crit); }
+  .hcard b    { display: block; font-size: 12.5px; font-weight: 700; margin-bottom: 2px; }
+  .hcard span { color: var(--ink-soft); }
+
+  footer {
+    font-size: 12px; color: var(--ink-soft); border-top: 1px solid var(--line); padding-top: 14px;
+    display: flex; flex-wrap: wrap; gap: 4px 14px;
+  }
 </style>
-</head>
-<body>
 
-<h1>Job Hunt
-  <span class="sub">Scored recruiter outreach, graded good-fit prospects from your inbox + weekly web sweep, your live application pipeline, and a direct-source x-ray search.</span>
-</h1>
+<div class="wrap">
 
-<div class="tabs">
-  <button class="tab on" data-tab="recruiter">Recruiter Inbox<span class="count" id="riCount"></span></button>
-  <button class="tab" data-tab="prospects">Job Prospects<span class="count" id="tabCount"></span></button>
-  <button class="tab" data-tab="tracker">App Tracker<span class="count" id="atCount"></span></button>
-  <button class="tab" data-tab="search">Direct Source Search</button>
-  <button class="tab" data-tab="design">System Design</button>
+  <header>
+    <h1>Job Search Command Center</h1>
+    <span class="weekbadge">WEEK 6 &middot; DAY 4</span>
+    <span class="stamp">Updated <b>Thu, Jul 30, 2026</b> &middot; refreshes weekday mornings</span>
+  </header>
+
+  <div class="strip crit">
+    <span class="dot"></span>
+    <span><b>Progressive Day 18 &mdash; submit before reading anything else.</b> Armanino Advisory is the only active pipeline thread; Theron Griffin HM feedback still pending. Two completed resumes ready to send today.</span>
+  </div>
+
+  <section>
+    <div class="kpis">
+      <div class="kpi attn">
+        <span class="label">Applications</span>
+        <span class="value">0</span>
+        <span class="sub">Progressive Day 18 &mdash; submit now</span>
+      </div>
+      <div class="kpi info">
+        <span class="label">Active Pipeline</span>
+        <span class="value">1</span>
+        <span class="sub">Armanino &mdash; HM feedback pending</span>
+      </div>
+      <div class="kpi info">
+        <span class="label">Interviews</span>
+        <span class="value">0</span>
+        <span class="sub">0 scheduled</span>
+      </div>
+      <div class="kpi info">
+        <span class="label">Offers</span>
+        <span class="value">0</span>
+        <span class="sub">&mdash;</span>
+      </div>
+      <div class="kpi ok">
+        <span class="label">Roles scored 70+</span>
+        <span class="value">6</span>
+        <span class="sub">all remote-confirmed</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="cols">
+
+    <section>
+      <div class="tab-bar" role="tablist" aria-label="Role sources">
+        <button class="tab" role="tab" data-tab="dream" aria-selected="true" aria-controls="panel-dream">
+          Dream Job <span class="tab-badge">6</span>
+        </button>
+        <button class="tab" role="tab" data-tab="inbox" aria-selected="false" aria-controls="panel-inbox">
+          Recruiter Inbox <span class="tab-badge">3</span>
+        </button>
+        <button class="tab" role="tab" data-tab="scan" aria-selected="false" aria-controls="panel-scan">
+          Job Scan <span class="tab-badge">4</span>
+        </button>
+      </div>
+
+      <!-- ── DREAM JOB TAB ── -->
+      <div class="tab-panel" id="panel-dream" role="tabpanel">
+        <p class="tab-desc">The core OS engine: target-company role scanning, today&rsquo;s networking queue, and active follow-ups &mdash; all generated from your experience library, career plan, and target-companies.md. This is what the Job Search OS does every morning.</p>
+
+        <div class="section-head">Target Company Roles <span class="section-count">6 scored &middot; Jul 30</span></div>
+
+        <div class="role">
+          <div class="role-top">
+            <span class="title">BI Developer Senior/Lead</span>
+            <span class="co">Progressive Insurance</span>
+            <span class="fit"><span class="num">83</span><span class="meter"><i style="width:83%"></i></span></span>
+          </div>
+          <div class="chips">
+            <span class="chip crit">&#x26A1; DAY 18 &mdash; SUBMIT NOW</span>
+            <span class="chip good">Remote M&ndash;F confirmed</span>
+            <span class="chip teal">Resume + cover letter ready Jul 13</span>
+            <span class="chip teal">Job 15895087</span>
+          </div>
+          <p class="role-note">$134K&ndash;$200K. Power BI, SQL Server, SSIS ETL, Tabular Models &mdash; daily stack, exact match. Nothing left except opening careers.progressive.com and submitting. First action today. Day 18 ends here.</p>
+        </div>
+
+        <div class="role">
+          <div class="role-top">
+            <span class="title">Senior BI Engineer &mdash; Agentic Development</span>
+            <span class="co">Microsoft</span>
+            <span class="fit"><span class="num">85</span><span class="meter"><i style="width:85%"></i></span></span>
+          </div>
+          <div class="chips">
+            <span class="chip good">Remote US confirmed</span>
+            <span class="chip good">$119K&ndash;$234K</span>
+            <span class="chip teal">Resume tailored &mdash; Day 3</span>
+            <span class="chip warn">KQL gap &mdash; address in cover letter</span>
+          </div>
+          <p class="role-note">Best role on the board. Production Fabric at two employers (Carnival + Basic Fun) is the primary differentiator &mdash; most candidates are still in demo mode. Submit immediately after Progressive. builtinsf.com/job/10218034 &rarr; jobs.careers.microsoft.com.</p>
+        </div>
+
+        <div class="role">
+          <div class="role-top">
+            <span class="title">Power Platform Architect</span>
+            <span class="co">Avanade</span>
+            <span class="fit"><span class="num">78</span><span class="meter"><i style="width:78%"></i></span></span>
+          </div>
+          <div class="chips">
+            <span class="chip good">Remote confirmed</span>
+            <span class="chip teal">100% Microsoft stack</span>
+            <span class="chip warn">Resume tailor queued &mdash; run after submissions</span>
+          </div>
+          <p class="role-note">$130&ndash;155K est. Power Platform + Azure + Fabric. Twin-Star Power Apps write-back (Story 10) + Carnival Fabric Lakehouse (Story 13) are the key bullets. Run <code>/resume-tailor</code> after Progressive and Microsoft submit. LinkedIn Job 4377096814.</p>
+        </div>
+
+        <div class="role">
+          <div class="role-top">
+            <span class="title">Senior BI Engineer &mdash; Security (MSRC)</span>
+            <span class="co">Microsoft</span>
+            <span class="fit"><span class="num">74</span><span class="meter"><i style="width:74%"></i></span></span>
+          </div>
+          <div class="chips">
+            <span class="chip warn">&#x26A0; Remote status unconfirmed &mdash; verify today</span>
+            <span class="chip teal">Job 1812697</span>
+          </div>
+          <p class="role-note">Two consecutive briefings with remote status unconfirmed. Today is the deadline: visit jobs.careers.microsoft.com/global/en/job/1812697 and check the &ldquo;Work site&rdquo; field. If remote &rarr; queue resume tailor this week. If onsite only &rarr; close.</p>
+        </div>
+
+        <div class="role">
+          <div class="role-top">
+            <span class="title">Senior Business Intelligence Developer</span>
+            <span class="co">Samsara</span>
+            <span class="fit"><span class="num">72</span><span class="meter"><i style="width:72%"></i></span></span>
+          </div>
+          <div class="chips">
+            <span class="chip good">Remote confirmed (Fort Lauderdale eligible)</span>
+            <span class="chip warn">Referral only &mdash; CRMA/Salesforce gap</span>
+            <span class="chip teal">Role 7211762</span>
+          </div>
+          <p class="role-note">$101K&ndash;$153K. IoT + fleet analytics domain overlaps Carnival directly. Primary tool is Salesforce CRM Analytics, not Power BI. Build referral path first &mdash; search Samsara analytics engineers on LinkedIn for 2nd-degree connections.</p>
+        </div>
+
+        <div class="role">
+          <div class="role-top">
+            <span class="title">Analyst, Senior Data</span>
+            <span class="co">Royal Caribbean Group</span>
+            <span class="fit"><span class="num">72</span><span class="meter"><i style="width:72%"></i></span></span>
+          </div>
+          <div class="chips">
+            <span class="chip good">Remote, FL preferred</span>
+            <span class="chip warn">Verify comp &mdash; check non-compete first</span>
+            <span class="chip warn">Referral only</span>
+          </div>
+          <p class="role-note">Maritime domain from Carnival is the strongest cold-application differentiator in this market. Verify comp and check non-compete clause with Carnival before tailoring resume. Job 1388164800.</p>
+        </div>
+
+        <!-- Networking Queue -->
+        <div class="section-head">Networking Queue &mdash; Today <span class="section-count">10 targets</span></div>
+
+        <div class="net-grid">
+          <div class="net-card">
+            <div class="net-top">
+              <span class="net-num">01</span>
+              <div><span class="net-co">Progressive Insurance</span><span class="net-target">Sr. Manager/Director, BI &middot; Commercial Lines</span></div>
+            </div>
+            <p class="net-msg">"Hi [Name], your BI leadership at Progressive caught my eye. I lead enterprise BI on the exact stack Progressive runs &mdash; Power BI, SQL Server, SSIS, Tabular Models at Carnival. Would love to connect with peers in the space. &mdash; Andrew"</p>
+          </div>
+
+          <div class="net-card">
+            <div class="net-top">
+              <span class="net-num">02</span>
+              <div><span class="net-co">Microsoft</span><span class="net-target">Sr. Engineer/PM, Azure Data / Fabric / Agentic Dev</span></div>
+            </div>
+            <p class="net-msg">"Hi [Name], your work on [Fabric/Agentic development] is fascinating. I&rsquo;ve deployed Fabric Lakehouses in production at two employers (Carnival + Basic Fun) &mdash; happy to swap notes. Mind connecting? &mdash; Andrew"</p>
+          </div>
+
+          <div class="net-card">
+            <div class="net-top">
+              <span class="net-num">03</span>
+              <div><span class="net-co">UKG</span><span class="net-target">Director/Manager, Data &amp; Analytics &middot; Remote</span></div>
+            </div>
+            <p class="net-msg">"Hi [Name], your analytics work at UKG is on my radar &mdash; heavily Microsoft stack, which is where I specialize. Power BI, Azure Synapse, Fabric at enterprise scale. Would love to connect. &mdash; Andrew"</p>
+          </div>
+
+          <div class="net-card">
+            <div class="net-top">
+              <span class="net-num">04</span>
+              <div><span class="net-co">Databricks</span><span class="net-target">Sr. Data/Analytics Engineer, Internal Analytics</span></div>
+            </div>
+            <p class="net-msg">"Hi [Name], Databricks and Microsoft Fabric increasingly intersect &mdash; I deploy both (Fabric Lakehouses at Carnival, Azure Databricks at Twin-Star). Your work on the data platform side is a strong overlap. Mind connecting?"</p>
+          </div>
+
+          <div class="net-card">
+            <div class="net-top">
+              <span class="net-num">05</span>
+              <div><span class="net-co">Snowflake</span><span class="net-target">Analytics/BI Engineer, Internal</span></div>
+            </div>
+            <p class="net-msg">"Hi [Name], your data work at Snowflake caught my attention. The Azure Synapse / Snowflake ecosystem is one I follow closely. I specialize in the Microsoft data stack with full Azure background. Would love to connect. &mdash; Andrew"</p>
+          </div>
+
+          <div class="net-card">
+            <div class="net-top">
+              <span class="net-num">06</span>
+              <div><span class="net-co">American Express</span><span class="net-target">Director/VP, Analytics or Data Engineering</span></div>
+            </div>
+            <p class="net-msg">"Hi [Name], financial services analytics is a strong overlap &mdash; Merrill Lynch background, then 10+ years building financial reporting on Azure Synapse and Power BI. Your work at AmEx is exactly where I&rsquo;d bring this. &mdash; Andrew"</p>
+          </div>
+
+          <div class="net-card">
+            <div class="net-top">
+              <span class="net-num">07</span>
+              <div><span class="net-co">Ally Financial</span><span class="net-target">Director/Manager, BI / Data Analytics</span></div>
+            </div>
+            <p class="net-msg">"Hi [Name], digital financial services + Azure analytics is an exact fit. Finance domain from Merrill Lynch, then 10+ years BI engineering on Azure. Ally&rsquo;s analytics culture is something I follow. &mdash; Andrew"</p>
+          </div>
+
+          <div class="net-card">
+            <div class="net-top">
+              <span class="net-num">08</span>
+              <div><span class="net-co">Elastic</span><span class="net-target">Analytics Engineer / Sr. Data Engineer</span></div>
+            </div>
+            <p class="net-msg">"Hi [Name], Elastic&rsquo;s fully distributed model is something I respect. I specialize in the Microsoft Azure stack &mdash; Power BI, Synapse, Fabric &mdash; and your observability domain overlaps with my IoT telemetry work at Carnival. &mdash; Andrew"</p>
+          </div>
+
+          <div class="net-card">
+            <div class="net-top">
+              <span class="net-num">09</span>
+              <div><span class="net-co">Verisk Analytics</span><span class="net-target">Director/Manager, BI / Data Engineering</span></div>
+            </div>
+            <p class="net-msg">"Hi [Name], your analytics work at Verisk is a strong intersection &mdash; insurance, energy, and financial data are all domains where I&rsquo;ve built BI solutions. Microsoft data stack specialist. Would love to connect. &mdash; Andrew"</p>
+          </div>
+
+          <div class="net-card">
+            <div class="net-top">
+              <span class="net-num">10</span>
+              <div><span class="net-co">dbt Labs</span><span class="net-target">Analytics Engineer, Internal Data Team</span></div>
+            </div>
+            <p class="net-msg">"Hi [Name], dbt + Microsoft Fabric is the combination I&rsquo;m watching most closely in 2026. I&rsquo;ve deployed Fabric Lakehouses in production at Carnival and Basic Fun. Happy to swap notes on the Microsoft stack direction. &mdash; Andrew"</p>
+          </div>
+        </div>
+
+        <!-- Active Follow-Ups -->
+        <div class="section-head">Active Follow-Ups</div>
+
+        <div class="follow-card active">
+          <div class="follow-top">
+            <span class="follow-name">Theron Griffin</span>
+            <span class="follow-co">Armanino Advisory &middot; Americas Talent Acquisition</span>
+            <span class="chip good" style="margin-left:auto">&#x1F534; ACTIVE PIPELINE</span>
+          </div>
+          <p class="follow-action">Last contact: Jul 24 &mdash; <em>&ldquo;awaiting HM feedback.&rdquo;</em> If no update by EOD today, send: <b>&ldquo;Hi Theron, just checking in &mdash; happy to answer any technical questions your hiring manager might have. Looking forward to hearing back.&rdquo;</b> When HM contacts you, respond within 1 hour and run <code>/interview-prep Armanino Advisory</code> before confirming availability.</p>
+        </div>
+
+        <div class="follow-card nudge">
+          <div class="follow-top">
+            <span class="follow-name">Sham Raj</span>
+            <span class="follow-co">Virtual Networx &middot; shamraj@virtualnetworx.com</span>
+            <span class="chip warn" style="margin-left:auto">Day 9 &mdash; Final Nudge</span>
+          </div>
+          <p class="follow-action">Day 9 with no reply. Send final nudge today, then close if no response by EOD: <b>&ldquo;Hi Sham, following up on the Fabric/Power BI role &mdash; still interested if the position is active. Happy to share more about my background. &mdash; Andrew&rdquo;</b></p>
+        </div>
+
+        <div class="follow-card nudge">
+          <div class="follow-top">
+            <span class="follow-name">Rajeev Upadhyay</span>
+            <span class="follow-co">Sibitalent &middot; Sr BI Data Analyst, 100% Remote</span>
+            <span class="chip warn" style="margin-left:auto">Reply Pending</span>
+          </div>
+          <p class="follow-action">Ask for the end client name before further engagement. Template: <b>&ldquo;Hi Rajeev, thank you for reaching out. Could you share the end client name? Happy to continue if it&rsquo;s a direct placement. &mdash; Andrew&rdquo;</b> If named company at $70/hr+ &rarr; re-score on merits. Staffing placement &rarr; close.</p>
+        </div>
+
+      </div><!-- /panel-dream -->
+
+      <!-- ── RECRUITER INBOX TAB ── -->
+      <div class="tab-panel" id="panel-inbox" role="tabpanel" hidden>
+        <p class="tab-desc">Inbound from Gmail recruiter outreach and job alert emails &mdash; scored and actioned. Sources: Gmail + LinkedIn notifications. Checked daily via <code>/recruiter-inbox</code>. Last check: <b>Thu Jul 30, 2026</b>.</p>
+
+        <div class="role pipeline">
+          <div class="role-top">
+            <span class="title">Sr AI/Analytics Developer</span>
+            <span class="co">Armanino Advisory</span>
+            <span class="fit"><span class="num">74</span><span class="meter"><i style="width:74%"></i></span></span>
+          </div>
+          <div class="chips">
+            <span class="chip good">&#x1F534; ACTIVE PIPELINE</span>
+            <span class="chip inbound">Direct outreach</span>
+            <span class="chip teal">Boca Raton FL (near-remote)</span>
+          </div>
+          <div class="role-recruiter">
+            <b>Theron Griffin</b> &middot; Americas Talent Acquisition &middot; Last contact Jul 24: <em>&ldquo;awaiting HM feedback&rdquo;</em>
+          </div>
+          <p class="role-note">Call completed Jul 22. Resume submitted Jul 22. No action today &mdash; Theron is driving follow-up. Nudge EOD Thursday if still silent. When HM calls back, respond within 1 hour and run <code>/interview-prep Armanino Advisory</code> before confirming availability.</p>
+        </div>
+
+        <div class="role nudge">
+          <div class="role-top">
+            <span class="title">Sr BI Data Analyst &mdash; 100% Remote</span>
+            <span class="co">Sibitalent (Rajeev Upadhyay)</span>
+          </div>
+          <div class="chips">
+            <span class="chip warn">Reply pending &mdash; ask for end client</span>
+            <span class="chip inbound">Direct outreach</span>
+          </div>
+          <div class="role-recruiter">
+            <b>Rajeev Upadhyay</b> &middot; Sibitalent
+          </div>
+          <p class="role-note">Reply today asking for the end client name. If named company at $70/hr+ &rarr; re-score on merits. If staffing placement with no named client &rarr; close the thread.</p>
+        </div>
+
+        <div class="role nudge">
+          <div class="role-top">
+            <span class="title">Data Analyst &mdash; Fabric &amp; Power BI</span>
+            <span class="co">Virtual Networx (staffing)</span>
+          </div>
+          <div class="chips">
+            <span class="chip warn">Day 9 &mdash; Final nudge today</span>
+            <span class="chip inbound">Direct outreach</span>
+            <span class="chip warn">No named end client</span>
+          </div>
+          <div class="role-recruiter">
+            <b>Sham Raj</b> &middot; shamraj@virtualnetworx.com &middot; Andrew replied Jul 21
+          </div>
+          <p class="role-note">Send final nudge. If no reply by EOD, close the thread. Do not send again after this.</p>
+        </div>
+
+        <div class="role">
+          <div class="role-top">
+            <span class="title">Power BI Developer &mdash; Remote US</span>
+            <span class="co">McBride (via LinkedIn alert)</span>
+          </div>
+          <div class="chips">
+            <span class="chip warn">&#x26A0; Manual check &mdash; not yet scored</span>
+            <span class="chip inbound">LinkedIn jobs-noreply &middot; Jul 30</span>
+            <span class="chip teal">Job 4442875747</span>
+          </div>
+          <p class="role-note">Automated LinkedIn job alert, not direct recruiter contact. Visit linkedin.com/jobs/view/4442875747 to determine: if McBride is a consulting firm (named client work) &rarr; score on merits. If staffing/body-shop &rarr; skip per career-plan.md.</p>
+        </div>
+
+        <div class="role">
+          <div class="role-top">
+            <span class="title">Multiple &mdash; Automated Alerts</span>
+            <span class="co">Lensa, Indeed, Wellfound, Dice, Nityo</span>
+          </div>
+          <div class="chips">
+            <span class="chip crit">SKIP &mdash; all disqualified</span>
+          </div>
+          <p class="role-note">Battu Raghu/Dice: Azure Databricks Architect, Miami FL onsite &mdash; onsite disqualifies. Lensa ETL Consultant: automated aggregator. Indeed: World Kinect Lead Financial Analyst (not BI Dev). Wellfound: Lease Data Quality Specialist (not relevant). Nityo/Nitin.s: Junior Data Analyst, Miami onsite &mdash; both disqualified.</p>
+        </div>
+
+      </div><!-- /panel-inbox -->
+
+      <!-- ── JOB SCAN TAB ── -->
+      <div class="tab-panel" id="panel-scan" role="tabpanel" hidden>
+        <p class="tab-desc">Broad job board scan &mdash; LinkedIn, Indeed, Glassdoor, Dice, Builtin &mdash; beyond the target-companies.md list. Run via <code>/job-scan</code>. Last scan: <b>Thu Jul 30, 2026</b>. High-fit results surface in the Dream Job tab.</p>
+
+        <div class="role">
+          <div class="role-top">
+            <span class="title">Senior Data Engineer</span>
+            <span class="co">Samsara</span>
+            <span class="fit"><span class="num">62</span><span class="meter"><i style="width:62%"></i></span></span>
+          </div>
+          <div class="chips">
+            <span class="chip scan">samsara.com &middot; Role 7859702</span>
+            <span class="chip warn">Referral only &mdash; tool mismatch</span>
+          </div>
+          <p class="role-note">Spark/PySpark primary stack, not Azure/Power BI. Secondary data engineering coverage exists but the tool mismatch is real. Queue after the primary Samsara BI Developer referral is established.</p>
+        </div>
+
+        <div class="role">
+          <div class="role-top">
+            <span class="title">Senior Marketing Analytics Manager &mdash; BI &amp; Data Architecture</span>
+            <span class="co">Samsara</span>
+            <span class="fit"><span class="num">62</span><span class="meter"><i style="width:62%"></i></span></span>
+          </div>
+          <div class="chips">
+            <span class="chip scan">samsara.com &middot; Role 7917475</span>
+            <span class="chip warn">Referral only &mdash; Tableau/dbt/Databricks preferred</span>
+            <span class="chip good">$119K&ndash;$180K</span>
+          </div>
+          <p class="role-note">Salary compelling but tool mismatch: Tableau/dbt/Databricks preferred over Microsoft stack. Apply with referral only after primary Samsara BI connection is established.</p>
+        </div>
+
+        <div class="role">
+          <div class="role-top">
+            <span class="title">Power BI Developer &mdash; Remote US</span>
+            <span class="co">McBride</span>
+          </div>
+          <div class="chips">
+            <span class="chip scan">LinkedIn &middot; Job 4442875747</span>
+            <span class="chip warn">&#x26A0; Manual check &mdash; consulting vs. staffing</span>
+          </div>
+          <p class="role-note">LinkedIn flagged Andrew as &ldquo;top applicant.&rdquo; Unscored pending category check: consulting firm (named client delivery) &rarr; score and consider applying. Staffing/body-shop &rarr; skip per career-plan.md.</p>
+        </div>
+
+        <div class="role">
+          <div class="role-top">
+            <span class="title">Multiple BI / Data Analyst titles</span>
+            <span class="co">Lensa &amp; aggregators</span>
+          </div>
+          <div class="chips">
+            <span class="chip scan">Multiple boards</span>
+            <span class="chip crit">SPAM &mdash; filtered</span>
+          </div>
+          <p class="role-note">Aggregators recycling stale listings. No direct employers identified. Filtered automatically &mdash; not actioned.</p>
+        </div>
+
+        <p class="fail-header">Search Failures &mdash; Manual Verification Needed</p>
+        <div>
+          <div class="fail-row">
+            <span class="fail-co">Microsoft MSRC</span>
+            <span class="fail-note">Remote status unconfirmed &mdash; verify today</span>
+            <span class="fail-url">jobs.careers.microsoft.com &rarr; Job 1812697</span>
+          </div>
+          <div class="fail-row">
+            <span class="fail-co">UKG</span>
+            <span class="fail-note">India roles only returned; no US remote result</span>
+            <span class="fail-url">apply.ukg.com &rarr; BI + US Remote</span>
+          </div>
+          <div class="fail-row">
+            <span class="fail-co">Databricks</span>
+            <span class="fail-note">No confirmed internal US BI roles found</span>
+            <span class="fail-url">databricks.com/company/careers &rarr; Analytics/BI</span>
+          </div>
+          <div class="fail-row">
+            <span class="fail-co">Vanguard</span>
+            <span class="fail-note">No senior BI developer role confirmed</span>
+            <span class="fail-url">jobs.vanguard.com &rarr; Business Intelligence + Remote</span>
+          </div>
+          <div class="fail-row">
+            <span class="fail-co">USAA</span>
+            <span class="fail-note">Not verified today</span>
+            <span class="fail-url">usaa.com/careers &rarr; Power BI or Business Intelligence</span>
+          </div>
+          <div class="fail-row">
+            <span class="fail-co">American Express</span>
+            <span class="fail-note">Not verified today</span>
+            <span class="fail-url">careers.americanexpress.com &rarr; Business Intelligence + Remote</span>
+          </div>
+          <div class="fail-row">
+            <span class="fail-co">Synchrony Financial</span>
+            <span class="fail-note">Not verified today</span>
+            <span class="fail-url">careers.synchrony.com &rarr; Business Intelligence + Remote</span>
+          </div>
+          <div class="fail-row">
+            <span class="fail-co">Fidelity Investments</span>
+            <span class="fail-note">No confirmed senior remote role found</span>
+            <span class="fail-url">jobs.fidelity.com &rarr; Power BI + Remote</span>
+          </div>
+          <div class="fail-row">
+            <span class="fail-co">Veeva Systems</span>
+            <span class="fail-note">EMEA roles returned; filter for US directly</span>
+            <span class="fail-url">careers.veeva.com &rarr; Analytics Engineer US</span>
+          </div>
+          <div class="fail-row">
+            <span class="fail-co">NextEra Energy</span>
+            <span class="fail-note">Not verified today</span>
+            <span class="fail-url">jobs.nexteraenergy.com &rarr; Business Intelligence or Power BI</span>
+          </div>
+        </div>
+
+      </div><!-- /panel-scan -->
+
+    </section>
+
+    <!-- ── RIGHT COLUMN: PRIORITY STACK ── -->
+    <section>
+      <h2>Today&rsquo;s Priority Stack</h2>
+      <div class="panel">
+        <div class="bottleneck">
+          <b>BOTTLENECK: Execution gap.</b> Week 6, Day 4. Two completed resumes. Nothing between you and submissions except opening the browser.
+        </div>
+        <ol class="stack">
+          <li><span><b>Submit Progressive Job 15895087</b> &mdash; careers.progressive.com</span><span class="t">5 min</span></li>
+          <li><span><b>Submit Microsoft Agentic Dev</b> &mdash; jobs.careers.microsoft.com</span><span class="t">5 min</span></li>
+          <li><span>Verify Microsoft MSRC Job 1812697 remote status</span><span class="t">5 min</span></li>
+          <li><span>Check McBride role &mdash; consulting vs. staffing</span><span class="t">5 min</span></li>
+          <li><span>Send Armanino check-in (Theron Griffin) if no update</span><span class="t">5 min</span></li>
+          <li><span>Final nudge to Sham Raj / Virtual Networx &mdash; then close</span><span class="t">5 min</span></li>
+          <li><span>Reply to Sibitalent &mdash; ask for end client name</span><span class="t">5 min</span></li>
+          <li><span>Run <code>/resume-tailor</code> for Avanade Power Platform Architect</span><span class="t">45 min</span></li>
+          <li><span>Send 10 LinkedIn connection requests (fill [Name] first)</span><span class="t">8 min</span></li>
+          <li><span>Fabric Community + dbt Slack (2 comments each)</span><span class="t">15 min</span></li>
+        </ol>
+      </div>
+    </section>
+
+  </div>
+
+  <section>
+    <h2>Pipeline</h2>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr><th>Stage</th><th>Count</th><th>Detail</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Applied, waiting</td><td class="n">0</td><td class="detail">Progressive Day 18 not yet submitted. Log immediately with <code>/app-tracker add</code>.</td></tr>
+          <tr><td>Active recruiter conversations</td><td class="n">1</td><td class="detail">Armanino Advisory &mdash; Theron Griffin, HM feedback pending</td></tr>
+          <tr><td>Referral requested</td><td class="n">0</td><td class="detail">Send Progressive referral request the moment application is submitted</td></tr>
+          <tr><td>Interview scheduled</td><td class="n">0</td><td class="detail">&mdash;</td></tr>
+          <tr><td>Interviewed, awaiting result</td><td class="n">0</td><td class="detail">&mdash;</td></tr>
+          <tr><td>Offer stage</td><td class="n">0</td><td class="detail">&mdash;</td></tr>
+          <tr><td>Rejected this week</td><td class="n">0</td><td class="detail">&mdash;</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Data Health</h2>
+    <div class="health">
+      <div class="hcard"><span class="hdot g"></span><div><b>Morning briefing</b><span>Current &mdash; run today, Jul 30, 2026. All roles re-verified.</span></div></div>
+      <div class="hcard"><span class="hdot r"></span><div><b>app-tracker.md</b><span>Missing. Run <code>/app-tracker add</code> after each submission. Pipeline stats assembled from briefings/.</span></div></div>
+      <div class="hcard"><span class="hdot r"></span><div><b>connection-tracker.md</b><span>Empty template. Log accepted connections as they come in. 10 requests drafted &amp; ready today.</span></div></div>
+      <div class="hcard"><span class="hdot g"></span><div><b>target-companies.md</b><span>Populated &mdash; ~100 companies, 12 Tier 1, career preferences current.</span></div></div>
+      <div class="hcard"><span class="hdot r"></span><div><b>qa-master.md</b><span>Template only. Fill comp script and "why leaving" before Armanino HM calls this week.</span></div></div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Sources: <code>briefings/2026-07-30-briefing.md</code> &middot; <code>target-companies.md</code> &middot; Gmail MCP (recruiter inbox) &middot; job board scan</span>
+    <span style="margin-left:auto">Job Search OS v1.0 &middot; rebuilt each weekday morning</span>
+  </footer>
+
 </div>
 
-<section class="panel" id="panel-recruiter">
-  <h2>Recruiter Inbox <small>last scan <span id="scandate">2026-07-28</span></small></h2>
-  <div class="meta-line">Human-recruiter emails + LinkedIn InMails scored against your career plan · dispositions save in this browser · source of truth is <code>context-library/recruiter-inbox.md</code>. Refresh with: <a id="riScanBtn" class="runbtn inline" href="#" title="Open Claude Code in Claude Desktop (job-search-os folder) with /recruiter-scan prefilled">▶ /recruiter-scan</a></div>
-  <div class="ri-kpis" id="kpis"></div>
-  <div class="toolbar" id="filters"></div>
-  <div id="list"></div>
-</section>
-
-<section class="panel" id="panel-prospects" hidden>
-  <h2>Inbox Job Prospects <small id="updated"></small></h2>
-  <div class="meta-line">Good-fit postings from job-alert emails + the weekly web sweep (LinkedIn/Dice/Indeed searches, Glassdoor/Wellfound/BuiltIn x-rays — strong fits only from sweeps). Refresh with: <a id="scanBtn" class="runbtn inline" href="#" title="Open Claude Code in Claude Desktop (job-search-os folder) with /job-hunt-scan prefilled">▶ /job-hunt-scan</a></div>
-  <div class="chips" id="chips"></div>
-  <div class="cards" id="cards"></div>
-  <div class="empty" id="empty" style="display:none">No prospects loaded yet — tell Claude <b>/job-hunt-scan</b> to scan your job-alert emails.</div>
-</section>
-
-<section class="panel" id="panel-tracker" hidden>
-  <h2>Application Pipeline <small>synced <span id="at-updated"></span></small></h2>
-  <div class="meta-line">Live mirror of <code>context-library/app-tracker.md</code> — every <code>/app-tracker</code> add/update rewrites this tab; days waiting + overdue flags compute from today's date on load. Refresh with: <a id="atScanBtn" class="runbtn inline" href="#" title="Open Claude Code in Claude Desktop (job-search-os folder) with /app-tracker pipeline prefilled">▶ /app-tracker pipeline</a></div>
-  <div class="at-kpis" id="at-kpis"></div>
-  <div id="at-attn"></div>
-  <div id="at-groups"></div>
-</section>
-
-<section class="panel" id="panel-search" hidden>
-  <div class="controls">
-    <div class="field">
-      <label>Job title</label>
-      <select id="title"></select>
-    </div>
-    <div class="field">
-      <label>Custom title (overrides)</label>
-      <input type="text" id="custom" placeholder="e.g. Fabric Analytics Engineer">
-    </div>
-    <div class="field">
-      <label>Posted within</label>
-      <select id="fresh">
-        <option value="h">Past hour</option>
-        <option value="h4">Past 4 hours</option>
-        <option value="h8">Past 8 hours</option>
-        <option value="h12">Past 12 hours</option>
-        <option value="d" selected>Past 24 hours</option>
-        <option value="d3">Past 3 days</option>
-        <option value="w">Past week</option>
-        <option value="m">Past month</option>
-        <option value="">Any time</option>
-      </select>
-    </div>
-  </div>
-  <div class="hint">Every link below rebuilds live from the pickers — choose a title + freshness, then click through the platforms. "remote" is baked into every query.</div>
-
-  <div class="grp">
-    <div class="lbl">ATS platforms (the direct source)</div>
-    <div class="grid" id="ats"></div>
-  </div>
-  <div class="grp">
-    <div class="lbl">Generic career-page patterns</div>
-    <div class="grid" id="generic"></div>
-  </div>
-  <div class="grp">
-    <div class="lbl">Boards (native search, time-filtered)</div>
-    <div class="grid" id="boards"></div>
-  </div>
-</section>
-
-<section class="panel" id="panel-design" hidden>
-  <h2>System Design <small>how the pieces fit together</small></h2>
-  <div class="meta-line">Architecture reference for the scans, skills, dashboards and widgets — source: <code>dashboard/system-design.html</code>. <a href="system-design.html" target="_blank" rel="noopener">Open standalone ↗</a></div>
-  <iframe class="sd-frame" id="sdFrame" title="Job Hunt system design"></iframe>
-</section>
-
 <script>
-// ============ X-RAY LINK ENGINE ============
-const TITLES = [
-  "Senior BI Developer",
-  "Power BI Developer",
-  "Senior Power BI Developer",
-  "Power BI Engineer",
-  "Business Intelligence Developer",
-  "Business Intelligence Engineer",
-  "Power BI Architect",
-  "Microsoft Fabric Developer",
-  "Power BI Analyst",
-  "Azure Data Engineer",
-  "Data Engineer",
-  "Analytics Engineer",
-  "Senior Data Analyst",
-  "ETL Developer"
-];
-const BOOLEAN_COMBO = '("Power BI Developer" OR "Senior Power BI Developer" OR "Power BI Engineer" OR "BI Developer" OR "Business Intelligence Developer" OR "Power BI Architect")';
-
-const ATS = [
-  ["Greenhouse","site:greenhouse.io"],
-  ["Lever","site:lever.co"],
-  ["Ashby","site:ashbyhq.com"],
-  ["Workday","site:myworkdayjobs.com"],
-  ["iCIMS","site:icims.com"],
-  ["SmartRecruiters","site:jobs.smartrecruiters.com"],
-  ["Workable","site:jobs.workable.com"],
-  ["BreezyHR","site:breezy.hr"],
-  ["JazzHR","site:applytojob.com"],
-  ["Recruitee","site:recruitee.com"],
-  ["Teamtailor","site:teamtailor.com"],
-  ["Rippling","(site:rippling.com OR site:rippling-ats.com)"],
-  ["Paylocity","site:recruiting.paylocity.com"],
-  ["Dayforce","site:dayforcehcm.com"],
-  ["ADP","(site:workforcenow.adp.com OR site:myjobs.adp.com)"],
-  ["Oracle Cloud","site:oraclecloud.com"],
-  ["Taleo","site:taleo.net"],
-  ["Pinpoint","site:pinpointhq.com"],
-  ["Jobvite","site:jobvite.com"]
-];
-const GENERIC = [
-  ["Jobs subdomain","site:jobs.*"],
-  ["Careers pages","(site:careers.* OR site:*/careers/* OR site:*/career/*)"],
-  ["Talent subdomain","site:talent.*"],
-  ["Other pages","(site:*/employment/* OR site:*/opportunities/* OR site:*/openings/* OR site:*/join-us/* OR site:*/work-with-us/*)"],
-  ["Builtin","site:builtin.com/job/"],
-  ["Wellfound","site:wellfound.com"],
-  ["Glassdoor listings","site:glassdoor.com/job-listing/"],
-  ["aijobs.net","site:aijobs.net/job/"]
-];
-// freshness → params per engine
-const FRESH = {
-  "h":  {g:"qdr:h",  li:3600,    dice:"ONE",  in:1},
-  "h4": {g:"qdr:h4", li:14400,   dice:"ONE",  in:1},
-  "h8": {g:"qdr:h8", li:28800,   dice:"ONE",  in:1},
-  "h12":{g:"qdr:h12",li:43200,   dice:"ONE",  in:1},
-  "d":  {g:"qdr:d",  li:86400,   dice:"ONE",  in:1},
-  "d3": {g:"qdr:d3", li:259200,  dice:"THREE",in:3},
-  "w":  {g:"qdr:w",  li:604800,  dice:"SEVEN",in:7},
-  "m":  {g:"qdr:m",  li:2592000, dice:"",     in:30},
-  "":   {g:"",       li:0,       dice:"",     in:0}
-};
-
-const $=id=>document.getElementById(id);
-const tSel=$("title"), custom=$("custom"), fSel=$("fresh");
-TITLES.forEach(t=>{const o=document.createElement("option");o.value=t;o.textContent=t;tSel.appendChild(o);});
-const ob=document.createElement("option");ob.value="__bool__";ob.textContent="⚡ All top titles (Boolean combo)";tSel.appendChild(ob);
-
-function currentTitle(){
-  const c=custom.value.trim();
-  if(c) return {q:'"'+c+'"', label:c};
-  if(tSel.value==="__bool__") return {q:BOOLEAN_COMBO, label:"Top titles (Boolean)"};
-  return {q:'"'+tSel.value+'"', label:tSel.value};
-}
-function gUrl(scope){
-  const t=currentTitle(), f=FRESH[fSel.value];
-  let u="https://www.google.com/search?q="+encodeURIComponent(t.q+" "+scope+" remote");
-  if(f.g) u+="&tbs="+f.g;
-  return u;
-}
-function renderLinks(){
-  const t=currentTitle(), f=FRESH[fSel.value];
-  const mk=(arr,el)=>{el.innerHTML="";arr.forEach(([name,scope])=>{
-    const a=document.createElement("a");a.href=gUrl(scope);a.target="_blank";a.rel="noopener";a.textContent=name;el.appendChild(a);});};
-  mk(ATS,$("ats")); mk(GENERIC,$("generic"));
-  const kw=encodeURIComponent(t.label);
-  const boards=[
-    ["LinkedIn","https://www.linkedin.com/jobs/search/?keywords="+kw+"&location=Remote"+(f.li?"&f_TPR=r"+f.li:"")],
-    ["Dice","https://www.dice.com/jobs?q="+kw+"&workplaceTypes=Remote"+(f.dice?"&filters.postedDate="+f.dice:"")],
-    ["Indeed","https://www.indeed.com/jobs?q="+encodeURIComponent(t.label+" remote")+(f.in?"&fromage="+f.in:"")],
-    ["ZipRecruiter","https://www.ziprecruiter.com/jobs-search?search="+kw+"&location=Remote+%28USA%29"+(f.in?"&days="+f.in:"")]
-  ];
-  const el=$("boards");el.innerHTML="";
-  boards.forEach(([name,href])=>{const a=document.createElement("a");a.href=href;a.target="_blank";a.rel="noopener";a.textContent=name;el.appendChild(a);});
-}
-[tSel,custom,fSel].forEach(e=>e.addEventListener("input",renderLinks));
-renderLinks();
-
-// ============ INBOX JOB PROSPECTS ============
-// Updated by /job-hunt-scan — do not hand-edit between the markers.
-// ALERT_UPDATED_START
-const ALERT_UPDATED = "2026-07-23";
-// ALERT_UPDATED_END
-// ALERT_DATA_START
-const ALERT_DATA = [
-{"title": "Senior Power BI Developer (Remote)", "company": "Flik Hospitality Group", "source": "Indeed", "date": "2026-07-22", "score": 88, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4443707441/", "threadId": "19f8907e6e43d590", "note": "Fully remote, $120-150K stated. Exact-fit senior Power BI lead (Compass Group brand); Indeed + LinkedIn alerts."},
-{"title": "Senior BI Analyst", "company": "Walker & Dunlop", "source": "LinkedIn", "date": "2026-07-23", "score": 88, "tier": "strong", "url": "https://builtin.com/job/senior-bi-analyst/9598809", "threadId": "19f8c58ea752eafc", "note": "Remote US, $140-160K + bonus. Power BI semantic models core; SSRS/SSAS/SQL Server preferred. Alert + LI sweep (LI req 4423012461)."},
-{"title": "Senior Data Engineer (Business Intelligence)", "company": "Fractal", "source": "LinkedIn", "date": "2026-07-18", "score": 86, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4441121195/", "threadId": "19f7635cdbceecb5", "note": "US remote, up to $150K. Sibling req to the Senior Power BI Dev you applied to 7/21 — backup only, coherence-check before dual-applying."},
-{"title": "Remote Senior Data Analyst - Power BI and SQL Automation", "company": "UnitedHealth Group", "source": "Lensa", "date": "2026-07-17", "score": 82, "tier": "strong", "url": "https://sg2email.lensa.com/ls/click?upn=u001.jmU3g-2BpCjR8B5yHZB902pK6ssbzDLLx7LrEMXpbH7ysAhF-2BFrAqtKh3490gCgupYyO1gzMZxnXhTxlG34wpTkAGX-2FQIciNd04cTFaret31s6G9cwO9zRWoYxsFPuXXjZ644A88PkxiOU6K9dp1Y7rF-2B9VRLIL7cnLgLByf5QxaSoaFvm0WnhBypic3KNxUp0b5YS-2FgWm0p9og3fiUKh05KaC-2FXYPCCgEzUKqz9bC1Sa3EMUdTfrOH5ZgT6LhICjhpt_C_QXnTW6f9jV7ots26-2Fd0iCA40nBTbwrnPprB64EaCS9zkmj-2BCWIv7rzc4TNxeyGR9uyp-2BODyM2g3Pm1Gg0AMMxZDXVgI1R0gV4Lko2s1idces-2BAqLJlMOIyFyWEQ7h1KHWlTdwrf7rdNuBIjiKQlB2gvmBMPKhdxKFlpOjTLOjIikQb8cDRekU6m-2BST2VHSaEDiUr45iA0C-2FmGrjRmlVMdt4qOdsNCNayDa19rB14t5cdtD0IdsgVkW5rKrpPn8KXynX96P50KvFmB8yMkwS8uCf8EK20KbgeUcTZhGgNjkSb8ZWYjr2PAaxKKzZf94PB6drAdGO7aOJPHhoKXusiv42ZEe45NZBCkcNW9K7-2FtkJFWXdZN6c8TmSvFzr25EpmvyIJgMOOFqNhZ8xkQr0dPHRawIhrCyPYU1flPGF9pXhkotc7Xb1B9G-2FT4wLagCcMOMYtQjBUPCcy9-2FA9d0EnfSKUX6bHmyLk-2Bv8jK-2BwaKX-2F1uPBpVrqebrhAcbn4kOOCkr7z2Su7Ap2ZvL5ppTZ4bqbcupIPI-2FMBQ7fs1TXPHcPB1WgN5uZo1fpAcnHjPRt1cnc-2BbG0P1red-2Bfb-2Fq9V6zEbFY9OWv8xy7VOb0-2FBB-2Bh1lRZ", "threadId": "19f70609d5c66388", "note": "Remote, $142-177K posted. Power BI + SQL automation at Optum/UHG — core MS stack, senior IC."},
-{"title": "Fabric Power BI Developer", "company": "Franklin Fitch", "source": "LinkedIn", "date": "2026-07-23", "score": 78, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4437162489/", "threadId": "19f8c58ea752eafc", "note": "US remote; Microsoft Fabric + Power BI in the title — your differentiator. Recruiter posting, comp unstated."},
-{"title": "Senior Power BI Developer", "company": "EtiVenture Analytics", "source": "LinkedIn", "date": "2026-07-22", "score": 78, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4442755689/", "threadId": "19f8baafb0a80e60", "note": "US remote long-term contract. Power BI + Kimball DW + SQL/ETL; comp unstated. Alert + LI sweep."},
-{"title": "Lead BI Developer", "company": "Launch Potato", "source": "LinkedIn Search", "date": "2026-07-23", "score": 78, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4441432892/", "threadId": "", "note": "US remote, $120-150K posted. Lead IC BI title at a product company (Delray Beach HQ) — top of band clears the floor."},
-{"title": "Senior Business Intelligence Engineer (Remote)", "company": "Martin's Point Health Care", "source": "Board scan", "date": "2026-07-23", "score": 78, "tier": "strong", "url": "https://martin.wd1.myworkdayjobs.com/mphc/job/portland-me/senior-business-intelligence-engineer---remote_req-2026-128", "threadId": "", "note": "Board-scan x-ray (Workday req-2026-128, verified live). Remote; ME health plan, direct employer. Exact title match — 8+ yrs BI, 2+ yrs senior Power BI, DAX/Power Query/SQL/modeling/governance/mentoring. ⚠️ Comp unstated; comparable MPHC BI roles ~$81-123K (Glassdoor) may fall under your $130K floor — confirm band before investing."},
-{"title": "Power BI Developer", "company": "Franklin Fitch", "source": "LinkedIn", "date": "2026-07-23", "score": 76, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4437176077/", "threadId": "19f8c58ea752eafc", "note": "US remote; sibling req to their Fabric role — one recruiter, two shots. Comp unstated."},
-{"title": "Senior Power BI Developer", "company": "Aretec", "source": "LinkedIn", "date": "2026-07-23", "score": 76, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4426707806/", "threadId": "19f8c58ea752eafc", "note": "US remote; federal data/AI consultancy, named employer not a body shop; comp unstated."},
-{"title": "Senior Power BI Engineer", "company": "Foot Locker", "source": "LinkedIn", "date": "2026-07-22", "score": 74, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4411988691/", "threadId": "19f8b0e3b1732552", "note": "Remote per alert; named retail brand. Lensa variant shows $78-130K — top end right at floor; verify the band."},
-{"title": "Principal BI Engineer", "company": "Prodege", "source": "LinkedIn Search", "date": "2026-07-23", "score": 74, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4414646240/", "threadId": "", "note": "US remote, principal-level IC BI at a named employer. Stack and comp not shown on the card — verify MS fit."},
-{"title": "Power BI Developer - Netherlands, UK, or US - Remote", "company": "NTEN", "source": "LinkedIn", "date": "2026-07-19", "score": 74, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4442457717/", "threadId": "19f7bca050bd0b1e", "note": "Remote-first Power BI developer, US eligible. Nonprofit tech sector; comp unstated."},
-{"title": "Business Intelligence (BI) Engineer", "company": "Robert Half", "source": "LinkedIn Search", "date": "2026-07-22", "score": 72, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4443905894/", "threadId": "", "note": "Remote contract-to-perm (Columbus OH client). Power BI + DAX + SQL Server incl. light DBA."},
-{"title": "Senior Business Intelligence Engineer", "company": "Tebra", "source": "LinkedIn Search", "date": "2026-07-18", "score": 72, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4405246982/", "threadId": "", "note": "US-remote req at a named healthtech firm (a second Tebra req is CA-onsite — this is the remote one). Comp unstated."},
-{"title": "Power BI Engineer", "company": "IPT Associates", "source": "Glassdoor", "date": "2026-07-23", "score": 72, "tier": "strong", "url": "https://www.glassdoor.com/job-listing/power-bi-engineer-ipt-associates-JV_KO0,17_KE18,32.htm?jl=1010106497138", "threadId": "", "note": "Remote US, $125-150K posted — top clears floor. Power BI core. Glassdoor blocked the fetch; confirm live."},
-{"title": "Sr. Data Engineer - US (Remote)", "company": "Luxury Presence", "source": "Lensa", "date": "2026-07-21", "score": 70, "tier": "strong", "url": "https://sg2email.lensa.com/ls/click?upn=u001.jmU3g-2BpCjR8B5yHZB902pPBEbA88HsKDc-2Fkufzv4nbg2aG3ozSZ0XyvlbFvkm4eWCgyJqIY4JTZrONCfF4NjN2o5MUMMwLrCZNfPshMW2LLTQ5-2BITYq6fqDkomOrhARsORFGl2pwYRiWliTKlADUrrSRZwLpXZgQ-2BVGNZfvLRSwjmMbfMZYHCUYZ1-2BB3NKEFR8h9us3OrVBHkdL0cEz-2BEV16gJUOf7OQz2HAkcdvvw-2BXsIkY1ZC43-2FKEy9Ph06JgkVNT_QXnTW6f9jV7ots26-2Fd0iCA40nBTbwrnPprB64EaCS9zkmj-2BCWIv7rzc4TNxeyGR9uyp-2BODyM2g3Pm1Gg0AMMxZDXVgI1R0gV4Lko2s1idces-2BAqLJlMOIyFyWEQ7h1KHWlTdwrf7rdNuBIjiKQlB2gvmBMPKhdxKFlpOjTLOjIikQb8cDRekU6m-2BST2VHSaEDiUr45iA0C-2FmGrjRmlVMdt4qOdsNCNayDa19rB14t5cdtD0IdsgVkW5rKrpPn8KXynX96P50KvFmB8yMkwS8uCf8EK20KbgeUcTZhGgNjkSb8ZWYjr2PAaxKKzZf94PB6drAdGO7aOJPHhoKXusiv42ZEe45NZBCkcNW9K7-2FtkJFWXdZN6c8TmSvFzr25EpmYIRPHy9-2BpZ1BM3ci-2B0YSy8-2FKuJp0lyH-2FqIzBK9jsY4mDVGz7-2FYh5jm9K0pOU5b0jVCitkiycvUu9AsdiMzC5c8dQ5N7mYbebe4W-2FpXvZUthwvyKgLDgMBaLtRlvfV6IlYrGpFcRDgw76JZC-2BEmxaHiimZ00nfCwYpN8Zg-2BqW2tqOu29foI9EFapVo6l-2FI-2FwzcNoJytxdxbVWCwEJ8fnCJk-2Fn9NhO-2Fjhw6HKY", "threadId": "19f84fa92ce43909", "note": "Remote US, $150-190K posted. Real-estate SaaS; stack not listed in the alert — verify Azure/MS fit."},
-{"title": "Power BI Developer (US Remote)", "company": "Consertus", "source": "Board scan", "date": "2026-07-23", "score": 70, "tier": "strong", "url": "https://consertus.wd501.myworkdayjobs.com/consertuscareers/job/us-remote/power-bi-developer_jr1405", "threadId": "", "note": "Board-scan x-ray (Workday jr1405, verified live). US remote; capital-program-management analytics consultancy, direct employer. Power BI core. Comp + full stack not shown (Workday JS-gated) — verify Azure/SQL depth and band before investing."},
-{"title": "BI Developer, Data Analyst", "company": "Sand Cherry", "source": "LinkedIn", "date": "2026-07-22", "score": 68, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4442226838/", "threadId": "19f8baafb0a80e60", "note": "US remote BI developer/analyst blend at a named consultancy; comp unstated."},
-{"title": "Power BI Developer (Contract)", "company": "Emergent Software", "source": "Glassdoor", "date": "2026-07-23", "score": 68, "tier": "strong", "url": "https://www.glassdoor.com/job-listing/power-bi-developer-contract-emergent-software-JV_KO0,27_KE28,45.htm?jl=1009789530574", "threadId": "", "note": "Fully-remote option; named Microsoft partner shop, Power BI/Azure central. Contract, no comp stated; Glassdoor fetch blocked."},
-{"title": "Lead, Business Intelligence Analyst - People Analytics", "company": "L3Harris Technologies", "source": "LinkedIn Search", "date": "2026-07-23", "score": 68, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4414234495/", "threadId": "", "note": "US remote, lead level at a defense prime. People-analytics niche narrows the fit; comp unstated."},
-{"title": "Senior Business Intelligence Engineer", "company": "eBay", "source": "LinkedIn", "date": "2026-07-23", "score": 68, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4443714822/", "threadId": "19f8c58ea752eafc", "note": "US-wide big-tech BI; comp almost certainly above floor but unstated. Stack likely SQL/Tableau, not MS-first."},
-{"title": "BI Engineer", "company": "EDCi", "source": "Glassdoor", "date": "2026-07-23", "score": 67, "tier": "strong", "url": "https://www.glassdoor.com/job-listing/bi-engineer-edci-JV_KO0,11_KE12,16.htm?jl=1009603852819", "threadId": "", "note": "Remote; Power BI + contact-center analytics at a named consultancy. No comp posted; Glassdoor fetch blocked."},
-{"title": "Senior ETL Developer", "company": "Barclays", "source": "Lensa", "date": "2026-07-23", "score": 67, "tier": "strong", "url": "https://sg2email.lensa.com/ls/click?upn=u001.jmU3g-2BpCjR8B5yHZB902pAK8zxwtPcOUE4l3Tfmu55SuMhXfSoI6gXgk5ZyBFrlmvEN-2FQIs0tRctYfbkSD5179jkW5XfbJzUrQakE7A2ZYEv0Iz8NCcvd1CaLm6TNRM3Hwwe0aSLZthQRHIRowWmmDTihoKnqfWZ8KxafZHNIL7VR-2FMaFRV-2BQlfVD6pKaCOmUHE0KEPtf79Kj5vq7SIokIkDOeLX7DOxpepRcOrmY1bufuxjP-2FCqhy9qr7FzgMk4AbQ__QXnTW6f9jV7ots26-2Fd0iCA40nBTbwrnPprB64EaCS9zkmj-2BCWIv7rzc4TNxeyGR9uyp-2BODyM2g3Pm1Gg0AMMxZDXVgI1R0gV4Lko2s1idces-2BAqLJlMOIyFyWEQ7h1KHWlTdwrf7rdNuBIjiKQlB2gvmBMPKhdxKFlpOjTLOjIikQb8cDRekU6m-2BST2VHSaEeB2tuZwA954J-2Fa0Zd8sv3aLYiIRjz90Oh0pu1OKsLxdwb2m6z2XbEM1fDHOLwgzXiXmIX-2FTCmBO6ewg-2FCoYwDsNQtlLjMXxH8A6GYwXie94o5nQxMyI851sr8-2Fg8p-2BwEnZtlfXjMyVMGwCsWzidUd8aJuiCs523xcMVs67E7MyXU5Tyy3skvp45kAhFjda88cLiHf-2FoCIq8vpDaN-2BbxrzlGKgDGhNMZ6-2F5h6LSJsUPlYtRdLbumw4ucQjdyrybXlTb4", "threadId": "19f8f47649819bd3", "note": "Remote; Lensa lists ~$190K — well above floor. ETL stack at a bank is likely non-Microsoft — verify before investing."},
-{"title": "Sr. BI Developer", "company": "KCI", "source": "LinkedIn", "date": "2026-07-23", "score": 66, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4437574753/", "threadId": "19f8c58ea752eafc", "note": "US remote; employer-direct posting (engineering firm), BI developer title family. Comp unstated."},
-{"title": "Business Intelligence Engineer", "company": "MedEvolve", "source": "Indeed", "date": "2026-07-18", "score": 66, "tier": "strong", "url": "https://cts.indeed.com/v3/H4sIAAAAAAAA_42RTW-qQBSG_wvJdVUqzPBVE3JTURstKhZJ1Q0ZhuEbRocBhKb_vfQuurirrk7yvDk5Oe_zITTCTEg4v9az6bTruse0CgkJHzEtpwxPcZH_zXKTqFiGhoYMGRAFk3ASMVqaGQ1SgPxxlIjjRGQEYZ62iKe0Ekkleq5PSpQWE56bcsZvWh1KOA-jxJCUSRCYKlyuj8sMZpHxphahrR0CV1optnIT99YwAPxsKL7BUq5EVsoGFKlyfdD1pted-35cq_kovYs9qLv7CPfwPPyxEHv9LveMwYnAFRZPLt2Yq8Urxnsd3Cq16FKohcv2sdvhXjf1_3NOunKu7tdPEEHAq9yButw3F63tq9egk17lq2Ys_x1Tv_AxeSe48B06bzV9C1MtJVozYG_uUhOMOShFTrOhGXXn1cx0WiNAkOShQehFGYfAsKYNhVfh2PjAAAZQk1SxxDF8YYG_7AsAQnICtDB0xjgIsX5MWG0iZMx5KwhP7S_khG1KenG-kf6LWQEv1UybvD8--B_WoTPzy8HWa3pEwIAAA/mnAXWnpz0zz0HM6u7Lf4yz6BancnlsQjmtAn_GcMOdc", "threadId": "19f746e3c4293632", "note": "Remote (AR-based employer). Healthcare RCM analytics, ETL + data warehousing emphasis; comp unstated."},
-{"title": "Senior Analytics Engineer", "company": "Thistle", "source": "LinkedIn Search", "date": "2026-07-23", "score": 66, "tier": "strong", "url": "https://www.linkedin.com/jobs/view/4344546628/", "threadId": "", "note": "Remote, $165-190K posted — best stated comp in this batch. Microsoft-stack fit unverified; likely dbt/Snowflake."},
-{"title": "Power BI Engineer", "company": "Wistron ITS", "source": "Glassdoor", "date": "2026-07-23", "score": 66, "tier": "strong", "url": "https://www.glassdoor.com/job-listing/power-bi-engineer-wistronits-JV_KO0,17_KE18,28.htm?jl=1008273934292", "threadId": "", "note": "Remote; asks 10+ yrs Power BI/SQL — seniority fits exactly. IT-services vendor, no named client, no comp."},
-{"title": "Sales Operations Business Intelligence Analyst (PowerBI/SQL)", "company": "INSPYR Solutions", "source": "LinkedIn Search", "date": "2026-07-21", "score": 75, "tier": "look", "url": "https://www.linkedin.com/jobs/view/4429968157/", "threadId": "", "note": "Hybrid 3d — Deerfield Beach (~12mi). $65-75/hr (top meets $70 floor). Power BI semantic models + DAX + SQL; 12-mo contract."},
-{"title": "Power BI Report Developer", "company": "CGI", "source": "LinkedIn", "date": "2026-07-17", "score": 64, "tier": "look", "url": "https://www.linkedin.com/jobs/view/4440823877/", "threadId": "19f6da0856785940", "note": "US remote at a major SI. Lensa est $70-86K — likely well under the $130K floor; verify level before investing."},
-{"title": "Reporting & Power BI Developer", "company": "LingaTech", "source": "LinkedIn", "date": "2026-07-23", "score": 64, "tier": "look", "url": "https://www.linkedin.com/jobs/view/4433882077/", "threadId": "19f8c58ea752eafc", "note": "US remote; reporting + Power BI focus. Consultancy, end client not named, comp unstated."},
-{"title": "SENIOR DATA ENGINEER (Snowflake | Power BI | PostgreSQL)", "company": "Tier4 Group", "source": "LinkedIn Search", "date": "2026-07-23", "score": 64, "tier": "look", "url": "https://www.linkedin.com/jobs/view/4440481044/", "threadId": "", "note": "Remote (Denver-based req). Power BI named in title, but staffing firm with no named end client and no comp stated."},
-{"title": "Azure Data Engineer", "company": "Highbrow Technology", "source": "LinkedIn", "date": "2026-07-18", "score": 63, "tier": "look", "url": "https://www.linkedin.com/jobs/view/4440753924/", "threadId": "19f7635cdbceecb5", "note": "US remote Azure DE — stack matches, but staffing vendor with no named client and no comp."},
-{"title": "Senior Data Engineer", "company": "Foley", "source": "LinkedIn", "date": "2026-07-22", "score": 62, "tier": "look", "url": "https://www.linkedin.com/jobs/view/4442232082/", "threadId": "19f8a61789970a5a", "note": "US remote senior data engineer; title fits, Microsoft-stack fit unconfirmed and comp unstated."},
-{"title": "Power BI Developer", "company": "GES Group", "source": "Indeed", "date": "2026-07-16", "score": 62, "tier": "look", "url": null, "threadId": "19f6a21ae32e884f", "note": "Remote, exact title. Alert's '$350 an hour' is a posting error — comp unknown; find via Indeed search (no clean link)."},
-{"title": "Sr. Data Engineer", "company": "Bloomerang", "source": "LinkedIn", "date": "2026-07-18", "score": 62, "tier": "look", "url": "https://www.linkedin.com/jobs/view/4439238355/", "threadId": "19f7635cdbceecb5", "note": "US remote senior DE at a SaaS product company; stack likely cloud-agnostic rather than MS-first. Comp unstated."},
-{"title": "Senior Data Engineer", "company": "Verisma", "source": "LinkedIn", "date": "2026-07-18", "score": 62, "tier": "look", "url": "https://www.linkedin.com/jobs/view/4417525368/", "threadId": "19f7635cdbceecb5", "note": "US remote senior DE at a health-data firm; their sibling BI req posts ~$109K, so comp may run light."},
-{"title": "Senior BI Engineer", "company": "Humana", "source": "LinkedIn", "date": "2026-07-22", "score": 62, "tier": "look", "url": "https://www.linkedin.com/jobs/view/4440184939/", "threadId": "19f8a61789970a5a", "note": "Remote senior BI at a named payer, but the posted range tops out ~$121K — under the $130K floor."},
-{"title": "Senior Data Analyst", "company": "Healthpilot Technologies", "source": "Indeed", "date": "2026-07-23", "score": 62, "tier": "look", "url": "https://www.indeed.com/viewjob?jk=5981bdbcb9234728", "threadId": "19f8c45b65347a65", "note": "Remote-eligible, $100-140K straddles the floor. 5+ yrs BI/analytics, healthtech."},
-{"title": "Sr. Business Intelligence Developer", "company": "Montage Health", "source": "LinkedIn", "date": "2026-07-23", "score": 62, "tier": "look", "url": "https://www.linkedin.com/jobs/view/4417052114/", "threadId": "19f8c58ea752eafc", "note": "Remote BI developer at a health system (Epic/SQL shop). Lensa est $103-127K — under floor; verify."},
-{"title": "Senior, Data Engineer", "company": "Carrington Holding Company", "source": "LinkedIn", "date": "2026-07-18", "score": 61, "tier": "look", "url": "https://www.linkedin.com/jobs/view/4441613384/", "threadId": "19f7635cdbceecb5", "note": "US remote senior DE in financial services — preferred industry, but comp and stack both unstated."},
-{"title": "Senior Data Engineer: Power BI & Fabric Architect (Remote)", "company": "Zealogics", "source": "Lensa", "date": "2026-07-21", "score": 60, "tier": "look", "url": "https://sg2email.lensa.com/ls/click?upn=u001.jmU3g-2BpCjR8B5yHZB902pIHN8Ut4zPAWQeLRnk2pxxXy13gPQ5CCSqp571-2BeZfo-2Bt2T7itdUuKkQ7Rre3Ph0F515S2xZI5jsj9g8TIVuolEc8lIQusRHQTcJ28dgN9tWEooLDabI2kfOk8k5W-2BueGJbhCT-2BGUAfiUxvJUUjWuc8JuLohtOXDXoW2ylF9pq7yHTZEA0PHqTdh8MjyScQ6M1RgKDdBUWzEQVMvBq-2BFn6w-3DMEAk_QXnTW6f9jV7ots26-2Fd0iCA40nBTbwrnPprB64EaCS9zkmj-2BCWIv7rzc4TNxeyGR9uyp-2BODyM2g3Pm1Gg0AMMxZDXVgI1R0gV4Lko2s1idces-2BAqLJlMOIyFyWEQ7h1KHWlTdwrf7rdNuBIjiKQlB2gvmBMPKhdxKFlpOjTLOjIikQb8cDRekU6m-2BST2VHSaEDiUr45iA0C-2FmGrjRmlVMdv2SW3cW-2BpD-2B-2FeSET65kLoT-2BUDL1Ypbx6jvR6pUhIUC3lkpd-2BTW5-2FZOOy5tA45lOYYYiSqAje4kWsZ-2ByQX0WkvrqXhxGpiOp4HFFpVstfxQtUqIKMVM6i187cukAHtD8WeCTGQtefB-2FKlf7a2lBsu2P5wxBKMemH4X2XDGYQdDC1AOEpaTbk40QMvJ4iLT0YLusy7H4goYDZZWNGBkSCOiUb4zNmw6tVYi5R69nTeOPYWZjz3iZR6mFaXFBcosFZKHJmFTpCLyyugM8k5RjnKJvXpc-2FaxBh3Bps2JHroz8fMaWtQmW-2B0-2BpKlOadJuaK4jHelpoMq3C3fecDuK6YhJ85CdJTiCx0xbThUD-2Fl0aN73uVLes39aqiuUsBQ6IFzLMhXJac5k0nwWzT1dfVIYJtA-3D", "threadId": "19f84fa6f5190de8", "note": "Remote; Power BI + Fabric architect scope via IT staffing firm; Lensa est $100-122K — under floor, verify."},
-{"title": "Lead Business Intelligence Developer, Founding Team", "company": "Annuity Health", "source": "Lensa", "date": "2026-07-20", "score": 60, "tier": "look", "url": "https://sg2email.lensa.com/ls/click?upn=u001.jmU3g-2BpCjR8B5yHZB902pCGg4NQ-2Be558wI5XDbsRKz07jpVBcHtvY7SXu-2Fi0-2F-2BIRLXhXyg-2FuYjivfSsvEg1S8R1dS4t8GhRsM2Y-2FlI-2FGdgNBFkE9n10ZFSdZFTMzsFedhEY0Q02J18ZYHIVsF9HkaTm5Z-2FciMsn5OhXT3kk1YwOe9n2lGzoQd-2BOGtrx3XrJ1eO35TM2YEScAdUKavn18IUidRthAffvhhB9JGFQog5e3AAg1t12rZUObOxTq3BZcsXB0_QXnTW6f9jV7ots26-2Fd0iCA40nBTbwrnPprB64EaCS9zkmj-2BCWIv7rzc4TNxeyGR9uyp-2BODyM2g3Pm1Gg0AMMxZDXVgI1R0gV4Lko2s1idces-2BAqLJlMOIyFyWEQ7h1KHWlTdwrf7rdNuBIjiKQlB2gvmBMPKhdxKFlpOjTLOjIikQb8cDRekU6m-2BST2VHSaEDiUr45iA0C-2FmGrjRmlVMdt4qOdsNCNayDa19rB14t5cdtD0IdsgVkW5rKrpPn8KXynX96P50KvFmB8yMkwS8uCf8EK20KbgeUcTZhGgNjkSb8ZWYjr2PAaxKKzZf94PB6drAdGO7aOJPHhoKXusiv42ZEe45NZBCkcNW9K7-2FtkJFWXdZN6c8TmSvFzr25EpmYIdIiTz6HHnjLmY6PXV6euj7B4ymuQdVvda3QbzewCZLR-2Fq5-2FZbaczANsIRB7Q9EppMzMcm5-2FZOh9DAWt-2FWL5jJi3WlUxpx6JV7Sk8sX8jyxvL5jxep5W2j0AsxTTdGz-2FCvQ4T5b3xO4vXY-2BZ33jVWBEbHrIYA6RGGb-2B6c0hzoAoTIgSWKuFT8LG-2BuPKddbaWi-2FdVCSY6VgvV2AoTk8Byki2Uw6VqspBUmqi-2FyeeUFN", "threadId": "19f7fd3d348cdcc3", "note": "Healthcare RCM BI lead, founding team. Lensa est $132-161K (above floor); work arrangement unlisted — verify remote."}
-];
-// ALERT_DATA_END
-
-// Claude Desktop deep link (verified scheme: claude://code/new?folder=..&q=..).
-// Opens Claude Code inside Claude Desktop with the command prefilled — press Enter to run.
-// Desktop shows a one-time confirmation before adopting the folder (link folders are untrusted).
-const CLAUDE_CWD = "C:\\Users\\andre\\OneDrive\\Claude\\job-search-os";
-const claudeUri = cmd => "claude://code/new?folder="+encodeURIComponent(CLAUDE_CWD)+"&q="+encodeURIComponent(cmd);
-// base64url + jobhunt-cmd:// deep links — handled by cmd-uri-handler.ps1 (see Register-CmdProtocol.ps1).
-// The handler decides per command: next-steps opens an interactive Claude CLI terminal, while
-// recruiter-action and job-fit-inbox run headless in the background.
-// Defined here, above renderCards(), because the prospects cards build their run buttons on load.
-const b64url=s=>btoa(unescape(encodeURIComponent(s))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
-const cmdUri=(cmd,arg)=>"jobhunt-cmd://"+cmd+"/"+b64url(arg);
-const fromB64url=t=>{let b=t.replace(/-/g,'+').replace(/_/g,'/');while(b.length%4)b+='=';return decodeURIComponent(escape(atob(b)));};
-// Archive is browser-local until you push it: it updates localStorage, the ⇪ chip counts
-// it, and one click downloads {"archived":[ref,...],"unarchived":[ref,...]} for the
-// widget's ↻ (Sync-Widgets.ps1) to merge and delete.
-//
-// This replaced a per-click jobhunt-archive:// protocol launch. Chrome launches custom
-// protocols unreliably — it can prompt, and a missed prompt silently drops the click, so
-// archives went missing. A download always lands, needs no registration, and batches.
-function downloadState(payload){
-  const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"});
-  const a=document.createElement('a');
-  a.href=URL.createObjectURL(blob);
-  a.download="job-search-os-state.json";
-  document.body.appendChild(a);a.click();a.remove();
-  setTimeout(()=>URL.revokeObjectURL(a.href),10000);
-}
-const onDisk=(map,ref)=>!!(map&&map[ref]);
-function pendingState(){
-  return {
-    archived:[...localArch].filter(r=>!onDisk(ARCHIVED,r)),
-    unarchived:[...localUnarch].filter(r=>onDisk(ARCHIVED,r))
-  };
-}
-const pendingCount=p=>p.archived.length+p.unarchived.length;
-const scanBtn=$("scanBtn"); if(scanBtn) scanBtn.href=claudeUri("/job-hunt-scan");
-
-// Run-state (green ✓ once a command is logged) + archived opportunities.
-// Injected from context-library/dashboard-state.json by dashboard/Sync-Dashboards.ps1 — do not hand-edit.
-// DASH_STATE_START
-  const RUN_STATE = {"https://builtin.com/job/senior-bi-analyst/9598809":{"next-steps":"2026-07-22T23:15:22"},"https://www.linkedin.com/messaging/thread/2-YmRiODJiN2YtYjljNS00YmNlLThjOTItNTY1NWQ1ZWJkMTczXzEwMA==/":{"next-steps":"2026-07-22T18:34:07"},"https://www.linkedin.com/jobs/view/4440792262/":{"next-steps":"2026-07-22T18:58:26"},"https://www.linkedin.com/jobs/view/4437162489/":{"next-steps":"2026-07-28T10:53:16"},"https://www.linkedin.com/jobs/view/4426707806/":{"next-steps":"2026-07-28T11:37:33"},"19f70a3821a475a3":{"next-steps":"2026-07-22T23:37:50"},"19f7fee6bf8218cd":{"recruiter-action":"2026-07-21","next-steps":"2026-07-28T09:49:01","job-fit-inbox":"2026-07-21"},"19f8a11a6f842033":{"next-steps":"2026-07-22T19:47:50"},"19f80cb44c91d7bb":{"job-fit-inbox":"2026-07-22T18:27:56","recruiter-action":"2026-07-21"},"19f771183237f1d0":{"next-steps":"2026-07-22T18:57:18"},"19f8064120818784":{"job-fit-inbox":"2026-07-22","recruiter-action":"2026-07-22"},"https://sg2email.lensa.com/ls/click?upn=u001.jmU3g-2BpCjR8B5yHZB902pK6ssbzDLLx7LrEMXpbH7ysAhF-2BFrAqtKh3490gCgupYyO1gzMZxnXhTxlG34wpTkAGX-2FQIciNd04cTFaret31s6G9cwO9zRWoYxsFPuXXjZ644A88PkxiOU6K9dp1Y7rF-2B9VRLIL7cnLgLByf5QxaSoaFvm0WnhBypic3KNxUp0b5YS-2FgWm0p9og3fiUKh05KaC-2FXYPCCgEzUKqz9bC1Sa3EMUdTfrOH5ZgT6LhICjhpt_C_QXnTW6f9jV7ots26-2Fd0iCA40nBTbwrnPprB64EaCS9zkmj-2BCWIv7rzc4TNxeyGR9uyp-2BODyM2g3Pm1Gg0AMMxZDXVgI1R0gV4Lko2s1idces-2BAqLJlMOIyFyWEQ7h1KHWlTdwrf7rdNuBIjiKQlB2gvmBMPKhdxKFlpOjTLOjIikQb8cDRekU6m-2BST2VHSaEDiUr45iA0C-2FmGrjRmlVMdt4qOdsNCNayDa19rB14t5cdtD0IdsgVkW5rKrpPn8KXynX96P50KvFmB8yMkwS8uCf8EK20KbgeUcTZhGgNjkSb8ZWYjr2PAaxKKzZf94PB6drAdGO7aOJPHhoKXusiv42ZEe45NZBCkcNW9K7-2FtkJFWXdZN6c8TmSvFzr25EpmvyIJgMOOFqNhZ8xkQr0dPHRawIhrCyPYU1flPGF9pXhkotc7Xb1B9G-2FT4wLagCcMOMYtQjBUPCcy9-2FA9d0EnfSKUX6bHmyLk-2Bv8jK-2BwaKX-2F1uPBpVrqebrhAcbn4kOOCkr7z2Su7Ap2ZvL5ppTZ4bqbcupIPI-2FMBQ7fs1TXPHcPB1WgN5uZo1fpAcnHjPRt1cnc-2BbG0P1red-2Bfb-2Fq9V6zEbFY9OWv8xy7VOb0-2FBB-2Bh1lRZ":{"next-steps":"2026-07-23T17:45:29"},"19f853b1990d7ad7":{"next-steps":"2026-07-22"},"https://www.linkedin.com/jobs/view/4442755689/":{"next-steps":"2026-07-28T11:02:18"}};
-  const ARCHIVED = {"https://www.linkedin.com/messaging/thread/2-YmRiODJiN2YtYjljNS00YmNlLThjOTItNTY1NWQ1ZWJkMTczXzEwMA==/":"2026-07-23","19f8091b2c1ef05f":"2026-07-22","https://www.linkedin.com/jobs/view/4440792262/":"2026-07-22","19f7f8cdc84867d1":"2026-07-22","19f771183237f1d0":"2026-07-22","https://www.glassdoor.com/job-listing/sr-power-bi-developer-broadcast-music-inc-JV_KO0,21_KE22,41.htm?jl=1009852236950":"2026-07-22","https://www.linkedin.com/jobs/view/4441911111/":"2026-07-22","https://www.linkedin.com/messaging/thread/2-ZDM4NjE2YWUtNGQxZC00YWQwLTk4YWMtZTVkNDU2N2MzMTA0XzEwMA==/":"2026-07-22","19f864bf13a1c8ee":"2026-07-22","https://www.linkedin.com/messaging/thread/2-YjA5ZjE3MTItM2E2ZC00MDlhLWJlMzgtNzQyYzQ3NGZiMTA1XzEwMA==/":"2026-07-22","19f8b5a20bb846ad":"2026-07-23","https://www.linkedin.com/messaging/thread/2-NjRlYzVjYWUtNzY2Ny00ZjBjLWIwMGMtOTI1MzNjNzYwMTU3XzEwMA==/":"2026-07-22","19f80af86048e18d":"2026-07-22","https://www.linkedin.com/messaging/thread/2-ZTQ3MWQyNjQtYjc3MS00YWRiLWEzZDMtZTlkNTk0MTAwNDliXzEwMA==/":"2026-07-22","19f853b1990d7ad7":"2026-07-22","19f808f24146d81f":"2026-07-22","19f8a11a6f842033":"2026-07-23","19f7fb5868e2c05d":"2026-07-22","https://www.linkedin.com/messaging/thread/2-YTBkNzY2NGUtYmZkOC00MmQ5LTlmNGYtYTA2MTE3MjIwNWE0XzEwMA==/":"2026-07-22","https://www.linkedin.com/messaging/thread/2-YTdlMGZhNDItMGY4Zi00ZGE1LWJiN2ItYzg0NmQ4ZDI4YjAwXzEwMA==/":"2026-07-22"};
-  const SKIPPED = {"19f7fdfe7ee3bedf":"2026-07-22","19f7fb5868e2c05d":"2026-07-22","19f8091b2c1ef05f":"2026-07-22","19f8065a7ac37096":"2026-07-22","19f7f8cdc84867d1":"2026-07-22"};
-// DASH_STATE_END
-
-// A card's ref is per-POSTING: the posting URL, falling back to the alert email's thread
-// id only when the card has no url. URL-first matters — one LinkedIn digest email yields
-// many cards sharing a threadId, so a thread-keyed ref would archive/✓ all its siblings.
-const refOf=d=>d.url||d.threadId||"";
-// Every key a card's state may live under: its ref plus its threadId. Older
-// dashboard-state.json entries were keyed by thread id even when the card had a url,
-// and those must keep matching (hides and ✓s) after the url-first switch.
-const keysOf=d=>[d.url,d.threadId].filter(Boolean);
-// Two local sets: refs this browser archived that disk doesn't have yet, and refs disk
-// has that this browser un-archived. Both are pushed by the ⇪ chip (adds and removals).
-const LARCH="job-hunt-archived", LUNARCH="job-hunt-unarchived";
-let localArch=new Set(JSON.parse(localStorage.getItem(LARCH)||"[]"));
-let localUnarch=new Set(JSON.parse(localStorage.getItem(LUNARCH)||"[]"));
-const diskArchKeys=d=>keysOf(d).filter(k=>onDisk(ARCHIVED,k));
-function isArchived(d){
-  if(keysOf(d).some(k=>localArch.has(k))) return true;
-  const dk=diskArchKeys(d);
-  return dk.length>0&&!dk.every(k=>localUnarch.has(k));
-}
-const ranOn=(ref,cmd)=>(RUN_STATE&&RUN_STATE[ref]&&RUN_STATE[ref][cmd])||null;
-const ranOnCard=(d,cmd)=>keysOf(d).map(k=>ranOn(k,cmd)).find(Boolean)||null;
-// Prospects run buttons start a minimized interactive Claude CLI session — over LOOPBACK HTTP, not
-// the jobhunt-cmd:// protocol. Chrome here silently refuses to launch that protocol (verified
-// 2026-07-28 against a hyphen-free scheme and a plain-exe handler: none prompted, while claude://
-// does), so the click posts to Start-JobHuntListener.ps1, which hands the same URI to
-// cmd-uri-handler.ps1. Interactive, not headless, because Remote Control only attaches to
-// interactive sessions — that is what puts the run in your Claude sidebar.
-const LISTENER="http://127.0.0.1:47615";
-function runBtn(cmd,d,label){
-  const on=ranOnCard(d,cmd);
-  const t=on?("Ran "+on+" — click to run /"+cmd+" again"):("Starts a minimized /"+cmd+" session, in your Claude sidebar as \""+((d.company?d.company+' - ':'')+d.title).replace(/"/g,'&quot;')+"\"");
-  const paste=('/'+cmd+' '+refOf(d)).replace(/"/g,'&quot;');
-  const sess=((d.company?d.company+' - ':'')+d.title).replace(/"/g,'&quot;');
-  return '<a class="runbtn'+(on?' done':'')+'" href="#" data-cmd="'+cmd+'" data-ref="'+b64url(refOf(d))+'" data-paste="'+paste+'" data-label="'+sess+'" title="'+t+'">'+(on?'✓ ':'▶ ')+label+'</a>';
-}
-// ref is base64url, exactly as the protocol URI carried it. label names the session in the Claude
-// sidebar — without it every entry reads as the same auto-generated hostname-N. onOk only fires
-// when the listener really accepted the run: the ⏳ state must never latch on a failed hand-off.
-// Optional name prefix for dashboard-launched sessions, e.g. "WIP" → "[WIP] Aretec - …". Off for
-// now: it only clusters names, since the CLI exposes no flag for real sidebar groups. Set a string
-// here to turn it back on — the listener and handler already carry it end to end.
-const RUN_GROUP="";
-function runViaListener(cmd,ref,doneMsg,onOk,label){
-  fetch(LISTENER+"/run?cmd="+encodeURIComponent(cmd)+"&ref="+encodeURIComponent(ref)
-        +(label?"&label="+encodeURIComponent(label):"")
-        +(RUN_GROUP?"&group="+encodeURIComponent(RUN_GROUP):""),{cache:"no-store"})
-    .then(r=>{ if(!r.ok) throw new Error("HTTP "+r.status);
-      toast(doneMsg||("/"+cmd+" started — the window is minimized, and the session is in your Claude sidebar if you want to watch or steer it."));
-      if(onOk) onOk(); })
-    .catch(err=>{
-      toast("Can't reach the local listener ("+err.message+"). Start it with dashboard\\Start-JobHuntListener.ps1. Meanwhile the command is on your clipboard — paste it into a terminal running claude.");
+  (function () {
+    var tabs = document.querySelectorAll('[role="tab"]');
+    var panels = document.querySelectorAll('[role="tabpanel"]');
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        var target = this.dataset.tab;
+        tabs.forEach(function (t) { t.setAttribute('aria-selected', 'false'); });
+        panels.forEach(function (p) { p.setAttribute('hidden', ''); });
+        this.setAttribute('aria-selected', 'true');
+        var panel = document.getElementById('panel-' + target);
+        if (panel) panel.removeAttribute('hidden');
+      });
     });
-}
-// Copy without navigator.clipboard's promise rejecting silently on odd origins: try the async API,
-// fall back to a throwaway textarea + execCommand, which works on file:// in every browser here.
-function copyText(s){
-  try{ if(navigator.clipboard&&navigator.clipboard.writeText) return navigator.clipboard.writeText(s).catch(()=>legacyCopy(s)); }catch(e){}
-  legacyCopy(s);
-}
-function legacyCopy(s){
-  const ta=document.createElement('textarea');
-  ta.value=s;ta.style.position='fixed';ta.style.opacity='0';
-  document.body.appendChild(ta);ta.select();
-  try{document.execCommand('copy');}catch(e){}
-  ta.remove();
-}
-let showArchived=false, tierFilter="all";
-function renderCards(){
-  const cards=$("cards"), chips=$("chips");
-  const live=ALERT_DATA.filter(d=>!isArchived(d));   // non-archived
-  const src=showArchived?ALERT_DATA:live;                    // what the list draws from
-  const archCount=ALERT_DATA.length-live.length;
-  // "new": strong + look only, newest first (score breaks date ties)
-  const data=tierFilter==="new"
-    ?src.filter(d=>d.tier==="strong"||d.tier==="look")
-        .slice().sort((a,b)=>(b.date||"").localeCompare(a.date||"")||b.score-a.score)
-    :src.filter(d=>tierFilter==="all"||d.tier===tierFilter)
-        .slice().sort((a,b)=>b.score-a.score);
-  $("updated").textContent = ALERT_UPDATED ? "last scan "+ALERT_UPDATED : "";
-  chips.innerHTML="";
-  [["all","All ("+live.length+")"],
-   ["new","New ("+live.filter(d=>d.tier==="strong"||d.tier==="look").length+")"],
-   ["strong","Strong ("+live.filter(d=>d.tier==="strong").length+")"],
-   ["look","Worth a look ("+live.filter(d=>d.tier==="look").length+")"]]
-  .forEach(([v,lbl])=>{
-    const b=document.createElement("button");b.textContent=lbl;
-    if(tierFilter===v)b.classList.add("on");
-    b.onclick=()=>{tierFilter=v;renderCards();};chips.appendChild(b);
-  });
-  if(archCount){
-    const t=document.createElement("button");
-    t.className="archtoggle"+(showArchived?" on":"");
-    t.textContent=(showArchived?"Hide":"Show")+" archived ("+archCount+")";
-    t.onclick=()=>{showArchived=!showArchived;renderCards();};chips.appendChild(t);
-  }
-  const pend=pendingState(), pendN=pendingCount(pend);
-  if(pendN){
-    const s=document.createElement("button");
-    s.className="archtoggle syncchip";
-    s.textContent="⇪ Sync "+pendN+" to disk";
-    s.title=pendN+" change"+(pendN>1?"s":"")+" live only in this browser. Click to save them for the widget, then hit ↻ on the widget to apply.";
-    s.onclick=()=>{
-      downloadState(pend);
-      s.textContent="⇪ Saved — click ↻ on the widget";
-      s.disabled=true;
-    };
-    chips.appendChild(s);
-  }
-  cards.innerHTML="";
-  $("empty").style.display = live.length ? "none" : "block";
-  data.forEach(d=>{
-    const ref=refOf(d), archived=isArchived(d);
-    const c=document.createElement("div");c.className="jcard"+(archived?" archived":"");
-    const badge='<span class="badge '+d.tier+'">'+d.score+'</span>';
-    const titleHtml = d.url
-      ? '<a class="title" href="'+d.url+'" target="_blank" rel="noopener">'+d.title+'</a>'
-      : '<span class="title">'+d.title+'</span>';
-    const emailBtn = d.threadId
-      ? '<a class="linkbtn" href="https://mail.google.com/mail/u/0/#all/'+d.threadId+'" target="_blank" rel="noopener">Open Email</a>'
-      : '';
-    // /next-steps carries the card's ref: its posting URL, or the alert thread id when url is null.
-    const nextBtn = ref ? runBtn('next-steps',d,'Next Steps') : '';
-    const postBtn = d.url
-      ? '<a class="linkbtn" href="'+d.url+'" target="_blank" rel="noopener">View Posting</a>'
-      : '';
-    const archBtn = ref
-      ? '<a class="archbtn'+(archived?' un':'')+'" href="#" data-ref="'+ref+'" data-un="'+(archived?1:0)+'" title="'+(archived?'Unarchive — bring it back. Applies here now; push it with the ⇪ chip so the widget and scans agree.':'Archive — hide it. Applies here now; push it with the ⇪ chip so the widget hides it too and scans won\'t re-add it.')+'">'+(archived?'↩':'🗑')+'</a>'
-      : '';
-    c.innerHTML =
-      '<div class="top"><div>'+titleHtml+'<div class="co">'+d.company+'</div></div>'+badge+'</div>'+
-      (d.note?'<div class="note">'+d.note+'</div>':'')+
-      '<div class="foot"><span class="src">'+d.source+' · '+d.date+'</span></div>'+
-      '<div class="actions">'+nextBtn+postBtn+emailBtn+archBtn+'</div>';
-    cards.appendChild(c);
-  });
-  cards.querySelectorAll('.archbtn').forEach(a=>{
-    a.addEventListener('click',e=>{
-      e.preventDefault();
-      const r=a.getAttribute('data-ref'), un=a.getAttribute('data-un')==="1";
-      const card=ALERT_DATA.find(d=>refOf(d)===r), keys=card?keysOf(card):[r];
-      // Unarchive clears every key the card is held by — including a legacy thread-keyed
-      // disk entry — so one click really brings it back. Archive stays ref-only: new
-      // hides are per-posting and never touch a digest sibling's state.
-      if(un){ keys.forEach(k=>localArch.delete(k)); keys.filter(k=>onDisk(ARCHIVED,k)).forEach(k=>localUnarch.add(k)); }
-      else  { localArch.add(r); localUnarch.delete(r); }
-      localStorage.setItem(LARCH,JSON.stringify([...localArch]));
-      localStorage.setItem(LUNARCH,JSON.stringify([...localUnarch]));
-      renderCards();   // the ⇪ chip's count moves with it
-    });
-  });
-  // Every click also copies the command, so a listener that isn't running costs you a paste rather
-  // than leaving a dead button — this is the failure mode the protocol version had, silently.
-  cards.querySelectorAll('.runbtn[data-cmd]').forEach(a=>{
-    a.addEventListener('click',e=>{
-      e.preventDefault();
-      copyText(a.getAttribute('data-paste'));
-      runViaListener(a.getAttribute('data-cmd'),a.getAttribute('data-ref'),null,null,a.getAttribute('data-label'));
-    });
-  });
-  const tc=$("tabCount"); if(tc) tc.textContent = live.length ? "("+live.length+")" : "";
-}
-renderCards();
-
-// ============ RECRUITER INBOX ============
-// Folded in from dashboard/recruiter-inbox.html (2026-07-22). Shares the DASH_STATE block,
-// claudeUri, downloadState, onDisk and ranOn defined above. Its own pending-state helpers
-// are prefixed ri- because the prospects tab has a narrower pair of the same name.
-// RECRUITER_DATA_START — regenerated by /recruiter-scan + /linkedin-scan; do not hand-edit.
-const DATA = [
-  {id:"19f8064120818784",date:"2026-07-20",recruiter:"Sham",firm:"Virtual Networx",role:"Data Analyst & Power BI Engineer",client:"undisclosed",score:85,tier:"strong",remote:{t:"Remote",k:"good"},comp:"Rate not stated",tags:[["Power BI","good"],["Fabric","good"],["SQL / ETL","good"],["12+ mo contract",""]],flag:"Rate not stated — ask bill rate before tailoring."},
-  {id:"19f80cb44c91d7bb",date:"2026-07-20",recruiter:"Aviral Srivastava",firm:"Talenzaa",role:"Business Analyst (Business Intelligence)",client:"Tavant / Kubota",score:82,tier:"strong",remote:{t:"100% Remote",k:"good"},comp:"Rate not stated (contract)",tags:[["Power BI","good"],["Azure / ADF","good"],["SQL","good"],["BA-flavored",""]],flag:"Rate not stated — ask bill rate before tailoring."},
-  {id:"19f7fee6bf8218cd",date:"2026-07-20",recruiter:"Max Garcia",firm:"Synergy Interactive",role:"PowerBI Engineer",client:"Publicis Sapient",score:80,tier:"strong",remote:{t:"Fully Remote",k:"good"},comp:"$65/hr LLC · $55/hr W2",tags:[["Power BI","good"],["IN PROCESS","proc"],["6 mo+ contract",""],["rate ~under target","warn"]],flag:"Already live — you had a call and sent your resume 2026-07-20. Consider adding to app-tracker as In Process."},
-  {id:"19fa453bd36fd364",date:"2026-07-27",recruiter:"Rajeev Upadhyay",firm:"Sibitalent (via Dice)",role:"Senior BI Data Analyst",client:"undisclosed (healthcare)",score:74,tier:"strong",remote:{t:"100% Remote (ET hours)",k:"good"},comp:"Rate not stated (contract-to-hire)",tags:[["Power BI","good"],["Advanced SQL","good"],["Azure Synapse","good"],["Databricks / dbt","warn"],["healthcare",""],["C2H",""]],flag:"Fully remote and Power BI dashboard development is the #1 listed skill — strongest new fit this week. Caveats: no rate quoted, client undisclosed, and the ETL side leans Databricks/dbt rather than SSIS/ADF. Ask for the bill rate and client name before tailoring."},
-  {id:"19f8a11a6f842033",date:"2026-07-22",recruiter:"Theron Griffin",firm:"Armanino",role:"Senior BI & Analytics Developer",client:"Armanino (direct)",score:72,tier:"strong",remote:{t:"Hybrid — Boca Raton (~30 min)",k:"warn"},comp:"Not stated",tags:[["Power BI / Fabric","good"],["IN PROCESS","proc"],["direct hire","good"],["hybrid Boca","warn"]],flag:"In process — call held 2026-07-22, resume sent. Direct hire at a reputable advisory firm; hybrid Boca office ~30 min away. App folder: applications/2026-07-21_armanino_senior-bi-analytics-developer_compass."},
-  {id:"19f7fdfe7ee3bedf",date:"2026-07-20",recruiter:"Reeba Saini",firm:"Nityo Infotech",role:"Power BI Developer",client:"undisclosed",score:42,tier:"look",remote:{t:"Raleigh NC / Dallas TX",k:"warn"},comp:"Full-time perm",tags:[["Power BI","good"],["Tableau",""],["SharePoint",""],["onsite?","warn"]],flag:"Location listed as NC/TX. Worth a one-line reply asking if remote is possible before writing it off."},
-  {id:"19f8ff59b16fa063",date:"2026-07-23",recruiter:"\"Mr Ahmad\"",firm:"none (LinkedIn InMail)",role:"Lead Analyst – Business Intelligence",client:"Memorial Healthcare System",score:38,tier:"low",remote:{t:"Onsite Fort Lauderdale (local)",k:"bad"},comp:"Not stated",tags:[["BI role","good"],["local","warn"],["not a real recruiter","bad"],["affiliate links","bad"]],flag:"⚠️ Sender's own LinkedIn headline is \"Student at collage\" (Lahore, Pakistan) and the message routes through a jobg8 affiliate link plus a jobsinusa.us portal — link-farm traffic, not a staffed role. The underlying opening at Memorial Healthcare System is real and locally commutable; apply through Memorial's own careers site and do not click the links in the email."},
-  {id:"19f8091b2c1ef05f",date:"2026-07-20",recruiter:"Prakash K. Singh",firm:"Nityo Infotech",role:"Azure Data Engineer / Architect",client:"undisclosed",score:32,tier:"low",remote:{t:"Onsite (NC/TX/MI/CA)",k:"bad"},comp:"—",tags:[["Azure","good"],["onsite","bad"]],flag:""},
-  {id:"19f906bb43a4224d",date:"2026-07-23",recruiter:"Pratibha Pal",firm:"Nityo Infotech",role:"Azure Data Solutions Architect",client:"undisclosed",score:30,tier:"low",remote:{t:"Jersey City, NJ / Dallas, TX",k:"bad"},comp:"Not stated (FTE)",tags:[["Azure / ADF / Synapse","good"],["Fabric","good"],["out of state","bad"],["Databricks-first","warn"]],flag:"Closest MS-stack overlap of this batch (Azure, ADF, Synapse, Fabric, Unity Catalog) but it's an architecture role built on Databricks, with Power BI only listed as 'preferred' — and it's Jersey City/Dallas onsite. Also asks for two supervisory references before any conversation."},
-  {id:"19fa3d4e7e80b6e4",date:"2026-07-27",recruiter:"Battu Raghu",firm:"Futran Solutions (via Dice)",role:"Azure Databricks Architect",client:"undisclosed (financial services / insurance)",score:28,tier:"low",remote:{t:"Miami, FL — 100% onsite",k:"bad"},comp:"Not stated (full-time)",tags:[["Azure / ADF / ADLS","good"],["Synapse","good"],["100% onsite Miami","bad"],["Databricks/Spark-first","warn"],["no Power BI","bad"],["12+ yrs required","warn"]],flag:"Real Azure overlap (ADF, ADLS, Synapse) and Miami is the closest onsite yet (~30 mi), but it's 5-days-onsite against your remote-only baseline, the stack is Databricks/Spark/Python-Scala with zero Power BI content, it's an architect title at 12+ years, and no comp was quoted."},
-  {id:"19f7f8cdc84867d1",date:"2026-07-20",recruiter:"Colton Collins",firm:"Capital Staffing",role:"Business Systems Analyst (Python/SQL)",client:"undisclosed",score:28,tier:"low",remote:{t:"Juno Beach, FL onsite",k:"bad"},comp:"—",tags:[["onsite","bad"],["not BI-core","bad"]],flag:""},
-  {id:"19f864bf13a1c8ee",date:"2026-07-21",recruiter:"Kaila Timko",firm:"Capital Staffing",role:"Business Systems Analyst (Python/SQL/ML)",client:"undisclosed",score:26,tier:"low",remote:{t:"Juno Beach, FL onsite",k:"bad"},comp:"Rate not stated",tags:[["onsite","bad"],["not BI-core","bad"],["12mo+ contract",""]],flag:""},
-  {id:"19f7fb5868e2c05d",date:"2026-07-20",recruiter:"Yash Agarwal",firm:"Exarca (via Dice)",role:"IT Business Systems Analyst II",client:"undisclosed",score:25,tier:"low",remote:{t:"Juno Beach, FL onsite",k:"bad"},comp:"W2 only",tags:[["onsite","bad"],["not BI-core","bad"]],flag:""},
-  {id:"19f912d772e95e45",date:"2026-07-23",recruiter:"Edward",firm:"United IT Solutions",role:"Data Architect",client:"undisclosed",score:24,tier:"low",remote:{t:"Orlando, FL hybrid (~200 mi)",k:"bad"},comp:"Rate not stated (contract)",tags:[["Azure / ADF","good"],["Orlando hybrid","bad"],["Databricks-first","warn"],["no Power BI","bad"]],flag:"Orlando hybrid is a 200-mile commute from Fort Lauderdale — not viable. Databricks/Lakehouse architecture role with no Power BI content, 12-year requirement, and no rate quoted."},
-  {id:"19f8b5a20bb846ad",date:"2026-07-22",recruiter:"Moumita Dey",firm:"Nityo Infotech",role:"Data Warehouse Developer",client:"undisclosed",score:22,tier:"low",remote:{t:"Charlotte, NC onsite",k:"bad"},comp:"Not stated",tags:[["onsite","bad"],["non-MS: Snowflake/AWS","bad"],["SQL/Python",""]],flag:""},
-  {id:"19fa4e3e4adf38cf",date:"2026-07-27",recruiter:"Tulsi Das",firm:"SoftSages",role:"Data/Reporting Analyst",client:"undisclosed (Miami)",score:22,tier:"low",remote:{t:"Hybrid — 3 days downtown Miami",k:"bad"},comp:"$45/hr C2C",tags:[["rate far below floor","bad"],["hybrid Miami","bad"],["GCP mandate","bad"],["Power BI optional","warn"],["process/PM-flavored","bad"]],flag:"$45/hr C2C is well under your $70/hr floor, 3 days onsite in downtown Miami, and the stack mandate is Google Cloud. Power BI is listed as \"highly desired but open to someone learning\" — i.e. incidental. Role is really process improvement + project coordination, not BI development."},
-  {id:"19f80af86048e18d",date:"2026-07-20",recruiter:"Avneesh Tyagi",firm:"Nityo Infotech",role:"Business Analyst, Treasury Systems",client:"undisclosed",score:20,tier:"low",remote:{t:"Miami hybrid",k:"bad"},comp:"$30/hr W2",tags:[["comp far below floor","bad"],["hybrid","bad"]],flag:""},
-  {id:"19f8065a7ac37096",date:"2026-07-20",recruiter:"Veena",firm:"ATVS LLC",role:"Data Engineer (Hadoop / Ab Initio)",client:"undisclosed",score:15,tier:"low",remote:{t:"Berkeley Heights, NJ onsite",k:"bad"},comp:"$50/hr W2",tags:[["non-MS stack","bad"],["onsite","bad"],["asks SSN/DOB","bad"]],flag:"⚠️ This email asks for your SSN last-4 and DOB in the reply. Never send that to source a role. Ignore or ask them to submit without it."},
-  {id:"19fa43b159b87be5",date:"2026-07-27",recruiter:"Aditya Kumar",firm:"Nityo Infotech",role:"Business Analyst (Mainframe)",client:"HCL",score:14,tier:"low",remote:{t:"Tysons, VA — onsite",k:"bad"},comp:"Not stated",tags:[["out-of-state onsite","bad"],["Mainframe / COBOL / DB2","bad"],["BSA not BI-core","bad"],["SQL/BI only 'preferred'","warn"]],flag:"Out-of-state onsite (Tysons, VA) BSA role centered on Mainframe/legacy analysis — COBOL, JCL, DB2, CICS, VSAM. SQL and BI tools appear once as 'preferred.' No comp quoted."},
-  {id:"19f808f24146d81f",date:"2026-07-20",recruiter:"Saurav Sahil",firm:"Nityo Infotech",role:"Infor LN Functional Consultant",client:"undisclosed",score:12,tier:"low",remote:{t:"unspecified",k:"warn"},comp:"—",tags:[["ERP functional","bad"],["off-target","bad"]],flag:""},
-  {id:"2-NjRlYzVjYWUtNzY2Ny00ZjBjLWIwMGMtOTI1MzNjNzYwMTU3XzEwMA==",date:"2026-07-17",recruiter:"Lourdes Verde",firm:"Baptist Health South Florida",role:"BI / Data role (title TBC)",client:"Baptist Health",score:58,tier:"look",remote:{t:"Leader open to remote",k:"good"},comp:"Full-time perm · not stated",tags:[["remote-open","good"],["full-time perm",""],["healthcare",""],["title/stack TBC","warn"]],flag:"Baptist Health SF, full-time, leader open to remote — you already sent your resume. Confirm exact title + Power BI/MS-stack fit + comp. Likely the same opening Caroline Dybala flagged (Sr System Engineer – Power BI).",source:"linkedin"},
-  {id:"2-YmRiODJiN2YtYjljNS00YmNlLThjOTItNTY1NWQ1ZWJkMTczXzEwMA==",date:"2026-07-08",recruiter:"Caroline Dybala",firm:"Baptist Health South Florida",role:"Senior System Engineer – Power BI & Automation",client:"Baptist Health",score:52,tier:"look",remote:{t:"Coral Gables, FL · 8:30–5 (onsite?)",k:"warn"},comp:"Not stated",tags:[["Power BI","good"],["automation",""],["Coral Gables onsite?","warn"]],flag:"Power BI role at Baptist Health (Coral Gables, 8:30–5 → likely onsite/hybrid). Wants her name in the employee-referral field. Likely the same role Lourdes Verde flagged as 'leader open to remote' — confirm remote before applying.",source:"linkedin"},
-  {id:"2-ZTQ3MWQyNjQtYjc3MS00YWRiLWEzZDMtZTlkNTk0MTAwNDliXzEwMA==",date:"2026-07-16",recruiter:"Jason Wolpow",firm:"Lawrence Harvey",role:"Solution Engineer – Analytics (Power BI)",client:"undisclosed (manufacturing)",score:35,tier:"low",remote:{t:"Onsite — Anderson, SC",k:"bad"},comp:"$120–155K base + 10%",tags:[["Power BI","good"],["onsite Anderson SC","bad"],["can't relocate","bad"]],flag:"Exact Power BI stack fit BUT onsite Anderson SC — you already declined (can't relocate) and offered to refer. Dead unless they open remote.",source:"linkedin"},
-  {id:"2-YjA5ZjE3MTItM2E2ZC00MDlhLWJlMzgtNzQyYzQ3NGZiMTA1XzEwMA==",date:"2026-07-19",recruiter:"Dominique Hughes",firm:"AUKU",role:"Data Architect (BigQuery/Looker)",client:"undisclosed",score:35,tier:"low",remote:{t:"remote unstated",k:"warn"},comp:"6-mo C2H · rate not stated",tags:[["non-MS: BigQuery/Looker","bad"],["Data Architect",""],["C2H 6mo",""]],flag:"Google BigQuery/Looker/Fivetran stack (marketing data) — not your Microsoft/Power BI wheelhouse. Dimensional modeling transfers but this isn't a Power BI role.",source:"linkedin"},
-  {id:"2-ZDM4NjE2YWUtNGQxZC00YWQwLTk4YWMtZTVkNDU2N2MzMTA0XzEwMA==",date:"2026-07-17",recruiter:"Mariam Khan",firm:"MSC Cruises USA",role:"eCommerce Data Analyst",client:"MSC Cruises",score:30,tier:"low",remote:{t:"Hybrid — 4 days Miami office",k:"bad"},comp:"Not stated · strong benefits",tags:[["hybrid 4d Miami","bad"],["eComm Data Analyst",""],["no MS-stack signal","warn"]],flag:"Hybrid — 4 days/week in downtown Miami office. Fails your remote-only requirement.",source:"linkedin"},
-  {id:"2-YTBkNzY2NGUtYmZkOC00MmQ5LTlmNGYtYTA2MTE3MjIwNWE0XzEwMA==",date:"2026-07-19",recruiter:"Ashish Awasthi",firm:"undisclosed (staffing)",role:"Unnamed — staffing inquiry",client:"undisclosed",score:30,tier:"low",remote:{t:"unstated",k:"warn"},comp:"you quoted $75–85/hr W2",tags:[["no role named yet","warn"],["staffing fishing",""]],flag:"Generic staffing inquiry — no role, company, or JD named; only asked availability, work-auth, and rate. Ask what the actual role + client are before investing.",source:"linkedin"},
-  {id:"2-YTdlMGZhNDItMGY4Zi00ZGE1LWJiN2ItYzg0NmQ4ZDI4YjAwXzEwMA==",date:"2026-07-10",recruiter:"Michael Bloor",firm:"Pivotal Solutions",role:"Data/Web Developer",client:"undisclosed (Boca Raton)",score:25,tier:"low",remote:{t:"Boca Raton, FL (local)",k:"bad"},comp:"Not stated · perm",tags:[["not BI-core","bad"],["Data/Web dev","bad"],["local Boca","warn"]],flag:"Data/Web Developer (not BI-core), Boca local, permanent. Off-target — web-dev role, no Power BI signal.",source:"linkedin"}
-];
-// RECRUITER_DATA_END
-// b64url, cmdUri and fromB64url are defined up with claudeUri (the prospects tab needs them earlier).
-function toast(msg){
-  let t=document.getElementById('toast');
-  if(!t){t=document.createElement('div');t.id='toast';document.body.appendChild(t);}
-  t.textContent=msg;t.classList.add('show');
-  clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('show'),9000);
-}
-// Browser-local archive/skip state (same localStorage keys as the old standalone page —
-// file:// pages share one origin, so existing selections carry straight over).
-const LARCHR="recruiter-archived", LUNARCHR="recruiter-unarchived";
-let localArchR=new Set(JSON.parse(localStorage.getItem(LARCHR)||"[]"));
-let localUnarchR=new Set(JSON.parse(localStorage.getItem(LUNARCHR)||"[]"));
-let showArchivedR=localStorage.getItem("ri-sharch")==="1";
-const isArchivedR=ref=>localArchR.has(ref)||(!!(ARCHIVED&&ARCHIVED[ref])&&!localUnarchR.has(ref));
-
-// "Running…" state for background commands. On click we stamp {cmd|ref: clickTime}; a run is done once
-// RUN_STATE shows a fresh timestamp (>= click time) for it. While any run is active we auto-reload every
-// ~25s (the only way a static file:// page can pick up the freshly-injected RUN_STATE), giving up after
-// RUN_MAX_MS. tab/filter/scroll are persisted so the poll-reload doesn't jump the view.
-const RUNSTORE="recruiter-running", RUN_MAX_MS=12*60*1000;
-let running=JSON.parse(localStorage.getItem(RUNSTORE)||"{}");
-function saveRunning(){localStorage.setItem(RUNSTORE,JSON.stringify(running));}
-function reconcileRunning(){
-  let active=false,changed=false;
-  for(const k of Object.keys(running)){
-    const i=k.indexOf('|'),cmd=k.slice(0,i),ref=k.slice(i+1),started=running[k];
-    const v=RUN_STATE&&RUN_STATE[ref]&&RUN_STATE[ref][cmd];
-    const doneFresh=v&&Date.parse(v)>=started-5000;
-    if(doneFresh||(Date.now()-started)>RUN_MAX_MS){delete running[k];changed=true;} else active=true;
-  }
-  if(changed)saveRunning();
-  return active;
-}
-const isRunning=(cmd,ref)=>running[cmd+'|'+ref]!=null;
-
-const TIERLABEL={strong:"Strong-Fit",look:"Worth-a-Look",low:"Low-Fit"};
-const SCLASS={strong:"s-strong",look:"s-look",low:"s-low"};
-const STORE="recruiter-inbox-dispositions";
-let disp=JSON.parse(localStorage.getItem(STORE)||"{}");
-// Skips recorded in dashboard-state.json seed this browser, so dashboard, widget and mobile
-// hide the same cards. `in`, not falsiness: an explicitly-cleared "" means you un-skipped it
-// and haven't pushed yet, so re-seeding would silently undo that.
-if(typeof SKIPPED!=="undefined") for(const id of Object.keys(SKIPPED)) if(!(id in disp)) disp[id]="Skip";
-// Cards marked Skip are hidden from this point on; snapshot taken at load so a mid-session skip
-// doesn't vanish under you — it clears on the next refresh.
-const initialSkips=new Set(Object.keys(disp).filter(id=>disp[id]==="Skip"));
-let riFilter=localStorage.getItem("ri-filter")||"all";
-
-function setDisp(id,val){
-  disp[id]=val;localStorage.setItem(STORE,JSON.stringify(disp));
-  // Skip hides the card here, so it has to reach dashboard-state.json — render() picks the
-  // change up in the ⇪ chip's count; the chip pushes it. Other dispositions stay browser-only.
-  render();
-}
-// Everything this browser hides (or un-hides) that the state file doesn't agree with yet.
-const skipMap=()=>(typeof SKIPPED!=="undefined")?SKIPPED:null;
-function riPendingState(){
-  const sm=skipMap();
-  return {
-    archived:[...localArchR].filter(r=>!onDisk(ARCHIVED,r)),
-    unarchived:[...localUnarchR].filter(r=>onDisk(ARCHIVED,r)),
-    skipped:Object.keys(disp).filter(id=>disp[id]==="Skip"&&!onDisk(sm,id)),
-    unskipped:Object.keys(sm||{}).filter(id=>disp[id]!=="Skip")
-  };
-}
-const riPendingCount=p=>p.archived.length+p.unarchived.length+p.skipped.length+p.unskipped.length;
-
-const cardRefOf=d=>d.source==="linkedin"?`https://www.linkedin.com/messaging/thread/${d.id}/`:d.id;
-function render(){
-  // Poll: while a background run is active, reload every ~25s to pick up the re-injected RUN_STATE.
-  const pollActive=reconcileRunning();
-  clearTimeout(window.__poll);
-  if(pollActive) window.__poll=setTimeout(()=>{ sessionStorage.setItem("ri-scroll",window.scrollY); location.reload(); }, 25000);
-  const ALLVIS=DATA.filter(d=>!initialSkips.has(d.id));
-  const VIS=ALLVIS.filter(d=>!isArchivedR(cardRefOf(d)));   // live (non-archived) — drives KPIs/counts
-  const archCount=ALLVIS.length-VIS.length;
-  const base=showArchivedR?ALLVIS:VIS;                       // what the list draws from
-  const rc=$("riCount"); if(rc) rc.textContent = VIS.length ? "("+VIS.length+")" : "";
-  // KPIs
-  const strong=VIS.filter(d=>d.tier==="strong").length;
-  const pursue=Object.values(disp).filter(v=>v==="Pursue").length;
-  const undis=VIS.filter(d=>!disp[d.id]||disp[d.id]==="").length;
-  $("kpis").innerHTML=`
-    <div class="kpi"><div class="n">${VIS.length}</div><div class="l">recruiter emails</div></div>
-    <div class="kpi"><div class="n" style="color:#6fe0a6">${strong}</div><div class="l">strong-fit</div></div>
-    <div class="kpi"><div class="n" style="color:#8fc2ff">${pursue}</div><div class="l">marked pursue</div></div>
-    <div class="kpi"><div class="n" style="color:#f5c542">${undis}</div><div class="l">need a call</div></div>`;
-  // Filters
-  const counts={all:VIS.length,new:strong+VIS.filter(d=>d.tier==="look").length,strong,look:VIS.filter(d=>d.tier==="look").length,low:VIS.filter(d=>d.tier==="low").length};
-  $("filters").innerHTML=["all","new","strong","look","low"].map(f=>
-    `<div class="filter ${riFilter===f?'active':''}" data-f="${f}">${f==="all"?"All":(f==="new"?"New":TIERLABEL[f])} · ${counts[f]}</div>`).join("")
-    + (archCount?`<div class="filter ${showArchivedR?'active':''}" data-arch="1">${showArchivedR?'Hide':'Show'} archived · ${archCount}</div>`:``)
-    + (()=>{const n=riPendingCount(riPendingState());
-        return n?`<div class="filter syncchip" data-sync="1" title="${n} change${n>1?'s':''} live only in this browser. Click to save them for the widget — then hit ↻ on the widget to apply.">⇪ Sync ${n} to disk</div>`:``;})();
-  document.querySelectorAll("#filters .filter:not(.syncchip)").forEach(el=>el.onclick=()=>{ if(el.dataset.arch){showArchivedR=!showArchivedR;localStorage.setItem("ri-sharch",showArchivedR?"1":"0");} else {riFilter=el.dataset.f;localStorage.setItem("ri-filter",riFilter);} render();});
-  const sc=document.querySelector("#filters .filter.syncchip");
-  if(sc) sc.onclick=()=>{
-    const p=riPendingState();
-    downloadState(p);
-    toast("Saved "+riPendingCount(p)+" change(s) to your Downloads folder. Now click ↻ on the Recruiter Inbox widget — it merges the file, deletes it, and the counts will match. Reload this page afterwards and the chip goes away.");
-  };
-  // List — "new": strong + look only, newest first (score breaks date ties)
-  const rows=riFilter==="new"
-    ?base.filter(d=>d.tier==="strong"||d.tier==="look").slice().sort((a,b)=>(b.date||"").localeCompare(a.date||"")||b.score-a.score)
-    :base.filter(d=>riFilter==="all"||d.tier===riFilter);
-  const list=$("list");
-  if(!rows.length){list.innerHTML='<div class="empty">Nothing in this filter.</div>';return;}
-  list.innerHTML=rows.map(d=>{
-    const cur=disp[d.id]||"";
-    const setcls=cur?("set-"+cur.toLowerCase()):"";
-    const tags=d.tags.map(t=>`<span class="tag ${t[1]}">${t[0]}</span>`).join("");
-    const flag=d.flag?`<div class="flag">${d.flag}</div>`:"";
-    // source-aware: LinkedIn cards link to the conversation and use LinkedIn-appropriate commands;
-    // Gmail cards keep the Outlook-reply (/recruiter-action) flow.
-    const isLI=d.source==="linkedin";
-    const threadUrl=isLI?`https://www.linkedin.com/messaging/thread/${d.id}/`:`https://mail.google.com/mail/u/0/#all/${d.id}`;
-    const openTitle=isLI?"Open conversation in LinkedIn":"Open thread in Gmail";
-    const srcTag=isLI?`<span class="tag li">LinkedIn</span>`:``;
-    const cardRef=cardRefOf(d), archived=isArchivedR(cardRef);
-    // All three start a minimized interactive session via the loopback listener — out of your way,
-    // but it appears in the Claude sidebar (named for this card) so you can watch or steer it.
-    // ✓ + ran-date show once a command is logged.
-    const sess=`${d.firm} - ${d.role}`.replace(/"/g,'&quot;');
-    const rbtn=(name,arg,label)=>{
-      if(isRunning(name,arg))
-        return `<span class="runbtn bg running" title="Running — open it from your Claude sidebar to watch or steer it. The button flips to a green check when it finishes.">⏳ Running…</span>`;
-      const on=ranOn(arg,name);
-      const t=on
-        ? `Ran ${on.slice(0,10)} — click to run it again`
-        : `Starts a minimized session, named "${sess}" in your Claude sidebar`;
-      return `<a class="runbtn${on?' done':''} bg" href="#" data-key="${b64url(name+'|'+arg)}" data-paste="${('/'+name+' '+arg).replace(/"/g,'&quot;')}" data-label="${sess}" title="${t}">${on?'✓':'▶'} ${label}</a>`;
-    };
-    // "In process" = recruiter-action already run (logged) or an explicit IN PROCESS tag.
-    const inProcess = ranOn(d.id,'recruiter-action') || d.tags.some(t=>/in\s*process/i.test(t[0]));
-    const btns=isLI
-      ? rbtn('next-steps',threadUrl,'Next Steps') + rbtn('job-fit-inbox',threadUrl,'Job Fit Inbox')
-      : rbtn('recruiter-action',d.id,'Recruiter-Action')
-        + (inProcess ? rbtn('next-steps',d.id,'Next Steps') : ``)
-        + rbtn('job-fit-inbox',d.id,'Job Fit Inbox');
-    const archBtn=`<a class="archbtn${archived?' un':''}" href="#" data-ref="${cardRef}" data-un="${archived?1:0}" title="${archived?'Unarchive - bring it back. Applies here now; push it with the ⇪ chip so the widget and scans agree.':'Archive - hide it. Applies here now; push it with the ⇪ chip so the widget hides it too and scans will not re-add it.'}">${archived?'↩ Unarchive':'🗑 Archive'}</a>`;
-    return `<div class="row${archived?' archived':''}">
-      <div class="score ${SCLASS[d.tier]}">${d.score}</div>
-      <div>
-        <a class="role" href="${threadUrl}" target="_blank" title="${openTitle}">${d.role}</a>
-        <a class="meta" href="${threadUrl}" target="_blank" title="${openTitle}">${d.recruiter} · ${d.firm}${d.client!=="undisclosed"?" → "+d.client:""} · ${d.comp}</a>
-        <div class="tags">${srcTag}<span class="tag ${d.remote.k}">${d.remote.t}</span>${tags}</div>
-        ${flag}
-      </div>
-      <div class="right">
-        <select class="${setcls}" onchange="setDisp('${d.id}',this.value)">
-          ${["","Pursue","Maybe","Skip","Applied"].map(o=>`<option value="${o}" ${cur===o?"selected":""}>${o||"— set —"}</option>`).join("")}
-        </select>
-        <div class="btns">${btns}${archBtn}</div>
-      </div>
-    </div>`;
-  }).join("");
-  // Scoped to #list so these never double-bind the prospects tab's .archbtn / .runbtn.
-  document.querySelectorAll('#list .archbtn').forEach(a=>{
-    a.addEventListener('click',e=>{
-      e.preventDefault();
-      const r=a.getAttribute('data-ref'), un=a.getAttribute('data-un')==="1";
-      if(un){ localArchR.delete(r); if(onDisk(ARCHIVED,r)) localUnarchR.add(r); }
-      else  { localArchR.add(r); localUnarchR.delete(r); }
-      localStorage.setItem(LARCHR,JSON.stringify([...localArchR]));
-      localStorage.setItem(LUNARCHR,JSON.stringify([...localUnarchR]));
-      render();   // the ⇪ chip's count moves with it
-    });
-  });
-  const RIMSG={
-    'job-fit-inbox':'Job Fit started — minimized, and in your Claude sidebar if you want to follow the scoring.',
-    'recruiter-action':'Recruiter-Action started — minimized. The tailored draft lands in Outlook; steer it from your Claude sidebar.',
-    'next-steps':'Next Steps started — minimized, and in your Claude sidebar if you want to follow along.'
-  };
-  document.querySelectorAll('#list .runbtn.bg[data-key]').forEach(a=>{
-    a.addEventListener('click',e=>{
-      e.preventDefault();
-      const key=fromB64url(a.getAttribute('data-key'));
-      const i=key.indexOf('|'), name=key.slice(0,i), arg=key.slice(i+1);
-      copyText(a.getAttribute('data-paste'));
-      runViaListener(name,b64url(arg),RIMSG[name],()=>{
-        running[key]=Date.now(); saveRunning();
-        setTimeout(render,80); // flip the button to "Running…" and start the poll
-      },a.getAttribute('data-label'));
-    });
-  });
-}
-const riScan=$("riScanBtn"); if(riScan) riScan.href=claudeUri("/recruiter-scan");
-render();
-// After a poll-reload, restore the scroll position so the refresh is seamless.
-(function(){const sy=sessionStorage.getItem("ri-scroll"); if(sy!=null){window.scrollTo(0,+sy); sessionStorage.removeItem("ri-scroll");}})();
-
-// ============ APP TRACKER ============
-// Pipeline mirror of context-library/app-tracker.md (that file stays the source of truth —
-// full histories, notes, and comp details live there; this block is the render snapshot).
-// Updated by /app-tracker add|update|pipeline — do not hand-edit between the markers.
-// Dates are ISO YYYY-MM-DD; days-waiting and OVERDUE/DUE-TODAY are computed on load, so the
-// tab stays honest even when the snapshot is a few days old.
-// TRACKER_UPDATED_START
-const TRACKER_UPDATED = "2026-07-23";
-// TRACKER_UPDATED_END
-// TRACKER_DATA_START
-const TRACKER_DATA = [
-{company:"Baptist Health South Florida",role:"Senior System Engineer, Power BI & Automation",stage:"screen",note:"Phone screen 7/23 1:00 PM with Caroline Dybala (561.339.1806). Double-submission resolved — she is looping in Lourdes. Apply after the call with her name in the employee-referral field.",added:"2026-07-21",applied:null,last:"2026-07-22",next:"On the 1 PM call: (1) remote in writing — dealbreaker; (2) confirm genuine Power BI development, not sysadmin; (3) comp range. Then apply via Caroline's referral.",due:"2026-07-23",remote:{t:"Conflicting — Coral Gables 8:30–5 vs 'leader open to remote'",k:"warn"},comp:{t:"Not stated — ask on call",k:"warn"},referral:{t:"employee-referral via Caroline",k:"good"},tags:[["local health system",""],["resume not yet tailored","warn"]],li:"https://www.linkedin.com/messaging/thread/2-YmRiODJiN2YtYjljNS00YmNlLThjOTItNTY1NWQ1ZWJkMTczXzEwMA==/"},
-{company:"Armanino",role:"Senior BI & Analytics Developer",codename:"COMPASS",stage:"screen",note:"Exploratory call with Theron Griffin HELD 7/22 (Teams) — resume sent. Awaiting HM / technical round. Direct hire; Armanino accepts no agency submissions.",added:"2026-07-20",applied:null,last:"2026-07-22",next:"Send the thank-you to Theron — $140–160K target in writing + confirm onsite cadence, HM name, next-round timeline (/thank-you-note). Then /salary-research the FL band + build the reporting-transformation work product.",due:"2026-07-22",remote:{t:"Hybrid — Boca Raton ~30 min, cadence negotiable",k:"warn"},comp:{t:"FL band undisclosed — target $140–160K",k:"warn"},referral:{t:"warm inbound — Theron (Americas Talent Partner)",k:"good"},tags:[["Fabric + FP&A scope","good"],["resume 100% coverage","good"],["direct hire","good"]],gmail:"19f8a11a6f842033"},
-{company:"Publicis Sapient",role:"PowerBI Engineer (via Synergy Interactive)",codename:"KESTREL",stage:"screen",note:"Recruiter screen with Max Garcia done 7/20 — prior resume in his hands; tailored 93% version drafted but unsent.",added:"2026-07-20",applied:null,last:"2026-07-20",next:"Send the reply draft to Max (tailored resume attached); follow up if no update by 7/24.",due:"2026-07-24",remote:{t:"Fully remote — confirmed in writing",k:"good"},comp:{t:"$65/hr LLC · $55/hr W2 — under $70 floor",k:"warn"},referral:{t:"no — agency inbound",k:""},tags:[["Power Platform 80/20","good"],["6-mo contract + ext",""]],gmail:"19f7fee6bf8218cd"},
-{company:"Kentro",role:"Power BI Engineer, VA ESOM",codename:"MERIDIAN",stage:"applied",note:"APPLIED 7/23 via careers.kentro.us — iCIMS application 2026-4175, status 'Received Submission'. Sibling req 4202 (Major Incident Mgmt, ServiceNow-required) on hold.",added:"2026-07-22",applied:"2026-07-23",last:"2026-07-23",next:"Send the 5 drafted connection requests (Brooks Keener = VA ESOM recruiting lead — mention app 2026-4175 once he accepts). Quiet by 7/30 → check iCIMS dashboard + one follow-up. Close PL-300.",due:"2026-07-23",remote:{t:"Remote US, ET hours — verified",k:"good"},comp:{t:"$147–165K posted — anchor $160–165K",k:"good"},referral:{t:"5 requests drafted, not sent",k:"warn"},tags:[["score 92","good"],["resume 100% coverage","good"],["Public Trust path",""]],posting:"https://www.linkedin.com/jobs/view/4441483326/",gmail:"19f70a3821a475a3"},
-{company:"Fractal Analytics",role:"Senior Power BI Developer (SR-39113)",codename:"MANDELBROT",stage:"applied",note:"APPLIED 7/21 via Workday — 10 days ahead of the July 31 deadline. Desired salary on file: $165K.",added:"2026-07-21",applied:"2026-07-21",last:"2026-07-21",next:"Quiet by 7/28 → check Workday Candidate Home. If Srikar / Suresh / Vrushali accept, run /referral-request — a post-application referral still pulls the file. Before any screen: /interview-prep (RLS + capacity planning named in req).",due:"2026-07-28",remote:{t:"Remote — verified on official req",k:"good"},comp:{t:"$150–170K + bonus (geo differential possible)",k:"good"},referral:{t:"3 LinkedIn requests sent 7/21 — awaiting accepts",k:"warn"},tags:[["score 92","good"],["resume 100% coverage","good"],["CPG + finance domain hit","good"]],posting:"https://fractal.wd1.myworkdayjobs.com/en-US/Careers/job/California/Senior-Power-BI-Developer_SR-39113"},
-{company:"Talenzaa",role:"Business Analyst (BI) — Tavant / Kubota",codename:"TIDEWATER",stage:"outreach",note:"Inbound agency role with named end client. Reply drafted 7/21 with tailored resume attached — NOT SENT. Video interview is the stated next step.",added:"2026-07-21",applied:null,last:"2026-07-21",next:"Review + send the Gmail draft ('RE: Urgent Need — Business Analyst…'). Draft asks bill rate (confirm ~$70/hr floor). Follow up with Aviral 3–4 business days after sending.",due:"2026-07-23",remote:{t:"100% remote — stated in email",k:"good"},comp:{t:"rate not stated — draft asks",k:"warn"},referral:{t:"no — agency inbound",k:""},tags:[["resume 97% coverage","good"],["supply-chain domain hit","good"],["long-term contract",""]],gmail:"19f80cb44c91d7bb"},
-{company:"Virtual Networx",role:"Data Analyst & Power BI Engineer",codename:"RIPTIDE",stage:"outreach",note:"Inbound agency role, end client not yet named. Reply drafted 7/21 — NOT SENT; verify the resume PDF is attached before sending (notes conflict).",added:"2026-07-21",applied:null,last:"2026-07-21",next:"Review + send the Gmail draft ('RE: Looking for Data Analyst with Fabric Workspaces…') — ask bill rate + end client. Follow up with Sham 3–4 business days after sending.",due:"2026-07-23",remote:{t:"Remote — stated in email",k:"good"},comp:{t:"rate not stated — draft asks",k:"warn"},referral:{t:"no — agency inbound",k:""},tags:[["Fabric named in JD","good"],["resume 96% coverage","good"],["12+ mo contract",""]],gmail:"19f8064120818784"}
-];
-// TRACKER_DATA_END
-
-const AT_CLOSED=new Set(["rejected","withdrawn","ghosted"]);
-const AT_INT=new Set(["screen","interview","onsite"]);   // interview-family stages → ▶ Prep button
-const AT_META={offer:["Offer","st-offer"],onsite:["Onsite","st-int"],interview:["Interview","st-int"],screen:["Screen","st-int"],applied:["Applied","st-app"],outreach:["Outreach","st-out"],watching:["Watching","st-watch"],rejected:["Rejected","st-closed"],withdrawn:["Withdrawn","st-closed"],ghosted:["Ghosted","st-closed"]};
-const AT_GROUPS=[["offer","Offers"],["onsite","Onsite / Final Round"],["interview","Phone Interview"],["screen","Recruiter Screen / In Conversation"],["applied","Applied — Waiting"],["outreach","Recruiter Threads — Pre-Application"],["watching","Watching"],["closed","Closed"]];
-function atToday(){const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");}
-const atDays=iso=>iso?Math.max(0,Math.round((Date.parse(atToday())-Date.parse(iso))/864e5)):null;
-function atDueState(e){if(!e.due||AT_CLOSED.has(e.stage))return"";const t=atToday();return e.due<t?"over":(e.due===t?"today":"");}
-const atFmt=iso=>iso?iso.slice(5).replace("-","/"):"";
-function atRow(e){
-  const m=AT_META[e.stage]||[e.stage,""];
-  const ds=atDueState(e);
-  const roleHtml=e.posting
-    ? '<a class="role" href="'+e.posting+'" target="_blank" rel="noopener">'+e.role+'</a>'
-    : '<span class="role">'+e.role+'</span>';
-  const bits=[];
-  if(e.applied){const d=atDays(e.applied);bits.push(d===0?"applied today":"applied "+atFmt(e.applied)+" · waiting "+d+"d");}
-  else bits.push("added "+atFmt(e.added));
-  if(e.last&&e.last!==e.applied) bits.push("last action "+atFmt(e.last));
-  const chips=
-    (e.remote&&e.remote.t?'<span class="tag '+(e.remote.k||"")+'">'+e.remote.t+'</span>':"")+
-    (e.comp&&e.comp.t?'<span class="tag '+(e.comp.k||"")+'">'+e.comp.t+'</span>':"")+
-    (e.referral&&e.referral.t?'<span class="tag '+(e.referral.k||"")+'">referral: '+e.referral.t+'</span>':"")+
-    (e.tags||[]).map(t=>'<span class="tag '+t[1]+'">'+t[0]+'</span>').join("");
-  const nextLbl=ds==="over"?"OVERDUE "+atFmt(e.due):(ds==="today"?"DUE TODAY":"next"+(e.due?" by "+atFmt(e.due):""));
-  const next=e.next?'<div class="nextact'+(ds?" "+ds:"")+'"><span class="lbl">'+nextLbl+'</span>'+e.next+'</div>':"";
-  let btns='<a class="runbtn" href="'+claudeUri('/app-tracker status '+e.company)+'" title="Open Claude Code in Claude Desktop (job-search-os) with /app-tracker status prefilled">▶ Status</a>';
-  if(AT_INT.has(e.stage))
-    btns+='<a class="runbtn" href="'+claudeUri('/interview-prep '+e.company)+'" title="Open Claude Code in Claude Desktop (job-search-os) with /interview-prep prefilled">▶ Prep</a>';
-  if(e.posting) btns+='<a class="linkbtn" href="'+e.posting+'" target="_blank" rel="noopener">Posting</a>';
-  if(e.gmail) btns+='<a class="linkbtn" href="https://mail.google.com/mail/u/0/#all/'+e.gmail+'" target="_blank" rel="noopener">Email</a>';
-  if(e.li) btns+='<a class="linkbtn" href="'+e.li+'" target="_blank" rel="noopener">LinkedIn</a>';
-  return '<div class="trow"><div class="stg '+m[1]+'">'+m[0]+'</div><div>'+roleHtml+
-    '<div class="meta">'+e.company+(e.codename?" · "+e.codename:"")+" · "+bits.join(" · ")+'</div>'+
-    (e.note?'<div class="meta" style="margin-top:6px">'+e.note+'</div>':"")+
-    '<div class="tags">'+chips+'</div>'+next+'</div><div class="right">'+btns+'</div></div>';
-}
-function renderTracker(){
-  const u=$("at-updated"); if(u) u.textContent=TRACKER_UPDATED||"—";
-  const active=TRACKER_DATA.filter(e=>!AT_CLOSED.has(e.stage));
-  const closed=TRACKER_DATA.filter(e=>AT_CLOSED.has(e.stage));
-  const inInt=active.filter(e=>AT_INT.has(e.stage)).length;
-  const offers=active.filter(e=>e.stage==="offer").length;
-  const attn=active.filter(e=>atDueState(e)).sort((a,b)=>(a.due||"").localeCompare(b.due||""));
-  const hasOver=attn.some(e=>atDueState(e)==="over");
-  $("at-kpis").innerHTML=
-    '<div class="kpi"><div class="n">'+active.length+'</div><div class="l">active applications</div></div>'+
-    '<div class="kpi"><div class="n" style="color:#8fc2ff">'+inInt+'</div><div class="l">in interview stages</div></div>'+
-    '<div class="kpi"><div class="n" style="color:#5fe0a0">'+offers+'</div><div class="l">offers</div></div>'+
-    '<div class="kpi"><div class="n" style="color:'+(hasOver?"#ff9b9b":(attn.length?"#f5c542":"#6b7690"))+'">'+attn.length+'</div><div class="l">actions due now</div></div>';
-  $("at-attn").innerHTML=attn.length
-    ? '<div class="attn '+(hasOver?"over":"today")+'"><div class="t">Needs attention</div>'+attn.map(e=>{
-        const ds=atDueState(e);
-        return '<div class="it"><span class="d'+(ds==="today"?" today":"")+'">'+(ds==="over"?"OVERDUE "+atFmt(e.due):"TODAY")+'</span>'+e.company+" — "+e.next+'</div>';
-      }).join("")+'</div>'
-    : "";
-  let html="";
-  AT_GROUPS.forEach(g=>{
-    const rows=g[0]==="closed"?closed:active.filter(e=>e.stage===g[0]);
-    if(rows.length) html+='<div class="stagehdr">'+g[1]+' ('+rows.length+')</div>'+rows.map(atRow).join("");
-  });
-  $("at-groups").innerHTML=html||'<div class="empty">No applications tracked yet — run <b>/app-tracker add</b> after your next application.</div>';
-  const tc=$("atCount"); if(tc) tc.textContent=active.length?"("+active.length+")":"";
-}
-const atBtn=$("atScanBtn"); if(atBtn) atBtn.href=claudeUri("/app-tracker pipeline");
-renderTracker();
-
-// ============ TABS ============
-// Recruiter Inbox is the default tab. The active tab persists in sessionStorage so the
-// recruiter poll-reload (and any manual reload) comes back to where you were.
-let searchBuilt=false, designBuilt=false;
-function showTab(tab){
-  document.querySelectorAll('.tabs .tab').forEach(x=>x.classList.toggle('on', x.getAttribute('data-tab')===tab));
-  $("panel-recruiter").hidden = tab!=="recruiter";
-  $("panel-prospects").hidden = tab!=="prospects";
-  $("panel-tracker").hidden = tab!=="tracker";
-  $("panel-search").hidden = tab!=="search";
-  $("panel-design").hidden = tab!=="design";
-  if(tab==="search" && !searchBuilt){ renderLinks(); searchBuilt=true; }
-  // Frame gets its src on first reveal, so the design doc costs nothing until asked for.
-  if(tab==="design" && !designBuilt){ $("sdFrame").src="system-design.html"; designBuilt=true; }
-  sessionStorage.setItem("jh-tab",tab);
-}
-document.querySelectorAll('.tabs .tab').forEach(t=>{ t.onclick=()=>showTab(t.getAttribute('data-tab')); });
-showTab(sessionStorage.getItem("jh-tab")||"recruiter");
+  })();
 </script>
-</body>
-</html>
