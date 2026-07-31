@@ -443,7 +443,8 @@ const DREAM_ITEMS = [
     nextAction: "Go to https://careers.progressive.com/jobs/15895087-bi-developer-senior-slash-lead/ · Upload resume from applications/2026-07-13-progressive-bi-developer-senior-lead.md · Submit immediately · Run /app-tracker add",
     note: "Day 18. Confirmed active. This is the most time-sensitive application in your entire search. No waiting.",
     link: "https://careers.progressive.com/jobs/15895087-bi-developer-senior-slash-lead/",
-    nextStepsRef: "Progressive Insurance BI Developer"
+    nextStepsRef: "Progressive Insurance BI Developer",
+    actionCmd: "/work-product Progressive \"BI Developer Senior/Lead\" get-interview"
   },
   {
     id: "microsoft-agentic",
@@ -457,7 +458,8 @@ const DREAM_ITEMS = [
     nextAction: "Go to jobs.careers.microsoft.com → search 'Senior Business Intelligence Engineer Agentic Development' · Upload tailored resume · Submit immediately after Progressive · Run /app-tracker add",
     note: "Fit 85/100. Confirmed active. This is the strongest technical match on the board — Fabric + Agentic AI + your Carnival stack.",
     link: "https://www.builtinsf.com/job/senior-business-intelligence-engineer-agentic-development/10218034",
-    nextStepsRef: "Microsoft Agentic Development"
+    nextStepsRef: "Microsoft Agentic Development",
+    actionCmd: "/work-product Microsoft \"Senior Business Intelligence Engineer Agentic Development\" get-interview"
   },
   {
     id: "armanino",
@@ -471,7 +473,8 @@ const DREAM_ITEMS = [
     nextAction: "If Theron contacts you today or tomorrow: respond within the hour · Run /interview-prep Armanino Advisory · Three likely questions: (1) Walk me through your Fabric experience, (2) AI/ML in analytics, (3) Tell me about yourself",
     note: "Only active pipeline conversation. If he reaches out, this could produce a formal interview immediately.",
     link: "",
-    nextStepsRef: "Armanino Advisory"
+    nextStepsRef: "Armanino Advisory",
+    actionCmd: "/interview-prep Armanino Advisory"
   },
   {
     id: "mcbride",
@@ -485,7 +488,8 @@ const DREAM_ITEMS = [
     nextAction: "Visit https://www.linkedin.com/jobs/view/4442875747 · If McBride is a consulting firm (named client work) → score on merits and apply this week · If staffing/body-shop → skip per career-plan.md",
     note: "LinkedIn flagged you as top applicant. Need to confirm if this is genuine consulting work or staffing placement.",
     link: "https://www.linkedin.com/jobs/view/4442875747",
-    nextStepsRef: "McBride Power BI Developer"
+    nextStepsRef: "McBride Power BI Developer",
+    actionCmd: "/quick-start https://www.linkedin.com/jobs/view/4442875747"
   },
   {
     id: "sham-raj",
@@ -499,7 +503,8 @@ const DREAM_ITEMS = [
     nextAction: "Send final follow-up: 'Hi Sham, following up on the Fabric/Power BI role — still interested if the position is active. Happy to share more about my background. — Andrew' · If no reply by EOD today → close thread and mark complete",
     note: "Rate + end client unanswered twice. This is your final ask.",
     link: "",
-    nextStepsRef: "Virtual Networx"
+    nextStepsRef: "Virtual Networx",
+    actionCmd: "/recruiter-action shamraj@virtualnetworx.com"
   }
 ];
 
@@ -511,6 +516,7 @@ function renderDreamItem(item) {
     VERIFY: "dream-urgent-verify",
     ACTION: "dream-urgent-action"
   };
+  const sessLabel = `${item.company} - ${item.title}`.replace(/"/g, '&quot;');
   return `
     <div class="dream-item ${urgencyColors[item.urgency] || ''}" data-item-id="${item.id}">
       <div class="dream-item-header">
@@ -530,8 +536,8 @@ function renderDreamItem(item) {
         <div class="dream-action-text">${item.nextAction}</div>
       </div>
       <div class="dream-item-buttons">
-        <a href="#" class="dream-action-btn dream-btn-next-steps" data-ref="${b64url(item.nextStepsRef)}" data-item="${item.id}" title="Get structured guidance for this opportunity">🎯 Next Steps</a>
-        <a href="#" class="dream-action-btn dream-btn-run-action" data-action="${item.nextAction.replace(/"/g, '&quot;')}" title="Copy the action workflow to clipboard">▶️ Run Action</a>
+        <a href="#" class="dream-action-btn dream-btn-next-steps" data-ref="${b64url(item.nextStepsRef)}" data-paste="${('/next-steps '+item.nextStepsRef).replace(/"/g,'&quot;')}" data-label="${sessLabel}" title="Get structured guidance for this opportunity">🎯 Next Steps</a>
+        <a href="#" class="dream-action-btn dream-btn-run-action" data-cmd="${item.actionCmd.replace(/"/g,'&quot;')}" data-paste="${item.actionCmd.replace(/"/g,'&quot;')}" data-label="${sessLabel}" title="Launch Claude Code with this action">▶️ Run Action</a>
       </div>
     </div>
   `;
@@ -569,20 +575,21 @@ function initDreamTab() {
   document.querySelectorAll('#panel-dream .dream-btn-next-steps').forEach(btn => {
     btn.addEventListener('click', e => {
       e.preventDefault();
-      const ref = fromB64url(btn.dataset.ref);
-      const paste = '/next-steps ' + ref;
-      const label = ref;
+      const paste = btn.dataset.paste;
+      const label = btn.dataset.label;
       copyText(paste);
-      runViaListener('next-steps', b64url(ref), 'Next Steps for '+label, () => {}, label);
+      runViaListener('next-steps', b64url(fromB64url(btn.dataset.ref)), 'Next Steps for '+label, () => {}, label);
     });
   });
 
   document.querySelectorAll('#panel-dream .dream-btn-run-action').forEach(btn => {
     btn.addEventListener('click', e => {
       e.preventDefault();
-      const action = btn.dataset.action;
-      copyText(action);
-      toast('Copied action workflow — paste in Claude Code or follow the steps above');
+      const paste = btn.dataset.paste;
+      const label = btn.dataset.label;
+      const cmd = btn.dataset.cmd.split(' ')[0].slice(1); // Extract skill name from /skill-name
+      copyText(paste);
+      runViaListener(cmd, b64url(label), btn.dataset.cmd+' — launched headless', () => {}, label);
     });
   });
 }
@@ -1224,9 +1231,10 @@ function atRow(e){
     (e.tags||[]).map(t=>'<span class="tag '+t[1]+'">'+t[0]+'</span>').join("");
   const nextLbl=ds==="over"?"OVERDUE "+atFmt(e.due):(ds==="today"?"DUE TODAY":"next"+(e.due?" by "+atFmt(e.due):""));
   const next=e.next?'<div class="nextact'+(ds?" "+ds:"")+'"><span class="lbl">'+nextLbl+'</span>'+e.next+'</div>':"";
-  let btns='<a class="runbtn" href="'+claudeUri('/app-tracker status '+e.company)+'" title="Open Claude Code in Claude Desktop (job-search-os) with /app-tracker status prefilled">▶ Status</a>';
+  const sessLabel=(e.company+' - '+e.role).replace(/"/g,'&quot;');
+  let btns='<a class="runbtn at-status-btn" href="#" data-paste="'+('/app-tracker status '+e.company).replace(/"/g,'&quot;')+'" data-label="'+sessLabel+'" title="Launch Status check in Claude Code (minimized)">▶ Status</a>';
   if(AT_INT.has(e.stage))
-    btns+='<a class="runbtn" href="'+claudeUri('/interview-prep '+e.company)+'" title="Open Claude Code in Claude Desktop (job-search-os) with /interview-prep prefilled">▶ Prep</a>';
+    btns+='<a class="runbtn at-prep-btn" href="#" data-paste="'+('/interview-prep '+e.company).replace(/"/g,'&quot;')+'" data-label="'+sessLabel+'" title="Launch Interview Prep in Claude Code (minimized)">▶ Prep</a>';
   if(e.posting) btns+='<a class="linkbtn" href="'+e.posting+'" target="_blank" rel="noopener">Posting</a>';
   if(e.gmail) btns+='<a class="linkbtn" href="https://mail.google.com/mail/u/0/#all/'+e.gmail+'" target="_blank" rel="noopener">Email</a>';
   if(e.li) btns+='<a class="linkbtn" href="'+e.li+'" target="_blank" rel="noopener">LinkedIn</a>';
@@ -1277,6 +1285,25 @@ function renderTracker(){
       localStorage.setItem(LATCH,JSON.stringify([...atLocalArch]));
       localStorage.setItem(LUNATCH,JSON.stringify([...atLocalUnarch]));
       renderTracker();
+    });
+  });
+  // Bind App Tracker Status and Prep buttons to run headless
+  document.querySelectorAll('#at-groups .at-status-btn').forEach(btn=>{
+    btn.addEventListener('click',e=>{
+      e.preventDefault();
+      const paste=btn.dataset.paste, label=btn.dataset.label;
+      const cmd='app-tracker';
+      copyText(paste);
+      runViaListener(cmd, b64url(label), 'App Tracker Status — '+label, ()=>{}, label);
+    });
+  });
+  document.querySelectorAll('#at-groups .at-prep-btn').forEach(btn=>{
+    btn.addEventListener('click',e=>{
+      e.preventDefault();
+      const paste=btn.dataset.paste, label=btn.dataset.label;
+      const cmd='interview-prep';
+      copyText(paste);
+      runViaListener(cmd, b64url(label), 'Interview Prep — '+label, ()=>{}, label);
     });
   });
   const showBtn=$("atShowArchBtn"); if(showBtn){
