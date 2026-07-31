@@ -195,6 +195,14 @@
   @media(max-width:640px){#panel-tracker .trow{grid-template-columns:64px 1fr}#panel-tracker .stg{width:64px;font-size:10.5px}#panel-tracker .right{grid-column:1/-1;flex-direction:row;flex-wrap:wrap}}
 
   /* ===== Dream Job tab (briefing findings hub) ===== */
+  #panel-dream .dream-constraints{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:14px 0 24px}
+  #panel-dream .constraint-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+  #panel-dream .constraint-label{color:var(--dim);font-size:11px;text-transform:uppercase;letter-spacing:.6px;font-weight:700}
+  #panel-dream .constraint-value{color:var(--text);font-size:14px;font-weight:600;line-height:1.4}
+  #panel-dream .constraint-detail{color:var(--dim);font-size:12px;margin-top:4px}
+  #panel-dream .constraint-actions{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+  #panel-dream .constraint-btn{background:var(--chip);border:1px solid var(--line);color:var(--dim);border-radius:6px;padding:4px 8px;font-size:11px;text-decoration:none;cursor:pointer;transition:.12s}
+  #panel-dream .constraint-btn:hover{border-color:var(--accent);color:var(--accent2)}
   #panel-dream .dream-skills{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:14px 0 22px}
   #panel-dream .dream-skill-group{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
   #panel-dream .dream-skill-label{color:var(--dim);font-size:11px;text-transform:uppercase;letter-spacing:.7px;font-weight:600;min-width:90px}
@@ -243,8 +251,12 @@
 </div>
 
 <section class="panel" id="panel-dream">
-  <h2>Active Opportunities <small>pipeline focus</small></h2>
-  <div class="meta-line">Active opportunities you're pursuing — applications, screens, and referrals in motion. Edit <code>context-library/app-tracker.md</code> to add/update opportunities.</div>
+  <h2>Dream Job & Constraints <small>your targeting profile</small></h2>
+  <div class="meta-line">Your career constraints guide scoring and filtering — keep these fresh so the briefing stays calibrated to what matters. Source of truth: <code>context-library/career-plan.md</code></div>
+
+  <div id="dream-constraints"></div>
+
+  <h2 style="margin-top: 32px;">Active Opportunities <small>briefing findings</small></h2>
   <div class="dream-skills">
     <div class="dream-skill-group">
       <div class="dream-skill-label">Quick Actions</div>
@@ -330,6 +342,86 @@
 </section>
 
 <script>
+// ============ DREAM JOB TAB — CONSTRAINTS & PREFERENCES ============
+// Manually maintained from context-library/career-plan.md — source of truth for role targeting
+const DREAM_CONSTRAINTS = {
+  level: {
+    label: "Target Level",
+    value: "Senior BI Developer / BI Engineer",
+    detail: "IC, fully remote (primary) or Lead with IC responsibility",
+    action: "Update Career Plan"
+  },
+  comp: {
+    label: "Compensation Target",
+    value: "$150K base / $70–75/hr contract",
+    detail: "Below $130K or below $70/hr: deal-breaker",
+    action: "Review Comp Strategy"
+  },
+  remote: {
+    label: "Location & Remote",
+    value: "Remote only",
+    detail: "Based in Fort Lauderdale, FL — no relocation",
+    action: "Update Preferences"
+  },
+  stack: {
+    label: "Core Stack",
+    value: "Power BI, Azure, SQL, DAX, ETL",
+    detail: "Microsoft data stack must be primary, not secondary",
+    action: "View Alignment"
+  },
+  dreamRole: {
+    label: "Dream Role",
+    value: "Lead BI Developer / Senior BI Engineer",
+    detail: "Remote, tech/finance firm, full stack ownership",
+    action: "Edit Dream"
+  },
+  dealBreakers: {
+    label: "Deal-Breakers",
+    value: "5 hard filters",
+    detail: "On-site, below floor comp, staffing without client, Power BI incidental, or non-MS stack primary",
+    action: "Review Filters"
+  }
+};
+
+function renderDreamConstraints() {
+  const container = document.getElementById("dream-constraints");
+  if (!container) return;
+
+  let html = '<div class="dream-constraints">';
+  for (const [key, constraint] of Object.entries(DREAM_CONSTRAINTS)) {
+    html += `
+      <div class="constraint-card">
+        <div class="constraint-label">${constraint.label}</div>
+        <div class="constraint-value">${constraint.value}</div>
+        <div class="constraint-detail">${constraint.detail}</div>
+        <div class="constraint-actions">
+          <a href="#" class="constraint-btn" data-action="${key}" title="Modify this constraint">${constraint.action}</a>
+        </div>
+      </div>
+    `;
+  }
+  html += '</div>';
+  container.innerHTML = html;
+
+  // Attach handlers
+  document.querySelectorAll('.constraint-btn').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      const action = btn.dataset.action;
+      const actionMap = {
+        level: 'Update your target level in context-library/career-plan.md or run /career-plan update',
+        comp: 'Review compensation research in /salary-research or update career-plan.md',
+        remote: 'Update remote policy in context-library/career-plan.md',
+        stack: 'Check your experience library against your target stack in /linkedin-audit',
+        dreamRole: 'Edit the Dream Offer section in context-library/career-plan.md',
+        dealBreakers: 'Review the "What would make you say no" section in context-library/career-plan.md'
+      };
+      copyText(actionMap[action] || 'Open context-library/career-plan.md');
+      toast('Copied: ' + actionMap[action]);
+    });
+  });
+}
+
 // ============ DREAM JOB TAB — BRIEFING FINDINGS ============
 // Manually maintained from daily briefings (briefings/*.md) — reflects urgent/aging opportunities,
 // new recruiter findings, and critical action items pulling you forward
@@ -432,6 +524,8 @@ function renderDreamItem(item) {
 }
 
 function initDreamTab() {
+  renderDreamConstraints();
+
   const container = document.getElementById("dream-opps");
   if (!container) return;
 
