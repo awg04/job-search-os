@@ -194,28 +194,31 @@
   #panel-tracker .atArchivedToggle{margin:12px 0 14px}
   @media(max-width:640px){#panel-tracker .trow{grid-template-columns:64px 1fr}#panel-tracker .stg{width:64px;font-size:10.5px}#panel-tracker .right{grid-column:1/-1;flex-direction:row;flex-wrap:wrap}}
 
-  /* ===== Dream Job tab (active opportunities hub) ===== */
+  /* ===== Dream Job tab (briefing findings hub) ===== */
   #panel-dream .dream-skills{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:14px 0 22px}
   #panel-dream .dream-skill-group{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
   #panel-dream .dream-skill-label{color:var(--dim);font-size:11px;text-transform:uppercase;letter-spacing:.7px;font-weight:600;min-width:90px}
   #panel-dream .dream-skill-btn{background:#1e3a5f;border:1px solid var(--accent);color:#8fc2ff;border-radius:7px;padding:7px 12px;font-size:12.5px;font-weight:600;text-decoration:none;cursor:pointer;transition:.12s}
   #panel-dream .dream-skill-btn:hover{background:#25507f;color:#fff;border-color:#7ec8ff}
-  #panel-dream .opp-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:12px;margin-top:6px}
-  #panel-dream .opp-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px}
-  #panel-dream .opp-header{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
-  #panel-dream .opp-title{font-weight:600;font-size:15px;color:var(--text)}
-  #panel-dream .opp-company{color:var(--dim);font-size:13px;margin-top:2px}
-  #panel-dream .opp-status{display:flex;gap:8px;flex-wrap:wrap}
-  #panel-dream .status-badge{border-radius:6px;padding:4px 10px;font-size:11px;font-weight:600;white-space:nowrap}
-  #panel-dream .status-applied{background:rgba(52,211,153,.15);color:var(--strong);border:1px solid rgba(52,211,153,.3)}
-  #panel-dream .status-screen{background:#2b5a9e;color:#8fc2ff;border:1px solid #3a6db8}
-  #panel-dream .status-active{background:#1e5e4a;color:#67d8c4;border:1px solid #2b7a61}
-  #panel-dream .status-drafted{background:#3a3010;color:#f5c542;border:1px solid #7a6216}
-  #panel-dream .opp-next{background:var(--card2);border-left:3px solid var(--accent);border-radius:6px;padding:10px 12px;font-size:12.5px;color:var(--text)}
-  #panel-dream .opp-next .label{color:var(--dim);font-size:11px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
-  #panel-dream .opp-actions{display:flex;gap:6px;flex-wrap:wrap}
-  #panel-dream .action-link{background:var(--chip);border:1px solid var(--line);color:var(--dim);border-radius:6px;padding:5px 10px;font-size:11px;text-decoration:none;cursor:pointer}
-  #panel-dream .action-link:hover{border-color:var(--accent);color:var(--accent2)}
+  #panel-dream .dream-section{margin-bottom:24px}
+  #panel-dream .dream-section-header{color:var(--text);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;padding:12px 0 10px;border-bottom:1px solid var(--line)}
+  #panel-dream .dream-item{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:10px;display:flex;flex-direction:column;gap:10px;border-left:4px solid var(--line);transition:.12s}
+  #panel-dream .dream-item.dream-urgent-critical{border-left-color:#e63946;background:rgba(230,57,70,.08)}
+  #panel-dream .dream-item.dream-urgent-hot{border-left-color:#f5c542;background:rgba(245,197,66,.08)}
+  #panel-dream .dream-item.dream-urgent-active{border-left-color:#67d8c4;background:rgba(103,216,196,.08)}
+  #panel-dream .dream-item.dream-urgent-verify{border-left-color:#ffb4b4;background:rgba(255,180,180,.08)}
+  #panel-dream .dream-item.dream-urgent-action{border-left-color:#8fc2ff;background:rgba(143,194,255,.08)}
+  #panel-dream .dream-item-header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+  #panel-dream .dream-item-left{display:flex;gap:12px}
+  #panel-dream .dream-item-icon{font-size:20px;line-height:1;flex-shrink:0}
+  #panel-dream .dream-item-title{font-weight:600;font-size:15px;color:var(--text)}
+  #panel-dream .dream-item-company{color:var(--dim);font-size:13px;margin-top:2px}
+  #panel-dream .dream-item-meta{color:var(--dim);font-size:11px;margin-top:4px}
+  #panel-dream .dream-item-status{font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.5px;text-align:right;white-space:nowrap;min-width:120px}
+  #panel-dream .dream-item-note{color:var(--text);font-size:12.5px;line-height:1.5;padding:8px;background:var(--card2);border-radius:6px}
+  #panel-dream .dream-item-action{border-top:1px solid var(--line);padding-top:10px}
+  #panel-dream .dream-action-label{color:var(--dim);font-size:10px;text-transform:uppercase;letter-spacing:.6px;font-weight:700;margin-bottom:6px}
+  #panel-dream .dream-action-text{color:var(--accent2);font-size:12.5px;line-height:1.6;font-family:"Cascadia Code",Consolas,monospace}
   #panel-dream .opp-empty{color:var(--dim);padding:40px;text-align:center;border:1px dashed var(--line);border-radius:12px}
 
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
@@ -327,73 +330,102 @@
 </section>
 
 <script>
-// ============ DREAM JOB TAB OPPORTUNITIES ============
-// Manually curated from context-library/app-tracker.md — update here as pipeline changes
-const DREAM_OPPS = [
+// ============ DREAM JOB TAB — BRIEFING FINDINGS ============
+// Manually maintained from daily briefings (briefings/*.md) — reflects urgent/aging opportunities,
+// new recruiter findings, and critical action items pulling you forward
+const DREAM_ITEMS = [
   {
-    id: "fractal",
-    company: "Fractal Analytics",
-    title: "Senior Power BI Developer",
-    status: "applied",
-    date: "2026-07-21",
-    nextAction: "Watch for Workday status + recruiter screen invite. Suresh accepted referral; await Srikar/Vrushali. Run /interview-prep before screen.",
-    link: "https://fractal.wd1.myworkdayjobs.com/en-US/Careers/job/California/Senior-Power-BI-Developer_SR-39113"
+    id: "progressive",
+    section: "critical",
+    icon: "🔴",
+    company: "Progressive Insurance",
+    title: "BI Developer Senior/Lead",
+    meta: "Job 15895087 — Day 18",
+    status: "SUBMIT NOW",
+    urgency: "CRITICAL",
+    nextAction: "Go to https://careers.progressive.com/jobs/15895087-bi-developer-senior-slash-lead/ · Upload resume from applications/2026-07-13-progressive-bi-developer-senior-lead.md · Submit immediately · Run /app-tracker add",
+    note: "Day 18. Confirmed active. This is the most time-sensitive application in your entire search. No waiting.",
+    link: "https://careers.progressive.com/jobs/15895087-bi-developer-senior-slash-lead/"
   },
   {
-    id: "baptist",
-    company: "Baptist Health South Florida",
-    title: "Senior System Engineer, Power BI & Automation",
-    status: "screen",
-    date: "2026-07-23",
-    nextAction: "Phone screen with Caroline Dybala Thursday 7/23 @ 1 PM. Must confirm: remote-friendly (posting reads onsite), genuine Power BI dev (not IT sysadmin), comp range.",
+    id: "microsoft-agentic",
+    section: "hot",
+    icon: "🟡",
+    company: "Microsoft",
+    title: "Senior Business Intelligence Engineer — Agentic Development",
+    meta: "Built In SF — Day 3",
+    status: "SUBMIT AFTER PROGRESSIVE",
+    urgency: "HOT",
+    nextAction: "Go to jobs.careers.microsoft.com → search 'Senior Business Intelligence Engineer Agentic Development' · Upload tailored resume · Submit immediately after Progressive · Run /app-tracker add",
+    note: "Fit 85/100. Confirmed active. This is the strongest technical match on the board — Fabric + Agentic AI + your Carnival stack.",
+    link: "https://www.builtinsf.com/job/senior-business-intelligence-engineer-agentic-development/10218034"
+  },
+  {
+    id: "armanino",
+    section: "active",
+    icon: "🟢",
+    company: "Armanino Advisory",
+    title: "Awaiting HM Feedback",
+    meta: "Theron Griffin — Conversation Active",
+    status: "RESPOND WITHIN 1 HOUR",
+    urgency: "ACTIVE",
+    nextAction: "If Theron contacts you today or tomorrow: respond within the hour · Run /interview-prep Armanino Advisory · Three likely questions: (1) Walk me through your Fabric experience, (2) AI/ML in analytics, (3) Tell me about yourself",
+    note: "Only active pipeline conversation. If he reaches out, this could produce a formal interview immediately.",
     link: ""
   },
   {
-    id: "talenzaa",
-    company: "Talenzaa / Kubota",
-    title: "Business Analyst (Business Intelligence)",
-    status: "drafted",
-    date: "2026-07-21",
-    nextAction: "Review Gmail draft (\"RE: Urgent Need -- Business Analyst…\") — resume attached — and send. Video interview is next step.",
-    link: ""
+    id: "mcbride",
+    section: "verify",
+    icon: "⚠️",
+    company: "McBride",
+    title: "Power BI Developer",
+    meta: "LinkedIn 4442875747 — Needs Verification",
+    status: "VERIFY TODAY",
+    urgency: "VERIFY",
+    nextAction: "Visit https://www.linkedin.com/jobs/view/4442875747 · If McBride is a consulting firm (named client work) → score on merits and apply this week · If staffing/body-shop → skip per career-plan.md",
+    note: "LinkedIn flagged you as top applicant. Need to confirm if this is genuine consulting work or staffing placement.",
+    link: "https://www.linkedin.com/jobs/view/4442875747"
   },
   {
-    id: "virtualnetworx",
-    company: "Virtual Networx Inc",
-    title: "Data Analyst & Power BI Engineer",
-    status: "active",
-    date: "2026-07-21",
-    nextAction: "Expect call from Sham (469-209-6233) or call him. Follow up if no reply by 7/30. Rate + end client still unanswered — don't advance until both clear.",
-    link: ""
-  },
-  {
-    id: "publicis",
-    company: "Publicis Sapient",
-    title: "PowerBI Engineer",
-    status: "active",
-    date: "2026-07-20",
-    nextAction: "Review Gmail draft (\"RE: PowerBI Engineer Role with Publicis Sapient\") — resume.docx attached — and send. Follow up with Max if no update by 7/24.",
+    id: "sham-raj",
+    section: "action",
+    icon: "⏳",
+    company: "Virtual Networx",
+    title: "Final Nudge / Close Thread",
+    meta: "Sham Raj (shamraj@virtualnetworx.com) — Day 9",
+    status: "FINAL NUDGE → CLOSE",
+    urgency: "ACTION",
+    nextAction: "Send final follow-up: 'Hi Sham, following up on the Fabric/Power BI role — still interested if the position is active. Happy to share more about my background. — Andrew' · If no reply by EOD today → close thread and mark complete",
+    note: "Rate + end client unanswered twice. This is your final ask.",
     link: ""
   }
 ];
 
-function renderDreamOpp(opp) {
-  const statusMap = {applied: "✅ Applied", screen: "🔥 Phone Screen", active: "🟢 Active", drafted: "⏱️ Drafted"};
-  const statusClass = {applied: "applied", screen: "screen", active: "active", drafted: "drafted"}[opp.status];
+function renderDreamItem(item) {
+  const urgencyColors = {
+    CRITICAL: "dream-urgent-critical",
+    HOT: "dream-urgent-hot",
+    ACTIVE: "dream-urgent-active",
+    VERIFY: "dream-urgent-verify",
+    ACTION: "dream-urgent-action"
+  };
   return `
-    <div class="opp-card">
-      <div class="opp-header">
-        <div>
-          <div class="opp-title">${opp.title}</div>
-          <div class="opp-company">${opp.company}</div>
+    <div class="dream-item ${urgencyColors[item.urgency] || ''}">
+      <div class="dream-item-header">
+        <div class="dream-item-left">
+          <span class="dream-item-icon">${item.icon}</span>
+          <div>
+            <div class="dream-item-title">${item.title}</div>
+            <div class="dream-item-company">${item.company}</div>
+            <div class="dream-item-meta">${item.meta}</div>
+          </div>
         </div>
-        <div class="opp-status">
-          <span class="status-badge status-${statusClass}">${statusMap[opp.status]}</span>
-        </div>
+        <div class="dream-item-status">${item.status}</div>
       </div>
-      <div class="opp-next">
-        <div class="label">Next Action</div>
-        ${opp.nextAction}
+      <div class="dream-item-note">${item.note}</div>
+      <div class="dream-item-action">
+        <div class="dream-action-label">→ Next Action</div>
+        <div class="dream-action-text">${item.nextAction}</div>
       </div>
     </div>
   `;
@@ -402,12 +434,28 @@ function renderDreamOpp(opp) {
 function initDreamTab() {
   const container = document.getElementById("dream-opps");
   if (!container) return;
-  if (DREAM_OPPS.length === 0) {
-    container.innerHTML = '<div class="opp-empty">No active opportunities. Check back soon!</div>';
-    return;
+
+  // Group by section and render with headers
+  const sections = {
+    critical: "🔴 CRITICAL — SUBMIT TODAY",
+    hot: "🟡 HOT — SUBMIT AFTER CRITICAL",
+    active: "🟢 ACTIVE CONVERSATIONS",
+    verify: "⚠️ VERIFY TODAY",
+    action: "⏳ FOLLOW-UPS & NUDGES"
+  };
+
+  let html = '';
+  for (const [section, header] of Object.entries(sections)) {
+    const items = DREAM_ITEMS.filter(i => i.section === section);
+    if (items.length > 0) {
+      html += `<div class="dream-section"><div class="dream-section-header">${header}</div>`;
+      html += items.map(renderDreamItem).join('');
+      html += '</div>';
+    }
   }
-  container.innerHTML = '<div class="opp-cards">' + DREAM_OPPS.map(renderDreamOpp).join('') + '</div>';
-  document.getElementById("dreamCount").textContent = ` ${DREAM_OPPS.length}`;
+
+  container.innerHTML = html;
+  document.getElementById("dreamCount").textContent = ` ${DREAM_ITEMS.length}`;
 }
 
 // ============ X-RAY LINK ENGINE ============
