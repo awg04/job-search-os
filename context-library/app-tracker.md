@@ -126,7 +126,7 @@ Remote-only search: every entry carries a `remote-policy` field. Non-remote-firs
   - 2026-07-22 **Exploratory call with Theron HELD** (Teams; thread `19f8a11a6f842033`); resume sent. `/next-steps` run → post-call plan set: follow-up note (comp on record), salary-research, interview-prep, reporting-transformation work product.
 
 ### Kentro (IT Concepts dba Kentro) — Power BI Engineer, VA ESOM (MERIDIAN)
-- **Status:** ✅ APPLIED 2026-07-23 via careers.kentro.us — iCIMS application **2026-4175**, candidate-dashboard status **"Received Submission"**. Login: andrewgreen04@gmail.com. ⚠️ Sibling req: **4202 "Major Incident Management Power BI Engineer (VA ESOM)"** $147–166K — ServiceNow REQUIRED there, custom visuals + Python preferred; HOLD — if pursued, re-tune resume (restore Deneb/Vega-Lite + Python bullets) and flag both apps to Brooks Keener.
+- **Status:** ❌ REJECTED 2026-08-03 — email from samantha.berg@kentro.us: "finalizing steps with a qualified candidate." Application 2026-4175 closed. ~~iCIMS application **2026-4175**, candidate-dashboard status **"Received Submission"**.~~ ⚠️ Sibling req: **4202 "Major Incident Management Power BI Engineer (VA ESOM)"** $147–166K — ServiceNow REQUIRED there, custom visuals + Python preferred; HOLD — if pursued, re-tune resume (restore Deneb/Vega-Lite + Python bullets) and flag both apps to Brooks Keener.
 - **Date added:** 2026-07-22
 - **Remote policy:** ✅ posting states "Remote within the United States," Eastern Time hours (Andrew = ET, Fort Lauderdale)
 - **Job fit:** score 92 (`/job-hunt-scan` 2026-07-17 — tied with Fractal for top prospect); resume coverage 100% (13/13 — 11 STRONG / 2 PARTIAL)
@@ -143,6 +143,7 @@ Remote-only search: every entry carries a `remote-policy` field. Non-remote-firs
   - 2026-07-22 `/resume-tailor` → 1-page PDF built + verified (100% coverage), codename MERIDIAN.
   - 2026-07-23 Applied via careers.kentro.us: found req **4175** = exact LinkedIn JD (verified word-for-word) + sibling req 4202 (Major Incident Mgmt variant, ServiceNow-required — held). Claude filled the iCIMS Candidate Profile: resume PDF uploaded (parse pre-filled name/phone/city/state), cover letter (top-3 matches, ServiceNow note, no clearance claims) written into form, address type Home, source Job Board→LinkedIn. Handed off for zip/password/captcha/Submit Profile.
   - 2026-07-23 **SUBMITTED by Andrew** (zip, account password, captcha, Submit Profile). Verified on candidate dashboard: application **2026-4175, "Received Submission."** Moved to In Process.
+  - 2026-08-03 **REJECTED** — email from samantha.berg@kentro.us: "We have moved forward with finalizing steps with a qualified candidate." Moved to closed. The 5 connection requests (drafted 2026-07-22) were never sent — hold; deprioritize unless Kentro posts again.
 
 ---
 
