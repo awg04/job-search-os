@@ -103,7 +103,7 @@ Remote-only search: every entry carries a `remote-policy` field. Non-remote-firs
   - 2026-07-20 `/recruiter-action` run: JD extracted, resume tailored (93/100 coverage), reply draft created in Gmail Drafts (unsent) with tailored resume attached.
 
 ### Armanino — Senior BI & Analytics Developer (JR103988)
-- **Status:** In Process — **exploratory call with Theron HELD 2026-07-22** (Teams; thread `19f8a11a6f842033`, subject reframed "Sr AI/Analytics Developer"); resume sent. Awaiting next round (HM / technical).
+- **Status:** ❌ CLOSED 2026-08-05 — Theron Griffin confirmed the FP&A team internally converted an existing PBI/Dev contractor to FTE rather than hire externally. Andrew replied graciously 2026-08-05 evening; Theron closed the loop 2026-08-06 at 9:18 AM ET: "I will keep you apprised re future opportunities." Relationship intact. ~~In Process — exploratory call with Theron HELD 2026-07-22~~
 - **Date added:** 2026-07-20
 - **Job fit score:** was 60/100 (SKIP on remote dealbreaker) → **remote dealbreaker resolved**, now a genuine pursue. Raw stack fit ~90+.
 - **Remote policy:** ✅ RESOLVED — local hybrid. Nearest office is **Boca Raton (4755 Technology Way #109), ~30 min / 8 mi from Ft Lauderdale** — not Seattle. FPA leadership wants ~50% onsite but Theron says it "can be massaged" (e.g. 2 days/wk in Boca, or 1 week on / 2 weeks remote). Andrew previously commuted Ft Lauderdale→Boca a few days/week pre-Carnival, so viable.
