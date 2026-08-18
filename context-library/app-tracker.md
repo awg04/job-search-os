@@ -150,18 +150,34 @@ Remote-only search: every entry carries a `remote-policy` field. Non-remote-firs
 ## Watching / Pre-Application
 
 ### Walker & Dunlop — Senior BI Analyst (Req-1930)
-- **Status:** Watching — direct ATS posting located + verified open 2026-07-22; not yet applied
+- **Status:** ❌ CLOSED 2026-08-17 — passed. Role aged 76 days in Watching with no application filed. Andrew decided not to pursue. Posting may still be open.
 - **Date added:** 2026-07-22 (surfaced by `/job-hunt-scan` 2026-06-30, score 90 — top Job Hunt board prospect)
-- **Remote policy:** ✅ VERIFIED 2026-07-22 on official Workday req — location field is **"Remote - USA"** with #LI-Remote tag, no state-residency or timezone restrictions in JD body
-- **Apply directly:** https://walkerdunlop.wd1.myworkdayjobs.com/en-US/WD/job/Senior-BI-Analyst_Req-1930 (direct ATS beats the BuiltIn aggregator listing; posting shows canApply: true)
-- **Aggregator ref:** https://builtin.com/job/senior-bi-analyst/9598809 (BuiltIn, sourced by scan)
-- **Comp (posted):** $140,000–$160,000 + discretionary bonus ✅ — top of band hits the $150K dream-offer number
-- **Referral:** None yet — no contacts at Walker & Dunlop in connection-tracker (checked 2026-07-22). Referral path is the open workstream.
-- **Company:** One of the largest US commercial real-estate finance firms (NYSE: WD); role sits in **WDTech - R&D**, the in-house tech org. Full time, FTE.
-- **Stack fit (from official JD):** Required — 6+ yrs BI; requirements gathering/documentation; **enterprise data platform (Snowflake, Redshift, BigQuery, "or similar")** → position Azure Synapse/Fabric/Azure SQL DW as the "similar"; Power BI semantic models + enterprise reporting; strong SQL + dimensional modeling. Preferred — **SSRS/SSAS ✅ (have it)** and **commercial real estate or financial-services domain ✅ (Merrill Lynch)** — both preferred quals hit. Agile ceremonies in scope.
-- **Role shape caution:** JD is ~half BA-liaison (lead requirements gathering, translate business needs, bridge business↔engineering) + half hands-on BI dev (semantic models, deployment, permissions, refresh schedules, governance). Same bridge positioning as Armanino/Talenzaa tailors. Confirm dev-vs-analyst balance at screen.
-- **Urgency:** Posted 30+ days ago (Workday start date June 3), reposted on BuiltIn ~June 30 — aging ~7 weeks. Apply by ~Fri 2026-07-25; don't wait on referral acceptance (post-application referral still pulls the file).
-- **Next action:** (1) Referral path — LinkedIn search 1st/2nd-degree at Walker & Dunlop (WDTech/BI/data), `/connection-request` top 2–3. (2) `/company-research Walker & Dunlop`. (3) `/resume-tailor` vs official JD (lead: PBI semantic models, SQL Server/SSRS/SSAS, dimensional modeling, finserv domain; Azure-as-enterprise-platform for the Snowflake line). (4) Apply via Workday by 7/25, anchor $155–160K. See `/next-steps` run 2026-07-22.
+- **Remote policy:** ✅ VERIFIED remote-USA
+- **Comp (posted):** $140,000–$160,000
 - **History:**
   - 2026-06-30 Surfaced by `/job-hunt-scan` on BuiltIn, scored 90 (strong).
-  - 2026-07-22 `/next-steps` run → plan set (referral-first, apply by 7/25). Direct Workday req located; remote + comp + open-status verified on official posting.
+  - 2026-07-22 `/next-steps` run → plan set (referral-first, apply by 7/25). Direct Workday req located; remote + comp + open-status verified.
+  - 2026-08-17 **CLOSED** — passed after 76 days in Watching without applying.
+
+---
+
+### Progressive Insurance — BI Developer Senior/Lead (Job 252131)
+- **Status:** 🔍 IDENTIFIED 2026-08-17 — not yet applied; JD fetch blocked (403), must open manually
+- **Date added:** 2026-08-17 (surfaced by morning briefing scan)
+- **Remote policy:** ⚠️ UNCONFIRMED — verify in JD before applying
+- **Apply directly:** https://careers.progressive.com/jobs/15895087-bi-developer-senior-slash-lead/
+- **Comp (posted):** $134,000–$200,000 ✅ clears floor; wide range suggests Sr → Lead levels
+- **Stack fit:** ⚠️ UNKNOWN — careers.progressive.com blocks automated fetch; must open JD in browser and confirm Microsoft/Power BI stack before investing application effort
+- **Company tier:** Tier 2 (target company)
+- **Score:** ~83/100 (pre-JD-read estimate)
+- **Next action:** (1) Open JD in browser — confirm stack (if Power BI/SSRS/SQL Server → apply; if Tableau/Looker primary → deprioritize). (2) Check LinkedIn for Progressive contacts — `/connection-request Progressive`. (3) `/resume-tailor` vs JD. (4) Apply via careers.progressive.com, anchor $160K.
+- **History:**
+  - 2026-08-17 Surfaced by morning briefing scan. Logged IDENTIFIED pending JD stack confirmation.
+
+### K&L Gates — Fabric Power BI Developer
+- **Status:** ❌ CLOSED 2026-08-17 — passed. Remote status unconfirmed (Austin, TX listed), "flexible working environment" not sufficient for remote-only search. Andrew decided not to pursue without remote confirmation.
+- **Date added:** 2026-08-17 (surfaced by morning briefing board scan)
+- **Remote policy:** ❌ UNCONFIRMED — role listed Austin, TX; "flexible working environment" only
+- **Comp (posted):** $148,000–$296,000
+- **History:**
+  - 2026-08-17 Surfaced by board scan. Remote status unconfirmed. **CLOSED** — passed.
